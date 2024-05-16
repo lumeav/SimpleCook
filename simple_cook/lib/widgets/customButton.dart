@@ -1,0 +1,52 @@
+import 'package:flutter/material.dart';
+
+class CustomButton extends StatefulWidget {
+  final String text;
+  final bool activated;
+  final Function(bool) onPressed;
+
+  const CustomButton({
+    Key? key,
+    required this.text,
+    required this.activated,
+    required this.onPressed,
+  }) : super(key: key);
+
+  @override
+  _CustomButtonState createState() => _CustomButtonState();
+}
+
+class _CustomButtonState extends State<CustomButton> {
+  bool _pressed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTapDown: (_) => setState(() => _pressed = true),
+      onTapUp: (_) {
+        setState(() => _pressed = false);
+        widget.onPressed(!_pressed);
+      },
+      onTapCancel: () => setState(() => _pressed = false),
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+        decoration: BoxDecoration(
+          color: _pressed || widget.activated ? Colors.orange : Colors.white,
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(
+            color: _pressed || widget.activated ? Colors.transparent : Colors.orange,
+            width: 2,
+          ),
+        ),
+        child: Text(
+          widget.text,
+          style: TextStyle(
+            color: _pressed || widget.activated ? Colors.white : Colors.orange,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+}
