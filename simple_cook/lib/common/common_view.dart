@@ -13,6 +13,7 @@ class CommonView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('SimpleCook'),
+        automaticallyImplyLeading: false,
       ),
       body: Container(
         color: Colors.grey[200],
