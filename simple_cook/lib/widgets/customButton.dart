@@ -25,7 +25,7 @@ class _CustomButtonState extends State<CustomButton> {
       onTapDown: (_) => setState(() => _pressed = true),
       onTapUp: (_) {
         setState(() => _pressed = false);
-        widget.onPressed(!_pressed);
+        widget.onPressed(!widget.activated);
       },
       onTapCancel: () => setState(() => _pressed = false),
       child: Container(

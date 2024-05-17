@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       centerTitle: true,
-      automaticallyImplyLeading: false,
+      //automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       elevation: 0, // Remove shadow
     );

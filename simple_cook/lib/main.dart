@@ -1,67 +1,94 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/common/common_view.dart';
-import 'package:simple_cook/common/navbar.dart';
-import 'package:simple_cook/ui/explore/explore_view.dart';
-import 'package:simple_cook/ui/favorites/favorites_view.dart';
-import 'package:simple_cook/ui/planner/planner_view.dart';
-import 'package:simple_cook/ui/recipefinder/recipefinder_view.dart';
+import 'widgets/CustomAppBar.dart';
+import 'widgets/CustomButton.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SimpleCook',
+      title: 'Cooking App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.orange,
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => ExploreView(
-          selectedIndex: 0,
-          onItemTapped: (index) => _onItemTapped(index, context),
-            // Handle navigation or state change when an item is tapped
-          ),
-        '/search': (context) => RecipefinderView(
-          selectedIndex: 1,
-          onItemTapped: (index) => _onItemTapped(index, context),
-            // Handle navigation or state change when an item is tapped
-          ),
-        '/favorites': (context) => FavoritesView(
-          selectedIndex: 2,
-          onItemTapped: (index) => _onItemTapped(index, context),
-            // Handle navigation or state change when an item is tapped,
-          ),
-        '/planner': (context) => PlannerView(
-          selectedIndex: 3,
-          onItemTapped: (index) => _onItemTapped(index, context),
-            // Handle navigation or state change when an item is tapped
-        ),
-      },
+      home: MainPage(),
     );
-  }
-  
-  static void _onItemTapped(int index, BuildContext context) {
-    switch (index) {
-      case 0:
-        Navigator.pushNamed(context, '/');
-        break;
-      case 1:
-        Navigator.pushNamed(context, '/search');
-        break;
-      case 2:
-        Navigator.pushNamed(context, '/favorites');
-        break;
-      case 3:
-        Navigator.pushNamed(context, '/planner');
-        break;
-    }
   }
 }
 
+class MainPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Main Page'),
+      ),
+      body: ListView(
+        children: [
+          ListTile(
+            title: Text('CustomAppBar'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomAppBarDemo()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('CustomButton'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomButtonDemo()),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class CustomAppBarDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar(title: 'Demo AppBar'),
+      body: Center(
+        child: Text('This is a custom AppBar'),
+      ),
+    );
+  }
+}
+
+class CustomButtonDemo extends StatefulWidget {
+  @override
+  _CustomButtonDemoState createState() => _CustomButtonDemoState();
+}
+
+class _CustomButtonDemoState extends State<CustomButtonDemo> {
+  bool _buttonActivated = false;
+
+  void _handleButtonPressed(bool activated) {
+    setState(() {
+      _buttonActivated = activated;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Custom Button Demo')),
+      body: Center(
+        child: CustomButton(
+          text: 'Press Me',
+          activated: _buttonActivated,
+          onPressed: _handleButtonPressed,
+        ),
+      ),
+    );
+  }
+}
