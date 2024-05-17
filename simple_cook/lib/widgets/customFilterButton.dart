@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//This is the filter symbol that would lead to the filter screen when pressed
+
 class FilterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

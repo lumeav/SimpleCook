@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// This is the AppBar that is on every Screen saying "SimpleCook" in orange letters
+
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 

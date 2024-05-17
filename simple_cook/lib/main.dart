@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'widgets/CustomAppBar.dart';
 import 'widgets/CustomButton.dart';
 
+//This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
+
 void main() {
   runApp(MyApp());
 }

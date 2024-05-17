@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// This is the customButton in the filter view (for example to enable/disable vegan food) that inverts its colors whenever it is pressed
+
 class CustomButton extends StatefulWidget {
   final String text;
   final bool activated;

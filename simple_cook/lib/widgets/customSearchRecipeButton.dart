@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//This is the "Rezepte Suchen" button that is orange with white letters
+
 class SearchRecipesButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
