@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 // This is the AppBar that is on every Screen saying "SimpleCook" in orange letters
 
@@ -10,21 +11,31 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(  
-        title,
-        style: TextStyle(
-          color: Colors.orange,
-          fontSize: 20.0,
-          fontWeight: FontWeight.bold,
-        ),
+      title: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          PhosphorIcon(
+            PhosphorIcons.chefHat(PhosphorIconsStyle.regular),
+            color: Colors.orange,
+            size: 35,
+          ),
+          const SizedBox(width: 8.0), // Add some spacing between the icon and the text
+          Text(
+            title,
+            style: const TextStyle(
+              color: Colors.orange,
+              fontSize: 30.0,
+              fontFamily: 'BigShouldersText'
+            ),
+          ),
+        ],
       ),
       centerTitle: true,
-      //automaticallyImplyLeading: false,
       backgroundColor: Colors.white,
       elevation: 0, // Remove shadow
     );
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

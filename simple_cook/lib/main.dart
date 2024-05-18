@@ -58,7 +58,7 @@ class CustomAppBarDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(title: 'Demo AppBar'),
+      appBar: CustomAppBar(title: 'SimpleCook'),
       body: Center(
         child: Text('This is a custom AppBar'),
       ),
