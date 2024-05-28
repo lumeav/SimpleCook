@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/widgets/ButtonFilter.dart';
 import 'widgets/CustomAppBar.dart';
 import 'widgets/CustomButton.dart';
 
@@ -48,6 +49,15 @@ class MainPage extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            title: Text('ButtonFilter'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomButtonFilter()),
+              );
+            },
+          ),
         ],
       ),
     );
@@ -66,10 +76,40 @@ class CustomAppBarDemo extends StatelessWidget {
   }
 }
 
+class CustomButtonFilter extends StatefulWidget {
+  @override
+  _CustomButtonFilterState createState() => _CustomButtonFilterState();
+}
+
+class _CustomButtonFilterState extends State<CustomButtonFilter> {
+  bool _pressed = false;
+
+  void _onPressed() {
+    setState(() {
+      _pressed = !_pressed;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Button Filter Demo')),
+      body: Center(
+        child: ButtonFilter(
+          text: 'Vorspeise',
+          width: 150,
+          height: 50,
+        ),
+      ),
+    );
+  }
+}
+
 class CustomButtonDemo extends StatefulWidget {
   @override
   _CustomButtonDemoState createState() => _CustomButtonDemoState();
 }
+
 
 class _CustomButtonDemoState extends State<CustomButtonDemo> {
   bool _buttonActivated = false;
@@ -79,6 +119,14 @@ class _CustomButtonDemoState extends State<CustomButtonDemo> {
       _buttonActivated = activated;
     });
   }
+
+
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {

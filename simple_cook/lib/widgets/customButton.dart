@@ -40,15 +40,22 @@ class _CustomButtonState extends State<CustomButton> {
             width: 2,
           ),
         ),
-        child: Text(
+        child: _pressed ? Text(
           widget.text,
           style: TextStyle(
             color: _pressed || widget.activated ? Colors.white : Colors.orange,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
+        ) : Text (
+          "hello",
+          style: TextStyle(
+            color: _pressed || widget.activated ? Colors.white : Colors.orange,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
         ),
       ),
+      )
     );
   }
 }
