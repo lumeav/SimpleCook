@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/widgets/ButtonFilter.dart';
-import 'package:simple_cook/widgets/customSlider.dart';
-import 'widgets/CustomAppBar.dart';
-import 'widgets/CustomButton.dart';
+import 'package:simple_cook/widgets/buttonFilter.dart';
+import 'package:simple_cook/widgets/sliderFilter.dart';
+import 'widgets/appBar.dart';
+
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
 
@@ -42,15 +42,6 @@ class MainPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('CustomButton'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CustomButtonDemo()),
-              );
-            },
-          ),
-          ListTile(
             title: Text('ButtonFilter'),
             onTap: () {
               Navigator.push(
@@ -60,7 +51,7 @@ class MainPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('CustomSlider'),
+            title: Text('SliderFilter'),
             onTap: () {
               Navigator.push(
                 context,
@@ -130,44 +121,6 @@ class _CustomButtonFilterState extends State<CustomButtonFilter> {
           text: 'Vorspeise',
           width: 150,
           height: 50,
-        ),
-      ),
-    );
-  }
-}
-
-class CustomButtonDemo extends StatefulWidget {
-  @override
-  _CustomButtonDemoState createState() => _CustomButtonDemoState();
-}
-
-
-class _CustomButtonDemoState extends State<CustomButtonDemo> {
-  bool _buttonActivated = false;
-
-  void _handleButtonPressed(bool activated) {
-    setState(() {
-      _buttonActivated = activated;
-    });
-  }
-
-
-
-
-
-
-
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Custom Button Demo')),
-      body: Center(
-        child: CustomButton(
-          text: 'Press Me',
-          activated: _buttonActivated,
-          onPressed: _handleButtonPressed,
         ),
       ),
     );
