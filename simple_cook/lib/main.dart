@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/widgets/buttonFilter.dart';
 import 'package:simple_cook/widgets/sliderFilter.dart';
+import 'package:simple_cook/widgets/searchRecipeButton.dart';
+import 'package:simple_cook/widgets/filterIcon.dart';
 import 'widgets/appBar.dart';
-
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
 
@@ -59,12 +60,54 @@ class MainPage extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            title: Text('searchRecipeButton'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomSearchRecipesButton()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('FilterIcon'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomFilterIcon()),
+              );
+            },
+          ),
         ],
       ),
     );
   }
 }
 
+class CustomFilterIcon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Filter Icon Demo')),
+      body: Center(
+        child: FilterIcon(),
+      ),
+    );
+  }
+}
+
+class CustomSearchRecipesButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Search Recipe Button Demo')),
+      body: Center(
+        child: SearchRecipesButton('Rezepte Suchen'),
+      ),
+    );
+  }
+}
 
 class CustomSliderFilter extends StatefulWidget {
   @override
@@ -72,8 +115,6 @@ class CustomSliderFilter extends StatefulWidget {
 }
 
 class _CustomSliderState extends State<CustomSliderFilter> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +122,6 @@ class _CustomSliderState extends State<CustomSliderFilter> {
       body: Center(
         child: CustomSlider(),
       ),
-
     );
   }
 }
@@ -89,8 +129,8 @@ class _CustomSliderState extends State<CustomSliderFilter> {
 class CustomAppBarDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(title: 'SimpleCook'),
+    return const Scaffold(
+      appBar: CustomAppBar('SimpleCook'),
       body: Center(
         child: Text('This is a custom AppBar'),
       ),
@@ -116,11 +156,11 @@ class _CustomButtonFilterState extends State<CustomButtonFilter> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Button Filter Demo')),
-      body: Center(
+      body: const Center(
         child: ButtonFilter(
-          text: 'Vorspeise',
-          width: 150,
-          height: 50,
+          'Vorspeise',
+          50,
+          150,
         ),
       ),
     );

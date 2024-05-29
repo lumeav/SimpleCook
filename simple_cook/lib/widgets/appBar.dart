@@ -6,27 +6,28 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 
-  const CustomAppBar({Key? key, required this.title}) : super(key: key);
+  const CustomAppBar(this.title, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       title: Row(
+
         mainAxisSize: MainAxisSize.min,
-        children: [
+        children: <Widget> [
           PhosphorIcon(
             PhosphorIcons.chefHat(PhosphorIconsStyle.regular),
             color: Colors.orange,
             size: 35,
           ),
-          const SizedBox(width: 8.0), // Add some spacing between the icon and the text
+          const SizedBox(
+              width: 8.0), // Add some spacing between the icon and the text
           Text(
             title,
             style: const TextStyle(
-              color: Colors.orange,
-              fontSize: 30.0,
-              fontFamily: 'BigShouldersText'
-            ),
+                color: Colors.orange,
+                fontSize: 30.0,
+                fontFamily: 'BigShouldersText'),
           ),
         ],
       ),
