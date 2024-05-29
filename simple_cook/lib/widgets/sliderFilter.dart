@@ -3,8 +3,9 @@ import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
 class CustomSlider extends StatefulWidget {
-
-  const CustomSlider({Key? key,}) : super(key: key);
+  const CustomSlider({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _CustomSliderState createState() => _CustomSliderState();
@@ -17,7 +18,7 @@ class _CustomSliderState extends State<CustomSlider> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget> [
+      children: <Widget>[
         Icon(Icons.access_time_outlined, size: 30.0),
         SizedBox(
           width: 280,
