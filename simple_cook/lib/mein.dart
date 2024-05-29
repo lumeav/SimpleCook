@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/common/common_view.dart';
-import 'package:simple_cook/common/navbar.dart';
 import 'package:simple_cook/ui/explore/explore_view.dart';
 import 'package:simple_cook/ui/favorites/favorites_view.dart';
 import 'package:simple_cook/ui/planner/planner_view.dart';
@@ -48,7 +46,7 @@ class MyApp extends StatelessWidget {
       },
     );
   }
-  
+
   static void _onItemTapped(int index, BuildContext context) {
     switch (index) {
       case 0:

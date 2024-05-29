@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/widgets/ButtonFilter.dart';
+import 'package:simple_cook/widgets/customSlider.dart';
 import 'widgets/CustomAppBar.dart';
 import 'widgets/CustomButton.dart';
 
@@ -58,8 +59,38 @@ class MainPage extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            title: Text('CustomSlider'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomSliderFilter()),
+              );
+            },
+          ),
         ],
       ),
+    );
+  }
+}
+
+
+class CustomSliderFilter extends StatefulWidget {
+  @override
+  _CustomSliderState createState() => _CustomSliderState();
+}
+
+class _CustomSliderState extends State<CustomSliderFilter> {
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Custom Slider Demo')),
+      body: Center(
+        child: CustomSlider(),
+      ),
+
     );
   }
 }
