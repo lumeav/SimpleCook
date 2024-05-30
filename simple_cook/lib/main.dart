@@ -4,6 +4,7 @@ import 'package:simple_cook/widgets/sliderFilter.dart';
 import 'package:simple_cook/widgets/searchRecipeButton.dart';
 import 'package:simple_cook/widgets/filterIcon.dart';
 import 'package:simple_cook/widgets/ButtonHeart.dart';
+import 'package:simple_cook/widgets/RecipeInfos.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -89,6 +90,16 @@ class MainPage extends StatelessWidget {
                   builder: (context) => CustomButtonHeart()),
               );
             },
+          ),
+          ListTile(
+            title: Text('RecipeInfos'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CustomRecipeInfos()),
+              );
+            },
           )
         ],
       ),
@@ -96,6 +107,18 @@ class MainPage extends StatelessWidget {
   }
 }
 
+
+class CustomRecipeInfos extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Recipe Infos Demo')),
+      body: Center(
+        child: RecipeInfos("30min", "einfach"),
+      ),
+    );
+  }
+}
 
 class CustomButtonHeart extends StatefulWidget {
   @override
