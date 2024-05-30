@@ -3,6 +3,7 @@ import 'package:simple_cook/widgets/buttonFilter.dart';
 import 'package:simple_cook/widgets/sliderFilter.dart';
 import 'package:simple_cook/widgets/searchRecipeButton.dart';
 import 'package:simple_cook/widgets/filterIcon.dart';
+import 'package:simple_cook/widgets/ButtonHeart.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -79,7 +80,43 @@ class MainPage extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            title: Text('ButtonHeart'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CustomButtonHeart()),
+              );
+            },
+          )
         ],
+      ),
+    );
+  }
+}
+
+
+class CustomButtonHeart extends StatefulWidget {
+  @override
+  _CustomButtonHeartState createState() => _CustomButtonHeartState();
+}
+
+class _CustomButtonHeartState extends State<CustomButtonHeart> {
+  bool _pressed = false;
+
+  void _onPressed() {
+    setState(() {
+      _pressed = !_pressed;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Button Heart Demo')),
+      body: const Center(
+        child: ButtonHeart(true),
       ),
     );
   }
