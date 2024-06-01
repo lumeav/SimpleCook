@@ -5,6 +5,7 @@ import 'package:simple_cook/widgets/searchRecipeButton.dart';
 import 'package:simple_cook/widgets/filterIcon.dart';
 import 'package:simple_cook/widgets/ButtonHeart.dart';
 import 'package:simple_cook/widgets/RecipeInfos.dart';
+import 'package:simple_cook/widgets/searchBar.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -100,7 +101,16 @@ class MainPage extends StatelessWidget {
                   builder: (context) => CustomRecipeInfos()),
               );
             },
-          )
+          ),
+          ListTile(
+            title: Text('SearchBarFilter'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomSearchbarFilter()),
+              );
+            },
+          ),
         ],
       ),
     );
@@ -145,6 +155,23 @@ class _CustomButtonHeartState extends State<CustomButtonHeart> {
   }
 }
 
+
+class CustomSearchbarFilter extends StatefulWidget {
+  @override
+  _CustomSearchbarFilterState createState() => _CustomSearchbarFilterState();
+}
+
+class _CustomSearchbarFilterState extends State<CustomSearchbarFilter> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Search Bar Filter Demo')),
+      body: Center(
+        child: SearchBarFilter(),
+      ),
+    );
+  }
+}
 class CustomFilterIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

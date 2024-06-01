@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/navbar.dart';
-import 'package:simple_cook/widgets/CustomAppBar.dart';
+import 'package:simple_cook/widgets/appBar.dart';
 
 class CommonView extends StatelessWidget {
   final int selectedIndex;
@@ -12,7 +12,7 @@ class CommonView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(title: 'SimpleCook'), // Use CustomAppBar here
+        appBar: CustomAppBar('SimpleCook'), // Use CustomAppBar here
       body: Container(
         color: Colors.grey[200],
         child: child,
