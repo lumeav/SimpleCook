@@ -6,6 +6,7 @@ import 'package:simple_cook/widgets/filterIcon.dart';
 import 'package:simple_cook/widgets/ButtonHeart.dart';
 import 'package:simple_cook/widgets/RecipeInfos.dart';
 import 'package:simple_cook/widgets/searchBar.dart';
+import 'package:simple_cook/widgets/GreyBackground.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -111,12 +112,33 @@ class MainPage extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            title: Text('GreyBackground'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomGreyBackground()),
+              );
+            }
+          )
         ],
       ),
     );
   }
 }
 
+
+class CustomGreyBackground extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('GreyBackground Demo')),
+      body: Center(
+        child: GreyBackground(),
+      ),
+    );
+  }
+}
 
 class CustomRecipeInfos extends StatelessWidget {
   @override
