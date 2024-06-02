@@ -168,6 +168,7 @@ class _CustomSingleRecipeButtonState extends State<CustomSingleRecipeButton> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Single Recipe Button Demo')),
+        backgroundColor: Colors.grey,
         body: const Column(
           children: [
             RezeptdesTages('assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),

@@ -13,7 +13,7 @@ class _SearchBarState extends State<SearchBarFilter> {
   String? searchQuery;
   String selectedTile = '';
 
-  List<Widget> buttons = [];
+  List<String> buttons = [];
   //last vegetables from db
   late Iterable<Widget> lastVegetables = <Widget>[];
   @override
@@ -48,10 +48,7 @@ class _SearchBarState extends State<SearchBarFilter> {
                       setState(() {
                         controller.closeView("");
                         selectedTile = item;
-                        buttons.add(
-                          SearchBarTags(selectedTile,35, 130)
-                        );
-
+                        buttons.add(selectedTile);
                       });
                     },
                   );
@@ -60,12 +57,31 @@ class _SearchBarState extends State<SearchBarFilter> {
         ),
         Container(
           width: 300,
-          height: 50,
           child: Wrap(
             alignment: WrapAlignment.start,
             spacing: 8.0, // gap between adjacent chips
             runSpacing: 4.0, // gap between lines
-            children: buttons
+            children: List<Widget>.generate(buttons.length, (int index) {
+              return Directionality(
+                textDirection: TextDirection.rtl,
+                child: InputChip(
+                  label: Text(
+                    buttons[index],
+                    style: const TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                  deleteIconColor: Colors.white,
+                  backgroundColor: const Color.fromARGB(255, 254, 189, 92),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  onDeleted: () => setState(() {
+                    buttons.removeAt(index);
+                  }),
+                )
+              );
+            }).toList(),
             ),
         )
       ]

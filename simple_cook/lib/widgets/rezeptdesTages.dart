@@ -24,7 +24,7 @@ class _RezeptdesTagesState extends State<RezeptdesTages> {
           height: 262,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color:const Color.fromARGB(255, 214, 214, 214),
+            color: Colors.white
           ),
           child: Column(
               children: [
