@@ -3,10 +3,13 @@ import 'package:simple_cook/widgets/buttonFilter.dart';
 import 'package:simple_cook/widgets/sliderFilter.dart';
 import 'package:simple_cook/widgets/searchRecipeButton.dart';
 import 'package:simple_cook/widgets/filterIcon.dart';
-import 'package:simple_cook/widgets/ButtonHeart.dart';
-import 'package:simple_cook/widgets/RecipeInfos.dart';
+import 'package:simple_cook/widgets/buttonHeart.dart';
+import 'package:simple_cook/widgets/recipeInfos.dart';
 import 'package:simple_cook/widgets/searchBar.dart';
-import 'package:simple_cook/widgets/GreyBackground.dart';
+import 'package:simple_cook/widgets/greyBackground.dart';
+import 'package:simple_cook/widgets/ImgAndHeart.dart';
+import 'package:simple_cook/widgets/RezeptdesTages.dart';
+import 'package:simple_cook/widgets/singleRecipeButton.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -88,8 +91,7 @@ class MainPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => CustomButtonHeart()),
+                MaterialPageRoute(builder: (context) => CustomButtonHeart()),
               );
             },
           ),
@@ -98,8 +100,7 @@ class MainPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => CustomRecipeInfos()),
+                MaterialPageRoute(builder: (context) => CustomRecipeInfos()),
               );
             },
           ),
@@ -108,25 +109,102 @@ class MainPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CustomSearchbarFilter()),
+                MaterialPageRoute(
+                    builder: (context) => CustomSearchbarFilter()),
               );
             },
           ),
           ListTile(
-            title: Text('GreyBackground'),
+              title: Text('GreyBackground'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CustomGreyBackground()),
+                );
+              }),
+          ListTile(
+            title: Text('ImgAndHeart'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CustomGreyBackground()),
+                MaterialPageRoute(builder: (context) => CustomImg()),
               );
-            }
-          )
+            },
+          ),
+          ListTile(
+            title: Text('Rezept des Tages'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomRezeptDesTages()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('singleRecipeButton'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomSingleRecipeButton()),
+              );
+            },
+          ),
         ],
       ),
     );
   }
 }
 
+class CustomSingleRecipeButton extends StatefulWidget {
+  @override
+  _CustomSingleRecipeButtonState createState() =>
+      _CustomSingleRecipeButtonState();
+}
+
+class _CustomSingleRecipeButtonState extends State<CustomSingleRecipeButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: Text('Single Recipe Button Demo')),
+        body: const Column(
+          children: [
+            RezeptdesTages('assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                singleRecipeButton('assets/tinga-de-pollo.jpg', 'Tinga de Pollo'),
+                singleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
+              ],
+            ),
+        ]));
+  }
+}
+
+class CustomRezeptDesTages extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Rezept des Tages Demo')),
+      body: Center(
+        child: RezeptdesTages('assets/flammkuchen.jpg', 'Flammkuchen'),
+      ),
+    );
+  }
+}
+
+class CustomImg extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('ImgAndHeart Demo')),
+      body: Center(
+        child: ImgAndHeart('assets/flammkuchen.jpg', true, 352, 189),
+      ),
+    );
+  }
+}
 
 class CustomGreyBackground extends StatelessWidget {
   @override
@@ -171,12 +249,11 @@ class _CustomButtonHeartState extends State<CustomButtonHeart> {
     return Scaffold(
       appBar: AppBar(title: Text('Button Heart Demo')),
       body: const Center(
-        child: ButtonHeart(true),
+        child: ButtonHeart(true, 32),
       ),
     );
   }
 }
-
 
 class CustomSearchbarFilter extends StatefulWidget {
   @override
@@ -194,6 +271,7 @@ class _CustomSearchbarFilterState extends State<CustomSearchbarFilter> {
     );
   }
 }
+
 class CustomFilterIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
