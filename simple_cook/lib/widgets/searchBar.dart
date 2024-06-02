@@ -8,6 +8,8 @@ class SearchBarFilter extends StatefulWidget {
   State<SearchBarFilter> createState() => _SearchBarState();
 }
 
+//TODO buttons are not deleted right
+
 class _SearchBarState extends State<SearchBarFilter> {
   String? searchQuery;
   String selectedTile = '';
@@ -25,11 +27,12 @@ class _SearchBarState extends State<SearchBarFilter> {
           width: 300,
           height: 50,
           child: SearchAnchor.bar(
+              barHintText: "Rezeptfinder...",
               isFullScreen: false,
               viewConstraints: const BoxConstraints(
                 minHeight: 100,
               ),
-              viewBackgroundColor: Colors.orange.withOpacity(0.6),
+              viewBackgroundColor: const Color.fromARGB(255, 249, 201, 129),
               suggestionsBuilder:
                   (BuildContext context, SearchController controller) async {
                 searchQuery = controller.text;
