@@ -10,6 +10,8 @@ import 'package:simple_cook/widgets/greyBackground.dart';
 import 'package:simple_cook/widgets/ImgAndHeart.dart';
 import 'package:simple_cook/widgets/RezeptdesTages.dart';
 import 'package:simple_cook/widgets/singleRecipeButton.dart';
+import 'package:simple_cook/widgets/whiteBackground.dart';
+import 'package:simple_cook/widgets/recipePortion.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -151,9 +153,60 @@ class MainPage extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            title: Text('whiteBackground'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomWhiteBackground()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('CustomPortionSize'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomPortionSize()),
+              );
+            },
+          )
         ],
       ),
     );
+  }
+}
+
+class CustomPortionSize extends StatefulWidget {
+  @override
+  _CustomPortionSizeState createState() => _CustomPortionSizeState();
+}
+
+class _CustomPortionSizeState extends State<CustomPortionSize> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Portion Size Demo')),
+      body: Center(
+        child: RecipePortion(),
+      ),
+    );
+  }
+}
+
+class CustomWhiteBackground extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('White Background Demo')),
+      backgroundColor: Colors.grey[300],
+      body: Center(
+        child: WhiteBackground()
+        ),
+      );
+
   }
 }
 
@@ -168,7 +221,7 @@ class _CustomSingleRecipeButtonState extends State<CustomSingleRecipeButton> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Single Recipe Button Demo')),
-        backgroundColor: Colors.grey,
+        backgroundColor: Colors.white,
         body: const Column(
           children: [
             RezeptdesTages('assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),
@@ -211,7 +264,8 @@ class CustomGreyBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('GreyBackground Demo')),
+      appBar: CustomAppBar('SimpleCook'),
+      backgroundColor: Colors.grey[300],
       body: Center(
         child: GreyBackground(),
       ),
