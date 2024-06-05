@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart'; 
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:simple_cook/widgets/buttonFilter.dart';
 import 'package:simple_cook/widgets/sliderFilter.dart';
 import 'package:simple_cook/widgets/searchRecipeButton.dart';
@@ -17,6 +17,7 @@ import 'package:simple_cook/widgets/recipePortion.dart';
 import 'package:simple_cook/widgets/navbar.dart';
 import 'package:simple_cook/widgets/img.dart';
 import 'package:simple_cook/widgets/wochenplanerRecipe.dart';
+import 'package:simple_cook/widgets/whitePlaceholder.dart';
 import 'package:simple_cook/widgets/minusIcon.dart';
 import 'package:simple_cook/widgets/AddPlaner.dart';
 import 'widgets/appBar.dart';
@@ -25,7 +26,7 @@ import 'widgets/appBar.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeDateFormatting('de_DE', null); 
+  await initializeDateFormatting('de_DE', null);
   runApp(MyApp());
 }
 
@@ -203,6 +204,16 @@ class MainPage extends StatelessWidget {
             },
           ),
           ListTile(
+            title: Text('WhitePlaceholder'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomWhitePlaceholder()),
+              );
+            },
+          ),
+          ListTile(
             title: Text('CustomNavBar'),
             onTap: () {
               Navigator.push(
@@ -236,6 +247,8 @@ class MainPage extends StatelessWidget {
   }
 }
 
+
+
 class CustomAddPlaner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -248,6 +261,23 @@ class CustomAddPlaner extends StatelessWidget {
   }
 }
 
+class CustomWhitePlaceholder extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar('SimpleCook'),
+      backgroundColor: Colors.grey[300],
+      body: Stack(
+        children: [
+          WhitePlaceholder(85),
+          Align(
+            alignment: Alignment.center,
+            child: SearchBarFilter()
+          )
+        ]
+    ));
+  }
+}
 class CustomWochenplanerRecipe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
