@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 class RoundedIconButton extends StatelessWidget {
   final IconData icon;
+  final double size;
   final Function onPress;
 
 
+
   RoundedIconButton({
+    required this.size,
     required this.icon,
     required this.onPress
   });
@@ -13,16 +16,18 @@ class RoundedIconButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 15,
-      height: 15,
+      margin: const EdgeInsets.all(5),
+      width: size + 3,
+      height: size + 3,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.orange,
+        color: Color(0xffFF9F5A),
       ),
       child: IconButton(
-        icon: Icon(Icons.remove),
-        iconSize: 10,
-        color: Colors.black,
+        padding: EdgeInsets.zero,
+        icon: Icon(icon),
+        iconSize: size,
+        color: Colors.white,
         onPressed: onPress as  void Function(),
       ),
     );
