@@ -36,7 +36,7 @@ class _RezeptdesTagesState extends State<RezeptdesTages> {
                     child: Text(
                       'Rezept des Tages',
                       style: TextStyle(
-                        color: Colors.orange,
+                        color: Color(0xffFF9F5A),
                         fontSize: 18)
                       ),
                   ),

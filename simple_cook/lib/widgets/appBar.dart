@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: <Widget> [
           PhosphorIcon(
             PhosphorIcons.chefHat(PhosphorIconsStyle.regular),
-            color: Colors.orange,
+            color: Color(0xffFF9F5A),
             size: 35,
           ),
           const SizedBox(
@@ -25,7 +25,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           Text(
             title,
             style: const TextStyle(
-                color: Colors.orange,
+                color: Color(0xffFF9F5A),
                 fontSize: 30.0,
                 fontFamily: 'BigShouldersText'),
           ),

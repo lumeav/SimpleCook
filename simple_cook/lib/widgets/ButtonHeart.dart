@@ -41,7 +41,7 @@ class _ButtonHeartState extends State<ButtonHeart> {
           onPressed: _onPressed,
           padding: EdgeInsets.zero,
           icon: Icon(_pressed ? Icons.favorite : Icons.favorite_border,
-              color: Colors.orange.withOpacity(0.7), size: widget.size)),
+              color: Color(0xffFF9F5A), size: widget.size)),
     );
   }
 }

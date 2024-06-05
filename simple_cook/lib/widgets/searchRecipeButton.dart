@@ -17,7 +17,7 @@ class SearchRecipesButton extends StatelessWidget {
             //print("Button pressed");
           },
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+            backgroundColor: MaterialStateProperty.all<Color>(Color(0xffFF9F5A)),
             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(

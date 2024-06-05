@@ -47,12 +47,12 @@ class _ButtonFilterState extends State<ButtonFilter> {
                   ),
                   elevation: MaterialStateProperty.all(3),
                   overlayColor: MaterialStateProperty.all<Color>(
-                      Colors.orange.withOpacity(0.3)),
+                      Color(0xffFF9F5A).withOpacity(0.3)),
                 ),
                 child: Text(
                   widget.text,
                   style: const TextStyle(
-                    color: Colors.orange,
+                    color: Color(0xffFF9F5A),
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
@@ -62,7 +62,7 @@ class _ButtonFilterState extends State<ButtonFilter> {
                 onPressed: _onPressed,
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(
-                      Colors.orange.withOpacity(0.7)),
+                      Color(0xffFF9F5A).withOpacity(0.7)),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),

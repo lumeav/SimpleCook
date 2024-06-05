@@ -31,7 +31,7 @@ class _SearchBarState extends State<SearchBarFilter> {
               viewConstraints: const BoxConstraints(
                 minHeight: 100,
               ),
-              viewBackgroundColor: const Color.fromARGB(255, 249, 201, 129),
+              viewBackgroundColor: const Color(0xffFFECDF),
               suggestionsBuilder:
                   (BuildContext context, SearchController controller) async {
                 searchQuery = controller.text;
@@ -72,7 +72,7 @@ class _SearchBarState extends State<SearchBarFilter> {
                     ),
                   ),
                   deleteIconColor: Colors.white,
-                  backgroundColor: const Color.fromARGB(255, 254, 189, 92),
+                  backgroundColor: const Color(0xffFF9F5A).withOpacity(0.75),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),

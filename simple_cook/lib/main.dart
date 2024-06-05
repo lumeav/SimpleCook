@@ -221,7 +221,7 @@ class _CustomSingleRecipeButtonState extends State<CustomSingleRecipeButton> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Single Recipe Button Demo')),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[300],
         body: const Column(
           children: [
             RezeptdesTages('assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),
@@ -241,6 +241,7 @@ class CustomRezeptDesTages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Rezept des Tages Demo')),
+      backgroundColor: Colors.grey[300],
       body: Center(
         child: RezeptdesTages('assets/flammkuchen.jpg', 'Flammkuchen'),
       ),
