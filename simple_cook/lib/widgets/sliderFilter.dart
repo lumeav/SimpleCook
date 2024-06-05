@@ -27,9 +27,9 @@ class _CustomSliderState extends State<CustomSlider> {
                 //labelOffset: Offset(10.0, 0.0),
                 activeTrackHeight: 7,
                 inactiveTrackHeight: 7,
-                activeTrackColor: Colors.orange,
-                inactiveTrackColor: Colors.orange.withOpacity(0.3),
-                thumbColor: Colors.orange),
+                activeTrackColor: Color(0xffFF9F5A),
+                inactiveTrackColor: Color(0xffFF9F5A).withOpacity(0.3),
+                thumbColor: Color(0xffFF9F5A)),
             child: SfSlider(
               min: 0.0,
               max: 60.0,

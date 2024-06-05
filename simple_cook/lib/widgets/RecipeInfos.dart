@@ -13,14 +13,14 @@ class RecipeInfos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      //padding: const EdgeInsets.all(10),
       child: Row(
         children: [
           Container(
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
               decoration: BoxDecoration(
-                  color: Colors.orange.withOpacity(0.4),
+                  color: Color(0xffFF9F5A).withOpacity(0.4),
                   borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(
@@ -48,7 +48,7 @@ class RecipeInfos extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
               decoration: BoxDecoration(
-                  color: Colors.orange.withOpacity(0.4),
+                  color: Color(0xffFF9F5A).withOpacity(0.4),
                   borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(

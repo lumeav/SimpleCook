@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:simple_cook/widgets/buttonFilter.dart';
 import 'package:simple_cook/widgets/sliderFilter.dart';
 import 'package:simple_cook/widgets/searchRecipeButton.dart';
@@ -14,11 +16,19 @@ import 'package:simple_cook/widgets/whiteBackground.dart';
 import 'package:simple_cook/widgets/recipePortion.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/widgets/preparation.dart';
+import 'package:simple_cook/widgets/navbar.dart';
+import 'package:simple_cook/widgets/img.dart';
+import 'package:simple_cook/widgets/wochenplanerRecipe.dart';
+import 'package:simple_cook/widgets/whitePlaceholder.dart';
+import 'package:simple_cook/widgets/minusIcon.dart';
+import 'package:simple_cook/widgets/AddPlaner.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('de_DE', null);
   runApp(MyApp());
 }
 
@@ -189,9 +199,123 @@ class MainPage extends StatelessWidget {
                 context,
                 MaterialPageRoute(builder: (context) => CustomPreparation()),
               );
-            }
+            },
+          ),
+          ListTile(
+            title: Text('Img'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomPic()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('WochenplanerRecipe'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomWochenplanerRecipe()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('WhitePlaceholder'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomWhitePlaceholder()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('CustomNavBar'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomNavBarDemo()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('MinusIcon'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomMinusIcon()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('AddPlaner'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomAddPlaner()),
+              );
+            },
           )
         ],
+      ),
+    );
+  }
+}
+
+
+
+class CustomAddPlaner extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar('Add Planer'), // Assuming you want to use the custom app bar
+      body: Center(
+        child: AddPlaner(), // Add the AddPlaner widget here
+      ),
+    );
+  }
+}
+
+class CustomWhitePlaceholder extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar('SimpleCook'),
+      backgroundColor: Colors.grey[300],
+      body: Stack(
+        children: [
+          WhitePlaceholder(85),
+          Align(
+            alignment: Alignment.center,
+            child: SearchBarFilter()
+          )
+        ]
+    ));
+  }
+}
+class CustomWochenplanerRecipe extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Wochenplaner Recipe Demo')),
+      backgroundColor: Colors.grey[300],
+      body: Center(
+        child: WochenplanerRecipe('assets/spaghetti-bolognese.jpg',
+            'Spaghetti Bolognese', '30min', 'einfach'),
+      ),
+    );
+  }
+}
+class CustomPic extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Img Demo')),
+      body: Center(
+        child: Img('assets/flammkuchen.jpg', 352, 189),
       ),
     );
   }
@@ -281,17 +405,17 @@ class _CustomSingleRecipeButtonState extends State<CustomSingleRecipeButton> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text('Single Recipe Button Demo')),
-        backgroundColor: Colors.white,
-        body: const Column(children: [
-          RezeptdesTages(
-              'assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              singleRecipeButton('assets/tinga-de-pollo.jpg', 'Tinga de Pollo'),
-              singleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
-            ],
-          ),
+        backgroundColor: Colors.grey[300],
+        body: const Column(
+          children: [
+            RezeptdesTages('assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                singleRecipeButton('assets/tinga-de-pollo.jpg', 'Tinga de Pollo'),
+                singleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
+              ],
+            ),
         ]));
   }
 }
@@ -301,6 +425,7 @@ class CustomRezeptDesTages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Rezept des Tages Demo')),
+      backgroundColor: Colors.grey[300],
       body: Center(
         child: RezeptdesTages('assets/flammkuchen.jpg', 'Flammkuchen'),
       ),
@@ -340,6 +465,35 @@ class CustomRecipeInfos extends StatelessWidget {
       appBar: AppBar(title: Text('Recipe Infos Demo')),
       body: Center(
         child: RecipeInfos("30min", "einfach"),
+      ),
+    );
+  }
+}
+
+class CustomNavBarDemo extends StatefulWidget {
+  @override
+  _CustomNavBarDemoState createState() => _CustomNavBarDemoState();
+}
+
+class _CustomNavBarDemoState extends State<CustomNavBarDemo> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar('SimpleCook'),
+      body: Center(
+        child: Text('This is a custom Bottom Navigation Bar. Selected Index: $_selectedIndex'),
+      ),
+      bottomNavigationBar: CustomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
@@ -398,6 +552,18 @@ class CustomFilterIcon extends StatelessWidget {
     );
   }
 }
+class CustomMinusIcon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Minus Icon Demo')),
+      body: Center(
+        child: minusIcon(),
+      ),
+    );
+  }
+}
+
 
 class CustomSearchRecipesButton extends StatelessWidget {
   @override
