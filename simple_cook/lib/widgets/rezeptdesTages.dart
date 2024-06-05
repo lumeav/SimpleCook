@@ -5,7 +5,8 @@ class RezeptdesTages extends StatefulWidget {
   final String imgPath;
   final String rezeptName;
 
-  const RezeptdesTages(this.imgPath, this.rezeptName, {Key? key}) : super(key: key);
+  const RezeptdesTages(this.imgPath, this.rezeptName, {Key? key})
+      : super(key: key);
 
   @override
   _RezeptdesTagesState createState() => _RezeptdesTagesState();
@@ -15,43 +16,33 @@ class _RezeptdesTagesState extends State<RezeptdesTages> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-        onTap: () {
-          // Placeholder for future logic
-          print('Rezept des Tages tapped!');
-        },
-        child: Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Ink (
+      onTap: () {
+        // Placeholder for future logic
+        print('Rezept des Tages tapped!');
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: Ink(
             width: 352,
             height: 262,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              color: Colors.white
-            ),
+                borderRadius: BorderRadius.circular(12), color: Colors.white),
             child: Column(
-                children: [
-                  ImgAndHeart(widget.imgPath, true, 352, 189),
-                  Padding(
-                    padding: EdgeInsets.only(top: 5),
-                    child: Text(
-                      'Rezept des Tages',
-                      style: TextStyle(
-                        color: Color(0xffFF9F5A),
-                        fontSize: 18)
-                      ),
-                  ),
-                  Text(
-                    widget.rezeptName,
+              children: [
+                ImgAndHeart(widget.imgPath, true, 352, 189),
+                Padding(
+                  padding: EdgeInsets.only(top: 5),
+                  child: Text('Rezept des Tages',
+                      style: TextStyle(color: Color(0xffFF9F5A), fontSize: 18)),
+                ),
+                Text(widget.rezeptName,
                     style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24)
-                    )
-                ],
-              )
-              ),
-        ),
-        );
-
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24))
+              ],
+            )),
+      ),
+    );
   }
 }

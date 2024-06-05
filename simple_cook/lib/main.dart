@@ -12,6 +12,8 @@ import 'package:simple_cook/widgets/RezeptdesTages.dart';
 import 'package:simple_cook/widgets/singleRecipeButton.dart';
 import 'package:simple_cook/widgets/whiteBackground.dart';
 import 'package:simple_cook/widgets/recipePortion.dart';
+import 'package:simple_cook/widgets/img.dart';
+import 'package:simple_cook/widgets/wochenplanerRecipe.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -172,8 +174,53 @@ class MainPage extends StatelessWidget {
                     builder: (context) => CustomPortionSize()),
               );
             },
+          ),
+          ListTile(
+            title: Text('Img'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomPic()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('WochenplanerRecipe'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomWochenplanerRecipe()),
+              );
+            },
           )
         ],
+      ),
+    );
+  }
+}
+
+class CustomWochenplanerRecipe extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Wochenplaner Recipe Demo')),
+      backgroundColor: Colors.grey[300],
+      body: Center(
+        child: WochenplanerRecipe('assets/spaghetti-bolognese.jpg',
+            'Spaghetti Bolognese', '30min', 'einfach'),
+      ),
+    );
+  }
+}
+class CustomPic extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Img Demo')),
+      body: Center(
+        child: Img('assets/flammkuchen.jpg', 352, 189),
       ),
     );
   }
