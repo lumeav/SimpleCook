@@ -12,6 +12,7 @@ import 'package:simple_cook/widgets/RezeptdesTages.dart';
 import 'package:simple_cook/widgets/singleRecipeButton.dart';
 import 'package:simple_cook/widgets/whiteBackground.dart';
 import 'package:simple_cook/widgets/recipePortion.dart';
+import 'package:simple_cook/widgets/navbar.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -172,6 +173,16 @@ class MainPage extends StatelessWidget {
                     builder: (context) => CustomPortionSize()),
               );
             },
+          ),
+          ListTile(
+            title: Text('CustomNavBar'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomNavBarDemo()),
+              );
+            },
           )
         ],
       ),
@@ -281,6 +292,35 @@ class CustomRecipeInfos extends StatelessWidget {
       appBar: AppBar(title: Text('Recipe Infos Demo')),
       body: Center(
         child: RecipeInfos("30min", "einfach"),
+      ),
+    );
+  }
+}
+
+class CustomNavBarDemo extends StatefulWidget {
+  @override
+  _CustomNavBarDemoState createState() => _CustomNavBarDemoState();
+}
+
+class _CustomNavBarDemoState extends State<CustomNavBarDemo> {
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar('SimpleCook'),
+      body: Center(
+        child: Text('This is a custom Bottom Navigation Bar. Selected Index: $_selectedIndex'),
+      ),
+      bottomNavigationBar: CustomNavBar(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
