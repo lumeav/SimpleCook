@@ -12,6 +12,8 @@ import 'package:simple_cook/widgets/RezeptdesTages.dart';
 import 'package:simple_cook/widgets/singleRecipeButton.dart';
 import 'package:simple_cook/widgets/whiteBackground.dart';
 import 'package:simple_cook/widgets/recipePortion.dart';
+import 'package:simple_cook/widgets/ingredients.dart';
+import 'package:simple_cook/widgets/preparation.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -168,12 +170,73 @@ class MainPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => CustomPortionSize()),
+                MaterialPageRoute(builder: (context) => CustomPortionSize()),
               );
             },
+          ),
+          ListTile(
+              title: Text('CustomIngredients'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => CustomIngredients()),
+                );
+              }),
+          ListTile(
+            title: Text('CustomPreparation'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomPreparation()),
+              );
+            }
           )
         ],
+      ),
+    );
+  }
+}
+
+class CustomPreparation extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(title: Text('Preparation Demo')),
+        body: Center(
+            child: Preparation([
+          "Die Zwiebeln schälen, halbieren und in Würfel schneiden.",
+          "In einem großen Topf das Olivenöl erhitzen und die Zwiebeln darin anschwitzen, bis sie glasig sind. Die Tomaten würfeln und zu den Zwiebeln geben.",
+              "Hühnerbrühe, Hähnchenbrust, braunen Zucker, Chipotle-Chili und Lorbeerblätter hinzufügen. Alles gut verrühren und für 30 Minuten auf mittlerer Hitze köcheln lassen, bis die Hähnchenbrust gar ist und die Flüssigkeit um die Hälfte reduziert wurde.",
+          "Den Topf vom Herd nehmen und leicht abkühlen lassen. Anschließend das Hähnchenfleisch mit zwei Gabeln zerpflücken.",
+          "Die Lorbeerblätter entfernen.",
+          "Jede Tostada großzügig mit der Tinga-Mischung belegen. Die roten Zwiebeln in feine Würfel schneiden und zusammen mit dem Panela-Käse über die Tostadas zerbröseln. Nach Belieben mit Korianderblättern garnieren und mit Limettenspalten servieren."
+        ])));
+  }
+}
+
+class CustomIngredients extends StatefulWidget {
+  @override
+  _CustomIngredientsState createState() => _CustomIngredientsState();
+}
+
+class _CustomIngredientsState extends State<CustomIngredients> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Ingredients Demo')),
+      body: Center(
+        child: Ingredients([
+          "150g Zwiebel",
+          "20ml Olivenöl",
+          "250g Tomate",
+          "500ml Hühnerbrühe",
+          "500g Hähnchenbrust",
+          "15g Zucker (braun)",
+          "10g Chili Chipotle (geräucherte Chili)",
+          "1 Lorbeerblatt",
+          "9 mexikanische Tostadas",
+          "100g Panela-Käse"
+        ]),
       ),
     );
   }
@@ -202,11 +265,8 @@ class CustomWhiteBackground extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('White Background Demo')),
       backgroundColor: Colors.grey[300],
-      body: Center(
-        child: WhiteBackground()
-        ),
-      );
-
+      body: Center(child: WhiteBackground()),
+    );
   }
 }
 
@@ -222,16 +282,16 @@ class _CustomSingleRecipeButtonState extends State<CustomSingleRecipeButton> {
     return Scaffold(
         appBar: AppBar(title: Text('Single Recipe Button Demo')),
         backgroundColor: Colors.white,
-        body: const Column(
-          children: [
-            RezeptdesTages('assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                singleRecipeButton('assets/tinga-de-pollo.jpg', 'Tinga de Pollo'),
-                singleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
-              ],
-            ),
+        body: const Column(children: [
+          RezeptdesTages(
+              'assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              singleRecipeButton('assets/tinga-de-pollo.jpg', 'Tinga de Pollo'),
+              singleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
+            ],
+          ),
         ]));
   }
 }
