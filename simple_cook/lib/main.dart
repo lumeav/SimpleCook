@@ -14,6 +14,7 @@ import 'package:simple_cook/widgets/whiteBackground.dart';
 import 'package:simple_cook/widgets/recipePortion.dart';
 import 'package:simple_cook/widgets/img.dart';
 import 'package:simple_cook/widgets/wochenplanerRecipe.dart';
+import 'package:simple_cook/widgets/whitePlaceholder.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -194,13 +195,40 @@ class MainPage extends StatelessWidget {
                     builder: (context) => CustomWochenplanerRecipe()),
               );
             },
-          )
+          ),
+          ListTile(
+            title: Text('WhitePlaceholder'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => CustomWhitePlaceholder()),
+              );
+            },
+          ),
         ],
       ),
     );
   }
 }
 
+class CustomWhitePlaceholder extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar('SimpleCook'),
+      backgroundColor: Colors.grey[300],
+      body: Stack(
+        children: [
+          WhitePlaceholder(85),
+          Align(
+            alignment: Alignment.center,
+            child: SearchBarFilter()
+          )
+        ]
+    ));
+  }
+}
 class CustomWochenplanerRecipe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

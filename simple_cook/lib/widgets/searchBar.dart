@@ -55,6 +55,7 @@ class _SearchBarState extends State<SearchBarFilter> {
                 });
               }),
         ),
+        SizedBox(height: 10),
         Container(
           width: 300,
           child: Wrap(
