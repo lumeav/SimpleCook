@@ -14,12 +14,24 @@ class _AddPlanerState extends State<AddPlaner> {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-        onPressed: () => _showDatePickerDialog(context),
-        icon: const FaIcon(
-          FontAwesomeIcons.plus,
-          color: Colors.grey,
-          size: 40,));
+    return Container(
+      width: 60, // Adjust width as needed
+      height: 60, // Adjust height as needed
+      decoration: BoxDecoration(
+        shape: BoxShape.circle, //doing it like this because it is way more complicated to get two FaIcons working together with "onPressed"
+        color: Colors.grey.withOpacity(0.2), // Adjust circle color and opacity
+      ),
+      child: Center(
+        child: IconButton(
+          onPressed: () => _showDatePickerDialog(context),
+          icon: const FaIcon(
+            FontAwesomeIcons.plus,
+            color: Colors.grey,
+            size: 30, // Adjust minus symbol size as needed
+          ),
+        ),
+      ),
+    );
   }
 
 
