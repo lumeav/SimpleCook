@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart'; 
 import 'package:simple_cook/widgets/buttonFilter.dart';
 import 'package:simple_cook/widgets/sliderFilter.dart';
 import 'package:simple_cook/widgets/searchRecipeButton.dart';
@@ -15,11 +17,15 @@ import 'package:simple_cook/widgets/recipePortion.dart';
 import 'package:simple_cook/widgets/navbar.dart';
 import 'package:simple_cook/widgets/img.dart';
 import 'package:simple_cook/widgets/wochenplanerRecipe.dart';
+import 'package:simple_cook/widgets/minusIcon.dart';
+import 'package:simple_cook/widgets/AddPlaner.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('de_DE', null); 
   runApp(MyApp());
 }
 
@@ -205,8 +211,38 @@ class MainPage extends StatelessWidget {
                     builder: (context) => CustomNavBarDemo()),
               );
             },
+          ),
+          ListTile(
+            title: Text('MinusIcon'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomMinusIcon()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('AddPlaner'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomAddPlaner()),
+              );
+            },
           )
         ],
+      ),
+    );
+  }
+}
+
+class CustomAddPlaner extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar('Add Planer'), // Assuming you want to use the custom app bar
+      body: Center(
+        child: AddPlaner(), // Add the AddPlaner widget here
       ),
     );
   }
@@ -426,6 +462,18 @@ class CustomFilterIcon extends StatelessWidget {
     );
   }
 }
+class CustomMinusIcon extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Minus Icon Demo')),
+      body: Center(
+        child: minusIcon(),
+      ),
+    );
+  }
+}
+
 
 class CustomSearchRecipesButton extends StatelessWidget {
   @override
