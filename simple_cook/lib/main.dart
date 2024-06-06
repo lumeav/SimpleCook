@@ -21,7 +21,7 @@ import 'package:simple_cook/widgets/img.dart';
 import 'package:simple_cook/widgets/wochenplanerRecipe.dart';
 import 'package:simple_cook/widgets/whitePlaceholder.dart';
 import 'package:simple_cook/widgets/minusIcon.dart';
-import 'package:simple_cook/widgets/AddPlaner.dart';
+import 'package:simple_cook/widgets/addPlaner.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
