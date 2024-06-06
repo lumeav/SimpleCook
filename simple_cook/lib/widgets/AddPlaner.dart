@@ -15,14 +15,19 @@ class _AddPlanerState extends State<AddPlaner> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 60, // Adjust width as needed
-      height: 60, // Adjust height as needed
+      width: 50, // Adjust width as needed
+      height: 50, // Adjust height as needed
       decoration: BoxDecoration(
         shape: BoxShape.circle, //doing it like this because it is way more complicated to get two FaIcons working together with "onPressed"
-        color: Colors.grey.withOpacity(0.2), // Adjust circle color and opacity
+        border: Border.all(
+          color: Colors.grey,
+          width: 3,
+
+        ) // Adjust circle color and opacity
       ),
       child: Center(
         child: IconButton(
+          padding: EdgeInsets.zero,
           onPressed: () => _showDatePickerDialog(context),
           icon: const FaIcon(
             FontAwesomeIcons.plus,
