@@ -21,12 +21,8 @@ import 'package:simple_cook/widgets/img.dart';
 import 'package:simple_cook/widgets/wochenplanerRecipe.dart';
 import 'package:simple_cook/widgets/whitePlaceholder.dart';
 import 'package:simple_cook/widgets/minusIcon.dart';
-<<<<<<< HEAD
 import 'package:simple_cook/widgets/AddPlaner.dart';
 import 'package:simple_cook/widgets/ButtonClose.dart';
-=======
-import 'package:simple_cook/widgets/addPlaner.dart';
->>>>>>> 4ff343d628aec905838bbc12801507b719d230e0
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -185,8 +181,7 @@ class MainPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => CustomPortionSize()),
+                MaterialPageRoute(builder: (context) => CustomPortionSize()),
               );
             },
           ),
@@ -195,8 +190,7 @@ class MainPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => CustomPic()),
+                MaterialPageRoute(builder: (context) => CustomPic()),
               );
             },
           ),
@@ -225,8 +219,7 @@ class MainPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(
-                    builder: (context) => CustomNavBarDemo()),
+                MaterialPageRoute(builder: (context) => CustomNavBarDemo()),
               );
             },
           ),
@@ -256,20 +249,37 @@ class MainPage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => CustomButtonClose()),
               );
             },
-          )
+          ),
+          ListTile(
+            title: Text('Ingredients'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomIngredients()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Preparation'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomPreparation()),
+              );
+            },
+          ),
         ],
       ),
     );
   }
 }
 
-
-
 class CustomButtonClose extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('Close Button'), // Assuming you want to use the custom app bar
+      appBar: CustomAppBar(
+          'Close Button'), // Assuming you want to use the custom app bar
       body: Center(
         child: ButtonClose(), // Add the AddPlaner widget here
       ),
@@ -281,7 +291,8 @@ class CustomAddPlaner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('Add Planer'), // Assuming you want to use the custom app bar
+      appBar: CustomAppBar(
+          'Add Planer'), // Assuming you want to use the custom app bar
       body: Center(
         child: AddPlaner(), // Add the AddPlaner widget here
       ),
@@ -293,19 +304,15 @@ class CustomWhitePlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('SimpleCook'),
-      backgroundColor: Colors.grey[300],
-      body: Stack(
-        children: [
+        appBar: CustomAppBar('SimpleCook'),
+        backgroundColor: Colors.grey[300],
+        body: Stack(children: [
           WhitePlaceholder(85),
-          Align(
-            alignment: Alignment.center,
-            child: SearchBarFilter()
-          )
-        ]
-    ));
+          Align(alignment: Alignment.center, child: SearchBarFilter())
+        ]));
   }
 }
+
 class CustomWochenplanerRecipe extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -319,6 +326,7 @@ class CustomWochenplanerRecipe extends StatelessWidget {
     );
   }
 }
+
 class CustomPic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -340,7 +348,7 @@ class CustomPreparation extends StatelessWidget {
             child: Preparation([
           "Die Zwiebeln schälen, halbieren und in Würfel schneiden.",
           "In einem großen Topf das Olivenöl erhitzen und die Zwiebeln darin anschwitzen, bis sie glasig sind. Die Tomaten würfeln und zu den Zwiebeln geben.",
-              "Hühnerbrühe, Hähnchenbrust, braunen Zucker, Chipotle-Chili und Lorbeerblätter hinzufügen. Alles gut verrühren und für 30 Minuten auf mittlerer Hitze köcheln lassen, bis die Hähnchenbrust gar ist und die Flüssigkeit um die Hälfte reduziert wurde.",
+          "Hühnerbrühe, Hähnchenbrust, braunen Zucker, Chipotle-Chili und Lorbeerblätter hinzufügen. Alles gut verrühren und für 30 Minuten auf mittlerer Hitze köcheln lassen, bis die Hähnchenbrust gar ist und die Flüssigkeit um die Hälfte reduziert wurde.",
           "Den Topf vom Herd nehmen und leicht abkühlen lassen. Anschließend das Hähnchenfleisch mit zwei Gabeln zerpflücken.",
           "Die Lorbeerblätter entfernen.",
           "Jede Tostada großzügig mit der Tinga-Mischung belegen. Die roten Zwiebeln in feine Würfel schneiden und zusammen mit dem Panela-Käse über die Tostadas zerbröseln. Nach Belieben mit Korianderblättern garnieren und mit Limettenspalten servieren."
@@ -399,11 +407,8 @@ class CustomWhiteBackground extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('White Background Demo')),
       backgroundColor: Colors.grey[300],
-      body: Center(
-        child: WhiteBackground()
-        ),
-      );
-
+      body: Center(child: WhiteBackground()),
+    );
   }
 }
 
@@ -419,16 +424,16 @@ class _CustomSingleRecipeButtonState extends State<CustomSingleRecipeButton> {
     return Scaffold(
         appBar: AppBar(title: Text('Single Recipe Button Demo')),
         backgroundColor: Colors.grey[300],
-        body: const Column(
-          children: [
-            RezeptdesTages('assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                singleRecipeButton('assets/tinga-de-pollo.jpg', 'Tinga de Pollo'),
-                singleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
-              ],
-            ),
+        body: const Column(children: [
+          RezeptdesTages(
+              'assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              singleRecipeButton('assets/tinga-de-pollo.jpg', 'Tinga de Pollo'),
+              singleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
+            ],
+          ),
         ]));
   }
 }
@@ -502,7 +507,8 @@ class _CustomNavBarDemoState extends State<CustomNavBarDemo> {
     return Scaffold(
       appBar: CustomAppBar('SimpleCook'),
       body: Center(
-        child: Text('This is a custom Bottom Navigation Bar. Selected Index: $_selectedIndex'),
+        child: Text(
+            'This is a custom Bottom Navigation Bar. Selected Index: $_selectedIndex'),
       ),
       bottomNavigationBar: CustomNavBar(
         selectedIndex: _selectedIndex,
@@ -565,6 +571,7 @@ class CustomFilterIcon extends StatelessWidget {
     );
   }
 }
+
 class CustomMinusIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -576,7 +583,6 @@ class CustomMinusIcon extends StatelessWidget {
     );
   }
 }
-
 
 class CustomSearchRecipesButton extends StatelessWidget {
   @override
