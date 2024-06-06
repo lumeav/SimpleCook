@@ -21,8 +21,12 @@ import 'package:simple_cook/widgets/img.dart';
 import 'package:simple_cook/widgets/wochenplanerRecipe.dart';
 import 'package:simple_cook/widgets/whitePlaceholder.dart';
 import 'package:simple_cook/widgets/minusIcon.dart';
+<<<<<<< HEAD
 import 'package:simple_cook/widgets/AddPlaner.dart';
 import 'package:simple_cook/widgets/ButtonClose.dart';
+=======
+import 'package:simple_cook/widgets/addPlaner.dart';
+>>>>>>> 4ff343d628aec905838bbc12801507b719d230e0
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -181,24 +185,8 @@ class MainPage extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CustomPortionSize()),
-              );
-            },
-          ),
-          ListTile(
-              title: Text('CustomIngredients'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => CustomIngredients()),
-                );
-              }),
-          ListTile(
-            title: Text('CustomPreparation'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CustomPreparation()),
+                MaterialPageRoute(
+                    builder: (context) => CustomPortionSize()),
               );
             },
           ),
@@ -411,8 +399,11 @@ class CustomWhiteBackground extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text('White Background Demo')),
       backgroundColor: Colors.grey[300],
-      body: Center(child: WhiteBackground()),
-    );
+      body: Center(
+        child: WhiteBackground()
+        ),
+      );
+
   }
 }
 

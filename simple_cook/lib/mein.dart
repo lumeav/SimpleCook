@@ -3,6 +3,7 @@ import 'package:simple_cook/ui/explore/explore_view.dart';
 import 'package:simple_cook/ui/favorites/favorites_view.dart';
 import 'package:simple_cook/ui/planner/planner_view.dart';
 import 'package:simple_cook/ui/recipefinder/recipefinder_view.dart';
+import 'package:go_router/go_router.dart';
 
 //This is the "main.dart" file, currently named "mein.dart" to test dummy data
 
