@@ -22,6 +22,7 @@ import 'package:simple_cook/widgets/wochenplanerRecipe.dart';
 import 'package:simple_cook/widgets/whitePlaceholder.dart';
 import 'package:simple_cook/widgets/minusIcon.dart';
 import 'package:simple_cook/widgets/AddPlaner.dart';
+import 'package:simple_cook/widgets/ButtonClose.dart';
 import 'widgets/appBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
@@ -258,6 +259,15 @@ class MainPage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => CustomAddPlaner()),
               );
             },
+          ),
+          ListTile(
+            title: Text('CloseButton'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomButtonClose()),
+              );
+            },
           )
         ],
       ),
@@ -266,6 +276,18 @@ class MainPage extends StatelessWidget {
 }
 
 
+
+class CustomButtonClose extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: CustomAppBar('Close Button'), // Assuming you want to use the custom app bar
+      body: Center(
+        child: ButtonClose(), // Add the AddPlaner widget here
+      ),
+    );
+  }
+}
 
 class CustomAddPlaner extends StatelessWidget {
   @override
