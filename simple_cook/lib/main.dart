@@ -22,7 +22,9 @@ import 'package:simple_cook/widgets/whitePlaceholder.dart';
 import 'package:simple_cook/widgets/removeButton.dart';
 import 'package:simple_cook/widgets/addPlaner.dart';
 import 'package:simple_cook/widgets/exitButton.dart';
-import 'widgets/simpleCookAppBar.dart';
+import 'package:simple_cook/widgets/simpleCookAppBar.dart';
+import 'package:simple_cook/widgets/date.dart';
+import 'package:simple_cook/widgets/timeViewSpan.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
 
@@ -267,7 +269,54 @@ class MainPage extends StatelessWidget {
               );
             },
           ),
+          ListTile(
+            title: Text('Date'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomDate()),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('TimeViewSpan'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CustomTimeViewSpan()),
+              );
+            },
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomTimeViewSpan extends StatefulWidget {
+  @override
+  _CustomTimeViewSpanState createState() => _CustomTimeViewSpanState();
+}
+
+class _CustomTimeViewSpanState extends State<CustomTimeViewSpan> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('TimeViewSpan Demo')),
+      body: Center(
+        child: TimeViewSpan(),
+      ),
+    );
+  }
+}
+
+class CustomDate extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: SimpleCookAppBar('Date'),
+      body: Center(
+        child: Date(DateTime(2024, 5, 12)),
       ),
     );
   }
@@ -278,7 +327,7 @@ class CustomExitButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SimpleCookAppBar(
-          'Close Button'), // Assuming you want to use the custom app bar
+          'Exit Button'), // Assuming you want to use the custom app bar
       body: Center(
         child: ExitButton(), // Add the AddPlaner widget here
       ),
