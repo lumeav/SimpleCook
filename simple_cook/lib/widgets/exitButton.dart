@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ButtonClose extends StatelessWidget {
-  const ButtonClose({Key? key}) : super(key: key);
+class ExitButton extends StatelessWidget {
+  const ExitButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

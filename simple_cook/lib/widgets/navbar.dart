@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomNavBar extends StatelessWidget {
+class NavBar extends StatelessWidget {
   final int selectedIndex;
   final Function(int) onItemTapped;
 
-  CustomNavBar({required this.selectedIndex, required this.onItemTapped});
+  NavBar({required this.selectedIndex, required this.onItemTapped});
 
   @override
   Widget build(BuildContext context) {

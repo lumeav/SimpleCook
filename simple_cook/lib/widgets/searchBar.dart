@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/widgets/searchBarTags.dart';
 class SearchBarFilter extends StatefulWidget {
   const SearchBarFilter({Key? key}) : super(key: key);
 

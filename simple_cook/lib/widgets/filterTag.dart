@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class ButtonFilter extends StatefulWidget {
+class FilterTag extends StatefulWidget {
   final String text;
   final double width;
   final double height;
 
-  const ButtonFilter(this.text, this.height, this.width,{Key? key,}) : super(key: key);
+  const FilterTag(this.text, this.height, this.width,{Key? key,}) : super(key: key);
 
   @override
-  _ButtonFilterState createState() => _ButtonFilterState();
+  _FilterTagState createState() => _FilterTagState();
 }
 
-class _ButtonFilterState extends State<ButtonFilter> {
+class _FilterTagState extends State<FilterTag> {
   bool _pressed = false;
 
   void _onPressed() {

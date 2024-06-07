@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class ButtonHeart extends StatefulWidget {
+class HeartButton extends StatefulWidget {
   final bool border;
   final double size;
 
-  const ButtonHeart(
+  const HeartButton(
     this.border,
     this.size, {
     Key? key,
   }) : super(key: key);
 
   @override
-  _ButtonHeartState createState() => _ButtonHeartState();
+  _HeartButtonState createState() => _HeartButtonState();
 }
 
-class _ButtonHeartState extends State<ButtonHeart> {
+class _HeartButtonState extends State<HeartButton> {
   bool _pressed = false;
 
   void _onPressed() {

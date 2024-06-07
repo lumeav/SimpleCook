@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class minusIcon extends StatelessWidget {
-  const minusIcon({Key? key}) : super(key: key);
+class RemoveButton extends StatelessWidget {
+  const RemoveButton({Key? key}) : super(key: key);
 
 
   @override

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:simple_cook/widgets/buttonFilter.dart';
+import 'package:simple_cook/widgets/filterTag.dart';
 import 'package:simple_cook/widgets/sliderFilter.dart';
 import 'package:simple_cook/widgets/searchRecipeButton.dart';
-import 'package:simple_cook/widgets/filterIcon.dart';
-import 'package:simple_cook/widgets/buttonHeart.dart';
+import 'package:simple_cook/widgets/filterButton.dart';
+import 'package:simple_cook/widgets/heartButton.dart';
 import 'package:simple_cook/widgets/recipeInfos.dart';
 import 'package:simple_cook/widgets/searchBar.dart';
 import 'package:simple_cook/widgets/greyBackground.dart';
@@ -16,14 +15,14 @@ import 'package:simple_cook/widgets/whiteBackground.dart';
 import 'package:simple_cook/widgets/recipePortion.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/widgets/preparation.dart';
-import 'package:simple_cook/widgets/navbar.dart';
+import 'package:simple_cook/widgets/navBar.dart';
 import 'package:simple_cook/widgets/img.dart';
 import 'package:simple_cook/widgets/wochenplanerRecipe.dart';
 import 'package:simple_cook/widgets/whitePlaceholder.dart';
-import 'package:simple_cook/widgets/minusIcon.dart';
-import 'package:simple_cook/widgets/AddPlaner.dart';
-import 'package:simple_cook/widgets/ButtonClose.dart';
-import 'widgets/appBar.dart';
+import 'package:simple_cook/widgets/removeButton.dart';
+import 'package:simple_cook/widgets/addPlaner.dart';
+import 'package:simple_cook/widgets/exitButton.dart';
+import 'widgets/simpleCookAppBar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
 
@@ -56,20 +55,20 @@ class MainPage extends StatelessWidget {
       body: ListView(
         children: [
           ListTile(
-            title: Text('CustomAppBar'),
+            title: Text('SimpleCookAppBar'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CustomAppBarDemo()),
+                MaterialPageRoute(builder: (context) => SimpleCookAppBarDemo()),
               );
             },
           ),
           ListTile(
-            title: Text('ButtonFilter'),
+            title: Text('FilterTag'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CustomButtonFilter()),
+                MaterialPageRoute(builder: (context) => CustomFilterTag()),
               );
             },
           ),
@@ -83,7 +82,7 @@ class MainPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('searchRecipeButton'),
+            title: Text('SearchRecipeButton'),
             onTap: () {
               Navigator.push(
                 context,
@@ -93,16 +92,16 @@ class MainPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('FilterIcon'),
+            title: Text('FilterButton'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CustomFilterIcon()),
+                MaterialPageRoute(builder: (context) => CustomFilterButton()),
               );
             },
           ),
           ListTile(
-            title: Text('ButtonHeart'),
+            title: Text('HeartButton'),
             onTap: () {
               Navigator.push(
                 context,
@@ -157,7 +156,7 @@ class MainPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('singleRecipeButton'),
+            title: Text('SingleRecipeButton'),
             onTap: () {
               Navigator.push(
                 context,
@@ -167,7 +166,7 @@ class MainPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('whiteBackground'),
+            title: Text('WhiteBackground'),
             onTap: () {
               Navigator.push(
                 context,
@@ -215,7 +214,7 @@ class MainPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('CustomNavBar'),
+            title: Text('NavBar'),
             onTap: () {
               Navigator.push(
                 context,
@@ -224,11 +223,11 @@ class MainPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('MinusIcon'),
+            title: Text('RemoveButton'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CustomMinusIcon()),
+                MaterialPageRoute(builder: (context) => CustomRemoveButton()),
               );
             },
           ),
@@ -242,11 +241,11 @@ class MainPage extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('CloseButton'),
+            title: Text('ExitButton'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CustomButtonClose()),
+                MaterialPageRoute(builder: (context) => CustomExitButton()),
               );
             },
           ),
@@ -274,14 +273,14 @@ class MainPage extends StatelessWidget {
   }
 }
 
-class CustomButtonClose extends StatelessWidget {
+class CustomExitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: SimpleCookAppBar(
           'Close Button'), // Assuming you want to use the custom app bar
       body: Center(
-        child: ButtonClose(), // Add the AddPlaner widget here
+        child: ExitButton(), // Add the AddPlaner widget here
       ),
     );
   }
@@ -291,7 +290,7 @@ class CustomAddPlaner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: SimpleCookAppBar(
           'Add Planer'), // Assuming you want to use the custom app bar
       body: Center(
         child: AddPlaner(), // Add the AddPlaner widget here
@@ -304,7 +303,7 @@ class CustomWhitePlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar('SimpleCook'),
+        appBar: SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[300],
         body: Stack(children: [
           WhitePlaceholder(85),
@@ -467,7 +466,7 @@ class CustomGreyBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('SimpleCook'),
+      appBar: SimpleCookAppBar('SimpleCook'),
       backgroundColor: Colors.grey[300],
       body: Center(
         child: GreyBackground(),
@@ -505,12 +504,12 @@ class _CustomNavBarDemoState extends State<CustomNavBarDemo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar('SimpleCook'),
+      appBar: SimpleCookAppBar('SimpleCook'),
       body: Center(
         child: Text(
             'This is a custom Bottom Navigation Bar. Selected Index: $_selectedIndex'),
       ),
-      bottomNavigationBar: CustomNavBar(
+      bottomNavigationBar: NavBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
       ),
@@ -537,7 +536,7 @@ class _CustomButtonHeartState extends State<CustomButtonHeart> {
     return Scaffold(
       appBar: AppBar(title: Text('Button Heart Demo')),
       body: const Center(
-        child: ButtonHeart(true, 32),
+        child: HeartButton(true, 32),
       ),
     );
   }
@@ -560,25 +559,25 @@ class _CustomSearchbarFilterState extends State<CustomSearchbarFilter> {
   }
 }
 
-class CustomFilterIcon extends StatelessWidget {
+class CustomFilterButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Filter Icon Demo')),
+      appBar: AppBar(title: Text('Filter Button Demo')),
       body: Center(
-        child: FilterIcon(),
+        child: FilterButton(),
       ),
     );
   }
 }
 
-class CustomMinusIcon extends StatelessWidget {
+class CustomRemoveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Minus Icon Demo')),
+      appBar: AppBar(title: Text('Remove Button Demo')),
       body: Center(
-        child: minusIcon(),
+        child: RemoveButton(),
       ),
     );
   }
@@ -607,17 +606,17 @@ class _CustomSliderState extends State<CustomSliderFilter> {
     return Scaffold(
       appBar: AppBar(title: Text('Custom Slider Demo')),
       body: Center(
-        child: CustomSlider(),
+        child: SliderFilter(),
       ),
     );
   }
 }
 
-class CustomAppBarDemo extends StatelessWidget {
+class SimpleCookAppBarDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBar('SimpleCook'),
+      appBar: SimpleCookAppBar('SimpleCook'),
       body: Center(
         child: Text('This is a custom AppBar'),
       ),
@@ -625,12 +624,12 @@ class CustomAppBarDemo extends StatelessWidget {
   }
 }
 
-class CustomButtonFilter extends StatefulWidget {
+class CustomFilterTag extends StatefulWidget {
   @override
-  _CustomButtonFilterState createState() => _CustomButtonFilterState();
+  _CustomFilterTagState createState() => _CustomFilterTagState();
 }
 
-class _CustomButtonFilterState extends State<CustomButtonFilter> {
+class _CustomFilterTagState extends State<CustomFilterTag> {
   bool _pressed = false;
 
   void _onPressed() {
@@ -644,7 +643,7 @@ class _CustomButtonFilterState extends State<CustomButtonFilter> {
     return Scaffold(
       appBar: AppBar(title: Text('Button Filter Demo')),
       body: const Center(
-        child: ButtonFilter(
+        child: FilterTag(
           'Vorspeise',
           50,
           150,

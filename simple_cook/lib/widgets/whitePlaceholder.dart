@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/widgets/searchBar.dart';
 
 class WhitePlaceholder extends StatelessWidget {
   final double height;

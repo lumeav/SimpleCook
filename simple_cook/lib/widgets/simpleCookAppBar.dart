@@ -3,10 +3,10 @@ import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 // This is the AppBar that is on every Screen saying "SimpleCook" in orange letters
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+class SimpleCookAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 
-  const CustomAppBar(this.title, {Key? key}) : super(key: key);
+  const SimpleCookAppBar(this.title, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

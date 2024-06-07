@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/widgets/RezeptdesTages.dart';
 import 'package:simple_cook/widgets/imgandheart.dart';
 import 'package:simple_cook/widgets/recipeInfos.dart';
 

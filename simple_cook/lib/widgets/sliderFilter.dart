@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
-class CustomSlider extends StatefulWidget {
-  const CustomSlider({
+class SliderFilter extends StatefulWidget {
+  const SliderFilter({
     Key? key,
   }) : super(key: key);
 
   @override
-  _CustomSliderState createState() => _CustomSliderState();
+  _SliderFilterState createState() => _SliderFilterState();
 }
 
-class _CustomSliderState extends State<CustomSlider> {
+class _SliderFilterState extends State<SliderFilter> {
   double _currentSliderValue = 15;
 
   @override
