@@ -14,7 +14,7 @@ class Preparation extends StatelessWidget {
             width: 30.0,
             height: 30.0,
             decoration: const BoxDecoration(
-              color: Colors.orange,
+              color: Color(0xffFF9F5A),
               shape: BoxShape.circle,
             ),
             child: Center(

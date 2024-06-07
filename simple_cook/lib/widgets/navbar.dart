@@ -10,7 +10,7 @@ class NavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       backgroundColor: Color.fromARGB(255, 255, 255, 255), // Set background color
-      selectedItemColor: Colors.orange, // Set selected item color
+      selectedItemColor: Color(0xffFF9F5A), // Set selected item color
       unselectedItemColor: Colors.grey, // Set unselected item color
       currentIndex: selectedIndex,
       onTap: onItemTapped,
