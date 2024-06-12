@@ -28,17 +28,23 @@ class _PlannerViewState extends State<PlannerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
-      body: GreyBackground([
-        TimeViewSpan(),
-        Row(children: [Date(DateTime.now()), SizedBox(width: 120.0), RemoveButton()]),
-        WochenplanerRecipe('assets/flammkuchen.jpg', 'Flammkuchen', "30min", "einfach"),
-        Row(children: [Date(DateTime.now().add(Duration(days: 1))), SizedBox(width: 120.0), RemoveButton()]),
-        WochenplanerRecipe('assets/flammkuchen.jpg', 'Flammkuchen', "30min", "einfach"),
-        Row(children: [Date(DateTime.now().add(Duration(days: 2))), SizedBox(width: 120.0), RemoveButton()]),
-        WochenplanerRecipe('assets/flammkuchen.jpg', 'Flammkuchen', "30min", "einfach"),
-        Row(children: [Date(DateTime.now().add(Duration(days: 3))), SizedBox(width: 120.0), RemoveButton()]),
-        WochenplanerRecipe('assets/flammkuchen.jpg', 'Flammkuchen', "30min", "einfach"),
-      ]),
+      backgroundColor: Colors.grey[200],
+      body:
+      Column(children: [
+        Container(
+          color: Colors.grey[200],
+          child: TimeViewSpan()
+        ),
+      Expanded( child: GreyBackground([
+        Column(children: [Row(children: [Align(alignment: Alignment.centerLeft, child: Date(DateTime.now())), Spacer(), Align(alignment: Alignment.centerRight, child: RemoveButton())]),
+        WochenplanerRecipe('assets/flammkuchen.jpg', 'Flammkuchen', "30min", "einfach"),]),
+        Column(children: [Row(children: [Align(alignment: Alignment.centerLeft, child: Date(DateTime.now().add(Duration(days: 1)))), Spacer(), Align(alignment: Alignment.centerRight, child: RemoveButton())]),
+        WochenplanerRecipe('assets/flammkuchen.jpg', 'Flammkuchen', "30min", "einfach"),]),
+        Column(children: [Row(children: [Align(alignment: Alignment.centerLeft, child: Date(DateTime.now().add(Duration(days: 2)))), Spacer(), Align(alignment: Alignment.centerRight, child: RemoveButton())]),
+        WochenplanerRecipe('assets/flammkuchen.jpg', 'Flammkuchen', "30min", "einfach"),]),
+        Column(children: [Row(children: [Align(alignment: Alignment.centerLeft, child: Date(DateTime.now().add(Duration(days: 3)))), Spacer(), Align(alignment: Alignment.centerRight, child: RemoveButton())]),
+        WochenplanerRecipe('assets/flammkuchen.jpg', 'Flammkuchen', "30min", "einfach"),]),
+      ])),]),
       bottomNavigationBar: CustomNavBar(
         selectedIndex: widget.selectedIndex,
         onItemTapped: widget.onItemTapped,

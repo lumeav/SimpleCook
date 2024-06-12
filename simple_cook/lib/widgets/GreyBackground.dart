@@ -21,7 +21,7 @@ class GreyBackground extends StatelessWidget { // Todo: Sollte doch Stateful sei
               ),
               child: Container(
                 // Light grey background color
-                //padding: EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.0),
                 //color: Colors.grey[200],
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -44,7 +44,7 @@ class GreyBackground extends StatelessWidget { // Todo: Sollte doch Stateful sei
         // If the current and next widget are both SingleRecipeButtons, put them in a Row
         recipeWidgets.add(
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0.0),
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: Row(
               children: [
                 Expanded(child: recipes[i]),
@@ -59,7 +59,7 @@ class GreyBackground extends StatelessWidget { // Todo: Sollte doch Stateful sei
         // Otherwise, just add the widget normally
         recipeWidgets.add(
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 0.0),
+            padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: recipes[i],
           ),
         );
