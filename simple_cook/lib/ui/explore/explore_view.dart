@@ -28,6 +28,7 @@ class _ExploreViewState extends State<ExploreView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+      backgroundColor: Colors.grey[200],
       body: Column(
         children: [
           Row(children: [

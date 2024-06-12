@@ -25,6 +25,7 @@ class _FavoritesViewState extends State<FavoritesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+      backgroundColor: Colors.grey[200],
       body: GreyBackground([
         Text(
           'Favoriten',
