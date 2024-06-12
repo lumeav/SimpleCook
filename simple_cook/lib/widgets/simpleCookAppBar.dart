@@ -33,6 +33,7 @@ class SimpleCookAppBar extends StatelessWidget implements PreferredSizeWidget {
       ),
       centerTitle: true,
       backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
       elevation: 0, // Remove shadow
     );
   }
