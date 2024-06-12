@@ -9,7 +9,7 @@ import 'package:simple_cook/widgets/recipeInfos.dart';
 import 'package:simple_cook/widgets/searchBar.dart';
 import 'package:simple_cook/widgets/greyBackground.dart';
 import 'package:simple_cook/widgets/ImgAndHeart.dart';
-import 'package:simple_cook/widgets/RezeptdesTages.dart';
+import 'package:simple_cook/widgets/RezeptDesTages.dart';
 import 'package:simple_cook/widgets/singleRecipeButton.dart';
 import 'package:simple_cook/widgets/whiteBackground.dart';
 import 'package:simple_cook/widgets/recipePortion.dart';
@@ -473,13 +473,13 @@ class _CustomSingleRecipeButtonState extends State<CustomSingleRecipeButton> {
         appBar: AppBar(title: Text('Single Recipe Button Demo')),
         backgroundColor: Colors.grey[300],
         body: const Column(children: [
-          RezeptdesTages(
+          RezeptDesTages(
               'assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              singleRecipeButton('assets/tinga-de-pollo.jpg', 'Tinga de Pollo'),
-              singleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
+              SingleRecipeButton('assets/tinga-de-pollo.jpg', 'Tinga de Pollo'),
+              SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
             ],
           ),
         ]));
@@ -493,7 +493,7 @@ class CustomRezeptDesTages extends StatelessWidget {
       appBar: AppBar(title: Text('Rezept des Tages Demo')),
       backgroundColor: Colors.grey[300],
       body: Center(
-        child: RezeptdesTages('assets/flammkuchen.jpg', 'Flammkuchen'),
+        child: RezeptDesTages('assets/flammkuchen.jpg', 'Flammkuchen'),
       ),
     );
   }
@@ -518,7 +518,8 @@ class CustomGreyBackground extends StatelessWidget {
       appBar: SimpleCookAppBar('SimpleCook'),
       backgroundColor: Colors.grey[300],
       body: Center(
-        child: GreyBackground(),
+        child: GreyBackground([SingleRecipeButton('assets/tinga-de-pollo.jpg', 'Tinga de Pollo'),
+              SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen')]),
       ),
     );
   }
