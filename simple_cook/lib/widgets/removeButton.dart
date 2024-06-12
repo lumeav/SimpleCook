@@ -8,8 +8,8 @@ class RemoveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 50, // Adjust width as needed
-      height: 50, // Adjust height as needed
+      width: 30, // Adjust width as needed
+      height: 30, // Adjust height as needed
       decoration: BoxDecoration(
         shape: BoxShape.circle, //doing it like this because it is way more complicated to get two FaIcons working together with "onPressed"
         border: Border.all(
@@ -28,7 +28,7 @@ class RemoveButton extends StatelessWidget {
           icon: const FaIcon(
             FontAwesomeIcons.minus,
             color: Colors.grey,
-            size: 30, // Adjust minus symbol size as needed
+            size: 20, // Adjust minus symbol size as needed
           ),
         ),
       ),
