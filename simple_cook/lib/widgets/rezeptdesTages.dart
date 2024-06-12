@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/widgets/imgandheart.dart';
 
-class RezeptdesTages extends StatefulWidget {
+class RezeptDesTages extends StatefulWidget {
   final String imgPath;
   final String rezeptName;
 
-  const RezeptdesTages(this.imgPath, this.rezeptName, {Key? key})
+  const RezeptDesTages(this.imgPath, this.rezeptName, {Key? key})
       : super(key: key);
 
   @override
-  _RezeptdesTagesState createState() => _RezeptdesTagesState();
+  _RezeptDesTagesState createState() => _RezeptDesTagesState();
 }
 
-class _RezeptdesTagesState extends State<RezeptdesTages> {
+class _RezeptDesTagesState extends State<RezeptDesTages> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
