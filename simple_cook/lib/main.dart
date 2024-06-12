@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:simple_cook/ui/explore/explore_view.dart';
 import 'package:simple_cook/ui/favorites/favorites_view.dart';
 import 'package:simple_cook/ui/planner/planner_view.dart';
@@ -7,7 +8,9 @@ import 'package:go_router/go_router.dart';
 
 //This is the "main.dart" file, currently named "mein.dart" to test dummy data
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('de_DE', null);
   runApp(MyApp());
 }
 
