@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class TimeViewSpan extends StatefulWidget {
+
   TimeViewSpan({
     Key? key,
   }) : super(key: key);
@@ -11,8 +12,10 @@ class TimeViewSpan extends StatefulWidget {
 }
 
 class _TimeViewSpanState extends State<TimeViewSpan> {
-  late DateTime begin;
-  late DateTime end;
+  static const _daysToNextWeek = 7;
+  static const _daysToEndOfWeek = 6;
+  late DateTime _begin;
+  late DateTime _end;
 
   DateTime _getFirstDateOfWeek(DateTime date) {
     int dayOffset = date.weekday - DateTime.monday;
@@ -29,20 +32,20 @@ class _TimeViewSpanState extends State<TimeViewSpan> {
   @override
   void initState() {
     super.initState();
-    begin = _getFirstDateOfWeek(DateTime.now());
-    end = begin.add(const Duration(days: 6));
+    _begin = _getFirstDateOfWeek(DateTime.now());
+    _end = _begin.add(const Duration(days: _daysToEndOfWeek));
   }
 
   void _onPressed(String buttonType) {
     setState(() {
       if (buttonType == 'prev') {
-        if (!(_isSameDate(begin, _getFirstDateOfWeek(DateTime.now())))) {
-          begin = begin.subtract(const Duration(days: 7));
-          end = end.subtract(const Duration(days: 7));
+        if (!(_isSameDate(_begin, _getFirstDateOfWeek(DateTime.now())))) {
+          _begin = _begin.subtract(const Duration(days: _daysToNextWeek));
+          _end = _end.subtract(const Duration(days: _daysToNextWeek));
         }
       } else if (buttonType == 'next') {
-        begin = begin.add(const Duration(days: 7));
-        end = end.add(const Duration(days: 7));
+        _begin = _begin.add(const Duration(days: _daysToNextWeek));
+        _end = _end.add(const Duration(days: _daysToNextWeek));
       }
     });
   }
@@ -55,7 +58,7 @@ class _TimeViewSpanState extends State<TimeViewSpan> {
             onPressed: () => _onPressed('prev'),
             icon: const Icon(Icons.chevron_left, color: Colors.grey, size: 32)),
         Text(
-            "Wochenplan ${DateFormat('dd.MM', 'de_DE').format(begin)} - ${DateFormat('dd.MM', 'de_DE').format(end)}",
+            "Wochenplan ${DateFormat('dd.MM', 'de_DE').format(_begin)} - ${DateFormat('dd.MM', 'de_DE').format(_end)}",
             style: const TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
