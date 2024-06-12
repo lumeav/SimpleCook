@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/widgets/imgandheart.dart';
 
-class singleRecipeButton extends StatefulWidget {
+class SingleRecipeButton extends StatefulWidget {
   final String imgPath;
   final String rezeptName;
 
-  const singleRecipeButton(this.imgPath, this.rezeptName, {Key? key}) : super(key: key);
+  const SingleRecipeButton(this.imgPath, this.rezeptName, {Key? key}) : super(key: key);
 
   @override
-  _singleRecipeButtonState createState() => _singleRecipeButtonState();
+  _SingleRecipeButtonState createState() => _SingleRecipeButtonState();
 }
 
-class _singleRecipeButtonState extends State<singleRecipeButton> {
+class _SingleRecipeButtonState extends State<SingleRecipeButton> {
   @override
   Widget build(BuildContext context) {
     return Container(
