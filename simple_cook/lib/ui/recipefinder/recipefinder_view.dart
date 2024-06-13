@@ -43,29 +43,6 @@ class _RecipefinderViewState extends State<RecipefinderView> {
             ],
           ),
           Text(
-            'Lebensmittel',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Row(
-            children: [
-              FilterTag(
-                'Karotte',
-                50,
-                150,
-              ),
-              SizedBox(width: 10), // Space between the FilterTags
-              FilterTag(
-                'Tomate',
-                50,
-                150,
-              ),
-            ],
-          ),
-          Text(
             'Kategorie',
             style: TextStyle(
               color: Colors.black,

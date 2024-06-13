@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 class SearchBarFilter extends StatefulWidget {
   const SearchBarFilter({Key? key}) : super(key: key);
 
@@ -17,52 +18,60 @@ class _SearchBarState extends State<SearchBarFilter> {
   late Iterable<Widget> lastVegetables = <Widget>[];
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Column(children: [
+      Container(
+        margin: const EdgeInsets.symmetric(vertical: 15),
+        width: 300,
+        height: 50,
+        child: SearchAnchor.bar(
+            barHintText: "Rezeptfinder...",
+            isFullScreen: false,
+            viewConstraints: const BoxConstraints(
+              minHeight: 100,
+            ),
+            viewBackgroundColor: const Color(0xffFFECDF),
+            suggestionsBuilder:
+                (BuildContext context, SearchController controller) async {
+              searchQuery = controller.text;
+              final List<String> vegetables =
+                  (await database.search(searchQuery!)).toList();
 
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(vertical: 15),
-          width: 300,
-          height: 50,
-          child: SearchAnchor.bar(
-              barHintText: "Rezeptfinder...",
-              isFullScreen: false,
-              viewConstraints: const BoxConstraints(
-                minHeight: 100,
-              ),
-              viewBackgroundColor: const Color(0xffFFECDF),
-              suggestionsBuilder:
-                  (BuildContext context, SearchController controller) async {
-                searchQuery = controller.text;
-                final List<String> vegetables =
-                    (await database.search(searchQuery!)).toList();
-
-
-                  return List<ListTile>.generate(vegetables.length, (int index) {
-                  final String item = vegetables[index];
-                  return ListTile(
-                    title: Text(item),
-                    titleAlignment: ListTileTitleAlignment.center,
-                    onTap: () {
-                      setState(() {
-                        controller.closeView("");
-                        selectedTile = item;
-                        buttons.add(selectedTile);
-                      });
-                    },
-                  );
-                });
-              }),
+              return List<ListTile>.generate(vegetables.length, (int index) {
+                final String item = vegetables[index];
+                return ListTile(
+                  title: Text(item),
+                  titleAlignment: ListTileTitleAlignment.center,
+                  onTap: () {
+                    setState(() {
+                      controller.closeView("");
+                      selectedTile = item;
+                      buttons.add(selectedTile);
+                    });
+                  },
+                );
+              });
+            }),
+      ),
+      SizedBox(height: 10),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Text(
+          'Lebensmittel',
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-        SizedBox(height: 10),
-        Container(
-          width: 300,
-          child: Wrap(
-            alignment: WrapAlignment.start,
-            spacing: 8.0, // gap between adjacent chips
-            runSpacing: 4.0, // gap between lines
-            children: List<Widget>.generate(buttons.length, (int index) {
-              return Directionality(
+      ),
+      Container(
+        width: 300,
+        child: Wrap(
+          alignment: WrapAlignment.start,
+          spacing: 8.0, // gap between adjacent chips
+          runSpacing: 4.0, // gap between lines
+          children: List<Widget>.generate(buttons.length, (int index) {
+            return Directionality(
                 textDirection: TextDirection.rtl,
                 child: InputChip(
                   label: Text(
@@ -79,13 +88,11 @@ class _SearchBarState extends State<SearchBarFilter> {
                   onDeleted: () => setState(() {
                     buttons.removeAt(index);
                   }),
-                )
-              );
-            }).toList(),
-            ),
-        )
-      ]
-    );
+                ));
+          }).toList(),
+        ),
+      )
+    ]);
   }
 }
 
@@ -97,9 +104,9 @@ class database {
     'Ei',
     'Karrotte',
     'Karrtr'
-    'Kardfcgdfb'
-    'Klöereasr'
-    'Zwiebel',
+        'Kardfcgdfb'
+        'Klöereasr'
+        'Zwiebel',
     'Knoblauch',
     'Paprika',
     'Noah',
