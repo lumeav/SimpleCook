@@ -34,7 +34,8 @@ class _RecipefinderViewState extends State<RecipefinderView> {
       ),
       appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
       backgroundColor: Colors.grey[200],
-      body: GreyBackground([
+      body: GreyBackground(
+        [
           Stack(
             children: [
               WhitePlaceholder(85),
@@ -42,83 +43,114 @@ class _RecipefinderViewState extends State<RecipefinderView> {
             ],
           ),
           Text(
-                'Lebensmittel',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            'Lebensmittel',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           Row(
-              children: [
-                FilterTag(
-                  'Karotte',
-                  50,
-                  150,
-                ),
-                SizedBox(width: 10), // Space between the FilterTags
-                FilterTag(
-                  'Tomate',
-                  50,
-                  150,
-                ),
-              ],
-            ),
+            children: [
+              FilterTag(
+                'Karotte',
+                50,
+                150,
+              ),
+              SizedBox(width: 10), // Space between the FilterTags
+              FilterTag(
+                'Tomate',
+                50,
+                150,
+              ),
+            ],
+          ),
           Text(
-                'Kategorie',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Row(
-              children: [
-                FilterTag(
-                  'Alle',
-                  50,
-                  150,
-                ),
-                SizedBox(width: 10), // Space between the FilterTags
-                FilterTag(
-                  'Vorspeise',
-                  50,
-                  150,
-                ),
-              ],
+            'Kategorie',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
             ),
-        Text(
-                'Ernährungsart',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+          ),
+          Wrap(
+            spacing: 10.0, // Space between tags
+            runSpacing: 8.0, // Space between lines
+            children: [
+              FilterTag(
+                'Alle',
+                50,
+                100,
+              ), // Space between the FilterTags
+              FilterTag(
+                'Vorspeise',
+                50,
+                145,
               ),
-            Row(
-              children: [
-                FilterTag(
-                  'Vegetarisch',
-                  50,
-                  170,
-                ),
-                SizedBox(width: 10), // Space between the FilterTags
-                FilterTag(
-                  'Vegan',
-                  50,
-                  150,
-                ),
-              ],
+              FilterTag(
+                'Hauptspeise',
+                50,
+                160,
+              ),
+              FilterTag(
+                'Dessert',
+                50,
+                135,
+              ),
+              FilterTag(
+                'Snacks',
+                50,
+                135,
+              ),
+            ],
+          ),
+          Text(
+            'Ernährungsart',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
             ),
-        Text(
-                'Zubereitungszeit',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+          ),
+          Wrap(
+            spacing: 10.0, // Space between tags
+            runSpacing: 8.0, // Space between lines
+            children: [
+              FilterTag(
+                'Vegetarisch',
+                50,
+                170,
               ),
-
+              FilterTag(
+                'Vegan',
+                50,
+                140,
+              ),
+              FilterTag(
+                'Glutenfrei',
+                50,
+                160,
+              ),
+              FilterTag(
+                'Laktosefrei',
+                50,
+                170,
+              ),
+              FilterTag(
+                'Low Carb',
+                50,
+                150,
+              ),
+            ],
+          ),
+          Text(
+            'Zubereitungszeit',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           Center(child: SliderFilter()),
           Center(child: SearchRecipesButton("Rezepte suchen"))
         ],
@@ -126,4 +158,3 @@ class _RecipefinderViewState extends State<RecipefinderView> {
     );
   }
 }
-
