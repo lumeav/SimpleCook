@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/navbar.dart';
+import 'package:simple_cook/widgets/greyBackground.dart';
 import 'package:simple_cook/widgets/simpleCookAppBar.dart';
 import 'package:simple_cook/widgets/whitePlaceholder.dart';
 import 'package:simple_cook/widgets/filterTag.dart';
 import 'package:simple_cook/widgets/sliderFilter.dart';
 import 'package:simple_cook/widgets/searchBar.dart';
-//import 'package:simple_cook/widgets/singleRecipeButton.dart';
+import 'package:simple_cook/widgets/searchRecipeButton.dart';
 
 class RecipefinderView extends StatefulWidget {
   final int selectedIndex;
@@ -33,22 +34,14 @@ class _RecipefinderViewState extends State<RecipefinderView> {
       ),
       appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
       backgroundColor: Colors.grey[200],
-      body: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.start, // Align children to the start (left)
-        children: [
+      body: GreyBackground([
           Stack(
             children: [
               WhitePlaceholder(85),
               Align(alignment: Alignment.center, child: SearchBarFilter()),
             ],
           ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
+          Text(
                 'Lebensmittel',
                 style: TextStyle(
                   color: Colors.black,
@@ -56,11 +49,7 @@ class _RecipefinderViewState extends State<RecipefinderView> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
+          Row(
               children: [
                 FilterTag(
                   'Karotte',
@@ -75,13 +64,7 @@ class _RecipefinderViewState extends State<RecipefinderView> {
                 ),
               ],
             ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
+          Text(
                 'Kategorie',
                 style: TextStyle(
                   color: Colors.black,
@@ -89,11 +72,7 @@ class _RecipefinderViewState extends State<RecipefinderView> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
+              Row(
               children: [
                 FilterTag(
                   'Alle',
@@ -108,13 +87,7 @@ class _RecipefinderViewState extends State<RecipefinderView> {
                 ),
               ],
             ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
+        Text(
                 'Ernährungsart',
                 style: TextStyle(
                   color: Colors.black,
@@ -122,16 +95,12 @@ class _RecipefinderViewState extends State<RecipefinderView> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
+            Row(
               children: [
                 FilterTag(
                   'Vegetarisch',
                   50,
-                  150,
+                  170,
                 ),
                 SizedBox(width: 10), // Space between the FilterTags
                 FilterTag(
@@ -141,13 +110,7 @@ class _RecipefinderViewState extends State<RecipefinderView> {
                 ),
               ],
             ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
+        Text(
                 'Zubereitungszeit',
                 style: TextStyle(
                   color: Colors.black,
@@ -155,11 +118,12 @@ class _RecipefinderViewState extends State<RecipefinderView> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            ),
-          ),
-          Center(child: SliderFilter())
+
+          Center(child: SliderFilter()),
+          Center(child: SearchRecipesButton("Rezepte suchen"))
         ],
       ),
     );
   }
 }
+
