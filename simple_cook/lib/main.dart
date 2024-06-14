@@ -5,6 +5,7 @@ import 'package:simple_cook/ui/favorites/favorites_view.dart';
 import 'package:simple_cook/ui/planner/planner_view.dart';
 import 'package:simple_cook/ui/recipefinder/recipefinder_view.dart';
 import 'package:go_router/go_router.dart';
+import 'package:simple_cook/ui/recipesFound/recipesfound_view.dart';
 
 //This is the "main.dart" file, currently named "mein.dart" to test dummy data
 
@@ -47,6 +48,14 @@ class MyApp extends StatelessWidget {
           onItemTapped: (index) => _onItemTapped(index, context),
         ),
       ),
+      GoRoute(
+        path: '/recipeFinder',
+        builder: (context, state) => RecipesFoundView(
+          //new page for search recipe result not complete!!
+          onItemTapped: (index) => _onItemTapped(index, context),
+
+        ),
+      )
     ],
   );
 

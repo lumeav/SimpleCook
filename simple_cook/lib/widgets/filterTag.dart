@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 class FilterTag extends StatefulWidget {
   final String text;
-  final double width;
-  final double height;
 
-  const FilterTag(this.text, this.height, this.width,{Key? key,}) : super(key: key);
+  const FilterTag(
+    this.text, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   _FilterTagState createState() => _FilterTagState();
@@ -29,52 +30,21 @@ class _FilterTagState extends State<FilterTag> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: widget.width,
-        height: widget.height,
+        padding: EdgeInsets.zero,
+        margin: EdgeInsets.zero,
         child: _pressed
-            ? ElevatedButton(
+            ? ElevatedButton.icon(
                 onPressed: _onPressed,
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      side: const BorderSide(
-                          color: Color.fromARGB(255, 127, 127, 127),
-                          width: 1.5),
-                    ),
+                style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.transparent,
+                  foregroundColor: Colors.transparent,
+                  surfaceTintColor: Colors.transparent,
+                  backgroundColor: const Color(0xffFF9F5A).withOpacity(0.75),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                    side: const BorderSide(
+                        color: Color.fromARGB(255, 127, 127, 127), width: 1.5),
                   ),
-                  elevation: MaterialStateProperty.all(3),
-                  overlayColor: MaterialStateProperty.all<Color>(
-                      Color(0xffFF9F5A).withOpacity(0.3)),
-                ),
-                child: Text(
-                  widget.text,
-                  style: const TextStyle(
-                    color: Color(0xffFF9F5A),
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              )
-            : ElevatedButton.icon(
-                onPressed: _onPressed,
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(
-                      Color(0xffFF9F5A).withOpacity(0.7)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      side: const BorderSide(
-                          color: Color.fromARGB(255, 127, 127, 127),
-                          width: 1.5),
-                    ),
-                  ),
-                  elevation: MaterialStateProperty.all(3),
-                  overlayColor: MaterialStateProperty.all<Color>(
-                      const Color.fromARGB(255, 229, 222, 211)
-                          .withOpacity(0.3)),
                 ),
                 icon: const Icon(
                   Icons.close,
@@ -85,6 +55,27 @@ class _FilterTagState extends State<FilterTag> {
                   widget.text,
                   style: const TextStyle(
                     color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
+            : ElevatedButton(
+                onPressed: _onPressed,
+                style: ElevatedButton.styleFrom(
+                  foregroundColor: Colors.transparent,
+                  surfaceTintColor: Colors.transparent,
+                  backgroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                      side: const BorderSide(
+                          color: Color.fromARGB(255, 127, 127, 127),
+                          width: 1.5)),
+                ),
+                child: Text(
+                  widget.text,
+                  style: const TextStyle(
+                    color: Color(0xffFF9F5A),
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),

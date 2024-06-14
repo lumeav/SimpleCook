@@ -17,12 +17,9 @@ class _SliderFilterState extends State<SliderFilter> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Icon(Icons.access_time_outlined, size: 30.0),
-        SizedBox(
-          width: 280,
-          child: SfSliderTheme(
+      children: [
+        Icon(Icons.access_time_outlined, size: 34.0, color: Colors.grey[600]),
+ Expanded (child:SfSliderTheme(
             data: SfSliderThemeData(
                 //labelOffset: Offset(10.0, 0.0),
                 activeTrackHeight: 7,
@@ -45,7 +42,7 @@ class _SliderFilterState extends State<SliderFilter> {
               },
             ),
           ),
-        )
+ )
       ],
     );
   }

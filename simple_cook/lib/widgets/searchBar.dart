@@ -16,20 +16,24 @@ class _SearchBarState extends State<SearchBarFilter> {
   List<String> buttons = [];
   //last vegetables from db
   late Iterable<Widget> lastVegetables = <Widget>[];
+
+
   @override
   Widget build(BuildContext context) {
+
+
     return Column(children: [
       Container(
-        margin: const EdgeInsets.symmetric(vertical: 15),
-        width: 300,
-        height: 50,
+        width: MediaQuery.of(context).size.width,
+        padding: const EdgeInsets.only(top: 10, bottom: 25, left : 15, right: 15),
+        color: Colors.white,
         child: SearchAnchor.bar(
+            barBackgroundColor: MaterialStateProperty.all(Colors.white),
+            dividerColor: Colors.black,
             barHintText: "Rezeptfinder...",
             isFullScreen: false,
-            viewConstraints: const BoxConstraints(
-              minHeight: 100,
-            ),
-            viewBackgroundColor: const Color(0xffFFECDF),
+            //TODO: searchbar needs better color!
+            viewBackgroundColor: Color.fromARGB(255, 235, 170, 127),
             suggestionsBuilder:
                 (BuildContext context, SearchController controller) async {
               searchQuery = controller.text;
@@ -52,9 +56,10 @@ class _SearchBarState extends State<SearchBarFilter> {
               });
             }),
       ),
-      SizedBox(height: 10),
-      Align(
+      Container(
         alignment: Alignment.centerLeft,
+        margin: EdgeInsets.symmetric(vertical: 10),
+        padding: EdgeInsets.only(left: 15),
         child: Text(
           'Lebensmittel',
           style: TextStyle(
@@ -65,11 +70,13 @@ class _SearchBarState extends State<SearchBarFilter> {
         ),
       ),
       Container(
-        width: 300,
+        alignment: Alignment.centerLeft,
+        padding: EdgeInsets.only(left: 15, right: 15),
         child: Wrap(
           alignment: WrapAlignment.start,
-          spacing: 8.0, // gap between adjacent chips
-          runSpacing: 4.0, // gap between lines
+          runAlignment: WrapAlignment.start,
+          spacing: 10.0, // gap between adjacent chips
+          runSpacing: 5.0, // gap between lines
           children: List<Widget>.generate(buttons.length, (int index) {
             return Directionality(
                 textDirection: TextDirection.rtl,
@@ -78,6 +85,8 @@ class _SearchBarState extends State<SearchBarFilter> {
                     buttons[index],
                     style: const TextStyle(
                       color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   deleteIconColor: Colors.white,

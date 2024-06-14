@@ -21,117 +21,98 @@ class RecipefinderView extends StatefulWidget {
   @override
   _RecipefinderViewState createState() => _RecipefinderViewState();
 }
-// TODO: filterTags don't grow bigger with more characters. "Hauptspeise" is too long for the button. Make it so that it dynamically grows bigger horizontally.
-// TODO: Make it so that the buttons dont go out the screen. So far only two buttons added because a third one would go outside the screen.
 
 class _RecipefinderViewState extends State<RecipefinderView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: CustomNavBar(
-        selectedIndex: widget.selectedIndex,
-        onItemTapped: widget.onItemTapped,
-      ),
-      appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
-      backgroundColor: Colors.grey[200],
-      body: GreyBackground(
-        [
-          Stack(
-            children: [
-              WhitePlaceholder(85),
-              Align(alignment: Alignment.center, child: SearchBarFilter()),
-            ],
+        bottomNavigationBar: CustomNavBar(
+          selectedIndex: widget.selectedIndex,
+          onItemTapped: widget.onItemTapped,
+        ),
+        appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+        backgroundColor: Colors.grey[200],
+        body: Container(
+          child: Scrollbar(
+            radius: Radius.circular(50),
+            thickness: 5,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  SearchBarFilter(),
+                  _buildFilterHeader("Kategorie"),
+                  _buildFilterTags(kategorieList),
+                  _buildFilterHeader("Ernährungsart"),
+                  _buildFilterTags(ernaehrungsartList),
+                  _buildFilterHeader("Ernährungsart"),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15, right: 15),
+                    child: SliderFilter(),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 50),
+                    alignment: Alignment.center,
+                    child: SearchRecipesButton("Rezepte suchen")),
+
+                ],
+              ),
+            ),
           ),
-          Text(
-            'Kategorie',
+        ));
+  }
+
+  List<String> kategorieList = [
+    'Alle',
+    'Vorspeise',
+    'Hauptspeise',
+    'Dessert',
+    'Snacks',
+  ];
+
+  List<String> ernaehrungsartList = [
+    'Vegetarisch',
+    'Vegan',
+    'Glutenfrei',
+    'Laktosefrei',
+    'Low Carb',
+  ];
+  //maybe refactor methods to widgets
+
+  Widget _buildFilterHeader(String header) {
+    return Align(
+        alignment: Alignment.centerLeft,
+        child: Padding(
+          padding: EdgeInsets.only(left: 15, top: 10),
+          child: Text(
+            header,
             style: TextStyle(
               color: Colors.black,
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
           ),
-          Wrap(
+        ));
+  }
+
+  Widget _buildFilterTags(List<String> filterList) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+          padding: EdgeInsets.only(left: 15, right: 15),
+          margin: EdgeInsets.symmetric(vertical: 10),
+          child: Wrap(
+            alignment: WrapAlignment.start,
+            //crossAxisAlignment: WrapCrossAlignment.end,
+            runAlignment: WrapAlignment.start,
+            direction: Axis.horizontal,
             spacing: 10.0, // Space between tags
-            runSpacing: 8.0, // Space between lines
+            runSpacing: 5.0, // Space between lines
             children: [
-              FilterTag(
-                'Alle',
-                50,
-                100,
-              ), // Space between the FilterTags
-              FilterTag(
-                'Vorspeise',
-                50,
-                145,
-              ),
-              FilterTag(
-                'Hauptspeise',
-                50,
-                160,
-              ),
-              FilterTag(
-                'Dessert',
-                50,
-                135,
-              ),
-              FilterTag(
-                'Snacks',
-                50,
-                135,
-              ),
+              for (var filter in filterList) FilterTag(filter),
             ],
-          ),
-          Text(
-            'Ernährungsart',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Wrap(
-            spacing: 10.0, // Space between tags
-            runSpacing: 8.0, // Space between lines
-            children: [
-              FilterTag(
-                'Vegetarisch',
-                50,
-                170,
-              ),
-              FilterTag(
-                'Vegan',
-                50,
-                140,
-              ),
-              FilterTag(
-                'Glutenfrei',
-                50,
-                160,
-              ),
-              FilterTag(
-                'Laktosefrei',
-                50,
-                170,
-              ),
-              FilterTag(
-                'Low Carb',
-                50,
-                150,
-              ),
-            ],
-          ),
-          Text(
-            'Zubereitungszeit',
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Center(child: SliderFilter()),
-          Center(child: SearchRecipesButton("Rezepte suchen"))
-        ],
-      ),
+          )),
     );
   }
 }
+
+

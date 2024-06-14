@@ -695,8 +695,6 @@ class _CustomFilterTagState extends State<CustomFilterTag> {
       body: const Center(
         child: FilterTag(
           'Vorspeise',
-          50,
-          150,
         ),
       ),
     );

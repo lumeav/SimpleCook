@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 //This is the "Rezepte Suchen" button that is orange with white letters
 
@@ -12,9 +13,9 @@ class SearchRecipesButton extends StatelessWidget {
     return SizedBox(
       height: 50,
       child: ElevatedButton(
-          onPressed: () {
-            // Placeholder for future logic
-            //print("Button pressed");
+            onPressed: () {
+            context.go('/recipeFinder');
+
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(Color(0xffFF9F5A)),
