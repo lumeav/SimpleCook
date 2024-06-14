@@ -32,7 +32,7 @@ class _FavoritesViewState extends State<FavoritesView> {
           style: TextStyle(
               color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
         ),
-        SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
+        SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen mit käase und speck und so weiter hallo'),
         SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
         SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
         SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),

@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 
 class HeartButton extends StatefulWidget {
   final bool border;
-  final double size;
 
   const HeartButton(
-    this.border,
-    this.size, {
+    this.border,{
     Key? key,
   }) : super(key: key);
 
@@ -31,9 +29,10 @@ class _HeartButtonState extends State<HeartButton> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.width * 0.07;
     return Container(
-      width: widget.size + 8,
-      height: widget.size + 8,
+      width: size + 8,
+      height:  size + 8,
       decoration: widget.border
           ? const BoxDecoration(shape: BoxShape.circle, color: Colors.white)
           : null,
@@ -41,7 +40,7 @@ class _HeartButtonState extends State<HeartButton> {
           onPressed: _onPressed,
           padding: EdgeInsets.zero,
           icon: Icon(_pressed ? Icons.favorite : Icons.favorite_border,
-              color: Color(0xffFF9F5A), size: widget.size)),
+              color: Color(0xffFF9F5A), size: size )),
     );
   }
 }

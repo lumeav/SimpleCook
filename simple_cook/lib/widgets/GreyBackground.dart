@@ -47,9 +47,9 @@ class GreyBackground extends StatelessWidget { // Todo: Sollte doch Stateful sei
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: Row(
               children: [
-                Expanded(child: recipes[i]),
+                Expanded(flex: 3,child: recipes[i]),
                 SizedBox(width: 8), // Add some spacing between the buttons
-                Expanded(child: recipes[i + 1]),
+                Expanded(flex: 3, child: recipes[i + 1]),
               ],
             ),
           ),

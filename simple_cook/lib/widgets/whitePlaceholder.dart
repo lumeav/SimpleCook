@@ -8,6 +8,8 @@ class WhitePlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin : EdgeInsets.zero,
+      padding: EdgeInsets.zero,
       height: height,
       color: Colors.white,
     );

@@ -28,7 +28,7 @@ class ImgAndHeart extends StatelessWidget {
         const Positioned(
           bottom: 10,
           right: 10,
-          child: HeartButton(true, 28),
+          child: HeartButton(true),
         )
       ],
     );

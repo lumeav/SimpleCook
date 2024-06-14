@@ -586,7 +586,7 @@ class _CustomButtonHeartState extends State<CustomButtonHeart> {
     return Scaffold(
       appBar: AppBar(title: Text('Button Heart Demo')),
       body: const Center(
-        child: HeartButton(true, 32),
+        child: HeartButton(true),
       ),
     );
   }
