@@ -57,19 +57,18 @@ class _SingleRecipeButtonState extends State<SingleRecipeButton> {
                 ),
                 Container (
                   padding: EdgeInsets.all(5),
-                  //margin: EdgeInsets.all(5),
-                  child: Flexible(
-                    //textAlign: TextAlign.center,
-                    child: Text(
+                  alignment: Alignment.centerLeft,
+                  child: AutoSizeText(
+                    textAlign: TextAlign.center,
                       widget.rezeptName,
                     style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: 20,
                     ),
                     maxLines: 2,
                   ),
-                ),)
+                ),
               ],
             )),
       ),
