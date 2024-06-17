@@ -5,6 +5,7 @@ import 'package:simple_cook/widgets/rezeptdesTages.dart';
 import 'package:simple_cook/widgets/simpleCookAppBar.dart';
 import 'package:simple_cook/widgets/greyBackground.dart';
 import 'package:simple_cook/widgets/singleRecipeButton.dart';
+import 'package:simple_cook/widgets/headerGreyBackground.dart';
 
 class FavoritesView extends StatefulWidget {
   final int selectedIndex;
@@ -26,24 +27,52 @@ class _FavoritesViewState extends State<FavoritesView> {
     return Scaffold(
       appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
       backgroundColor: Colors.grey[200],
-      body: GreyBackground([
-        Text(
-          'Favoriten',
-          style: TextStyle(
-              color: Colors.black, fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen mit käase und speck und so weiter hallo'),
-        SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
-        SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
-        SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
-        SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
-        SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen'),
-        SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen')
-      ]),
+      body: Scrollbar(
+        radius: Radius.circular(50),
+        thickness: 5,
+        child: SingleChildScrollView(
+          child:  Column (
+            children: [
+              HeaderGreyBackground("Favoriten"),
+              ..._buildRowsRecipe(_buildRecipeWidgets()),
+            ],
+          ),)),
       bottomNavigationBar: CustomNavBar(
         selectedIndex: widget.selectedIndex,
         onItemTapped: widget.onItemTapped,
       ),
     );
   }
+
+  List<Widget> _buildRecipeWidgets() {
+    List<Widget> recipeWidgets = [];
+    for (int i = 0; i < 10; i++) {
+      recipeWidgets.add(
+        SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen hello das ist ein langer text'),
+      );
+    }
+    return recipeWidgets;
+  }
+
+  List<Widget> _buildRowsRecipe(List<Widget> recipeWidgets) {
+    List<Widget> reciperows = [];
+    for (int i = 0; i < recipeWidgets.length; i++) {
+        reciperows.add(
+          Padding(
+            padding: const EdgeInsets.only(left: 15, right: 15, top: 12.0, bottom: 12.0),
+            child: Row(
+              children: [
+                Expanded(flex: 2,child: recipeWidgets[i]),
+                SizedBox(width: 8), // Add some spacing between the buttons
+                Expanded(flex: 2, child: recipeWidgets[i + 1]),
+              ],
+            ),
+          ),
+        );
+        i++;
+    }
+    return reciperows;
+  }
+
+
 }

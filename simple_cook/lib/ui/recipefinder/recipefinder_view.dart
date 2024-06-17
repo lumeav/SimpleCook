@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:simple_cook/common/navbar.dart';
 import 'package:simple_cook/widgets/greyBackground.dart';
 import 'package:simple_cook/widgets/simpleCookAppBar.dart';
-import 'package:simple_cook/widgets/whitePlaceholder.dart';
 import 'package:simple_cook/widgets/filterTag.dart';
 import 'package:simple_cook/widgets/sliderFilter.dart';
 import 'package:simple_cook/widgets/searchBar.dart';
 import 'package:simple_cook/widgets/searchRecipeButton.dart';
+import 'package:simple_cook/widgets/headerGreyBackground.dart';
+
 
 class RecipefinderView extends StatefulWidget {
   final int selectedIndex;
@@ -37,20 +38,21 @@ class _RecipefinderViewState extends State<RecipefinderView> {
             radius: Radius.circular(50),
             thickness: 5,
             child: SingleChildScrollView(
+              physics: ClampingScrollPhysics(),
               child: Column(
                 children: [
                   SearchBarFilter(),
-                  _buildFilterHeader("Kategorie"),
+                  HeaderGreyBackground("Kategorie"),
                   _buildFilterTags(kategorieList),
-                  _buildFilterHeader("Ernährungsart"),
+                 HeaderGreyBackground("Ernährungsart"), // HeaderGreyBackground("Ernährungsart"
                   _buildFilterTags(ernaehrungsartList),
-                  _buildFilterHeader("Ernährungsart"),
+                  HeaderGreyBackground("Zubereitungszeit"),
                   Padding(
                     padding: EdgeInsets.only(left: 15, right: 15),
                     child: SliderFilter(),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 50),
+                    margin: EdgeInsets.only(top: 50, bottom: 30),
                     alignment: Alignment.center,
                     child: SearchRecipesButton("Rezepte suchen")),
 
@@ -77,22 +79,6 @@ class _RecipefinderViewState extends State<RecipefinderView> {
     'Low Carb',
   ];
   //maybe refactor methods to widgets
-
-  Widget _buildFilterHeader(String header) {
-    return Align(
-        alignment: Alignment.centerLeft,
-        child: Padding(
-          padding: EdgeInsets.only(left: 15, top: 10),
-          child: Text(
-            header,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ));
-  }
 
   Widget _buildFilterTags(List<String> filterList) {
     return Align(

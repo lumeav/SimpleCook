@@ -18,7 +18,6 @@ import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/widgets/navBar.dart';
 import 'package:simple_cook/widgets/img.dart';
 import 'package:simple_cook/widgets/wochenplanerRecipe.dart';
-import 'package:simple_cook/widgets/whitePlaceholder.dart';
 import 'package:simple_cook/widgets/removeButton.dart';
 import 'package:simple_cook/widgets/addPlaner.dart';
 import 'package:simple_cook/widgets/exitButton.dart';
@@ -355,7 +354,7 @@ class CustomWhitePlaceholder extends StatelessWidget {
         appBar: SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[300],
         body: Stack(children: [
-          WhitePlaceholder(85),
+          Text("test"),
           Align(alignment: Alignment.center, child: SearchBarFilter())
         ]));
   }

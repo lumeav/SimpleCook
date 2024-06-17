@@ -17,9 +17,9 @@ class SingleRecipeButton extends StatefulWidget {
 class _SingleRecipeButtonState extends State<SingleRecipeButton> {
   @override
   Widget build(BuildContext context) {
-    var scrennHeight = MediaQuery.of(context).size.height * 0.25;
+    var height = MediaQuery.of(context).size.width * 0.55;
     return Container(
-      height: scrennHeight,
+      height: height,
       //margin: const EdgeInsets.all(10),
       child: InkWell(
         onTap: () {
@@ -64,7 +64,7 @@ class _SingleRecipeButtonState extends State<SingleRecipeButton> {
                     style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 16,
+                      fontSize: 20,
                     ),
                     maxLines: 2,
                   ),
