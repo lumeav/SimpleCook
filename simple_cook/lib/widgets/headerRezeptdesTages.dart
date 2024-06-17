@@ -9,18 +9,13 @@ class HeaderRezeptDesTages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 5, bottom: 15),
-      child: Column(
-        children: [
-       Text('Rezept des Tages',
+      child: Column(children: [
+        Text('Rezept des Tages',
             style: TextStyle(color: Color(0xffFF9F5A), fontSize: 18)),
-           Text(
-            title,
+        Text(title,
             style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 24))
-        ]
-      ),
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24))
+      ]),
     );
   }
 }

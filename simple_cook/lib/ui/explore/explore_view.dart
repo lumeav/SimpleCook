@@ -36,9 +36,12 @@ class _ExploreViewState extends State<ExploreView> {
         slivers: [
           SliverAppBar(
             pinned: true,
+            backgroundColor: Colors.white,
+            surfaceTintColor: Colors.white,
+            toolbarHeight: 80,
             title: Container(
 
-              color: Colors.white,
+              //color: Colors.white,
               child: const Row(children: [
                 Expanded(child: SearchBarExplore()),
                 FilterButton(),
@@ -58,9 +61,6 @@ class _ExploreViewState extends State<ExploreView> {
               ],
             ),
             )
-
-
-
         ],
       ),
       bottomNavigationBar: CustomNavBar(
