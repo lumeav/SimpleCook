@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class TimeViewSpan extends StatefulWidget {
-
   TimeViewSpan({
     Key? key,
   }) : super(key: key);
@@ -52,21 +51,30 @@ class _TimeViewSpanState extends State<TimeViewSpan> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        IconButton(
-            onPressed: () => _onPressed('prev'),
-            icon: const Icon(Icons.chevron_left, color: Colors.grey, size: 32)),
-        Text(
-            "Wochenplan ${DateFormat('dd.MM', 'de_DE').format(_begin)} - ${DateFormat('dd.MM', 'de_DE').format(_end)}",
-            style: const TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 24)),
-        IconButton(
-            onPressed: () => _onPressed('next'),
-            icon: const Icon(Icons.chevron_right, color: Colors.grey, size: 32))
-      ],
-    );
+    return Center(
+        child: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          IconButton(
+              onPressed: () => _onPressed('prev'),
+              icon:
+                  const Icon(Icons.chevron_left, color: Colors.grey, size: 32)),
+          Flexible(
+            child: Text(
+                "Wochenplan ${DateFormat('dd.MM', 'de_DE').format(_begin)} - ${DateFormat('dd.MM', 'de_DE').format(_end)}",
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24)),
+          ),
+          IconButton(
+              onPressed: () => _onPressed('next'),
+              icon:
+                  const Icon(Icons.chevron_right, color: Colors.grey, size: 32))
+        ],
+      ),
+    ));
   }
 }
