@@ -14,6 +14,6 @@ class FilterButton extends StatelessWidget {
         icon: const FaIcon(
           FontAwesomeIcons.sliders,
           color: Colors.grey,
-          size: 40,));
+          size: 28));
   }
 }

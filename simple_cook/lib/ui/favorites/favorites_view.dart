@@ -33,7 +33,7 @@ class _FavoritesViewState extends State<FavoritesView> {
         child: SingleChildScrollView(
           child:  Column (
             children: [
-              HeaderGreyBackground("Favoriten"),
+              HeaderGreyBackground("Favoriten", FontWeight.bold),
               ..._buildRowsRecipe(_buildRecipeWidgets()),
             ],
           ),)),

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/widgets/imgandheart.dart';
-
+import 'package:simple_cook/widgets/headerRezeptdesTages.dart';
+import 'package:simple_cook/widgets/heartButton.dart';
 class RezeptDesTages extends StatefulWidget {
   final String imgPath;
-  final String rezeptName;
+  final Widget header;
 
-  const RezeptDesTages(this.imgPath, this.rezeptName, {Key? key})
+
+  const RezeptDesTages(this.imgPath, this.header, {Key? key})
       : super(key: key);
 
   @override
@@ -23,26 +25,39 @@ class _RezeptDesTagesState extends State<RezeptDesTages> {
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Ink(
-            width: 352,
-            height: 262,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12), color: Colors.white),
             child: Column(
               children: [
-                ImgAndHeart(widget.imgPath, true, 352, 189),
-                Padding(
-                  padding: EdgeInsets.only(top: 5),
-                  child: Text('Rezept des Tages',
-                      style: TextStyle(color: Color(0xffFF9F5A), fontSize: 18)),
+                Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(12),
+                          topRight: Radius.circular(12) // Set the desired border radius for the top left corner
+                          ),
+                        child: AspectRatio(
+                          aspectRatio: 1.8,
+                          child: Image.asset(
+                            widget.imgPath,
+                            fit: BoxFit.cover,
+                          )
+                      ),
+                    ),
+                    const Positioned(
+                      bottom: 10,
+                      right: 10,
+                      child: HeartButton(true),
+                    )
+                  ]
                 ),
-                Text(widget.rezeptName,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24))
+                widget.header
               ],
             )),
       ),
     );
   }
 }
+
+
+//(widget.imgPath, true, 352, 189),

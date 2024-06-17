@@ -42,11 +42,11 @@ class _RecipefinderViewState extends State<RecipefinderView> {
               child: Column(
                 children: [
                   SearchBarFilter(),
-                  HeaderGreyBackground("Kategorie"),
+                  HeaderGreyBackground("Kategorie", FontWeight.bold),
                   _buildFilterTags(kategorieList),
-                 HeaderGreyBackground("Ernährungsart"), // HeaderGreyBackground("Ernährungsart"
+                 HeaderGreyBackground("Ernährungsart", FontWeight.bold), // HeaderGreyBackground("Ernährungsart"
                   _buildFilterTags(ernaehrungsartList),
-                  HeaderGreyBackground("Zubereitungszeit"),
+                  HeaderGreyBackground("Zubereitungszeit", FontWeight.bold),
                   Padding(
                     padding: EdgeInsets.only(left: 15, right: 15),
                     child: SliderFilter(),

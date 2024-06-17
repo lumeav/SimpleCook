@@ -43,7 +43,7 @@ class _SingleRecipeButtonState extends State<SingleRecipeButton> {
                         child: AspectRatio(
                         aspectRatio: 1.1,
                         child: Image.asset(
-                          'assets/flammkuchen.jpg',
+                          widget.imgPath,
                           fit: BoxFit.cover,
                         ),
                         ),
@@ -58,17 +58,18 @@ class _SingleRecipeButtonState extends State<SingleRecipeButton> {
                 Container (
                   padding: EdgeInsets.all(5),
                   //margin: EdgeInsets.all(5),
-                  child: AutoSizeText(
-                    textAlign: TextAlign.center,
-                    widget.rezeptName,
+                  child: Flexible(
+                    //textAlign: TextAlign.center,
+                    child: Text(
+                      widget.rezeptName,
                     style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      fontSize: 18,
                     ),
                     maxLines: 2,
                   ),
-                ),
+                ),)
               ],
             )),
       ),

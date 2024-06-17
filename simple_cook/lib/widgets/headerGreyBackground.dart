@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class HeaderGreyBackground extends StatelessWidget {
   final String title;
+  final FontWeight fontWeight;
 
-  const HeaderGreyBackground(this.title, {Key? key}) : super(key: key);
+  const HeaderGreyBackground(this.title, this.fontWeight, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class HeaderGreyBackground extends StatelessWidget {
             style: TextStyle(
               color: Colors.black,
               fontSize: 24,
-              fontWeight: FontWeight.bold,
+              fontWeight: fontWeight,
             ),
           ),
         ));

@@ -472,8 +472,7 @@ class _CustomSingleRecipeButtonState extends State<CustomSingleRecipeButton> {
         appBar: AppBar(title: Text('Single Recipe Button Demo')),
         backgroundColor: Colors.grey[300],
         body: const Column(children: [
-          RezeptDesTages(
-              'assets/spaghetti-bolognese.jpg', 'Spaghetti Bolognese'),
+         Text('This is a custom Rezept des Tages widget.'),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -492,7 +491,7 @@ class CustomRezeptDesTages extends StatelessWidget {
       appBar: AppBar(title: Text('Rezept des Tages Demo')),
       backgroundColor: Colors.grey[300],
       body: Center(
-        child: RezeptDesTages('assets/flammkuchen.jpg', 'Flammkuchen'),
+        child: Text('This is a custom Rezept des Tages widget.'),
       ),
     );
   }
