@@ -59,11 +59,11 @@ class _FavoritesViewState extends State<FavoritesView> {
     for (int i = 0; i < recipeWidgets.length; i++) {
         reciperows.add(
           Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15, top: 12.0, bottom: 12.0),
+            padding: const EdgeInsets.only(left: 15, right: 15, top: 10.0, bottom: 10.0),
             child: Row(
               children: [
                 Expanded(flex: 2,child: recipeWidgets[i]),
-                SizedBox(width: 8), // Add some spacing between the buttons
+                SizedBox(width: 10), // Add some spacing between the buttons
                 Expanded(flex: 2, child: recipeWidgets[i + 1]),
               ],
             ),
