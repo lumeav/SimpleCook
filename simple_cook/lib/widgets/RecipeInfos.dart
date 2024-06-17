@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class RecipeInfos extends StatelessWidget {
   final String text_time;
@@ -12,13 +13,18 @@ class RecipeInfos extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      //padding: const EdgeInsets.all(10),
-      child: Row(
-        children: [
-          Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+    return Wrap(
+      alignment: WrapAlignment.start,
+      runAlignment: WrapAlignment.start,
+      direction: Axis.horizontal,
+      spacing: 10.0, // Space between tags
+      runSpacing: 5.0, // Space between lines
+      children: [
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Container(
+              padding: const EdgeInsets.symmetric(
+              horizontal: 16.0, vertical: 4.0),
               decoration: BoxDecoration(
                   color: Color(0xffFF9F5A).withOpacity(0.4),
                   borderRadius: BorderRadius.circular(50),
@@ -30,9 +36,9 @@ class RecipeInfos extends StatelessWidget {
                     ),
                   ]),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Icon(Icons.access_time, color: Colors.grey),
-                  const SizedBox(width: 4.0),
                   Text(
                     this.text_time,
                     style: const TextStyle(
@@ -43,10 +49,12 @@ class RecipeInfos extends StatelessWidget {
                   ),
                 ],
               )),
-          const SizedBox(width: 10.0), // spacing between the two elements
-          Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4.0),
+        ),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Container(
+              padding: const EdgeInsets.symmetric(
+              horizontal: 16.0, vertical: 4.0),
               decoration: BoxDecoration(
                   color: Color(0xffFF9F5A).withOpacity(0.4),
                   borderRadius: BorderRadius.circular(50),
@@ -58,9 +66,9 @@ class RecipeInfos extends StatelessWidget {
                     ),
                   ]),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Icon(Icons.bar_chart_rounded, color: Colors.grey),
-                  const SizedBox(width: 2.0),
                   Text(
                     this.text_dif,
                     style: const TextStyle(
@@ -71,8 +79,8 @@ class RecipeInfos extends StatelessWidget {
                   ),
                 ],
               )),
-        ],
-      ),
+        )
+      ],
     );
   }
 }
