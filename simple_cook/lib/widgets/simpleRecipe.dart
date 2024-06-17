@@ -3,18 +3,18 @@ import 'package:simple_cook/widgets/imgandheart.dart';
 import 'package:simple_cook/widgets/heartButton.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
-class SingleRecipeButton extends StatefulWidget {
+class SimpleRecipe extends StatefulWidget {
   final String imgPath;
   final String rezeptName;
 
-  const SingleRecipeButton(this.imgPath, this.rezeptName, {Key? key})
+  const SimpleRecipe(this.imgPath, this.rezeptName, {Key? key})
       : super(key: key);
 
   @override
-  _SingleRecipeButtonState createState() => _SingleRecipeButtonState();
+  _SimpleRecipeState createState() => _SimpleRecipeState();
 }
 
-class _SingleRecipeButtonState extends State<SingleRecipeButton> {
+class _SimpleRecipeState extends State<SimpleRecipe> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.width * 0.55;
@@ -38,16 +38,17 @@ class _SingleRecipeButtonState extends State<SingleRecipeButton> {
                     ClipRRect(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12) // Set the desired border radius for the top left corner
+                          topRight: Radius.circular(
+                              12) // Set the desired border radius for the top left corner
                           ),
-                        child: AspectRatio(
+                      child: AspectRatio(
                         aspectRatio: 1.1,
                         child: Image.asset(
                           widget.imgPath,
                           fit: BoxFit.cover,
                         ),
-                        ),
                       ),
+                    ),
                     const Positioned(
                       bottom: 10,
                       right: 10,
@@ -55,12 +56,12 @@ class _SingleRecipeButtonState extends State<SingleRecipeButton> {
                     )
                   ],
                 ),
-                Container (
+                Container(
                   padding: EdgeInsets.all(5),
                   alignment: Alignment.centerLeft,
                   child: AutoSizeText(
                     textAlign: TextAlign.center,
-                      widget.rezeptName,
+                    widget.rezeptName,
                     style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,

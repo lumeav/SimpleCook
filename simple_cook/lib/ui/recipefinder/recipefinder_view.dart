@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/navbar.dart';
-import 'package:simple_cook/widgets/greyBackground.dart';
 import 'package:simple_cook/widgets/simpleCookAppBar.dart';
 import 'package:simple_cook/widgets/filterTag.dart';
 import 'package:simple_cook/widgets/sliderFilter.dart';

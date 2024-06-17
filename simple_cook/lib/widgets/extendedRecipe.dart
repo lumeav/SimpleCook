@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:simple_cook/widgets/imgandheart.dart';
 import 'package:simple_cook/widgets/headerRezeptdesTages.dart';
 import 'package:simple_cook/widgets/heartButton.dart';
-class RezeptDesTages extends StatefulWidget {
+class ExtendedRecipe extends StatefulWidget {
   final String imgPath;
   final Widget header;
 
 
-  const RezeptDesTages(this.imgPath, this.header, {Key? key})
+  const ExtendedRecipe(this.imgPath, this.header, {Key? key})
       : super(key: key);
 
   @override
-  _RezeptDesTagesState createState() => _RezeptDesTagesState();
+  _ExtendedRecipeState createState() => _ExtendedRecipeState();
 }
 
-class _RezeptDesTagesState extends State<RezeptDesTages> {
+class _ExtendedRecipeState extends State<ExtendedRecipe> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         // Placeholder for future logic
-        print('Rezept des Tages tapped!');
+        print('extended recipe tapped!');
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
@@ -58,6 +58,3 @@ class _RezeptDesTagesState extends State<RezeptDesTages> {
     );
   }
 }
-
-
-//(widget.imgPath, true, 352, 189),

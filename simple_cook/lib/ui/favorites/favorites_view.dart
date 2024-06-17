@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/common_view.dart';
 import 'package:simple_cook/common/navbar.dart';
-import 'package:simple_cook/widgets/rezeptdesTages.dart';
+import 'package:simple_cook/widgets/extendedRecipe.dart';
 import 'package:simple_cook/widgets/simpleCookAppBar.dart';
-import 'package:simple_cook/widgets/greyBackground.dart';
-import 'package:simple_cook/widgets/singleRecipeButton.dart';
+import 'package:simple_cook/widgets/simpleRecipe.dart';
 import 'package:simple_cook/widgets/headerGreyBackground.dart';
 
 class FavoritesView extends StatefulWidget {
@@ -48,7 +47,7 @@ class _FavoritesViewState extends State<FavoritesView> {
     List<Widget> recipeWidgets = [];
     for (int i = 0; i < 10; i++) {
       recipeWidgets.add(
-        SingleRecipeButton('assets/flammkuchen.jpg', 'Flammkuchen hello das ist ein langer text'),
+        SimpleRecipe('assets/flammkuchen.jpg', 'Flammkuchen hello das ist ein langer text'),
       );
     }
     return recipeWidgets;

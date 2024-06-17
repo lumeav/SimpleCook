@@ -3,11 +3,10 @@ import 'package:simple_cook/common/common_view.dart';
 import 'package:simple_cook/common/navbar.dart';
 import 'package:simple_cook/mein.dart';
 import 'package:simple_cook/widgets/headerRezeptdesTages.dart';
-import 'package:simple_cook/widgets/rezeptdesTages.dart';
+import 'package:simple_cook/widgets/extendedRecipe.dart';
 import 'package:simple_cook/widgets/searchBarExplore.dart';
 import 'package:simple_cook/widgets/simpleCookAppBar.dart';
-import 'package:simple_cook/widgets/greyBackground.dart';
-import 'package:simple_cook/widgets/singleRecipeButton.dart';
+import 'package:simple_cook/widgets/simpleRecipe.dart';
 import 'package:simple_cook/widgets/searchBar.dart';
 import 'package:simple_cook/widgets/filterButton.dart';
 import 'package:simple_cook/widgets/headerGreyBackground.dart';
@@ -53,7 +52,7 @@ class _ExploreViewState extends State<ExploreView> {
               [
                 Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15, top: 10.0, bottom: 10.0),
-                  child: RezeptDesTages('assets/flammkuchen.jpg',
+                  child: ExtendedRecipe('assets/flammkuchen.jpg',
                   HeaderRezeptDesTages('Flammmkuchen')),
                 ),
                 HeaderGreyBackground('Entdecke neue Rezepte', FontWeight.w300),
@@ -74,7 +73,7 @@ class _ExploreViewState extends State<ExploreView> {
     List<Widget> recipeWidgets = [];
     for (int i = 0; i < 10; i++) {
       recipeWidgets.add(
-        SingleRecipeButton('assets/flammkuchen.jpg',
+        SimpleRecipe('assets/flammkuchen.jpg',
             'Flammkuchen hello das ist ein langer text'),
       );
     }
