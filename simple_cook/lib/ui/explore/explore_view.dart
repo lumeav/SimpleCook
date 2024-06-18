@@ -10,6 +10,10 @@ import 'package:simple_cook/widgets/simpleRecipe.dart';
 import 'package:simple_cook/widgets/searchBar.dart';
 import 'package:simple_cook/widgets/filterButton.dart';
 import 'package:simple_cook/widgets/headerGreyBackground.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:simple_cook/widgets/filterTag.dart';
+import 'package:simple_cook/widgets/sliderFilter.dart';
+import 'package:simple_cook/widgets/searchRecipeButton.dart';
 
 class ExploreView extends StatefulWidget {
   final int selectedIndex;
@@ -39,11 +43,13 @@ class _ExploreViewState extends State<ExploreView> {
             surfaceTintColor: Colors.white,
             toolbarHeight: 80,
             title: Container(
-
               //color: Colors.white,
-              child: const Row(children: [
+              child: Row(children: [
                 Expanded(child: SearchBarExplore()),
-                FilterButton(),
+                IconButton(
+                    onPressed: () => buildBottomSheetFilter(context),
+                    icon: const FaIcon(FontAwesomeIcons.sliders,
+                        color: Colors.grey, size: 28)),
               ]),
             ),
           ),
@@ -51,15 +57,16 @@ class _ExploreViewState extends State<ExploreView> {
             delegate: SliverChildListDelegate(
               [
                 Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15, top: 10.0, bottom: 10.0),
+                  padding: const EdgeInsets.only(
+                      left: 15, right: 15, top: 10.0, bottom: 10.0),
                   child: ExtendedRecipe('assets/flammkuchen.jpg',
-                  HeaderRezeptDesTages('Flammmkuchen')),
+                      HeaderRezeptDesTages('Flammmkuchen')),
                 ),
                 HeaderGreyBackground('Entdecke neue Rezepte', FontWeight.w300),
                 ..._buildRowsRecipe(_buildRecipeWidgets()),
               ],
             ),
-            )
+          )
         ],
       ),
       bottomNavigationBar: CustomNavBar(
@@ -67,6 +74,41 @@ class _ExploreViewState extends State<ExploreView> {
         onItemTapped: widget.onItemTapped,
       ),
     );
+  }
+
+  void buildBottomSheetFilter(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.grey[200],
+        builder: (BuildContext context) {
+          return FractionallySizedBox(
+            heightFactor: 0.85,
+            child: Container(
+              padding: EdgeInsets.only(left: 15, right: 15, top: 15),
+              child: Column(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                //mainAxisSize: MainAxisSize.min,
+                children: [
+                  HeaderGreyBackground("Kategorie", FontWeight.bold),
+                  _buildFilterTags(kategorieList),
+                  HeaderGreyBackground("Ernährungsart",
+                      FontWeight.bold), // HeaderGreyBackground("Ernährungsart"
+                  _buildFilterTags(ernaehrungsartList),
+                  HeaderGreyBackground("Zubereitungszeit", FontWeight.bold),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15, right: 15),
+                    child: SliderFilter(),
+                  ),
+                  Container(
+                      margin: EdgeInsets.only(top: 50, bottom: 30),
+                      alignment: Alignment.center,
+                      child: SearchRecipesButton("Rezepte suchen")),
+                ],
+              ),
+            ),
+          );
+        });
   }
 
   List<Widget> _buildRecipeWidgets() {
@@ -102,15 +144,38 @@ class _ExploreViewState extends State<ExploreView> {
   }
 }
 
-/*
-children: [
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 15, right: 15, top: 10.0, bottom: 10.0),
-                      child: RezeptDesTages('assets/flammkuchen.jpg',
-                          HeaderRezeptDesTages('Flammmkuchen')),
-                    ),
-                    HeaderGreyBackground(
-                        'Entdecke neue Rezepte', FontWeight.w300),
-                    ..._buildRowsRecipe(_buildRecipeWidgets()),
-                  ],      */
+Widget _buildFilterTags(List<String> filterList) {
+  return Align(
+    alignment: Alignment.centerLeft,
+    child: Container(
+        padding: EdgeInsets.only(left: 15, right: 15),
+        margin: EdgeInsets.symmetric(vertical: 10),
+        child: Wrap(
+          alignment: WrapAlignment.start,
+          //crossAxisAlignment: WrapCrossAlignment.end,
+          runAlignment: WrapAlignment.start,
+          direction: Axis.horizontal,
+          spacing: 10.0, // Space between tags
+          runSpacing: 5.0, // Space between lines
+          children: [
+            for (var filter in filterList) FilterTag(filter),
+          ],
+        )),
+  );
+}
+
+List<String> kategorieList = [
+  'Alle',
+  'Vorspeise',
+  'Hauptspeise',
+  'Dessert',
+  'Snacks',
+];
+
+List<String> ernaehrungsartList = [
+  'Vegetarisch',
+  'Vegan',
+  'Glutenfrei',
+  'Laktosefrei',
+  'Low Carb',
+];

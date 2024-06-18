@@ -29,7 +29,7 @@ class _SearchBarState extends State<SearchBarExplore> {
             barHintText: "Suchen...",
             isFullScreen: false,
             //TODO: searchbar needs better color!
-            viewBackgroundColor: Color.fromARGB(255, 235, 170, 127),
+            viewBackgroundColor: const Color(0xffFFECDF),
             suggestionsBuilder:
                 (BuildContext context, SearchController controller) async {
               searchQuery = controller.text;
