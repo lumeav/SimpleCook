@@ -52,9 +52,7 @@ class _TimeViewSpanState extends State<TimeViewSpan> {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Row(
+        child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
@@ -75,6 +73,6 @@ class _TimeViewSpanState extends State<TimeViewSpan> {
                   const Icon(Icons.chevron_right, color: Colors.grey, size: 32))
         ],
       ),
-    ));
+    );
   }
 }

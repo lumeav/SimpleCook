@@ -15,7 +15,7 @@ class HeaderWochenPlaner extends StatelessWidget {
       padding: const EdgeInsets.only(top: 5, bottom: 15),
       child: Column(children: [
         Padding(
-          padding: const EdgeInsets.only(left: 15.0),
+          padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(title,
