@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:simple_cook/widgets/imgandheart.dart';
 import 'package:simple_cook/widgets/heartButton.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -24,7 +25,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
       child: InkWell(
         onTap: () {
           // Placeholder for future logic
-          print('Rezept tapped!');
+          context.go('/recipeView');
         },
         child: Ink(
             decoration: BoxDecoration(

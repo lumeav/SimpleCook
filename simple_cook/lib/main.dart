@@ -7,6 +7,10 @@ import 'package:simple_cook/ui/recipefinder/recipefinder_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/ui/recipesFound/recipesfound_view.dart';
 
+// To test:
+import 'package:simple_cook/ui/recipe/recipe_view.dart';
+import 'package:simple_cook/widgets/headerWochenPlaner.dart';
+
 //This is the "main.dart" file, currently named "mein.dart" to test dummy data
 
 void main() async {
@@ -15,7 +19,7 @@ void main() async {
   runApp(MyApp());
 }
 
-  // This widget is the root of your application.
+// This widget is the root of your application.
 class MyApp extends StatelessWidget {
   final GoRouter _router = GoRouter(
     initialLocation: '/',
@@ -53,9 +57,16 @@ class MyApp extends StatelessWidget {
         builder: (context, state) => RecipesFoundView(
           //new page for search recipe result not complete!!
           onItemTapped: (index) => _onItemTapped(index, context),
-
         ),
-      )
+      ),
+      GoRoute(
+        path: '/recipeView',
+        builder: (context, state) => RecipeView(
+            selectedIndex: 3, // ToDo ==> Dynamically choose right Navbar Index
+            onItemTapped: (index) => _onItemTapped(index, context),
+            imgPath: 'assets/flammkuchen.jpg', // ToDo ==> Dynamically choose right Recipe
+            header: HeaderWochenPlaner('Flammkuchen', "30min", "einfach")),
+      ),
     ],
   );
 
@@ -69,7 +80,6 @@ class MyApp extends StatelessWidget {
       routerConfig: _router,
     );
   }
-
 
   static void _onItemTapped(int index, BuildContext context) {
     switch (index) {

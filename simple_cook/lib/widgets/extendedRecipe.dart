@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:simple_cook/widgets/imgandheart.dart';
 import 'package:simple_cook/widgets/headerRezeptdesTages.dart';
 import 'package:simple_cook/widgets/heartButton.dart';
@@ -20,7 +21,7 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
     return InkWell(
       onTap: () {
         // Placeholder for future logic
-        print('extended recipe tapped!');
+        context.go('/recipeView');
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
