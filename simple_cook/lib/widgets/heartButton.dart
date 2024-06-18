@@ -30,6 +30,9 @@ class _HeartButtonState extends State<HeartButton> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size.width * 0.07;
+    if (!widget.border) {
+      size = size + 22;
+    }
     return Container(
       width: size + 8,
       height:  size + 8,

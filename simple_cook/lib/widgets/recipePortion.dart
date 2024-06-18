@@ -20,7 +20,7 @@ class _RecipePortionState extends State<RecipePortion> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           RoundedIconButton(
-            size: 30,
+            size: 20,
             icon: Icons.remove,
             onPress: () {
               setState(() {
@@ -38,12 +38,12 @@ class _RecipePortionState extends State<RecipePortion> {
               style: const TextStyle(
                 color: Color(0xff888888),
                 fontWeight: FontWeight.bold,
-                fontSize: 24,
+                fontSize: 20,
               ),
             ),
           ),
           RoundedIconButton(
-            size: 30,
+            size: 20,
             icon: Icons.add,
             onPress: () {
               setState(() {

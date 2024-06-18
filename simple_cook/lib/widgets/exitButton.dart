@@ -13,6 +13,6 @@ class ExitButton extends StatelessWidget {
         icon: const Icon(
           Icons.close_outlined,
           color: Colors.grey,
-          size: 40,));
+          size: 50,));
   }
 }
