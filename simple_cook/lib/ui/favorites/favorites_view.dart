@@ -19,7 +19,7 @@ class FavoritesView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favoriteRecipes = ref.watch(favoritesViewControllerProvider);
+    final favoriteRecipes = ref.watch(favoritesControllerProvider);
 
     return Scaffold(
       appBar: SimpleCookAppBar('SimpleCook'),
@@ -33,7 +33,7 @@ class FavoritesView extends ConsumerWidget {
               HeaderGreyBackground("Favoriten", FontWeight.bold),
               ElevatedButton(
               onPressed: () {
-                ref.read(favoritesViewControllerProvider.notifier).addMockRecipe();
+                ref.read(favoritesControllerProvider.notifier).addMockRecipe();
               },
               child: Text('Add Mock Recipe'),
             ),

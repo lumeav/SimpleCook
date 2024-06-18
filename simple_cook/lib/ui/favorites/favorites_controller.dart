@@ -2,8 +2,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/ui/favorites/favorites_controllerInterface.dart';
 import 'package:simple_cook/ui/favorites/favorites_model.dart';
 
-class FavoritesViewController extends StateNotifier<List<Recipe>> implements FavoritesViewControllerInterface {
-  FavoritesViewController() : super([]);
+class FavoritesController extends StateNotifier<List<Recipe>> implements FavoritesControllerInterface {
+  FavoritesController() : super([]);
 
   @override
   List<Recipe> get favoriteRecipes => state;
@@ -23,6 +23,6 @@ class FavoritesViewController extends StateNotifier<List<Recipe>> implements Fav
 
 }
 
-final favoritesViewControllerProvider = StateNotifierProvider<FavoritesViewController, List<Recipe>>(
-  (ref) => FavoritesViewController(),
+final favoritesControllerProvider = StateNotifierProvider<FavoritesController, List<Recipe>>(
+  (ref) => FavoritesController(),
 );
