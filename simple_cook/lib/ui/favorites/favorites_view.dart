@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/common/common_view.dart';
 import 'package:simple_cook/common/navbar.dart';
-import 'package:simple_cook/widgets/extendedRecipe.dart';
 import 'package:simple_cook/widgets/simpleCookAppBar.dart';
 import 'package:simple_cook/widgets/simpleRecipe.dart';
 import 'package:simple_cook/widgets/headerGreyBackground.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/ui/favorites/favorites_controller.dart';
+import 'package:simple_cook/ui/favorites/favorites_model.dart';
 
-class FavoritesView extends StatefulWidget {
+class FavoritesView extends ConsumerWidget {
   final int selectedIndex;
   final Function(int) onItemTapped;
 
@@ -17,61 +18,62 @@ class FavoritesView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _FavoritesViewState createState() => _FavoritesViewState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favoriteRecipes = ref.watch(favoritesViewControllerProvider);
 
-class _FavoritesViewState extends State<FavoritesView> {
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+      appBar: SimpleCookAppBar('SimpleCook'),
       backgroundColor: Colors.grey[200],
       body: Scrollbar(
         radius: Radius.circular(50),
         thickness: 5,
         child: SingleChildScrollView(
-          child:  Column (
+          child: Column(
             children: [
               HeaderGreyBackground("Favoriten", FontWeight.bold),
-              ..._buildRowsRecipe(_buildRecipeWidgets()),
+              ElevatedButton(
+              onPressed: () {
+                ref.read(favoritesViewControllerProvider.notifier).addMockRecipe();
+              },
+              child: Text('Add Mock Recipe'),
+            ),
+              ..._buildRowsRecipe(_buildRecipeWidgets(favoriteRecipes)),
             ],
-          ),)),
+          ),
+        ),
+      ),
       bottomNavigationBar: CustomNavBar(
-        selectedIndex: widget.selectedIndex,
-        onItemTapped: widget.onItemTapped,
+        selectedIndex: selectedIndex,
+        onItemTapped: onItemTapped,
       ),
     );
   }
 
-  List<Widget> _buildRecipeWidgets() {
-    List<Widget> recipeWidgets = [];
-    for (int i = 0; i < 10; i++) {
-      recipeWidgets.add(
-        SimpleRecipe('assets/flammkuchen.jpg', 'Flammkuchen hello das ist ein langer text'),
-      );
-    }
-    return recipeWidgets;
+  List<Widget> _buildRecipeWidgets(List<Recipe> recipes) {
+    return recipes.map((recipe) {
+      return SimpleRecipe(recipe.imagePath, recipe.title);
+    }).toList();
   }
 
   List<Widget> _buildRowsRecipe(List<Widget> recipeWidgets) {
     List<Widget> reciperows = [];
     for (int i = 0; i < recipeWidgets.length; i++) {
-        reciperows.add(
-          Padding(
-            padding: const EdgeInsets.only(left: 15, right: 15, top: 10.0, bottom: 10.0),
-            child: Row(
-              children: [
-                Expanded(flex: 2,child: recipeWidgets[i]),
-                SizedBox(width: 10), // Add some spacing between the buttons
+      reciperows.add(
+        Padding(
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 10.0, bottom: 10.0),
+          child: Row(
+            children: [
+              Expanded(flex: 2, child: recipeWidgets[i]),
+              if (i + 1 < recipeWidgets.length) ...[
+                SizedBox(width: 10),
                 Expanded(flex: 2, child: recipeWidgets[i + 1]),
               ],
-            ),
+            ],
           ),
-        );
-        i++;
+        ),
+      );
+      i++;
     }
     return reciperows;
   }
-
-
 }
