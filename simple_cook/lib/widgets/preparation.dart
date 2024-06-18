@@ -34,25 +34,26 @@ class Preparation extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text("Zubereitung", style: TextStyle(fontSize: 20.0)),
-          SizedBox(height: 12.0),
-          Expanded(
-              child: ListView.builder(
-            padding: const EdgeInsets.all(16.0),
-            itemCount: steps.length,
-            itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  _buildStep(steps[index], index),
-                  if (index < steps.length - 1)
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8.0),
-                      child: Divider(),
-                    )
-                ],
-              );
-            },
-          ))
+          Text("Zubereitung", style: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20)),
+          Padding(
+            padding: const EdgeInsets.only(top: 15.0),
+            child: Column(
+              children: List.generate(steps.length * 2 - 1, (index) {
+                if (index.isEven) {
+                  // Even indices are step items
+                  int stepIndex = index ~/ 2;
+                  return _buildStep(steps[stepIndex], stepIndex);
+                } else {
+                  // Odd indices are dividers
+                  return Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8.0),
+                    child: Divider(),
+                  );
+                }
+              }),
+            ),
+          )
         ]));
   }
 }

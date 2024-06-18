@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/widgets/recipePortion.dart';
 
 class Ingredients extends StatefulWidget {
   final List<String> ingredientList;
@@ -10,24 +11,41 @@ class Ingredients extends StatefulWidget {
 
 class _IngredientsState extends State<Ingredients> {
   Widget _buildBulletItem(String text, int index) {
-      return Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('•', style: TextStyle(fontSize: 20)),
-          SizedBox(width: 16.0),
-          Expanded(child: Text(text, style: TextStyle(fontSize: 18))),
-        ],
-      );
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text('•', style: TextStyle(fontSize: 20)),
+        SizedBox(width: 16.0),
+        Expanded(child: Text(text, style: TextStyle(fontSize: 18))),
+      ],
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        padding: const EdgeInsets.all(16.0),
-        itemCount: widget.ingredientList.length,
-        itemBuilder: (context, index) {
-          return _buildBulletItem(widget.ingredientList[index], index);
-        },
-      );
+    return Padding(
+      padding: EdgeInsets.only(left: 15, right: 15),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [Text("Zutaten",
+                style: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20)),
+            RecipePortion()
+            ]
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Column(
+              children:
+              List.generate(widget.ingredientList.length, (index) {
+                return _buildBulletItem(widget.ingredientList[index], index);
+              }),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
