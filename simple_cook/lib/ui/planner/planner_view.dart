@@ -30,7 +30,7 @@ class _PlannerViewState extends State<PlannerView> {
       appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
       backgroundColor: Colors.grey[200],
       body: Column(children: [
-        Container(color: Colors.grey[200], child: TimeViewSpan()),
+        Container(padding: EdgeInsets.symmetric(vertical: 5), color: Colors.grey[200], child: TimeViewSpan()),
         Expanded(
             child: SingleChildScrollView(
           child: Column(
