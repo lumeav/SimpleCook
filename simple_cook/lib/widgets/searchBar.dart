@@ -25,7 +25,7 @@ class _SearchBarState extends State<SearchBarFilter> {
     return Column(children: [
       Container(
         width: MediaQuery.of(context).size.width,
-        padding: const EdgeInsets.only(top: 10, bottom: 25, left : 15, right: 15),
+        padding: const EdgeInsets.only(top: 10, bottom: 12, left : 15, right: 15),
         color: Colors.white,
         child: SearchAnchor.bar(
             barBackgroundColor: MaterialStateProperty.all(Colors.white),
