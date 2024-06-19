@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/common/theme.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
 class SliderFilter extends StatefulWidget {
   const SliderFilter({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  _SliderFilterState createState() => _SliderFilterState();
+  State<SliderFilter> createState() => _SliderFilterState();
 }
 
 class _SliderFilterState extends State<SliderFilter> {
@@ -24,9 +25,9 @@ class _SliderFilterState extends State<SliderFilter> {
                 //labelOffset: Offset(10.0, 0.0),
                 activeTrackHeight: 7,
                 inactiveTrackHeight: 7,
-                activeTrackColor: Color(0xffFF9F5A),
-                inactiveTrackColor: Color(0xffFF9F5A).withOpacity(0.3),
-                thumbColor: Color(0xffFF9F5A)),
+                activeTrackColor: SimpleCookColors.primary,
+                inactiveTrackColor: SimpleCookColors.primary.withOpacity(0.3),
+                thumbColor: SimpleCookColors.primary),
             child: SfSlider(
               min: 0.0,
               max: 60.0,

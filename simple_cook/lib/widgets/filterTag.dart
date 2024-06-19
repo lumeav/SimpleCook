@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/common/theme.dart';
 
 class FilterTag extends StatefulWidget {
   final String text;
 
   const FilterTag(
     this.text, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  _FilterTagState createState() => _FilterTagState();
+  State<FilterTag> createState() => _FilterTagState();
 }
 
 class _FilterTagState extends State<FilterTag> {
@@ -39,25 +40,20 @@ class _FilterTagState extends State<FilterTag> {
                   shadowColor: Colors.transparent,
                   foregroundColor: Colors.transparent,
                   surfaceTintColor: Colors.transparent,
-                  backgroundColor: const Color(0xffFF9F5A).withOpacity(0.75),
+                  backgroundColor: SimpleCookColors.primary.withOpacity(0.75),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                     side: const BorderSide(
-                        color: Color.fromARGB(255, 127, 127, 127), width: 1.5),
+                        color: SimpleCookColors.border, width: 1.5),
                   ),
                 ),
                 icon: const Icon(
                   Icons.close,
                   color: Colors.white,
-                  size: 20.0,
                 ),
                 label: Text(
                   widget.text,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: SimpleCookTextstyles.filterTagTapped,
                 ),
               )
             : ElevatedButton(
@@ -69,16 +65,12 @@ class _FilterTagState extends State<FilterTag> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(50),
                       side: const BorderSide(
-                          color: Color.fromARGB(255, 127, 127, 127),
+                          color: SimpleCookColors.border,
                           width: 1.5)),
                 ),
                 child: Text(
                   widget.text,
-                  style: const TextStyle(
-                    color: Color(0xffFF9F5A),
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: SimpleCookTextstyles.filterTagUntapped,
                 ),
               ));
   }

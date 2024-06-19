@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:simple_cook/common/theme.dart';
 
 class TimeViewSpan extends StatefulWidget {
-  TimeViewSpan({
-    Key? key,
-  }) : super(key: key);
+
+  const TimeViewSpan({
+    super.key,
+  });
 
   @override
-  _TimeViewSpanState createState() => _TimeViewSpanState();
+  State<TimeViewSpan> createState() => _TimeViewSpanState();
 }
 
 class _TimeViewSpanState extends State<TimeViewSpan> {
@@ -62,10 +64,7 @@ class _TimeViewSpanState extends State<TimeViewSpan> {
           Flexible(
             child: Text(
                 "Wochenplan ${DateFormat('dd.MM', 'de_DE').format(_begin)} - ${DateFormat('dd.MM', 'de_DE').format(_end)}",
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 24)),
+                style: SimpleCookTextstyles.header),
           ),
           IconButton(
               onPressed: () => _onPressed('next'),

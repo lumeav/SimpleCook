@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:simple_cook/common/theme.dart';
 
 class RecipeInfos extends StatelessWidget {
   final String text_time;
@@ -8,8 +9,8 @@ class RecipeInfos extends StatelessWidget {
   const RecipeInfos(
     this.text_time,
     this.text_dif, {
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +27,13 @@ class RecipeInfos extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
               horizontal: 16.0, vertical: 4.0),
               decoration: BoxDecoration(
-                  color: Color(0xffFF9F5A).withOpacity(0.4),
+                  color: SimpleCookColors.primary.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.2),
                       spreadRadius: 2,
-                      offset: Offset(0, 2),
+                      offset: const Offset(0, 2),
                     ),
                   ]),
               child: Row(
@@ -40,12 +41,8 @@ class RecipeInfos extends StatelessWidget {
                 children: [
                   const Icon(Icons.access_time, color: Colors.grey),
                   Text(
-                    this.text_time,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    text_time,
+                    style: SimpleCookTextstyles.recInfos,
                   ),
                 ],
               )),
@@ -56,7 +53,7 @@ class RecipeInfos extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
               horizontal: 16.0, vertical: 4.0),
               decoration: BoxDecoration(
-                  color: Color(0xffFF9F5A).withOpacity(0.4),
+                  color: SimpleCookColors.primary.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(50),
                   boxShadow: [
                     BoxShadow(
@@ -70,12 +67,8 @@ class RecipeInfos extends StatelessWidget {
                 children: [
                   const Icon(Icons.bar_chart_rounded, color: Colors.grey),
                   Text(
-                    this.text_dif,
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    text_dif,
+                    style: SimpleCookTextstyles.recInfos,
                   ),
                 ],
               )),

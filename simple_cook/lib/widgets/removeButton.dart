@@ -2,33 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class RemoveButton extends StatelessWidget {
-  const RemoveButton({Key? key}) : super(key: key);
-
+  const RemoveButton({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 30, // Adjust width as needed
-      height: 30, // Adjust height as needed
+      width: 30,
+      height: 30,
       decoration: BoxDecoration(
-        shape: BoxShape.circle, //doing it like this because it is way more complicated to get two FaIcons working together with "onPressed"
+        shape: BoxShape.circle,
         border: Border.all(
           color: Colors.grey,
           width: 3,
 
-        ) // Adjust circle color and opacity
+        )
       ),
       child: Center(
         child: IconButton(
           padding: EdgeInsets.zero,
           onPressed: () {
             // Placeholder for future logic
-            // print("Minus symbol pressed");
           },
           icon: const FaIcon(
             FontAwesomeIcons.minus,
             color: Colors.grey,
-            size: 20, // Adjust minus symbol size as needed
+            size: 20,
           ),
         ),
       ),

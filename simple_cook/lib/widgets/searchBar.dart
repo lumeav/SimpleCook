@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/common/theme.dart';
 
 class SearchBarFilter extends StatefulWidget {
-  const SearchBarFilter({Key? key}) : super(key: key);
+  const SearchBarFilter({super.key});
 
   @override
   State<SearchBarFilter> createState() => _SearchBarState();
@@ -32,8 +33,7 @@ class _SearchBarState extends State<SearchBarFilter> {
             dividerColor: Colors.black,
             barHintText: "Rezeptfinder...",
             isFullScreen: false,
-            //TODO: searchbar needs better color!
-            viewBackgroundColor: const Color(0xffFFECDF),
+            viewBackgroundColor: SimpleCookColors.searchBar,
             suggestionsBuilder:
                 (BuildContext context, SearchController controller) async {
               searchQuery = controller.text;
@@ -58,20 +58,16 @@ class _SearchBarState extends State<SearchBarFilter> {
       ),
       Container(
         alignment: Alignment.centerLeft,
-        margin: EdgeInsets.symmetric(vertical: 10),
-        padding: EdgeInsets.only(left: 15),
-        child: Text(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        padding: const EdgeInsets.only(left: 15),
+        child: const Text(
           'Lebensmittel',
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
+          style: SimpleCookTextstyles.header,
         ),
       ),
       Container(
         alignment: Alignment.centerLeft,
-        padding: EdgeInsets.only(left: 15, right: 15),
+        padding: const EdgeInsets.only(left: 15, right: 15),
         child: Wrap(
           alignment: WrapAlignment.start,
           runAlignment: WrapAlignment.start,
@@ -83,14 +79,10 @@ class _SearchBarState extends State<SearchBarFilter> {
                 child: InputChip(
                   label: Text(
                     buttons[index],
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: SimpleCookTextstyles.filterTagTapped,
                   ),
                   deleteIconColor: Colors.white,
-                  backgroundColor: const Color(0xffFF9F5A).withOpacity(0.75),
+                  backgroundColor: SimpleCookColors.primary.withOpacity(0.75),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),
                   ),

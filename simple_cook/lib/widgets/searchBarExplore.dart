@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/common/theme.dart';
 
 class SearchBarExplore extends StatefulWidget {
-  const SearchBarExplore({Key? key}) : super(key: key);
+  const SearchBarExplore({super.key});
 
   @override
   State<SearchBarExplore> createState() => _SearchBarState();
@@ -29,7 +30,7 @@ class _SearchBarState extends State<SearchBarExplore> {
             barHintText: "Suchen...",
             isFullScreen: false,
             //TODO: searchbar needs better color!
-            viewBackgroundColor: const Color(0xffFFECDF),
+            viewBackgroundColor: SimpleCookColors.searchBar,
             suggestionsBuilder:
                 (BuildContext context, SearchController controller) async {
               searchQuery = controller.text;

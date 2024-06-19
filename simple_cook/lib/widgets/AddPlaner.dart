@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart'; // Add this package to format dates
+import 'package:intl/intl.dart';
+import 'package:simple_cook/common/theme.dart';
 
 class AddPlaner extends StatefulWidget  {
-  const AddPlaner({Key? key}) : super(key: key);
+  const AddPlaner({super.key});
 
   @override
-  _AddPlanerState createState() => _AddPlanerState();
+  State<AddPlaner> createState() => _AddPlanerState();
 }
 
 class _AddPlanerState extends State<AddPlaner> {
@@ -14,25 +15,25 @@ class _AddPlanerState extends State<AddPlaner> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.width * 0.075;
     return Container(
-      width: 40, // Adjust width as needed
-      height: 40, // Adjust height as needed
+      width: size + 8,
+      height: size + 8,
       decoration: BoxDecoration(
-        shape: BoxShape.circle, //doing it like this because it is way more complicated to get two FaIcons working together with "onPressed"
+        shape: BoxShape.circle,
         border: Border.all(
           color: Colors.grey,
           width: 3,
-
-        ) // Adjust circle color and opacity
+        )
       ),
       child: Center(
         child: IconButton(
           padding: EdgeInsets.zero,
           onPressed: () => _showDatePickerDialog(context),
-          icon: const FaIcon(
+          icon: FaIcon(
             FontAwesomeIcons.plus,
             color: Colors.grey,
-            size: 30, // Adjust minus symbol size as needed
+            size: size,
           ),
         ),
       ),
@@ -41,13 +42,14 @@ class _AddPlanerState extends State<AddPlaner> {
 
 
   void _showDatePickerDialog(BuildContext context) {
+    var size = MediaQuery.of(context).size.width * 0.75;
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        contentPadding: EdgeInsets.only(top: 10.0), // Adjust padding
+        contentPadding: const EdgeInsets.only(top: 10.0),
         content: SizedBox(
-          width: 300, // Adjust width as needed
+          width: size,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -55,19 +57,19 @@ class _AddPlanerState extends State<AddPlaner> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.close),
+                    icon: const Icon(Icons.close),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
                   ),
-                  Text(
+                  const Text(
                     'Wochenplaner',
-                    style: TextStyle(fontSize: 18),
+                    style: SimpleCookTextstyles.subheader,
                   ),
-                  SizedBox(width: 48), // Placeholder to balance the row
+                  const SizedBox(width: 48),
                 ],
               ),
-              Divider(),
+              const Divider(),
               _buildDatePicker(),
             ],
           ),
@@ -78,9 +80,10 @@ class _AddPlanerState extends State<AddPlaner> {
 }
 
   Widget _buildDatePicker() {
+    var size = MediaQuery.of(context).size.width * 0.40;
     final List<String> dates = _generateNext14Days();
     return SizedBox(
-      height: 200, // Adjust height as needed
+      height: size,
       child: ListView(
         children: dates.map((String date) {
           return ListTile(

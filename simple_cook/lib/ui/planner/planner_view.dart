@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/common_view.dart';
-import 'package:simple_cook/common/navbar.dart';
+import 'package:simple_cook/common/customNavBar.dart';
 import 'package:simple_cook/widgets/extendedRecipe.dart';
 import 'package:simple_cook/widgets/simpleCookAppBar.dart';
-import 'package:simple_cook/widgets/wochenPlanerRecipe.dart';
 import 'package:simple_cook/widgets/timeViewSpan.dart';
 import 'package:simple_cook/widgets/date.dart';
 import 'package:simple_cook/widgets/removeButton.dart';
-import 'package:simple_cook/widgets/headerWochenPlaner.dart';
+import 'package:simple_cook/widgets/headerRecipeInfos.dart';
 
 class PlannerView extends StatefulWidget {
   final int selectedIndex;
@@ -73,7 +72,7 @@ class _PlannerViewState extends State<PlannerView> {
             Align(alignment: Alignment.centerRight, child: RemoveButton())
           ]),
           ExtendedRecipe(
-              'assets/flammkuchen.jpg', HeaderWochenPlaner('Flammkuchen', "30min", "einfach")),
+              'assets/flammkuchen.jpg', HeaderRecipeInfos('Flammkuchen', "30min", "einfach")),
         ]),
       );
     }

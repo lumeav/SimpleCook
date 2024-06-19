@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/common/theme.dart';
 
 class RoundedIconButton extends StatelessWidget {
   final IconData icon;
   final double size;
   final Function onPress;
 
-
-
-  RoundedIconButton({
+  const RoundedIconButton({super.key,
     required this.size,
     required this.icon,
     required this.onPress
@@ -21,7 +20,7 @@ class RoundedIconButton extends StatelessWidget {
       height: size + 3,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Color(0xffFF9F5A),
+        color: SimpleCookColors.primary,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),

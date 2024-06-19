@@ -5,7 +5,7 @@ import 'package:simple_cook/widgets/simpleCookAppBar.dart';
 import 'package:simple_cook/widgets/heartButton.dart';
 import 'package:simple_cook/widgets/addPlaner.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
-import 'package:simple_cook/common/navbar.dart';
+import 'package:simple_cook/common/customNavBar.dart';
 
 class RecipeView extends StatefulWidget {
   final int selectedIndex;
@@ -41,7 +41,7 @@ class _RecipeViewState extends State<RecipeView> {
                 ExitButton(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
-                  children: [AddPlaner(), HeartButton(false)],
+                  children: [AddPlaner(), SizedBox(width: 10), HeartButton(false)],
                 ),
               ],
             )),

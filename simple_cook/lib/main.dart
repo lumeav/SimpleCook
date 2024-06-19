@@ -10,7 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 // To test:
 import 'package:simple_cook/ui/recipe/recipe_view.dart';
-import 'package:simple_cook/widgets/headerWochenPlaner.dart';
+import 'package:simple_cook/widgets/headerRecipeInfos.dart';
 
 //This is the "main.dart" file, currently named "mein.dart" to test dummy data
 
@@ -67,7 +67,7 @@ import 'package:simple_cook/widgets/headerWochenPlaner.dart';
             selectedIndex: 3, // ToDo ==> Dynamically choose right Navbar Index
             onItemTapped: (index) => _onItemTapped(index, context),
             imgPath: 'assets/flammkuchen.jpg', // ToDo ==> Dynamically choose right Recipe
-            header: HeaderWochenPlaner('Flammkuchen', "30min", "einfach")),
+            header: HeaderRecipeInfos('Flammkuchen', "30min", "einfach")),
       ),
       ],
     );

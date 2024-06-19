@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:simple_cook/widgets/imgandheart.dart';
+import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/widgets/heartButton.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
@@ -8,18 +8,17 @@ class SimpleRecipe extends StatefulWidget {
   final String imgPath;
   final String rezeptName;
 
-  const SimpleRecipe(this.imgPath, this.rezeptName, {Key? key})
-      : super(key: key);
+  const SimpleRecipe(this.imgPath, this.rezeptName, {super.key});
 
   @override
-  _SimpleRecipeState createState() => _SimpleRecipeState();
+  State<SimpleRecipe> createState() => _SimpleRecipeState();
 }
 
 class _SimpleRecipeState extends State<SimpleRecipe> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.width * 0.55;
-    return Container(
+    return SizedBox(
       height: height,
       //margin: const EdgeInsets.all(10),
       child: InkWell(
@@ -37,7 +36,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                 Stack(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(12),
                           topRight: Radius.circular(
                               12) // Set the desired border radius for the top left corner
@@ -58,16 +57,12 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(5),
                   alignment: Alignment.centerLeft,
                   child: AutoSizeText(
                     textAlign: TextAlign.center,
                     widget.rezeptName,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
+                    style: SimpleCookTextstyles.subheader,
                     maxLines: 2,
                   ),
                 ),

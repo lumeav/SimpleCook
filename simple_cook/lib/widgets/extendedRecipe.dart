@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:simple_cook/widgets/imgandheart.dart';
-import 'package:simple_cook/widgets/headerRezeptdesTages.dart';
 import 'package:simple_cook/widgets/heartButton.dart';
+
 class ExtendedRecipe extends StatefulWidget {
   final String imgPath;
   final Widget header;
 
 
-  const ExtendedRecipe(this.imgPath, this.header, {Key? key})
-      : super(key: key);
+  const ExtendedRecipe(this.imgPath, this.header, {super.key});
 
   @override
-  _ExtendedRecipeState createState() => _ExtendedRecipeState();
+  State<ExtendedRecipe> createState() => _ExtendedRecipeState();
 }
 
 class _ExtendedRecipeState extends State<ExtendedRecipe> {

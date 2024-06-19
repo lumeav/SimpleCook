@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:simple_cook/common/theme.dart';
 
 //This is the "Rezepte Suchen" button that is orange with white letters
 
 class SearchRecipesButton extends StatelessWidget {
   final String buttontext;
 
-  const SearchRecipesButton(this.buttontext,{Key? key,}) : super(key: key);
+  const SearchRecipesButton(this.buttontext,{super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -19,23 +20,19 @@ class SearchRecipesButton extends StatelessWidget {
 
           },
           style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Color(0xffFF9F5A)),
+            backgroundColor: MaterialStateProperty.all<Color>(SimpleCookColors.primary),
             foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(50),
                 side: const BorderSide(
-                    color: Color.fromARGB(255, 127, 127, 127), width: 1.5),
+                    color: SimpleCookColors.border, width: 1.5),
               ),
             ),
           ),
           child: Text(
             buttontext,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold
-            ),
+            style: SimpleCookTextstyles.filterTagTapped,
           )));
   }
 }

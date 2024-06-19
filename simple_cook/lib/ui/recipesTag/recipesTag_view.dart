@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/widgets/headerRezeptdesTages.dart';
-import 'package:simple_cook/common/navbar.dart';
+import 'package:simple_cook/common/customNavBar.dart';
 import 'package:simple_cook/widgets/extendedRecipe.dart';
 import 'package:simple_cook/widgets/searchBarExplore.dart';
 import 'package:simple_cook/widgets/simpleCookAppBar.dart';

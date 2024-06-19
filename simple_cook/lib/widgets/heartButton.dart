@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/common/theme.dart';
 
 class HeartButton extends StatefulWidget {
   final bool border;
 
   const HeartButton(
     this.border,{
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  _HeartButtonState createState() => _HeartButtonState();
+  State<HeartButton> createState() => _HeartButtonState();
 }
 
 class _HeartButtonState extends State<HeartButton> {
@@ -43,7 +44,7 @@ class _HeartButtonState extends State<HeartButton> {
           onPressed: _onPressed,
           padding: EdgeInsets.zero,
           icon: Icon(_pressed ? Icons.favorite : Icons.favorite_border,
-              color: Color(0xffFF9F5A), size: size )),
+              color: SimpleCookColors.primary, size: size )),
     );
   }
 }

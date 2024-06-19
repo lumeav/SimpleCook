@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class ExitButton extends StatelessWidget {
-  const ExitButton({Key? key}) : super(key: key);
+  const ExitButton({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size.width * 0.12;
     return IconButton(
         onPressed: () {
           // Placeholder for future logic
-          //print("Filter Icon pressed");
         },
-        icon: const Icon(
+        icon: Icon(
           Icons.close_outlined,
           color: Colors.grey,
-          size: 50,));
+          size: size));
   }
 }

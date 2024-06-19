@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/widgets/recipeInfos.dart';
-import 'package:simple_cook/widgets/filtertag.dart';
 
-class HeaderWochenPlaner extends StatelessWidget {
+class HeaderRecipeInfos extends StatelessWidget {
   final String title;
   final String duration;
   final String difficulty;
 
-  const HeaderWochenPlaner(this.title, this.duration, this.difficulty, {Key? key}) : super(key: key);
+  const HeaderRecipeInfos(this.title, this.duration, this.difficulty, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +19,7 @@ class HeaderWochenPlaner extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerLeft,
             child: Text(title,
-                style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24)),
+                style: SimpleCookTextstyles.header),
           ),
         ),
         Padding(
