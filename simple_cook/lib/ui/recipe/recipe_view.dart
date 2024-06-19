@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/widgets/exitButton.dart';
+import 'package:simple_cook/widgets/exit_button.dart';
 import 'package:simple_cook/widgets/preparation.dart';
-import 'package:simple_cook/widgets/simpleCookAppBar.dart';
-import 'package:simple_cook/widgets/heartButton.dart';
+import 'package:simple_cook/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:simple_cook/widgets/addPlaner.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
-import 'package:simple_cook/common/customNavBar.dart';
+import 'package:simple_cook/common/custom_navbar.dart';
 
 class RecipeView extends StatefulWidget {
   final int selectedIndex;

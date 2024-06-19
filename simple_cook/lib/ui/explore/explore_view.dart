@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/common/common_view.dart';
-import 'package:simple_cook/common/customNavBar.dart';
-import 'package:simple_cook/mein.dart';
-import 'package:simple_cook/widgets/headerRezeptdesTages.dart';
-import 'package:simple_cook/widgets/extendedRecipe.dart';
-import 'package:simple_cook/widgets/searchBarExplore.dart';
-import 'package:simple_cook/widgets/simpleCookAppBar.dart';
-import 'package:simple_cook/widgets/simpleRecipe.dart';
-import 'package:simple_cook/widgets/searchBar.dart';
-import 'package:simple_cook/widgets/filterButton.dart';
-import 'package:simple_cook/widgets/headerGreyBackground.dart';
+import 'package:simple_cook/common/custom_navbar.dart';
+import 'package:simple_cook/widgets/header_rezept_des_tages.dart';
+import 'package:simple_cook/widgets/extended_recipe.dart';
+import 'package:simple_cook/widgets/search_bar_explore.dart';
+import 'package:simple_cook/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/widgets/simple_recipe.dart';
+import 'package:simple_cook/widgets/header_grey_background.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:simple_cook/widgets/filterTag.dart';
-import 'package:simple_cook/widgets/sliderFilter.dart';
-import 'package:simple_cook/widgets/searchRecipeButton.dart';
+import 'package:simple_cook/widgets/filter_tag.dart';
+import 'package:simple_cook/widgets/slider_filter.dart';
+import 'package:simple_cook/widgets/search_recipe_button.dart';
 
 class ExploreView extends StatefulWidget {
   final int selectedIndex;

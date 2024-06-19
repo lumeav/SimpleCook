@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/ui/favorites/favorites_controllerInterface.dart';
+import 'package:simple_cook/ui/favorites/favorites_controller_interface.dart';
 import 'package:simple_cook/ui/favorites/favorites_model.dart';
 
 class FavoritesController extends StateNotifier<List<Recipe>> implements FavoritesControllerInterface {

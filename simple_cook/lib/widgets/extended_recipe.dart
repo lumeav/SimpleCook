@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:simple_cook/widgets/heartButton.dart';
+import 'package:simple_cook/widgets/heart_button.dart';
 
 class ExtendedRecipe extends StatefulWidget {
   final String imgPath;

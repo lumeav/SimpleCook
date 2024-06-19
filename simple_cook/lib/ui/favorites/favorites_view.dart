@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/common/customNavBar.dart';
-import 'package:simple_cook/widgets/simpleCookAppBar.dart';
-import 'package:simple_cook/widgets/simpleRecipe.dart';
-import 'package:simple_cook/widgets/headerGreyBackground.dart';
+import 'package:simple_cook/common/custom_navbar.dart';
+import 'package:simple_cook/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/widgets/simple_recipe.dart';
+import 'package:simple_cook/widgets/header_grey_background.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/ui/favorites/favorites_controller.dart';
 import 'package:simple_cook/ui/favorites/favorites_model.dart';

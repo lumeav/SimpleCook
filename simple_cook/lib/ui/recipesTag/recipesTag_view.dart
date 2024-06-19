@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/widgets/headerRezeptdesTages.dart';
-import 'package:simple_cook/common/customNavBar.dart';
-import 'package:simple_cook/widgets/extendedRecipe.dart';
-import 'package:simple_cook/widgets/searchBarExplore.dart';
-import 'package:simple_cook/widgets/simpleCookAppBar.dart';
-import 'package:simple_cook/widgets/simpleRecipe.dart';
-import 'package:simple_cook/widgets/filterButton.dart';
-import 'package:simple_cook/widgets/headerGreyBackground.dart';
+import 'package:simple_cook/common/custom_navbar.dart';
+import 'package:simple_cook/widgets/search_bar_explore.dart';
+import 'package:simple_cook/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/widgets/simple_recipe.dart';
+import 'package:simple_cook/widgets/filter_button.dart';
+import 'package:simple_cook/widgets/header_grey_background.dart';
 
 
 class RecipesTagView extends StatefulWidget {
@@ -74,24 +72,25 @@ class _RecipesTagViewState extends State<RecipesTagView> {
   }
 
   List<Widget> _buildRowsRecipe(List<Widget> recipeWidgets) {
-    List<Widget> reciperows = [];
-    for (int i = 0; i < recipeWidgets.length; i++) {
-      reciperows.add(
-        Padding(
-          padding: const EdgeInsets.only(
-              left: 15, right: 15, top: 10.0, bottom: 10.0),
-          child: Row(
-            children: [
-              Expanded(flex: 2, child: recipeWidgets[i]),
-              SizedBox(width: 10), // Add some spacing between the buttons
-              Expanded(flex: 2, child: recipeWidgets[i + 1]),
-            ],
-          ),
+  List<Widget> reciperows = [];
+  for (int i = 0; i < recipeWidgets.length; i += 2) {
+    reciperows.add(
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
+        child: Row(
+          children: [
+            Flexible(flex: 1, child: recipeWidgets[i]),
+            SizedBox(width: 10), // Add some spacing between the buttons
+            if (i + 1 < recipeWidgets.length)
+              Flexible(flex: 1, child: recipeWidgets[i + 1]),
+            if (i + 1 >= recipeWidgets.length)
+              Flexible(flex: 1, child: SizedBox.shrink()), // Empty box for layout consistency
+          ],
         ),
-      );
-      i++;
-    }
-    return reciperows;
+      ),
+    );
   }
+  return reciperows;
+}
 }
 

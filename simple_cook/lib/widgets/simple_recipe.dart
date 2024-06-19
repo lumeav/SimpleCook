@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/widgets/heartButton.dart';
+import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 class SimpleRecipe extends StatefulWidget {
@@ -17,7 +17,7 @@ class SimpleRecipe extends StatefulWidget {
 class _SimpleRecipeState extends State<SimpleRecipe> {
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.width * 0.55;
+    var height = MediaQuery.of(context).size.width * 0.6;
     return SizedBox(
       height: height,
       //margin: const EdgeInsets.all(10),
@@ -60,10 +60,10 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                   padding: const EdgeInsets.all(5),
                   alignment: Alignment.centerLeft,
                   child: AutoSizeText(
-                    textAlign: TextAlign.center,
                     widget.rezeptName,
                     style: SimpleCookTextstyles.subheader,
                     maxLines: 2,
+                    minFontSize: 8,
                   ),
                 ),
               ],

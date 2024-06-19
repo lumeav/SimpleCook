@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/widgets/recipeInfos.dart';
+import 'package:simple_cook/widgets/recipe_infos.dart';
 
 class HeaderRecipeInfos extends StatelessWidget {
   final String title;

@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:simple_cook/widgets/filterTag.dart';
-import 'package:simple_cook/widgets/sliderFilter.dart';
-import 'package:simple_cook/widgets/searchRecipeButton.dart';
-import 'package:simple_cook/widgets/filterButton.dart';
-import 'package:simple_cook/widgets/heartButton.dart';
+import 'package:simple_cook/widgets/filter_tag.dart';
+import 'package:simple_cook/widgets/slider_filter.dart';
+import 'package:simple_cook/widgets/search_recipe_button.dart';
+import 'package:simple_cook/widgets/filter_button.dart';
+import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:simple_cook/widgets/recipeInfos.dart';
-import 'package:simple_cook/widgets/searchBar.dart';
-import 'package:simple_cook/widgets/extendedRecipe.dart';
-import 'package:simple_cook/widgets/simpleRecipe.dart';
-import 'package:simple_cook/widgets/recipePortion.dart';
+import 'package:simple_cook/widgets/search_bar.dart';
+import 'package:simple_cook/widgets/simple_recipe.dart';
+import 'package:simple_cook/widgets/recipe_portion.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/widgets/preparation.dart';
-import 'package:simple_cook/widgets/removeButton.dart';
+import 'package:simple_cook/widgets/remove_button.dart';
 import 'package:simple_cook/widgets/addPlaner.dart';
-import 'package:simple_cook/widgets/exitButton.dart';
-import 'package:simple_cook/widgets/simpleCookAppBar.dart';
+import 'package:simple_cook/widgets/exit_button.dart';
+import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/date.dart';
-import 'package:simple_cook/widgets/timeViewSpan.dart';
-import 'package:simple_cook/common/customNavBar.dart';
+import 'package:simple_cook/widgets/time_view_span.dart';
+import 'package:simple_cook/common/custom_navbar.dart';
 
 //This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
 

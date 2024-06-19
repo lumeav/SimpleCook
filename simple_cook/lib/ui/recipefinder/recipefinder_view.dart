@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/common/customNavBar.dart';
-import 'package:simple_cook/widgets/simpleCookAppBar.dart';
-import 'package:simple_cook/widgets/filterTag.dart';
-import 'package:simple_cook/widgets/sliderFilter.dart';
-import 'package:simple_cook/widgets/searchBar.dart';
-import 'package:simple_cook/widgets/searchRecipeButton.dart';
-import 'package:simple_cook/widgets/headerGreyBackground.dart';
+import 'package:simple_cook/common/custom_navbar.dart';
+import 'package:simple_cook/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/widgets/filter_tag.dart';
+import 'package:simple_cook/widgets/slider_filter.dart';
+import 'package:simple_cook/widgets/search_bar.dart';
+import 'package:simple_cook/widgets/search_recipe_button.dart';
+import 'package:simple_cook/widgets/header_grey_background.dart';
 
 
 class RecipefinderView extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/widgets/roundedIconButton.dart';
+import 'package:simple_cook/widgets/rounded_icon_button.dart';
 
 class RecipePortion extends StatefulWidget {
 

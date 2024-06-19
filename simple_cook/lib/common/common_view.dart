@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/common/customNavBar.dart';
-import 'package:simple_cook/widgets/simpleCookAppBar.dart';
+import 'package:simple_cook/common/custom_navbar.dart';
+import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 
 class CommonView extends StatelessWidget {
   final int selectedIndex;
