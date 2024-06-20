@@ -24,23 +24,28 @@ class FavoritesView extends ConsumerWidget {
     return Scaffold(
       appBar: SimpleCookAppBar('SimpleCook'),
       backgroundColor: Colors.grey[200],
-      body: Scrollbar(
-        radius: Radius.circular(50),
-        thickness: 5,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              HeaderGreyBackground("Favoriten", FontWeight.bold),
-              ElevatedButton(
-              onPressed: () {
-                ref.read(favoritesControllerProvider.notifier).addMockRecipe();
-              },
-              child: Text('Add Mock Recipe'),
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final scrollViewHeight = constraints.maxHeight;
+          return Scrollbar(
+            radius: Radius.circular(50),
+            thickness: 5,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  HeaderGreyBackground("Favoriten", FontWeight.bold),
+                  ElevatedButton(
+                  onPressed: () {
+                    ref.read(favoritesControllerProvider.notifier).addMockRecipe();
+                  },
+                  child: Text('Add Mock Recipe'),
+                ),
+                  _buildRowsRecipe(_buildRecipeWidgets(favoriteRecipes), scrollViewHeight),
+                ],
+              ),
             ),
-              ..._buildRowsRecipe(_buildRecipeWidgets(favoriteRecipes)),
-            ],
-          ),
-        ),
+          );
+        }
       ),
       bottomNavigationBar: CustomNavBar(
         selectedIndex: selectedIndex,
@@ -55,25 +60,20 @@ class FavoritesView extends ConsumerWidget {
     }).toList();
   }
 
-  List<Widget> _buildRowsRecipe(List<Widget> recipeWidgets) {
-    List<Widget> reciperows = [];
-    for (int i = 0; i < recipeWidgets.length; i++) {
-      reciperows.add(
-        Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15, top: 10.0, bottom: 10.0),
-          child: Row(
-            children: [
-              Expanded(flex: 2, child: recipeWidgets[i]),
-              if (i + 1 < recipeWidgets.length) ...[
-                SizedBox(width: 10),
-                Expanded(flex: 2, child: recipeWidgets[i + 1]),
-              ],
-            ],
-          ),
+  Widget _buildRowsRecipe(List<Widget> recipeWidgets, double height) {
+    return Container(
+      height: height,
+      padding: const EdgeInsets.all(15),
+      child: GridView.count(
+        childAspectRatio: 0.78,
+        crossAxisCount: 2,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+        children: [
+          for (var recipe in recipeWidgets) recipe,
+        ],
         ),
-      );
-      i++;
-    }
-    return reciperows;
+    );
+
   }
 }

@@ -18,7 +18,7 @@ class FavoritesController extends StateNotifier<List<Recipe>> implements Favorit
     state = state.where((r) => r != recipe).toList();
   }
     void addMockRecipe() {
-    addRecipe(Recipe('assets/flammkuchen.jpg', 'Flammkuchen'));
+    addRecipe(Recipe('assets/flammkuchen.jpg', 'Flammkuchen long text xxxxxxx'));
   }
 
 }

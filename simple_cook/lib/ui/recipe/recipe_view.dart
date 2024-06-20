@@ -3,7 +3,7 @@ import 'package:simple_cook/widgets/exit_button.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/heart_button.dart';
-import 'package:simple_cook/widgets/addPlaner.dart';
+import 'package:simple_cook/widgets/add_planer.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/common/custom_navbar.dart';
 

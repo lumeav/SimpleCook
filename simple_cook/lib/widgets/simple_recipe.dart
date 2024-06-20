@@ -17,10 +17,7 @@ class SimpleRecipe extends StatefulWidget {
 class _SimpleRecipeState extends State<SimpleRecipe> {
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.width * 0.6;
-    return SizedBox(
-      height: height,
-      //margin: const EdgeInsets.all(10),
+    return Container(
       child: InkWell(
         onTap: () {
           // Placeholder for future logic
@@ -63,7 +60,6 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                     widget.rezeptName,
                     style: SimpleCookTextstyles.subheader,
                     maxLines: 2,
-                    minFontSize: 8,
                   ),
                 ),
               ],
