@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/ui/favorites/favorites_controller.dart';
 
-class HeartButton extends StatefulWidget {
+class HeartButton extends ConsumerStatefulWidget {
   final bool border;
 
   const HeartButton(
@@ -10,26 +12,27 @@ class HeartButton extends StatefulWidget {
   });
 
   @override
-  State<HeartButton> createState() => _HeartButtonState();
+  ConsumerState<HeartButton> createState() => _HeartButtonState();
 }
 
-class _HeartButtonState extends State<HeartButton> {
+class _HeartButtonState extends ConsumerState<HeartButton> {
   bool _pressed = false;
 
   void _onPressed() {
     setState(() {
       _pressed = !_pressed;
     });
-
     if (_pressed) {
-      // Placeholder for future logic
+      ref.read(favoritesControllerProvider.notifier).addMockRecipe();
     } else {
-      // Placeholder for future logic
+      ref.read(favoritesControllerProvider.notifier).removeMockRecipe();
     }
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ) {
+    final favoritesRecipes = ref.watch(favoritesControllerProvider);
+
     var size = MediaQuery.of(context).size.width * 0.07;
     if (!widget.border) {
       size = size + 22;

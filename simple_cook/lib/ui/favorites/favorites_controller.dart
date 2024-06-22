@@ -21,6 +21,10 @@ class FavoritesController extends StateNotifier<List<Recipe>> implements Favorit
     addRecipe(Recipe('assets/flammkuchen.jpg', 'Flammkuchen long text xxxxxxx'));
   }
 
+  void removeMockRecipe() {
+    removeRecipe(Recipe('assets/flammkuchen.jpg', 'Flammkuchen long text xxxxxxx'));
+  }
+
 }
 
 final favoritesControllerProvider = StateNotifierProvider<FavoritesController, List<Recipe>>(
