@@ -7,6 +7,7 @@ import 'package:simple_cook/widgets/slider_filter.dart';
 import 'package:simple_cook/widgets/search_bar.dart';
 import 'package:simple_cook/widgets/search_recipe_button.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
+import 'package:simple_cook/service/recipe_service.dart';
 
 
 class RecipefinderView extends StatefulWidget {
@@ -44,7 +45,9 @@ class _RecipefinderViewState extends State<RecipefinderView> {
                     padding: EdgeInsets.only(left: 15, right: 15),
                     child: SliderFilter(),
                   ),
-                  ElevatedButton(onPressed: () {context.goNamed("recipesFiltered2");}, child: Text('Rezepte suchen')),
+                  ElevatedButton(onPressed: () {
+                    loadRecipes();
+                  }, child: Text('Rezepte suchen')),
                   Container(
                     margin: EdgeInsets.only(top: 50, bottom: 30),
                     alignment: Alignment.center,
@@ -55,6 +58,18 @@ class _RecipefinderViewState extends State<RecipefinderView> {
             ),
           ),
         ));
+  }
+
+  Future<void> loadRecipes() async {
+    final recipeService = RecipeService();
+    final recipes = await recipeService.getAllRecipes('Tomate', null, null);
+    recipes?.forEach((recipe) {
+      print(recipe.title);
+      recipe.ingredients.forEach((ingredient) {
+        print(ingredient.name);
+      });
+
+    });
   }
 
   List<String> kategorieList = [

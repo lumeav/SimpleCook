@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/service/navigation_service/navigation_service.dart';
 import 'package:simple_cook/widgets/exit_button.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
