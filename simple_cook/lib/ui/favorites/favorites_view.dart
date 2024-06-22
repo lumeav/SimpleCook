@@ -8,13 +8,9 @@ import 'package:simple_cook/ui/favorites/favorites_controller.dart';
 import 'package:simple_cook/ui/favorites/favorites_model.dart';
 
 class FavoritesView extends ConsumerWidget {
-  final int selectedIndex;
-  final Function(int) onItemTapped;
 
   const FavoritesView({
     Key? key,
-    required this.selectedIndex,
-    required this.onItemTapped,
   }) : super(key: key);
 
   @override
@@ -46,10 +42,6 @@ class FavoritesView extends ConsumerWidget {
             ),
           );
         }
-      ),
-      bottomNavigationBar: CustomNavBar(
-        selectedIndex: selectedIndex,
-        onItemTapped: onItemTapped,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/custom_navbar.dart';
 import 'package:simple_cook/widgets/header_rezept_des_tages.dart';
 import 'package:simple_cook/widgets/extended_recipe.dart';
@@ -12,13 +13,9 @@ import 'package:simple_cook/widgets/slider_filter.dart';
 import 'package:simple_cook/widgets/search_recipe_button.dart';
 
 class ExploreView extends StatefulWidget {
-  final int selectedIndex;
-  final Function(int) onItemTapped;
 
   const ExploreView({
     Key? key,
-    required this.selectedIndex,
-    required this.onItemTapped,
   }) : super(key: key);
 
   @override
@@ -65,21 +62,17 @@ class _ExploreViewState extends State<ExploreView> {
           )
         ],
       ),
-      bottomNavigationBar: CustomNavBar(
-        selectedIndex: widget.selectedIndex,
-        onItemTapped: widget.onItemTapped,
-      ),
     );
   }
 
-  void buildBottomSheetFilter(BuildContext context) {
+  buildBottomSheetFilter(BuildContext context) {
     showModalBottomSheet(
         context: context,
         isScrollControlled: true,
         backgroundColor: Colors.grey[200],
         builder: (BuildContext context) {
           return FractionallySizedBox(
-            heightFactor: 0.85,
+            heightFactor: 0.9,
             child: Container(
               padding: EdgeInsets.only(left: 15, right: 15, top: 15),
               child: Column(

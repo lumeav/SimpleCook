@@ -17,10 +17,6 @@ class CommonView extends StatelessWidget {
         color: Colors.grey[200],
         child: child,
       ),
-      bottomNavigationBar: CustomNavBar(
-        selectedIndex: selectedIndex,
-        onItemTapped: onItemTapped,
-      ),
     );
   }
 }

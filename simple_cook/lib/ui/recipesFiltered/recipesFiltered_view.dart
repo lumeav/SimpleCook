@@ -7,21 +7,17 @@ import 'package:simple_cook/widgets/filter_button.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
 
 
-class RecipesTagView extends StatefulWidget {
-  final int selectedIndex;
-  final Function(int) onItemTapped;
+class RecipesFilteredView extends StatefulWidget {
 
-  const RecipesTagView({
+  const RecipesFilteredView({
     Key? key,
-    required this.selectedIndex,
-    required this.onItemTapped
   }) : super(key: key);
 
   @override
   _RecipesTagViewState createState() => _RecipesTagViewState();
 }
 
-class _RecipesTagViewState extends State<RecipesTagView> {
+class _RecipesTagViewState extends State<RecipesFilteredView> {
     @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,10 +48,6 @@ class _RecipesTagViewState extends State<RecipesTagView> {
             ),
             )
         ],
-      ),
-      bottomNavigationBar: CustomNavBar(
-        selectedIndex: widget.selectedIndex,
-        onItemTapped: widget.onItemTapped,
       ),
     );
   }

@@ -15,7 +15,7 @@ class SearchRecipesButton extends StatelessWidget {
       height: 50,
       child: ElevatedButton(
             onPressed: () {
-            context.push('/recipeFinder');
+              context.goNamed('subRecipesFiltered1');
             //TODO!!!: Add functionality to navigate to the recipeFinder page
 
           },

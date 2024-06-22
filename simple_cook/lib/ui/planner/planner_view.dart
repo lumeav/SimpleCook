@@ -8,13 +8,9 @@ import 'package:simple_cook/widgets/remove_button.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
 
 class PlannerView extends StatefulWidget {
-  final int selectedIndex;
-  final Function(int) onItemTapped;
 
   const PlannerView({
     Key? key,
-    required this.selectedIndex,
-    required this.onItemTapped,
   }) : super(key: key);
 
   @override
@@ -38,10 +34,6 @@ class _PlannerViewState extends State<PlannerView> {
           ),
         )),
       ]),
-      bottomNavigationBar: CustomNavBar(
-        selectedIndex: widget.selectedIndex,
-        onItemTapped: widget.onItemTapped,
-      ),
     );
   }
 

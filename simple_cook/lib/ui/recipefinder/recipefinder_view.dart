@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/custom_navbar.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/filter_tag.dart';
@@ -9,13 +10,10 @@ import 'package:simple_cook/widgets/header_grey_background.dart';
 
 
 class RecipefinderView extends StatefulWidget {
-  final int selectedIndex;
-  final Function(int) onItemTapped;
+
 
   RecipefinderView({
     Key? key,
-    required this.selectedIndex,
-    required this.onItemTapped,
   }) : super(key: key);
 
   @override
@@ -26,10 +24,6 @@ class _RecipefinderViewState extends State<RecipefinderView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: CustomNavBar(
-          selectedIndex: widget.selectedIndex,
-          onItemTapped: widget.onItemTapped,
-        ),
         appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
         backgroundColor: Colors.grey[200],
         body: Container(
@@ -50,6 +44,7 @@ class _RecipefinderViewState extends State<RecipefinderView> {
                     padding: EdgeInsets.only(left: 15, right: 15),
                     child: SliderFilter(),
                   ),
+                  ElevatedButton(onPressed: () {context.goNamed("recipesFiltered2");}, child: Text('Rezepte suchen')),
                   Container(
                     margin: EdgeInsets.only(top: 50, bottom: 30),
                     alignment: Alignment.center,

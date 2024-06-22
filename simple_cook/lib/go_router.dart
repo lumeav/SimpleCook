@@ -1,0 +1,262 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
+import 'package:simple_cook/ui/explore/explore_view.dart';
+import 'package:simple_cook/ui/favorites/favorites_view.dart';
+import 'package:simple_cook/ui/planner/planner_view.dart';
+import 'package:simple_cook/ui/recipefinder/recipefinder_view.dart';
+import 'package:go_router/go_router.dart';
+import 'package:simple_cook/ui/recipesFiltered/recipesFiltered_view.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+// To test:
+import 'package:simple_cook/ui/recipe/recipe_view.dart';
+import 'package:simple_cook/widgets/header_recipe_infos.dart';
+import 'package:simple_cook/wrapper/main_wrapper.dart';
+
+final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
+  StatefulShellRoute.indexedStack(
+      builder: (context, state, navigationShell) {
+        return MainWrapper(
+          key: state.pageKey,
+          child: navigationShell,
+        );
+      },
+      branches: [
+        StatefulShellBranch(routes: [
+          GoRoute(
+              path: '/explore',
+              name: 'explore',
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                  key: state.pageKey,
+                  child: ExploreView(
+                    key: state.pageKey,
+                  ),
+                );
+              },
+              routes: [
+                GoRoute(
+                  path: 'subRecipeView',
+                  name: 'subRecipeView',
+                  pageBuilder: (context, state) {
+                    return NoTransitionPage(
+                      key: state.pageKey,
+                      child: RecipeView(
+                        key: state.pageKey,
+                        imgPath: 'assets/flammkuchen.jpg',
+                        header: HeaderRecipeInfos(
+                            'Flammkuchen', "30min", "einfach"),
+                      ),
+                    );
+                  },
+                ),
+                GoRoute(
+                    path: 'subRecipesFiltered',
+                    name: 'subRecipesFiltered',
+                    pageBuilder: (context, state) {
+                      return NoTransitionPage(
+                        key: state.pageKey,
+                        child: RecipesFilteredView(
+                          key: state.pageKey,
+                        ),
+                      );
+                    },
+                    routes: [
+                      GoRoute(
+                        path: 'subFilteredRecipeView',
+                        name: 'subFilteredRecipeView',
+                        pageBuilder: (context, state) {
+                          return NoTransitionPage(
+                            key: state.pageKey,
+                            child: RecipeView(
+                              key: state.pageKey,
+                              imgPath: 'assets/flammkuchen.jpg',
+                              header: HeaderRecipeInfos(
+                                  'Flammkuchen', "30min", "einfach"),
+                            ),
+                          );
+                        },
+                      ),
+                    ]),
+              ]),
+        ]),
+        StatefulShellBranch(routes: [
+          GoRoute(
+              path: '/recipeFinder',
+              name: 'recipeFinder',
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                  key: state.pageKey,
+                  child: RecipefinderView(
+                    key: state.pageKey,
+                  ),
+                );
+              },
+              routes: [
+                GoRoute(
+                  path: 'subRecipesFiltered1',
+                  name: 'subRecipesFiltered1',
+                  pageBuilder: (context, state) {
+                    return NoTransitionPage(
+                      key: state.pageKey,
+                      child: RecipesFilteredView(
+                        key: state.pageKey,
+                      ),
+                    );
+                  },
+                  routes: [
+                    GoRoute(
+                      path: 'subFilteredRecipeView1',
+                      name: 'subFilteredRecipeView1',
+                      pageBuilder: (context, state) {
+                        return NoTransitionPage(
+                          key: state.pageKey,
+                          child: RecipeView(
+                            key: state.pageKey,
+                            imgPath: 'assets/flammkuchen.jpg',
+                            header: HeaderRecipeInfos(
+                                'Flammkuchen', "30min", "einfach"),
+                          ),
+                        );
+                      },
+                    )
+                  ],
+                ),
+              ])
+        ]),
+        StatefulShellBranch(routes: [
+          GoRoute(
+              path: '/favorites',
+              name: 'favorites',
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                  key: state.pageKey,
+                  child: FavoritesView(
+                    key: state.pageKey,
+                  ),
+                );
+              },
+              routes: [
+                GoRoute(
+                  path: 'subRecipeView2',
+                  name: 'subRecipeView2',
+                  pageBuilder: (context, state) {
+                    return NoTransitionPage(
+                      key: state.pageKey,
+                      child: RecipeView(
+                        key: state.pageKey,
+                        imgPath: 'assets/flammkuchen.jpg',
+                        header: HeaderRecipeInfos(
+                            'Flammkuchen', "30min", "einfach"),
+                      ),
+                    );
+                  },
+                )
+              ])
+        ]),
+        StatefulShellBranch(routes: [
+          GoRoute(
+              path: '/planner',
+              name: 'planner',
+              pageBuilder: (context, state) {
+                return NoTransitionPage(
+                  key: state.pageKey,
+                  child: PlannerView(
+                    key: state.pageKey,
+                  ),
+                );
+              },
+              routes: [
+                GoRoute(
+                  path: 'subRecipeView3',
+                  name: 'subRecipeView3',
+                  pageBuilder: (context, state) {
+                    return NoTransitionPage(
+                      key: state.pageKey,
+                      child: RecipeView(
+                        key: state.pageKey,
+                        imgPath: 'assets/flammkuchen.jpg',
+                        header: HeaderRecipeInfos(
+                            'Flammkuchen', "30min", "einfach"),
+                      ),
+                    );
+                  },
+                )
+              ])
+        ])
+      ])
+]);
+
+
+/*
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      title: 'SimpleCook',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      routerConfig: _router,
+    );
+  }
+
+  static void _onItemTapped(int index, BuildContext context) {
+    switch (index) {
+      case 0:
+        context.go('/');
+        break;
+      case 1:
+        context.go('/search');
+        break;
+      case 2:
+        context.go('/favorites');
+        break;
+      case 3:
+        context.go('/planner');
+        break;
+    }
+  }
+}
+
+
+/*
+GoRoute(
+        path: '/search',
+        builder: (context, state) => RecipefinderView(
+          key: state.pageKey,
+          selectedIndex: 1,
+          onItemTapped: (index) => _onItemTapped(index, context),
+        ),
+      ),
+      GoRoute(
+        path: '/favorites',
+        builder: (context, state) => FavoritesView(
+          selectedIndex: 2,
+          onItemTapped: (index) => _onItemTapped(index, context),
+        ),
+      ),
+      GoRoute(
+        path: '/planner',
+        builder: (context, state) => PlannerView(
+          selectedIndex: 3,
+          onItemTapped: (index) => _onItemTapped(index, context),
+        ),
+      ),
+      GoRoute(
+        path: '/recipeFinder',
+        builder: (context, state) => RecipesTagView(
+          //new page for search recipe result not complete!!
+          selectedIndex: 1,
+          onItemTapped: (index) => _onItemTapped(index, context),
+        ),
+      ),
+      GoRoute(
+        path: '/recipeView',
+        builder: (context, state) => RecipeView(
+            selectedIndex: 3, // ToDo ==> Dynamically choose right Navbar Index
+            onItemTapped: (index) => _onItemTapped(index, context),
+            imgPath:
+                'assets/flammkuchen.jpg', // ToDo ==> Dynamically choose right Recipe
+            header: HeaderRecipeInfos('Flammkuchen', "30min", "einfach")),
+      ),*/*/

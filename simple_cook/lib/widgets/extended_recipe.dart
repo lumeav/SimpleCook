@@ -19,7 +19,7 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
     return InkWell(
       onTap: () {
         // Placeholder for future logic
-        context.go('/recipeView');
+        context.goNamed('subRecipeView');
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 10),

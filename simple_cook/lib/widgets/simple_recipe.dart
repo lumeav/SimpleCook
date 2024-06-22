@@ -20,8 +20,8 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
     return Container(
       child: InkWell(
         onTap: () {
-          // Placeholder for future logic
-          context.go('/recipeView');
+          // Placeholder for future logice
+          context.goNamed('subRecipeView');
         },
         child: Ink(
             decoration: BoxDecoration(

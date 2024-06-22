@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/service/navigation_service/navigation_service.dart';
 import 'package:simple_cook/widgets/exit_button.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
@@ -8,15 +10,11 @@ import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/common/custom_navbar.dart';
 
 class RecipeView extends StatefulWidget {
-  final int selectedIndex;
-  final Function(int) onItemTapped;
   final String imgPath;
   final Widget header;
 
   const RecipeView({
     Key? key,
-    required this.selectedIndex,
-    required this.onItemTapped,
     required this.imgPath,
     required this.header,
   }) : super(key: key);
@@ -113,10 +111,6 @@ class _RecipeViewState extends State<RecipeView> {
           ),
         )),
       ]),
-      bottomNavigationBar: CustomNavBar(
-        selectedIndex: widget.selectedIndex,
-        onItemTapped: widget.onItemTapped,
-      ),
     );
   }
 }
