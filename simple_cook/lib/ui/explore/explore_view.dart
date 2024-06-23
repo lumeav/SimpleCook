@@ -92,7 +92,7 @@ class _ExploreViewState extends State<ExploreView> {
                   Container(
                       margin: EdgeInsets.only(top: 50, bottom: 30),
                       alignment: Alignment.center,
-                      child: SearchRecipesButton("Rezepte suchen")),
+                      child: SearchRecipesButton("Rezepte suchen", "subRecipesFiltered")),
                 ],
               ),
             ),

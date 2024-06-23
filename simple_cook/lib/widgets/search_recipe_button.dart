@@ -6,8 +6,9 @@ import 'package:simple_cook/common/theme.dart';
 
 class SearchRecipesButton extends StatelessWidget {
   final String buttontext;
+  final String viewName;
 
-  const SearchRecipesButton(this.buttontext,{super.key,});
+  const SearchRecipesButton(this.buttontext, this.viewName, {super.key,});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class SearchRecipesButton extends StatelessWidget {
       height: 50,
       child: ElevatedButton(
             onPressed: () {
-              context.goNamed('subRecipesFiltered1');
+              context.goNamed(viewName);
             //TODO!!!: Add functionality to navigate to the recipeFinder page
 
           },
