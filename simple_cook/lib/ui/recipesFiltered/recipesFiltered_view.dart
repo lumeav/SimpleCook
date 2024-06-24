@@ -26,6 +26,7 @@ class _RecipesTagViewState extends State<RecipesFilteredView> {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            automaticallyImplyLeading: false,
             pinned: true,
             backgroundColor: Colors.white,
             surfaceTintColor: Colors.white,
