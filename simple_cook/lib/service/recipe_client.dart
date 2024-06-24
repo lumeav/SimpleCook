@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:simple_cook/service/recipe_model.dart';
+import 'package:simple_cook/service/recipes_model.dart';
+import 'package:simple_cook/service/single_recipe_model.dart';
 
-class RecipeApi {
+class RecipeClient {
 
   var client = http.Client();
   final String baseUrl = 'https://gustar-io-deutsche-rezepte.p.rapidapi.com/';
@@ -16,17 +16,28 @@ class RecipeApi {
     'specificMethodHeaders' : '[object Object]'
   };
 
-  Future<List<Recipe>?> getRecipes(String? text, String? time, String? diet) async {
+  Future<List<Recipe>?> getRecipes(String text, String? time, String? diet) async {
     //build the query
     var parameter = createQuery(text, time, diet);
     var url = baseUrl + 'search_api?' + parameter;
-    print(url);
 
     var response = await client.get(Uri.parse(url), headers: headers);
     if (response.statusCode == 200) {
       return recipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
     } else {
       throw Exception('Failed to load recipes');
+    }
+  }
+
+  Future<SingleRecipe?> getSingleRecipe(String recipeUrl) async {
+
+    var url = baseUrl + 'crawl?target_url=' + recipeUrl;
+    var response = await client.get(Uri.parse(url), headers: headers);
+
+    if (response.statusCode == 200) {
+      return singleRecipeModelFromJson(const Utf8Decoder().convert(response.bodyBytes));
+    } else {
+      throw Exception('Failed to load single recipe');
     }
   }
 

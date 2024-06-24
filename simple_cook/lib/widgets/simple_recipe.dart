@@ -5,8 +5,8 @@ import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 
 class SimpleRecipe extends StatefulWidget {
-  final String imgPath;
-  final String rezeptName;
+  final String? imgPath;
+  final String? rezeptName;
 
   const SimpleRecipe(this.imgPath, this.rezeptName, {super.key});
 
@@ -40,10 +40,13 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                           ),
                       child: AspectRatio(
                         aspectRatio: 1.1,
-                        child: Image.asset(
+                        child: Image.network(
+                          widget.imgPath!,
+                          fit: BoxFit.cover
+                          ), /*Image.asset(
                           widget.imgPath,
                           fit: BoxFit.cover,
-                        ),
+                        ),*/
                       ),
                     ),
                     const Positioned(
@@ -57,7 +60,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                   padding: const EdgeInsets.all(5),
                   alignment: Alignment.centerLeft,
                   child: AutoSizeText(
-                    widget.rezeptName,
+                    widget.rezeptName!,
                     style: SimpleCookTextstyles.subheader,
                     maxLines: 2,
                   ),

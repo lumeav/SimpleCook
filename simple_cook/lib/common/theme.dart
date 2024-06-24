@@ -22,7 +22,7 @@ class SimpleCookTextstyles {
   static const TextStyle header =
       TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24);
   static const TextStyle subheader =
-      TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+      TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold);
   static const TextStyle rezeptDesTages =
       TextStyle(color: SimpleCookColors.primary, fontSize: 18);
   static const TextStyle rawText = TextStyle(fontSize: 18);

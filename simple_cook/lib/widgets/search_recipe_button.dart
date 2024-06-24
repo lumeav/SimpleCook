@@ -6,7 +6,6 @@ import 'package:simple_cook/common/theme.dart';
 
 class SearchRecipesButton extends StatelessWidget {
   final String buttontext;
-
   const SearchRecipesButton(this.buttontext,{super.key,});
 
   @override
