@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/widgets/exit_button.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/heart_button.dart';
@@ -33,14 +32,8 @@ class _RecipeViewState extends State<RecipeView> {
             padding: EdgeInsets.symmetric(vertical: 5),
             color: Colors.white,
             child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ExitButton(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [AddPlaner(), SizedBox(width: 10), HeartButton(false)],
-                ),
-              ],
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [AddPlaner(), SizedBox(width: 10), HeartButton(false)],
             )),
         Expanded(
             child: SingleChildScrollView(
