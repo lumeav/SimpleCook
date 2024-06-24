@@ -62,14 +62,10 @@ class _RecipefinderViewState extends State<RecipefinderView> {
 
   Future<void> loadRecipes() async {
     final recipeService = RecipeService();
-    final recipes = await recipeService.getAllRecipes('Tomate', null, null);
-    recipes?.forEach((recipe) {
-      print(recipe.title);
-      recipe.ingredients.forEach((ingredient) {
-        print(ingredient.name);
-      });
-
-    });
+    final singlerecipe = await recipeService.getSingleRecipe('https://www.lecker.de/deftiger-kuechenzauber-topf-83483.html');//getAllRecipes('Tomate', null, null);
+    for (var recipe in singlerecipe!.ingredients!) {
+      print(recipe);
+    }
   }
 
   List<String> kategorieList = [
