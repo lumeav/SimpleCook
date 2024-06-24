@@ -27,6 +27,7 @@ class _RecipesTagViewState extends State<RecipesFilteredView> {
         slivers: [
           SliverAppBar(
             pinned: true,
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.white,
             surfaceTintColor: Colors.white,
             toolbarHeight: 80,
