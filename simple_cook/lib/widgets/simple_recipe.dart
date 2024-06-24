@@ -3,25 +3,30 @@ import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:simple_cook/service/recipe_service.dart';
 
 class SimpleRecipe extends StatefulWidget {
-  final String? imgPath;
-  final String? rezeptName;
+  final String imgPath;
+  final String rezeptName;
+  final String source;
+  final String difficulty;
 
-  const SimpleRecipe(this.imgPath, this.rezeptName, {super.key});
+  const SimpleRecipe(this.imgPath, this.rezeptName, this.source, this.difficulty, {super.key});
 
   @override
   State<SimpleRecipe> createState() => _SimpleRecipeState();
 }
 
 class _SimpleRecipeState extends State<SimpleRecipe> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: InkWell(
         onTap: () {
+          print(widget.source + ' ' + widget.difficulty);
           // Placeholder for future logice
-          context.goNamed('subRecipeView');
+          context.goNamed('subRecipeView', queryParameters: {'recipeUrl': widget.source, 'difficulty': widget.difficulty});
         },
         child: Ink(
             decoration: BoxDecoration(

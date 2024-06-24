@@ -1,24 +1,32 @@
+// To parse this JSON data, do
+//
+//     final singleRecipe = singleRecipeFromJson(jsonString);
+
 import 'dart:convert';
 
-SingleRecipe singleRecipeModelFromJson(String str) => SingleRecipe.fromJson(json.decode(str));
+SingleRecipe singleRecipeFromJson(String str) => SingleRecipe.fromJson(json.decode(str));
 
-String singleRecipeModelToJson(SingleRecipe data) => json.encode(data.toJson());
+String singleRecipeToJson(SingleRecipe data) => json.encode(data.toJson());
 
 class SingleRecipe {
+    List<String>? diet;
     List<String> imageUrls;
     List<Ingredient> ingredients;
-    String keywords;
+    Nutrition nutrition;
     int portions;
+    Rating rating;
     String source;
     List<String> steps;
     String title;
     double totalTime;
 
     SingleRecipe({
+        required this.diet,
         required this.imageUrls,
         required this.ingredients,
-        required this.keywords,
+        required this.nutrition,
         required this.portions,
+        required this.rating,
         required this.source,
         required this.steps,
         required this.title,
@@ -26,25 +34,29 @@ class SingleRecipe {
     });
 
     factory SingleRecipe.fromJson(Map<String, dynamic> json) => SingleRecipe(
+        diet: json["diet"] == null ? [] : List<String>.from(json["diet"].map((x) => x)),
         imageUrls: List<String>.from(json["image_urls"].map((x) => x)),
         ingredients: List<Ingredient>.from(json["ingredients"].map((x) => Ingredient.fromJson(x))),
-        keywords: json["keywords"],
+        nutrition: Nutrition.fromJson(json["nutrition"]),
         portions: json["portions"],
+        rating: Rating.fromJson(json["rating"]),
         source: json["source"],
         steps: List<String>.from(json["steps"].map((x) => x)),
         title: json["title"],
-        totalTime: json["totalTime"],
+        totalTime: json["totalTime"] / 60,
     );
 
     Map<String, dynamic> toJson() => {
+        "diet": diet == null ? [] : List<dynamic>.from(diet!.map((x) => x)),
         "image_urls": List<dynamic>.from(imageUrls.map((x) => x)),
         "ingredients": List<dynamic>.from(ingredients.map((x) => x.toJson())),
-        "keywords": keywords,
+        "nutrition": nutrition.toJson(),
         "portions": portions,
+        "rating": rating.toJson(),
         "source": source,
         "steps": List<dynamic>.from(steps.map((x) => x)),
         "title": title,
-        "totalTime": totalTime / 60,
+        "totalTime": totalTime,
     };
 }
 
@@ -69,5 +81,41 @@ class Ingredient {
         "amount": amount,
         "name": name,
         "unit": unit,
+    };
+}
+
+class Nutrition {
+    int kcal;
+
+    Nutrition({
+        required this.kcal,
+    });
+
+    factory Nutrition.fromJson(Map<String, dynamic> json) => Nutrition(
+        kcal: json["kcal"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "kcal": kcal,
+    };
+}
+
+class Rating {
+    int ratingCount;
+    double ratingValue;
+
+    Rating({
+        required this.ratingCount,
+        required this.ratingValue,
+    });
+
+    factory Rating.fromJson(Map<String, dynamic> json) => Rating(
+        ratingCount: json["ratingCount"],
+        ratingValue: json["ratingValue"]?.toDouble(),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "ratingCount": ratingCount,
+        "ratingValue": ratingValue,
     };
 }

@@ -6,15 +6,19 @@ import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:simple_cook/widgets/add_planer.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/common/custom_navbar.dart';
+import 'package:simple_cook/service/single_recipe_model.dart';
+import 'package:simple_cook/service/recipe_service.dart';
+import 'package:simple_cook/widgets/header_recipe_infos.dart';
+import 'package:simple_cook/common/theme.dart';
 
 class RecipeView extends StatefulWidget {
-  final String imgPath;
-  final Widget header;
+  final String? recipeUrl;
+  final String? difficulty;
 
   const RecipeView({
     Key? key,
-    required this.imgPath,
-    required this.header,
+    this.recipeUrl,
+    this.difficulty,
   }) : super(key: key);
 
   @override
@@ -22,6 +26,8 @@ class RecipeView extends StatefulWidget {
 }
 
 class _RecipeViewState extends State<RecipeView> {
+  final service = RecipeService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,70 +45,77 @@ class _RecipeViewState extends State<RecipeView> {
             child: SingleChildScrollView(
           child: Column(
             children: [
-              InkWell(
-                onTap: () {
-                  // Placeholder for future logic
-                  print('extended recipe tapped!');
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
-                  child: Ink(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.white),
-                      child: Column(
-                        children: [
-                          Stack(children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(12),
-                                  topRight: Radius.circular(
-                                      12) // Set the desired border radius for the top left corner
-                                  ),
-                              child: AspectRatio(
-                                  aspectRatio: 1.8,
-                                  child: Image.asset(
-                                    widget.imgPath,
-                                    fit: BoxFit.cover,
-                                  )),
-                            )
-                          ]),
-                          widget.header,
-                          Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 15, right: 15),
-                              child: Divider()),
-                          Ingredients([
-                            "150g Zwiebel",
-                            "20ml Olivenöl",
-                            "250g Tomate",
-                            "500ml Hühnerbrühe",
-                            "500g Hähnchenbrust",
-                            "15g Zucker (braun)",
-                            "10g Chili Chipotle (geräucherte Chili)",
-                            "1 Lorbeerblatt",
-                            "9 mexikanische Tostadas",
-                            "100g Panela-Käse",
-                          ]),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Preparation([
-                              "Die Zwiebeln schälen, halbieren und in Würfel schneiden.",
-                              "In einem großen Topf das Olivenöl erhitzen und die Zwiebeln darin anschwitzen, bis sie glasig sind. Die Tomaten würfeln und zu den Zwiebeln geben.",
-                              "Hühnerbrühe, Hähnchenbrust, braunen Zucker, Chipotle-Chili und Lorbeerblätter hinzufügen. Alles gut verrühren und für 30 Minuten auf mittlerer Hitze köcheln lassen, bis die Hähnchenbrust gar ist und die Flüssigkeit um die Hälfte reduziert wurde.",
-                              "Den Topf vom Herd nehmen und leicht abkühlen lassen. Anschließend das Hähnchenfleisch mit zwei Gabeln zerpflücken.",
-                              "Die Lorbeerblätter entfernen.",
-                              "Jede Tostada großzügig mit der Tinga-Mischung belegen. Die roten Zwiebeln in feine Würfel schneiden und zusammen mit dem Panela-Käse über die Tostadas zerbröseln. Nach Belieben mit Korianderblättern garnieren und mit Limettenspalten servieren."
-                            ]),
-                          )
-                        ],
-                      )),
-                ),
-              )
+              Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+                child: Ink(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.white),
+                    child: buildSingleRecipe(
+                        service, widget.recipeUrl!, widget.difficulty!)),
+              ),
             ],
           ),
         )),
       ]),
     );
   }
+}
+
+Widget buildSingleRecipe(
+    RecipeService service, String recipeUrl, String difficulty) {
+  return FutureBuilder(
+      future: service.getSingleRecipe(recipeUrl),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator(
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(SimpleCookColors.primary),
+                  ));
+        } else {
+          print('hello');
+          print(snapshot);
+          final singleRecipe = snapshot.data as SingleRecipe?;
+          if (singleRecipe == null) {
+            return const Text('No data found');
+          }
+          print(singleRecipe);
+
+          return Column(
+            children: [
+              Stack(children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(12),
+                      topRight: Radius.circular(12)),
+                  child: AspectRatio(
+                      aspectRatio: 1.8,
+                      child: Image.network(
+                        singleRecipe.imageUrls.first,
+                        fit: BoxFit.cover,
+                      )),
+                )
+              ]),
+              HeaderRecipeInfos(singleRecipe.title,
+                  singleRecipe.totalTime.toStringAsFixed(0), difficulty!),
+              Padding(
+                  padding: const EdgeInsets.only(left: 15, right: 15),
+                  child: Divider()),
+              Ingredients([
+                for (var ingredient in singleRecipe.ingredients)
+                  ingredient.amount +
+                      ' ' +
+                      ingredient.unit +
+                      ' ' +
+                      ingredient.name
+              ]),
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Preparation(
+                    [for (var preparation in singleRecipe.steps) preparation]),
+              )
+            ],
+          );
+        }
+      });
 }

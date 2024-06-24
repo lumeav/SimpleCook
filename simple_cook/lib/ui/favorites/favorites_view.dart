@@ -4,8 +4,6 @@ import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/ui/favorites/favorites_controller.dart';
-import 'package:simple_cook/ui/favorites/favorites_model.dart';
 
 class FavoritesView extends ConsumerWidget {
 
@@ -15,7 +13,6 @@ class FavoritesView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favoriteRecipes = ref.watch(favoritesControllerProvider);
 
     return Scaffold(
       appBar: SimpleCookAppBar('SimpleCook'),
@@ -32,11 +29,10 @@ class FavoritesView extends ConsumerWidget {
                   HeaderGreyBackground("Favoriten", FontWeight.bold),
                   ElevatedButton(
                   onPressed: () {
-                    ref.read(favoritesControllerProvider.notifier).addMockRecipe();
                   },
                   child: Text('Add Mock Recipe'),
                 ),
-                  _buildRowsRecipe(_buildRecipeWidgets(favoriteRecipes), scrollViewHeight),
+                  //_buildRowsRecipe(_buildRecipeWidgets(favoriteRecipes), scrollViewHeight),
                 ],
               ),
             ),
@@ -45,7 +41,8 @@ class FavoritesView extends ConsumerWidget {
       ),
     );
   }
-
+}
+/*
   List<Widget> _buildRecipeWidgets(List<Recipe> recipes) {
     return recipes.map((recipe) {
       return SimpleRecipe(recipe.imagePath, recipe.title);
@@ -69,3 +66,4 @@ class FavoritesView extends ConsumerWidget {
 
   }
 }
+*/

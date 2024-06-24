@@ -55,10 +55,7 @@ class _RecipesTagViewState extends State<RecipesFilteredView> {
   List<Widget> _buildRecipeWidgets() {
     List<Widget> recipeWidgets = [];
     for (int i = 0; i < 10; i++) {
-      recipeWidgets.add(
-        SimpleRecipe('assets/flammkuchen.jpg',
-            'Flammkuchen hello das ist ein langer text'),
-      );
+
     }
     return recipeWidgets;
   }

@@ -9,7 +9,7 @@ class RecipeService {
     return api.getRecipes(text, time, diet);
   }
 
-  Future<SingleRecipe?> getSingleRecipe(String recipeUrl) async {
+  Future<SingleRecipe> getSingleRecipe(String recipeUrl) async {
     return api.getSingleRecipe(recipeUrl);
   }
 }

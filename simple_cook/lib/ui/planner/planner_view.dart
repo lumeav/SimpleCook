@@ -62,8 +62,8 @@ class _PlannerViewState extends State<PlannerView> {
                     child: Date(DateTime.now().add(Duration(days: i))))),
             Align(alignment: Alignment.centerRight, child: RemoveButton())
           ]),
-          ExtendedRecipe(
-              'assets/flammkuchen.jpg', HeaderRecipeInfos('Flammkuchen', "30min", "einfach")),
+          //ExtendedRecipe(
+          //    'assets/flammkuchen.jpg', HeaderRecipeInfos('Flammkuchen', "30min", "einfach")),
         ]),
       );
     }

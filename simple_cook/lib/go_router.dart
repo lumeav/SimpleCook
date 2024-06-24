@@ -8,7 +8,7 @@ import 'package:simple_cook/ui/recipefinder/recipefinder_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/ui/recipesFiltered/recipesFiltered_view.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+import 'package:simple_cook/service/single_recipe_model.dart';
 // To test:
 import 'package:simple_cook/ui/recipe/recipe_view.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
@@ -41,14 +41,12 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                   name: 'subRecipeView',
                   pageBuilder: (context, state) {
                     return NoTransitionPage(
-                      key: state.pageKey,
-                      child: RecipeView(
                         key: state.pageKey,
-                        imgPath: 'assets/flammkuchen.jpg',
-                        header: HeaderRecipeInfos(
-                            'Flammkuchen', "30min", "einfach"),
-                      ),
-                    );
+                        child: RecipeView(
+                          key: state.pageKey,
+                          recipeUrl: state.uri.queryParameters['recipeUrl'],
+                          difficulty: state.uri.queryParameters['difficulty'],
+                        ));
                   },
                 ),
                 GoRoute(
@@ -68,14 +66,11 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                         name: 'subFilteredRecipeView',
                         pageBuilder: (context, state) {
                           return NoTransitionPage(
-                            key: state.pageKey,
-                            child: RecipeView(
                               key: state.pageKey,
-                              imgPath: 'assets/flammkuchen.jpg',
-                              header: HeaderRecipeInfos(
-                                  'Flammkuchen', "30min", "einfach"),
-                            ),
-                          );
+                              child: RecipeView(
+                                recipeUrl: state.uri.queryParameters['recipeUrl'],
+                                difficulty: state.uri.queryParameters['difficulty'],
+                              ));
                         },
                       ),
                     ]),
@@ -111,14 +106,11 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                       name: 'subFilteredRecipeView1',
                       pageBuilder: (context, state) {
                         return NoTransitionPage(
-                          key: state.pageKey,
-                          child: RecipeView(
                             key: state.pageKey,
-                            imgPath: 'assets/flammkuchen.jpg',
-                            header: HeaderRecipeInfos(
-                                'Flammkuchen', "30min", "einfach"),
-                          ),
-                        );
+                            child: RecipeView(
+                              recipeUrl: state.uri.queryParameters['recipeUrl'],
+                              difficulty: state.uri.queryParameters['difficulty'],
+                            ));
                       },
                     )
                   ],
@@ -143,14 +135,11 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                   name: 'subRecipeView2',
                   pageBuilder: (context, state) {
                     return NoTransitionPage(
-                      key: state.pageKey,
-                      child: RecipeView(
                         key: state.pageKey,
-                        imgPath: 'assets/flammkuchen.jpg',
-                        header: HeaderRecipeInfos(
-                            'Flammkuchen', "30min", "einfach"),
-                      ),
-                    );
+                        child: RecipeView(
+                          recipeUrl: state.uri.queryParameters['recipeUrl'],
+                          difficulty: state.uri.queryParameters['difficulty'],
+                        ));
                   },
                 )
               ])
@@ -173,18 +162,14 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                   name: 'subRecipeView3',
                   pageBuilder: (context, state) {
                     return NoTransitionPage(
-                      key: state.pageKey,
-                      child: RecipeView(
                         key: state.pageKey,
-                        imgPath: 'assets/flammkuchen.jpg',
-                        header: HeaderRecipeInfos(
-                            'Flammkuchen', "30min", "einfach"),
-                      ),
-                    );
+                        child: RecipeView(
+                          recipeUrl: state.uri.queryParameters['recipeUrl'],
+                          difficulty: state.uri.queryParameters['difficulty'],
+                        ));
                   },
                 )
               ])
         ])
       ])
 ]);
-

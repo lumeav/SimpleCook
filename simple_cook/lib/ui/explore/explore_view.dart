@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/ui/explore/explore_controller.dart';
 import 'package:simple_cook/widgets/header_rezept_des_tages.dart';
 import 'package:simple_cook/widgets/extended_recipe.dart';
 import 'package:simple_cook/widgets/search_bar_explore.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:simple_cook/widgets/filter_tag.dart';
-import 'package:simple_cook/widgets/slider_filter.dart';
-import 'package:simple_cook/widgets/search_recipe_button.dart';
 import 'package:simple_cook/service/recipe_service.dart';
 import 'package:simple_cook/service/recipes_model.dart';
+import 'package:simple_cook/common/theme.dart';
 
 class ExploreView extends StatefulWidget {
   const ExploreView({
@@ -22,7 +20,8 @@ class ExploreView extends StatefulWidget {
 }
 
 class _ExploreViewState extends State<ExploreView> {
-  final recipeService = RecipeService();
+  final service = RecipeService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,18 +50,27 @@ class _ExploreViewState extends State<ExploreView> {
               ],
             ),
           ),
-          buildList(recipeService)
+          buildRecipes(service)
         ]));
   }
 }
 
-Widget buildList(RecipeService recipeService) {
+Widget buildRecipes(RecipeService recipeService) {
   return FutureBuilder(
       future: recipeService.getAllRecipes('Tomate'),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return SliverToBoxAdapter(child: CircularProgressIndicator());
-        } else {
+          return SliverToBoxAdapter(
+              child: Container(
+                  padding: const EdgeInsets.all(15),
+                  child: CircularProgressIndicator(
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(SimpleCookColors.primary),
+                  )));
+        } else if (snapshot.hasError) {
+          return SliverToBoxAdapter(child: Text('No data found'));
+        }
+        else {
           final recipes = snapshot.data as List<Recipe>?;
           if (recipes == null) {
             return SliverToBoxAdapter(child: Text('No recipes found'));
@@ -77,10 +85,26 @@ Widget buildList(RecipeService recipeService) {
               crossAxisSpacing: 10,
               children: [
                 for (var recipe in recipes)
-                  SimpleRecipe(recipe.imageUrls.first, recipe.title),
+                  SimpleRecipe(recipe.imageUrls.first, recipe.title, recipe.source, checkDiff(recipe.difficulty)),
               ],
             ),
           );
         }
       });
 }
+
+
+String checkDiff(String? diff) {
+  if (diff == 'easy') {
+    return 'einfach';
+  } else if (diff == 'medium') {
+    return 'mittel';
+  } else if (diff == 'hard') {
+    return 'schwer';
+  } else {
+    return 'unbekannt';
+  }
+}
+
+
+
