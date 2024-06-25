@@ -24,8 +24,6 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
     return Container(
       child: InkWell(
         onTap: () {
-          print(widget.source + ' ' + widget.difficulty);
-          // Placeholder for future logice
           context.goNamed('subRecipeView', queryParameters: {'recipeUrl': widget.source, 'difficulty': widget.difficulty});
         },
         child: Ink(
@@ -48,10 +46,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                         child: Image.network(
                           widget.imgPath!,
                           fit: BoxFit.cover
-                          ), /*Image.asset(
-                          widget.imgPath,
-                          fit: BoxFit.cover,
-                        ),*/
+                          ),
                       ),
                     ),
                     const Positioned(
@@ -66,7 +61,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                   alignment: Alignment.centerLeft,
                   child: AutoSizeText(
                     widget.rezeptName!,
-                    style: SimpleCookTextstyles.subheader,
+                    style: SimpleCookTextstyles.recheader,
                     maxLines: 2,
                   ),
                 ),

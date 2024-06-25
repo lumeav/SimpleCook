@@ -40,6 +40,7 @@ class RecipeInfos extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Icon(Icons.access_time, color: Colors.grey),
+                  SizedBox(width: 5),
                   Text(
                     text_time,
                     style: SimpleCookTextstyles.recInfos,
@@ -66,6 +67,7 @@ class RecipeInfos extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Icon(Icons.bar_chart_rounded, color: Colors.grey),
+                  SizedBox(width: 5),
                   Text(
                     text_dif,
                     style: SimpleCookTextstyles.recInfos,

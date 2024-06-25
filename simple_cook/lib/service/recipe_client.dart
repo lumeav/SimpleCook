@@ -9,7 +9,7 @@ class RecipeClient {
   final String baseUrl = 'https://gustar-io-deutsche-rezepte.p.rapidapi.com/';
 
   Map<String, String> headers = {
-    'x-rapidapi-key' : 'a31ec4e519msh5392f43087ca131p19bf2cjsn801e5421af99',
+    'x-rapidapi-key' : 'ef7514451cmsh370313fb35a05f4p1496c9jsn41a71594229cc',
     'x-rapidapi-host' : 'gustar-io-deutsche-rezepte.p.rapidapi.com',
   };
 

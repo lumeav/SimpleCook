@@ -14,7 +14,6 @@ class SingleRecipe {
     List<Ingredient> ingredients;
     Nutrition nutrition;
     int portions;
-    Rating rating;
     String source;
     List<String> steps;
     String title;
@@ -26,7 +25,6 @@ class SingleRecipe {
         required this.ingredients,
         required this.nutrition,
         required this.portions,
-        required this.rating,
         required this.source,
         required this.steps,
         required this.title,
@@ -39,7 +37,6 @@ class SingleRecipe {
         ingredients: List<Ingredient>.from(json["ingredients"].map((x) => Ingredient.fromJson(x))),
         nutrition: Nutrition.fromJson(json["nutrition"]),
         portions: json["portions"],
-        rating: Rating.fromJson(json["rating"]),
         source: json["source"],
         steps: List<String>.from(json["steps"].map((x) => x)),
         title: json["title"],
@@ -52,7 +49,6 @@ class SingleRecipe {
         "ingredients": List<dynamic>.from(ingredients.map((x) => x.toJson())),
         "nutrition": nutrition.toJson(),
         "portions": portions,
-        "rating": rating.toJson(),
         "source": source,
         "steps": List<dynamic>.from(steps.map((x) => x)),
         "title": title,
@@ -97,25 +93,5 @@ class Nutrition {
 
     Map<String, dynamic> toJson() => {
         "kcal": kcal,
-    };
-}
-
-class Rating {
-    int ratingCount;
-    double ratingValue;
-
-    Rating({
-        required this.ratingCount,
-        required this.ratingValue,
-    });
-
-    factory Rating.fromJson(Map<String, dynamic> json) => Rating(
-        ratingCount: json["ratingCount"],
-        ratingValue: json["ratingValue"]?.toDouble(),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "ratingCount": ratingCount,
-        "ratingValue": ratingValue,
     };
 }

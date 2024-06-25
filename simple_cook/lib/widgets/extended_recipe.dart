@@ -3,11 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:simple_cook/widgets/heart_button.dart';
 
 class ExtendedRecipe extends StatefulWidget {
-  final String imgPath;
   final Widget header;
+  final String imgPath;
+  final String rezeptName;
+  final String source;
+  final String difficulty;
 
 
-  const ExtendedRecipe(this.imgPath, this.header, {super.key});
+  const ExtendedRecipe(this.header, this.imgPath, this.rezeptName, this.source, this.difficulty,{super.key});
 
   @override
   State<ExtendedRecipe> createState() => _ExtendedRecipeState();
@@ -19,7 +22,7 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
     return InkWell(
       onTap: () {
         // Placeholder for future logic
-        context.goNamed('subRecipeView');
+        context.goNamed('subRecipeView', queryParameters: {'recipeUrl': widget.source, 'difficulty': widget.difficulty});
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
@@ -37,7 +40,7 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
                           ),
                         child: AspectRatio(
                           aspectRatio: 1.8,
-                          child: Image.asset(
+                          child: Image.network(
                             widget.imgPath,
                             fit: BoxFit.cover,
                           )

@@ -13,7 +13,6 @@ class Recipe {
     String title;
     double totalTime;
     List<String>? diet;
-    String? keywords;
 
     Recipe({
         this.difficulty,
@@ -24,7 +23,6 @@ class Recipe {
         required this.title,
         required this.totalTime,
         this.diet,
-        this.keywords,
     });
 
     factory Recipe.fromJson(Map<String, dynamic> json) => Recipe(
@@ -35,7 +33,6 @@ class Recipe {
         title: json["title"],
         totalTime: json["totalTime"],
         diet: json["diet"] == null ? [] : List<String>.from(json["diet"]!.map((x) => x)),
-        keywords: json["keywords"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -47,7 +44,6 @@ class Recipe {
         "title": title,
         "totalTime": totalTime,
         "diet": diet == null ? [] : List<dynamic>.from(diet!.map((x) => x)),
-        "keywords": keywords,
     };
 }
 
