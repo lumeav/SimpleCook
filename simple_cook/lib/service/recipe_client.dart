@@ -9,8 +9,8 @@ class RecipeClient {
   final String baseUrl = 'https://gustar-io-deutsche-rezepte.p.rapidapi.com/';
 
   Map<String, String> headers = {
-    'x-rapidapi-key' : 'ef7514451cmsh370313fb35a05f4p1496c9jsn41a71594229cc',
     'x-rapidapi-host' : 'gustar-io-deutsche-rezepte.p.rapidapi.com',
+    'x-rapidapi-key' : 'ef7514451cmsh370313fb35a05f4p1496c9jsn41a71594229c',
   };
 
   Future<List<Recipe>?> getRecipes(String text, String? time, String? diet) async {
@@ -22,7 +22,7 @@ class RecipeClient {
     if (response.statusCode == 200) {
       return recipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
     } else {
-      throw Exception('Failed to load recipes');
+       throw Exception('Failed to load recipes. Status code: ${response.statusCode}, Response body: ${response.body}');
     }
   }
 
@@ -31,11 +31,10 @@ class RecipeClient {
     var url = baseUrl + 'crawl?target_url=' + recipeUrl;
 
     var response = await client.get(Uri.parse(url), headers: headers);
-    print("response: " + response.body.toString());
     if (response.statusCode == 200) {
       return singleRecipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
     } else {
-      throw Exception('Failed to load single recipe');
+      throw Exception('Failed to load recipes. Status code: ${response.statusCode}, Response body: ${response.body}');
     }
   }
 
