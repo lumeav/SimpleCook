@@ -5,7 +5,6 @@ import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:simple_cook/service/recipe_service.dart';
 import 'package:simple_cook/service/single_recipe_model.dart';
-import 'package:simple_cook/service/persistence_service.dart';
 
 class SimpleRecipe extends StatefulWidget {
   final String imgPath;
