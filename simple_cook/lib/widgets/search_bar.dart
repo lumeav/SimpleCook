@@ -31,7 +31,7 @@ class _SearchBarState extends State<SearchBarFilter> {
         child: SearchAnchor.bar(
             barBackgroundColor: MaterialStateProperty.all(Colors.white),
             dividerColor: Colors.black,
-            barHintText: "Rezeptfinder...",
+            barHintText: "Lebensmittel...",
             isFullScreen: false,
             viewBackgroundColor: SimpleCookColors.searchBar,
             suggestionsBuilder:
