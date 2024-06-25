@@ -48,32 +48,7 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                           difficulty: state.uri.queryParameters['difficulty'],
                         ));
                   },
-                ),
-                GoRoute(
-                    path: 'subRecipesFiltered',
-                    name: 'subRecipesFiltered',
-                    pageBuilder: (context, state) {
-                      return NoTransitionPage(
-                        key: state.pageKey,
-                        child: RecipesFilteredView(
-                          key: state.pageKey,
-                        ),
-                      );
-                    },
-                    routes: [
-                      GoRoute(
-                        path: 'subFilteredRecipeView',
-                        name: 'subFilteredRecipeView',
-                        pageBuilder: (context, state) {
-                          return NoTransitionPage(
-                              key: state.pageKey,
-                              child: RecipeView(
-                                recipeUrl: state.uri.queryParameters['recipeUrl'],
-                                difficulty: state.uri.queryParameters['difficulty'],
-                              ));
-                        },
-                      ),
-                    ]),
+                )
               ]),
         ]),
         StatefulShellBranch(routes: [
@@ -90,8 +65,8 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
               },
               routes: [
                 GoRoute(
-                  path: 'subRecipesFiltered1',
-                  name: 'subRecipesFiltered1',
+                  path: 'subRecipesFiltered',
+                  name: 'subRecipesFiltered',
                   pageBuilder: (context, state) {
                     return NoTransitionPage(
                       key: state.pageKey,
@@ -102,8 +77,8 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                   },
                   routes: [
                     GoRoute(
-                      path: 'subFilteredRecipeView1',
-                      name: 'subFilteredRecipeView1',
+                      path: 'subFilteredRecipeView',
+                      name: 'subFilteredRecipeView',
                       pageBuilder: (context, state) {
                         return NoTransitionPage(
                             key: state.pageKey,
