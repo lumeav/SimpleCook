@@ -4,6 +4,8 @@ import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:simple_cook/service/recipe_service.dart';
+import 'package:simple_cook/service/single_recipe_model.dart';
+import 'package:simple_cook/service/persistence_service.dart';
 
 class SimpleRecipe extends StatefulWidget {
   final String imgPath;
@@ -11,20 +13,35 @@ class SimpleRecipe extends StatefulWidget {
   final String source;
   final String difficulty;
 
-  const SimpleRecipe(this.imgPath, this.rezeptName, this.source, this.difficulty, {super.key});
+  const SimpleRecipe(
+      this.imgPath, this.rezeptName, this.source, this.difficulty,
+      {super.key});
 
   @override
   State<SimpleRecipe> createState() => _SimpleRecipeState();
 }
 
 class _SimpleRecipeState extends State<SimpleRecipe> {
-
   @override
   Widget build(BuildContext context) {
+    final recipe = SingleRecipe(
+      diet: [], // Provide actual values as needed
+      imageUrls: [widget.imgPath],
+      ingredients: [], // Provide actual values as needed
+      nutrition: Nutrition(kcal: 0), // Provide actual values as needed
+      portions: 1, // Provide actual values as needed
+      source: widget.source,
+      steps: [], // Provide actual values as needed
+      title: widget.rezeptName,
+      totalTime: 0.0, // Provide actual values as needed
+    );
     return Container(
       child: InkWell(
         onTap: () {
-          context.goNamed('subRecipeView', queryParameters: {'recipeUrl': widget.source, 'difficulty': widget.difficulty});
+          context.goNamed('subRecipeView', queryParameters: {
+            'recipeUrl': widget.source,
+            'difficulty': widget.difficulty
+          });
         },
         child: Ink(
             decoration: BoxDecoration(
@@ -43,16 +60,17 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                           ),
                       child: AspectRatio(
                         aspectRatio: 1.1,
-                        child: Image.network(
-                          widget.imgPath!,
-                          fit: BoxFit.cover
-                          ),
+                        child:
+                            Image.network(widget.imgPath!, fit: BoxFit.cover),
                       ),
                     ),
-                    const Positioned(
+                    Positioned(
                       bottom: 10,
                       right: 10,
-                      child: HeartButton(true),
+                      child: HeartButton(
+                        true,
+                        recipe: recipe,
+                      ),
                     )
                   ],
                 ),

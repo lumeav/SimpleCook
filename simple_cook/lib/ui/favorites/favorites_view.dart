@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/common/custom_navbar.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/service/persistence_service.dart';
+import 'package:simple_cook/service/single_recipe_model.dart';
 
 class FavoritesView extends ConsumerWidget {
 
@@ -13,6 +14,8 @@ class FavoritesView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final persistenceService = PersistenceService();
+    final favoriteRecipes = persistenceService.getFavoriteRecipes();
 
     return Scaffold(
       appBar: SimpleCookAppBar('SimpleCook'),
@@ -27,12 +30,12 @@ class FavoritesView extends ConsumerWidget {
               child: Column(
                 children: [
                   HeaderGreyBackground("Favoriten", FontWeight.bold),
-                  ElevatedButton(
-                  onPressed: () {
-                  },
-                  child: Text('Add Mock Recipe'),
-                ),
-                  //_buildRowsRecipe(_buildRecipeWidgets(favoriteRecipes), scrollViewHeight),
+                  if (favoriteRecipes.isEmpty)
+                    Center(
+                      child: Text('No favorite recipes'),
+                    )
+                  else
+                    _buildRowsRecipe(_buildRecipeWidgets(favoriteRecipes), scrollViewHeight),
                 ],
               ),
             ),
@@ -42,12 +45,17 @@ class FavoritesView extends ConsumerWidget {
     );
   }
 }
-/*
-  List<Widget> _buildRecipeWidgets(List<Recipe> recipes) {
-    return recipes.map((recipe) {
-      return SimpleRecipe(recipe.imagePath, recipe.title);
-    }).toList();
-  }
+
+  List<Widget> _buildRecipeWidgets(List<SingleRecipe> recipes) {
+  return recipes.map((recipe) {
+    return SimpleRecipe(
+      recipe.imageUrls.isNotEmpty ? recipe.imageUrls.first : '',
+      recipe.title,
+      recipe.source,
+      '', // Add actual difficulty if available or leave it as an empty string
+    );
+  }).toList();
+}
 
   Widget _buildRowsRecipe(List<Widget> recipeWidgets, double height) {
     return Container(
@@ -58,12 +66,8 @@ class FavoritesView extends ConsumerWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
-        children: [
-          for (var recipe in recipeWidgets) recipe,
-        ],
-        ),
+        children: recipeWidgets,
+      ),
     );
-
   }
-}
-*/
+
