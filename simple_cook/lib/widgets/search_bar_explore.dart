@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/theme.dart';
 
 class SearchBarExplore extends StatefulWidget {
@@ -20,7 +21,7 @@ class _SearchBarState extends State<SearchBarExplore> {
 
   @override
   Widget build(BuildContext context) {
-
+    List<String> lastInput = [];
 
     return Column(children: [
       Container(
@@ -29,16 +30,16 @@ class _SearchBarState extends State<SearchBarExplore> {
             dividerColor: Colors.black,
             barHintText: "Suchen...",
             isFullScreen: false,
-            //TODO: searchbar needs better color!
+            onSubmitted: (value) {
+              lastInput.add(value);
+              //context.goNamed()
+            }
+            ,
             viewBackgroundColor: SimpleCookColors.searchBar,
             suggestionsBuilder:
-                (BuildContext context, SearchController controller) async {
-              searchQuery = controller.text;
-              final List<String> vegetables =
-                  (await database.search(searchQuery!)).toList();
-
-              return List<ListTile>.generate(vegetables.length, (int index) {
-                final String item = vegetables[index];
+                (BuildContext context, SearchController controller) {
+              return List<ListTile>.generate(lastInput.length, (int index) {
+                final String item = lastInput[index];
                 return ListTile(
                   title: Text(item),
                   titleAlignment: ListTileTitleAlignment.center,
@@ -46,7 +47,6 @@ class _SearchBarState extends State<SearchBarExplore> {
                     setState(() {
                       controller.closeView(item);
                       selectedTile = item;
-                      //should return the recipes with the selected ingredient
                     });
                   },
                 );
@@ -57,26 +57,3 @@ class _SearchBarState extends State<SearchBarExplore> {
   }
 }
 
-class database {
-  //should be updated to build connection to actual database
-  static const List<String> _kOptions = <String>[
-    'Tomaten',
-    'Kartoffel',
-    'Ei',
-    'Karrotte',
-    'Karrtr'
-        'Kardfcgdfb'
-        'Klöereasr'
-        'Zwiebel',
-    'Knoblauch',
-    'Paprika',
-    'Noah',
-  ];
-
-  static Future<Iterable<String>> search(String query) async {
-    if (query == null || query.isEmpty) {
-      return Iterable<String>.empty();
-    }
-    return _kOptions.where((String option) => option.contains(query));
-  }
-}
