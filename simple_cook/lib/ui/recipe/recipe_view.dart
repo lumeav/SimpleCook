@@ -50,10 +50,10 @@ class _RecipeViewState extends State<RecipeView> {
                 Container(
                     padding: EdgeInsets.symmetric(vertical: 5),
                     color: Colors.white,
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        AddPlaner(),
+                        AddPlaner(recipe: recipe,),
                         SizedBox(width: 10),
                         //HeartButton(false)
                       ],

@@ -10,7 +10,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/service/persistence_service.dart';
 import 'package:simple_cook/service/persistence_service_model.dart';
 import 'go_router.dart';
-import 'package:path_provider/path_provider.dart' as path_provider;
+import 'package:hive_flutter/hive_flutter.dart';
 
 // To test:
 import 'package:simple_cook/ui/recipe/recipe_view.dart';
@@ -22,20 +22,21 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('de_DE', null);
 
-  /* Dont run this code at the moment, it is very buggy and may mess up your emulator
-  final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
-  // Initialize Hive and register adapters
-  Hive.init(appDocumentDir.path);
+  //Dont run this code at the moment, it is very buggy and may mess up your emulator
+
+  //Initialize Hive
+  await Hive.initFlutter();
+  // Register Hive adapters
   Hive.registerAdapter(SingleRecipeAdapter());
   Hive.registerAdapter(IngredientAdapter());
-  Hive.registerAdapter(NutritionAdapter());
 
   // Initialize PersistenceService
+  //await PersistenceService().clearFavorites();
   final persistenceService = PersistenceService();
   await persistenceService.init();
 
   //await persistenceService.clearFavorites();
-  */
+  
   runApp(ProviderScope(child: MyApp()));
 }
 

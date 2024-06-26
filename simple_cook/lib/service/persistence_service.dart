@@ -11,10 +11,19 @@ class PersistenceService {
   PersistenceService._internal();
 
   late Box<SingleRecipe> _favoritesBox;
+  late Box<List<SingleRecipe>> _plannerBox; 
 
   Future<void> init() async {
-    //await Hive.deleteFromDisk();
-    _favoritesBox = await Hive.openBox<SingleRecipe>('favoritesBox');
+    try {
+      // Open the box for 'favoritesBox'
+      //print("Looks like it worked");
+      _favoritesBox = await Hive.openBox<SingleRecipe>('favoritesBox');
+      _plannerBox = await Hive.openBox<List<SingleRecipe>>('plannerBox');
+    } catch (e) {
+      print('Error initializing Hive box: $e');
+      // Handle initialization error gracefully
+      rethrow; // Re-throw the exception to propagate it further
+    }
   }
 
   Future<void> clearFavorites() async {
@@ -35,5 +44,21 @@ class PersistenceService {
 
   Future<void> removeFavorite(SingleRecipe recipe) async {
     await _favoritesBox.delete(recipe.title);
+  }
+  Future<void> addRecipeToPlanner(String date, SingleRecipe recipe) async {
+    List<SingleRecipe> recipes = _plannerBox.get(date, defaultValue: []) ?? [];
+    recipes.add(recipe);
+    await _plannerBox.put(date, recipes);
+  }
+
+  // Method to get recipes for a specific date from planner
+  List<SingleRecipe> getRecipesForDate(String date) {
+    return _plannerBox.get(date, defaultValue: []) ?? []; // Handle potential null by providing default empty list
+  }
+  
+  Future<void> removeRecipeFromPlanner(String date, SingleRecipe recipe) async {
+    List<SingleRecipe> recipes = _plannerBox.get(date, defaultValue: []) ?? [];
+    recipes.removeWhere((r) => r.title == recipe.title); // Remove based on title (you might need a better identifier)
+    await _plannerBox.put(date, recipes);
   }
 }

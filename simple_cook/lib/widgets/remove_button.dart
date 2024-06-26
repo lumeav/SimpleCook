@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:simple_cook/service/single_recipe_model.dart';
 
 class RemoveButton extends StatelessWidget {
-  const RemoveButton({super.key});
+  final SingleRecipe recipe;
+  final Function(SingleRecipe) onPressed; // Adjusted to accept SingleRecipe
+  const RemoveButton({
+    required this.recipe,
+    required this.onPressed,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +21,12 @@ class RemoveButton extends StatelessWidget {
         border: Border.all(
           color: Colors.grey,
           width: 3,
-
-        )
+        ),
       ),
       child: Center(
         child: IconButton(
           padding: EdgeInsets.zero,
-          onPressed: () {
-            // Placeholder for future logic
-          },
+          onPressed: () => onPressed(recipe), // Pass recipe to onPressed callback
           icon: const FaIcon(
             FontAwesomeIcons.minus,
             color: Colors.grey,

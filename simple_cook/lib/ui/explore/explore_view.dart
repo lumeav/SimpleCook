@@ -10,9 +10,11 @@ import 'package:simple_cook/widgets/header_grey_background.dart';
 import 'package:simple_cook/service/recipe_service.dart';
 import 'package:simple_cook/service/recipes_model.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:math';
+//import 'package:simple_cook/ui/favorites/favorites_provider.dart';
 
-class ExploreView extends StatefulWidget {
+class ExploreView extends ConsumerStatefulWidget {
   const ExploreView({
     Key? key,
   }) : super(key: key);
@@ -21,7 +23,7 @@ class ExploreView extends StatefulWidget {
   _ExploreViewState createState() => _ExploreViewState();
 }
 
-class _ExploreViewState extends State<ExploreView> {
+class _ExploreViewState extends ConsumerState<ExploreView> {
   List<Recipe>? recipes;
   bool isSearching = false;
   bool error = false;

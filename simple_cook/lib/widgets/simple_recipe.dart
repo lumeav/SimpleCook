@@ -27,7 +27,6 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
       diet: [], // Provide actual values as needed
       imageUrls: [widget.imgPath],
       ingredients: [], // Provide actual values as needed
-      nutrition: Nutrition(kcal: 0), // Provide actual values as needed
       portions: 1, // Provide actual values as needed
       source: widget.source,
       steps: [], // Provide actual values as needed

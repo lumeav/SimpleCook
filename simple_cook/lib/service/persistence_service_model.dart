@@ -37,19 +37,3 @@ class IngredientAdapter extends TypeAdapter<Ingredient> {
   }
 }
 
-class NutritionAdapter extends TypeAdapter<Nutrition> {
-  @override
-  final int typeId = 2; // Unique identifier for this type in Hive
-
-  @override
-  Nutrition read(BinaryReader reader) {
-    var map = reader.readMap();
-    Map<String, dynamic> json = map.cast<String, dynamic>();
-    return Nutrition.fromJson(json);
-  }
-
-  @override
-  void write(BinaryWriter writer, Nutrition obj) {
-    writer.writeMap(obj.toJson());
-  }
-}

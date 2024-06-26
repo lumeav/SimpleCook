@@ -13,7 +13,6 @@ class SingleRecipe {
   List<String>? diet;
   List<String> imageUrls;
   List<Ingredient> ingredients;
-  Nutrition nutrition;
   int portions;
   String source;
   List<String> steps;
@@ -24,7 +23,6 @@ class SingleRecipe {
     required this.diet,
     required this.imageUrls,
     required this.ingredients,
-    required this.nutrition,
     required this.portions,
     required this.source,
     required this.steps,
@@ -39,7 +37,6 @@ class SingleRecipe {
         imageUrls: List<String>.from(json["image_urls"].map((x) => x)),
         ingredients: List<Ingredient>.from(
             json["ingredients"].map((x) => Ingredient.fromJson(x))),
-        nutrition: Nutrition.fromJson(json["nutrition"]),
         portions: json["portions"],
         source: json["source"],
         steps: List<String>.from(json["steps"].map((x) => x)),
@@ -51,7 +48,6 @@ class SingleRecipe {
         "diet": diet == null ? [] : List<dynamic>.from(diet!.map((x) => x)),
         "image_urls": List<dynamic>.from(imageUrls.map((x) => x)),
         "ingredients": List<dynamic>.from(ingredients.map((x) => x.toJson())),
-        "nutrition": nutrition.toJson(),
         "portions": portions,
         "source": source,
         "steps": List<dynamic>.from(steps.map((x) => x)),
@@ -81,21 +77,5 @@ class Ingredient {
         "amount": amount,
         "name": name,
         "unit": unit,
-      };
-}
-
-class Nutrition {
-  int kcal;
-
-  Nutrition({
-    required this.kcal,
-  });
-
-  factory Nutrition.fromJson(Map<String, dynamic> json) => Nutrition(
-        kcal: json["kcal"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "kcal": kcal,
       };
 }
