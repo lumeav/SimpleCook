@@ -105,6 +105,6 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
 
 abstract class ExploreController {
   Future<void> buildRecipes();
-  //void goToFilteredRecipesView({required final String query});
   String checkDiff(String? diff);
+    //void goToFilteredRecipesView({required final String query}); // Todo: reimplement with NavigationService
 }

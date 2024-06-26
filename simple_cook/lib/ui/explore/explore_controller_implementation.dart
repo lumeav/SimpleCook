@@ -15,9 +15,9 @@ class ExploreControllerImplementation extends _$ExploreControllerImplementation
 
   Future<void> buildRecipes() async {
     try {
-      final recipeService = RecipeService();
+      final RecipeService recipeService = RecipeService();
       List<Recipe>? recipes = await recipeService.getAllRecipes('Hauptspeise');
-      var random = Random();
+      final Random random = Random();
       Recipe recipeOfTheDay = recipes![random.nextInt(recipes.length)];
       recipes.remove(recipeOfTheDay);
 
@@ -31,6 +31,7 @@ class ExploreControllerImplementation extends _$ExploreControllerImplementation
     }
   }
 
+  @override
   String checkDiff(String? diff) {
     if (diff == 'easy') {
       return 'einfach';
