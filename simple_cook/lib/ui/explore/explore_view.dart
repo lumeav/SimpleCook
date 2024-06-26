@@ -12,6 +12,7 @@ import 'package:simple_cook/service/recipes_model.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'explore_controller_implementation.dart';
 import 'dart:math';
+//import 'package:simple_cook/ui/favorites/favorites_provider.dart';
 
 class ExploreView extends ConsumerStatefulWidget {
   const ExploreView({
@@ -23,6 +24,8 @@ class ExploreView extends ConsumerStatefulWidget {
 }
 
 class _ExploreViewState extends ConsumerState<ExploreView> {
+
+
   @override
   void initState() {
     super.initState();

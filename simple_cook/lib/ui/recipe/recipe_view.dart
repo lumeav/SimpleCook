@@ -30,11 +30,14 @@ class _RecipeViewState extends State<RecipeView> {
   SingleRecipe? recipe;
   bool isSearching = false;
   bool error = false;
+  bool isFavorite = false; // Track favorite status
 
   @override
   void initState() {
     super.initState();
     buildRecipe();
+    // Check favorite status here (e.g., using state management or persistence service)
+    // Example: isFavorite = checkIfFavorite(recipe.id);
   }
 
   @override
@@ -47,12 +50,12 @@ class _RecipeViewState extends State<RecipeView> {
                 Container(
                     padding: EdgeInsets.symmetric(vertical: 5),
                     color: Colors.white,
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        AddPlaner(),
+                        AddPlaner(recipe: recipe,),
                         SizedBox(width: 10),
-                        HeartButton(false)
+                        //HeartButton(false)
                       ],
                     )),
                 Expanded(

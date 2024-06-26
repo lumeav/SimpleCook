@@ -1,52 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/service/persistence_service.dart';
+import 'package:simple_cook/service/single_recipe_model.dart';
+import 'package:simple_cook/ui/favorites/favorites_provider.dart';
 
-class HeartButton extends ConsumerStatefulWidget {
+class HeartButton extends ConsumerWidget {
   final bool border;
+  final SingleRecipe recipe;
 
-  const HeartButton(
-    this.border,{
-    super.key,
-  });
+  const HeartButton(this.border, {required this.recipe, Key? key}) : super(key: key);
 
   @override
-  ConsumerState<HeartButton> createState() => _HeartButtonState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final favoritesNotifier = ref.watch(favoritesProvider.notifier);
+    final isFavorite = ref.watch(favoritesProvider.notifier).isFavorite(recipe);
 
-class _HeartButtonState extends ConsumerState<HeartButton> {
-  bool _pressed = false;
-
-  void _onPressed() {
-    setState(() {
-      _pressed = !_pressed;
-    });
-    if (_pressed) {
-
-    } else {
-
+    void _onPressed() {
+      favoritesNotifier.toggleFavorite(recipe); // Toggle favorite on press
     }
-  }
-
-  @override
-  Widget build(BuildContext context, ) {
-
 
     var size = MediaQuery.of(context).size.width * 0.07;
-    if (!widget.border) {
+    if (!border) {
       size = size + 22;
     }
     return Container(
       width: size + 8,
-      height:  size + 8,
-      decoration: widget.border
+      height: size + 8,
+      decoration: border
           ? const BoxDecoration(shape: BoxShape.circle, color: Colors.white)
           : null,
       child: IconButton(
-          onPressed: _onPressed,
-          padding: EdgeInsets.zero,
-          icon: Icon(_pressed ? Icons.favorite : Icons.favorite_border,
-              color: SimpleCookColors.primary, size: size )),
+        onPressed: _onPressed,
+        padding: EdgeInsets.zero,
+        icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border,
+            color: SimpleCookColors.primary, size: size),
+      ),
     );
   }
 }

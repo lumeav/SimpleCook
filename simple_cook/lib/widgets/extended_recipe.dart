@@ -46,11 +46,13 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
                           )
                       ),
                     ),
+                    /*
                     const Positioned(
                       bottom: 10,
                       right: 10,
                       child: HeartButton(true),
                     )
+                    */
                   ]
                 ),
                 widget.header
