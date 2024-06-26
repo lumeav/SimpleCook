@@ -10,9 +10,11 @@ part 'explore_controller_implementation.g.dart';
 @riverpod
 class ExploreControllerImplementation extends _$ExploreControllerImplementation
     implements ExploreController {
+
   @override
   ExploreModel build() => const ExploreModel();
 
+  @override
   Future<void> buildRecipes() async {
     try {
       final RecipeService recipeService = RecipeService();
