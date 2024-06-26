@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:simple_cook/ui/explore/explore_view.dart';
 import 'package:simple_cook/ui/favorites/favorites_view.dart';
@@ -16,6 +17,9 @@ import 'package:simple_cook/widgets/header_recipe_infos.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,   // Set the orientation of our App to portrait mode
+  ]);
   await initializeDateFormatting('de_DE', null);
   runApp(ProviderScope(child: MyApp()));
 }
