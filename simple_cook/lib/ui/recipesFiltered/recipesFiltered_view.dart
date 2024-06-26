@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/widgets/search_bar_explore.dart';
+import 'package:simple_cook/ui/explore/widgets/search_bar_explore.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/widgets/filter_button.dart';
