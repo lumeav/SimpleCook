@@ -13,8 +13,8 @@ class HeartButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favoritesNotifier = ref.read(favoritesProvider.notifier);
-    final isFavorite = ref.watch(favoritesProvider).contains(recipe);
+    final favoritesNotifier = ref.watch(favoritesProvider.notifier);
+    final isFavorite = ref.watch(favoritesProvider.notifier).isFavorite(recipe);
 
     void _onPressed() {
       favoritesNotifier.toggleFavorite(recipe); // Toggle favorite on press

@@ -26,7 +26,7 @@ class FavoritesNotifier extends StateNotifier<List<SingleRecipe>> {
   }
 
   bool isFavorite(SingleRecipe recipe) {
-    return state.contains(recipe);
+    return _persistenceService.isFavorite(recipe);
   }
   
   Future<void> toggleFavorite(SingleRecipe recipe) async {
@@ -38,7 +38,6 @@ class FavoritesNotifier extends StateNotifier<List<SingleRecipe>> {
     state = await _persistenceService.getFavoriteRecipes(); // Update state after toggling
   }
 }
-  
 
 final favoritesProvider = StateNotifierProvider<FavoritesNotifier, List<SingleRecipe>>((ref) {
   return FavoritesNotifier();
