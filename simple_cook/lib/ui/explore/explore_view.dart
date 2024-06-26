@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:simple_cook/ui/explore/explore_controller.dart';
 import 'package:simple_cook/widgets/header_rezept_des_tages.dart';
 import 'package:simple_cook/widgets/extended_recipe.dart';
 import 'package:simple_cook/widgets/search_bar_explore.dart';
@@ -23,6 +22,7 @@ class ExploreView extends StatefulWidget {
 
 class _ExploreViewState extends State<ExploreView> {
   List<Recipe>? recipes;
+  Recipe? recipeoftheday;
   bool isSearching = false;
   bool error = false;
 
@@ -51,9 +51,8 @@ class _ExploreViewState extends State<ExploreView> {
                 SliverList(
                   delegate: SliverChildListDelegate(
                     [
-                      buildHeaderRecipeOfTheDay(),
-                      HeaderGreyBackground(
-                          'Entdecke neue Rezepte', FontWeight.w300),
+                      buildHeaderRecipeOfTheDay(recipeoftheday!),
+                      HeaderGreyBackground('Entdecke neue Rezepte', FontWeight.w300),
                     ],
                   ),
                 ),
@@ -85,6 +84,8 @@ class _ExploreViewState extends State<ExploreView> {
   Future<void> buildRecipes() async {
     final recipeService = RecipeService();
     recipes = await recipeService.getAllRecipes('Hauptspeise');
+    var random = Random();
+    recipeoftheday = recipes![random.nextInt(recipes!.length)];
     if (recipes == null) {
       error = true;
     }
@@ -93,9 +94,7 @@ class _ExploreViewState extends State<ExploreView> {
     });
   }
 
-  Widget buildHeaderRecipeOfTheDay() {
-    var random = Random();
-    var recipe = recipes![random.nextInt(recipes!.length)];
+  Widget buildHeaderRecipeOfTheDay(Recipe recipe) {
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15, top: 10.0),
       child: ExtendedRecipe(

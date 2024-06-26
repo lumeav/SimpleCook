@@ -48,7 +48,19 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                           difficulty: state.uri.queryParameters['difficulty'],
                         ));
                   },
-                )
+                ),
+                GoRoute(
+                  path: 'subRecipesFiltered',
+                  name: 'subRecipesFiltered',
+                  pageBuilder: (context, state) {
+                  return NoTransitionPage(
+                      key: state.pageKey,
+                      child: RecipesFilteredView(
+                        key: state.pageKey,
+                        search: state.uri.queryParameters['search'],
+                        ));
+                }),
+
               ]),
         ]),
         StatefulShellBranch(routes: [
@@ -65,8 +77,8 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
               },
               routes: [
                 GoRoute(
-                  path: 'subRecipesFiltered',
-                  name: 'subRecipesFiltered',
+                  path: 'subRecipesFiltered1',
+                  name: 'subRecipesFiltered1',
                   pageBuilder: (context, state) {
                     return NoTransitionPage(
                       key: state.pageKey,

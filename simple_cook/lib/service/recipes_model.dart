@@ -8,7 +8,7 @@ class Recipe {
     String? difficulty;
     List<String> imageUrls;
     List<Ingredient> ingredients;
-    int portions;
+    int? portions;
     String source;
     String title;
     double totalTime;
@@ -39,7 +39,6 @@ class Recipe {
         "difficulty": difficulty,
         "image_urls": List<dynamic>.from(imageUrls.map((x) => x)),
         "ingredients": List<dynamic>.from(ingredients.map((x) => x.toJson())),
-        "portions": portions,
         "source": source,
         "title": title,
         "totalTime": totalTime,

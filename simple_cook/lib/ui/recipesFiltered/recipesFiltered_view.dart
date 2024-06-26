@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/common/custom_navbar.dart';
 import 'package:simple_cook/widgets/search_bar_explore.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/widgets/filter_button.dart';
+import 'package:simple_cook/service/recipes_model.dart';
+import 'package:simple_cook/service/recipe_service.dart';
+import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
 
-
 class RecipesFilteredView extends StatefulWidget {
+  final String? search;
 
   const RecipesFilteredView({
+    this.search,
     Key? key,
   }) : super(key: key);
 
@@ -18,69 +21,73 @@ class RecipesFilteredView extends StatefulWidget {
 }
 
 class _RecipesTagViewState extends State<RecipesFilteredView> {
-    @override
+  List<Recipe>? recipes;
+  bool isSearching = false;
+  bool error = false;
+
+  @override
+  void initState() {
+    super.initState();
+    print('search: ${widget.search}');
+    buildRecipes(widget.search!);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
-      backgroundColor: Colors.grey[200],
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            pinned: true,
-            backgroundColor: Colors.white,
-            surfaceTintColor: Colors.white,
-            toolbarHeight: 80,
-            title: Container(
-
-              //color: Colors.white,
-              child: const Row(children: [
-                Expanded(child: SearchBarExplore()),
-                FilterButton(),
-              ]),
-            ),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                HeaderGreyBackground('Gefundene Rezepte', FontWeight.w300),
-                ..._buildRowsRecipe(_buildRecipeWidgets()),
-              ],
-            ),
-            )
-        ],
-      ),
-    );
+        appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+        backgroundColor: Colors.grey[200],
+        body: isSearching
+            ? CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                      child: HeaderGreyBackground('Suchergebnisse für ${widget.search}', FontWeight.w300)),
+                  SliverPadding(
+                    padding: const EdgeInsets.only(
+                        left: 15, right: 15, top: 10.0, bottom: 10.0),
+                    sliver: SliverGrid.count(
+                      childAspectRatio: 0.78,
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 10,
+                      crossAxisSpacing: 10,
+                      children: [
+                        for (var recipe in recipes!)
+                          SimpleRecipe(recipe.imageUrls.first, recipe.title,
+                              recipe.source, checkDiff(recipe.difficulty)),
+                      ],
+                    ),
+                  )
+                ],
+              )
+            : !error
+                ? const Center(
+                    child: CircularProgressIndicator(
+                    valueColor:
+                        AlwaysStoppedAnimation<Color>(SimpleCookColors.primary),
+                  ))
+                : const Center(child: Text('Error while loading recipes')));
   }
 
-  List<Widget> _buildRecipeWidgets() {
-    List<Widget> recipeWidgets = [];
-    for (int i = 0; i < 10; i++) {
-
+  Future<void> buildRecipes(String search) async {
+    final recipeService = RecipeService();
+    recipes = await recipeService.getAllRecipes(search);
+    if (recipes == null) {
+      error = true;
     }
-    return recipeWidgets;
+    setState(() {
+      isSearching = true;
+    });
   }
 
-  List<Widget> _buildRowsRecipe(List<Widget> recipeWidgets) {
-  List<Widget> reciperows = [];
-  for (int i = 0; i < recipeWidgets.length; i += 2) {
-    reciperows.add(
-      Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10.0),
-        child: Row(
-          children: [
-            Flexible(flex: 1, child: recipeWidgets[i]),
-            SizedBox(width: 10), // Add some spacing between the buttons
-            if (i + 1 < recipeWidgets.length)
-              Flexible(flex: 1, child: recipeWidgets[i + 1]),
-            if (i + 1 >= recipeWidgets.length)
-              Flexible(flex: 1, child: SizedBox.shrink()), // Empty box for layout consistency
-          ],
-        ),
-      ),
-    );
+  String checkDiff(String? diff) {
+    if (diff == 'easy') {
+      return 'einfach';
+    } else if (diff == 'medium') {
+      return 'mittel';
+    } else if (diff == 'hard') {
+      return 'schwer';
+    } else {
+      return 'unbekannt';
+    }
   }
-  return reciperows;
 }
-}
-

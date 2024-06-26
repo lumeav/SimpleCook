@@ -31,8 +31,10 @@ class _SearchBarState extends State<SearchBarExplore> {
             barHintText: "Suchen...",
             isFullScreen: false,
             onSubmitted: (value) {
-              lastInput.add(value);
-              //context.goNamed()
+              if (lastInput.contains(value) == false) {
+                lastInput.add(value);
+              }
+              context.goNamed('subRecipesFiltered', queryParameters: {'search': value});
             }
             ,
             viewBackgroundColor: SimpleCookColors.searchBar,
@@ -50,6 +52,7 @@ class _SearchBarState extends State<SearchBarExplore> {
                     });
                   },
                 );
+
               });
             }),
       ),
