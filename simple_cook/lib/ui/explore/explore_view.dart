@@ -9,6 +9,7 @@ import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
 import 'package:simple_cook/service/recipe_service.dart';
 import 'package:simple_cook/service/recipes_model.dart';
+import 'package:simple_cook/ui/favorites/favorites_provider.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'explore_controller_implementation.dart';
 import 'dart:math';
@@ -36,6 +37,8 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
   @override
   Widget build(BuildContext context) {
     final exploreState = ref.watch(exploreControllerImplementationProvider);
+    ref.watch(favoritesProvider); // watch if Recipe gets added to Favorites
+
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
         backgroundColor: Colors.grey[200],
