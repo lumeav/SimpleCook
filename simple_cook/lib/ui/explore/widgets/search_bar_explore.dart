@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:simple_cook/ui/explore/explore_controller_implementation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SearchBarExplore extends StatefulWidget {
+class SearchBarExplore extends ConsumerStatefulWidget {
   const SearchBarExplore({super.key});
 
   @override
-  State<SearchBarExplore> createState() => _SearchBarState();
+  ConsumerState<SearchBarExplore> createState() => _SearchBarState();
 }
 
 //TODO buttons are not deleted right
 
-class _SearchBarState extends State<SearchBarExplore> {
+class _SearchBarState extends ConsumerState<SearchBarExplore> {
   String? searchQuery;
   String selectedTile = '';
 
@@ -31,8 +33,11 @@ class _SearchBarState extends State<SearchBarExplore> {
             barHintText: "Suchen...",
             isFullScreen: false,
             onSubmitted: (value) {
-              lastInput.add(value);
-              //context.goNamed()
+              if (lastInput.contains(value) == false) {
+                lastInput.add(value);
+              }
+              //ref.read(exploreControllerImplementationProvider.notifier).goToFilteredRecipesView(query: value);
+              context.goNamed('subRecipesFiltered', queryParameters: {'search': value});
             }
             ,
             viewBackgroundColor: SimpleCookColors.searchBar,
@@ -50,6 +55,7 @@ class _SearchBarState extends State<SearchBarExplore> {
                     });
                   },
                 );
+
               });
             }),
       ),

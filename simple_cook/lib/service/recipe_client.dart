@@ -17,7 +17,7 @@ class RecipeClient {
     //build the query
     var parameter = createQuery(text, time, diet);
     var url = baseUrl + 'search_api?' + parameter;
-
+    print(url);
     var response = await client.get(Uri.parse(url), headers: headers);
     if (response.statusCode == 200) {
       return recipeFromJson(const Utf8Decoder().convert(response.bodyBytes));

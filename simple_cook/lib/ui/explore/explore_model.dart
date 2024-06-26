@@ -1,28 +1,15 @@
-import 'package:flutter/foundation.dart';
+import 'package:simple_cook/service/recipes_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Filter {
-  final Category? categories;
-  final Enaehrungsart? enaehrungsart;
-  final int? zuBereitungszeit;
+part 'explore_model.freezed.dart';
 
-  Filter({this.categories, this.enaehrungsart, this.zuBereitungszeit});
+@freezed
+class ExploreModel with _$ExploreModel {
+  const factory ExploreModel({
+    List<Recipe>? recipes,
+    Recipe? recipeOfTheDay,
+    @Default(false) bool isSearching,
+    @Default(false) bool error,
+  }) = _ExploreModel;
 }
 
-class Category {
-  final String? alle;
-  final String? vorspeise;
-  final String? hauptspeise;
-  final String? dessert;
-  final String? snacks;
-
-  Category({this.alle, this.vorspeise, this.hauptspeise, this.dessert, this.snacks});
-}
-
-class Enaehrungsart {
-  final String? vegetarisch;
-  final String? vegan;
-  final String? glutenfrei;
-  final String? laktosefrei;
-
-  Enaehrungsart({this.vegetarisch, this.vegan, this.glutenfrei, this.laktosefrei});
-}
