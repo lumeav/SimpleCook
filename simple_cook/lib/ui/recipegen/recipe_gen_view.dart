@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/service/recipe_service/gen_recipe_model.dart';
+import 'package:simple_cook/service/recipe_service/recipe_gen_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/add_planer.dart';
@@ -22,7 +22,6 @@ class _RecipeGenViewState extends State<RecipeGenView> {
   GenRecipe? recipe;
   String? url;
   bool isLoadingRecipe = false;
-  bool isLoadingImg = false;
   bool error = false;
 
   @override
@@ -37,7 +36,7 @@ class _RecipeGenViewState extends State<RecipeGenView> {
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
-        body: !error
+        body: !isLoadingRecipe
             ? Column(children: [
                 Container(
                     padding: EdgeInsets.symmetric(vertical: 5),
@@ -67,7 +66,11 @@ class _RecipeGenViewState extends State<RecipeGenView> {
                   ),
                 )),
               ])
-            : const Center(child: Text('Error while loading recipe')));
+            : Center(
+                child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        SimpleCookColors.primary)),
+              ));
   }
 
   void getRecipe() async {
@@ -91,7 +94,7 @@ class _RecipeGenViewState extends State<RecipeGenView> {
       error = true;
     }
     setState(() {
-      isLoadingImg = true;
+      isLoadingRecipe = true;
     });
   }
 
@@ -102,52 +105,38 @@ class _RecipeGenViewState extends State<RecipeGenView> {
           ClipRRect(
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(12), topRight: Radius.circular(12)),
-              child: isLoadingImg
-                  ? AspectRatio(
-                      aspectRatio: 1.8,
-                      child: Image.network(
-                        url!,
-                        fit: BoxFit.cover,
-                      ))
-                  : const AspectRatio(
-                          aspectRatio: 1.8,
-                          child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  SimpleCookColors.primary))),
-                    )
+              child: AspectRatio(
+                  aspectRatio: 1.8,
+                  child: Image.network(
+                    url!,
+                    fit: BoxFit.cover,
+                  )))
         ]),
-        isLoadingRecipe
-            ? Column(
-                children: [
-                  HeaderRecipeInfos(recipe!.title,
-                      recipe!.totalTime.toStringAsFixed(0), 'unbekannt'),
-                  const Padding(
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      child: Divider()),
-                  Ingredients([
-                    for (var ingredient in recipe!.ingredients)
-                      if (ingredient.amount == null && ingredient.unit == "")
-                        ingredient.name
-                      else if (ingredient.amount != null && ingredient.unit == "")
-                        '${ingredient.amount} ${ingredient.name}'
-                      else
-                        '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
-                  ]),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
-                    child: Preparation([
-                      for (var preparation in recipe!.instructions)
-                        preparation
-                            .substring(preparation.indexOf(' ') + 1)
-                            .trim()
-                    ]),
-                  )
-                ],
-              )
-            : const Center(
-                child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                        SimpleCookColors.primary)))
+        Column(
+          children: [
+            HeaderRecipeInfos(recipe!.title,
+                recipe!.totalTime.toStringAsFixed(0), 'unbekannt'),
+            const Padding(
+                padding: EdgeInsets.only(left: 15, right: 15),
+                child: Divider()),
+            Ingredients([
+              for (var ingredient in recipe!.ingredients)
+                if (ingredient.amount == null && ingredient.unit == "")
+                  ingredient.name
+                else if (ingredient.amount != null && ingredient.unit == "")
+                  '${ingredient.amount} ${ingredient.name}'
+                else
+                  '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
+            ]),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Preparation([
+                for (var preparation in recipe!.instructions)
+                  preparation.substring(preparation.indexOf(' ') + 1).trim()
+              ]),
+            )
+          ],
+        )
       ],
     );
   }

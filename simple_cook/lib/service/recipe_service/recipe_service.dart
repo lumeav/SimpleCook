@@ -1,4 +1,4 @@
-import 'package:simple_cook/service/recipe_service/gen_recipe_model.dart';
+import 'package:simple_cook/service/recipe_service/recipe_gen_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_client.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';

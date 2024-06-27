@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:simple_cook/ui/recipefinder/recipefinder_model.dart';
-import 'package:simple_cook/ui/recipefinder/recipefinder_view.dart';
+import 'package:simple_cook/ui/recipeFinder/recipefinder_model.dart';
+import 'package:simple_cook/ui/recipeFinder/recipefinder_view.dart';
 
 part 'recipefinder_controller_implementation.g.dart';
 
