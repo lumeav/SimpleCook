@@ -58,7 +58,7 @@ class PersistenceService {
   
   Future<void> removeRecipeFromPlanner(String date, SingleRecipe recipe) async {
     List<SingleRecipe> recipes = _plannerBox.get(date, defaultValue: []) ?? [];
-    recipes.removeWhere((r) => r.title == recipe.title); // Remove based on title (you might need a better identifier)
+    recipes.removeWhere((SingleRecipe r) => r.title == recipe.title); // Remove based on title
     await _plannerBox.put(date, recipes);
   }
 }
