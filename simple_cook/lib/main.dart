@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
-import 'package:simple_cook/ui/explore/explore_view.dart';
-import 'package:simple_cook/ui/favorites/favorites_view.dart';
-import 'package:simple_cook/ui/planner/planner_view.dart';
-import 'package:simple_cook/ui/recipefinder/recipefinder_view.dart';
-import 'package:go_router/go_router.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/service/persistence_service.dart';
 import 'package:simple_cook/service/persistence_service_model.dart';
 import 'go_router.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 // To test:
 import 'package:simple_cook/ui/recipe/recipe_view.dart';
@@ -36,7 +30,7 @@ void main() async {
 
   // Initialize PersistenceService
   //await PersistenceService().clearFavorites();
-  final persistenceService = PersistenceService();
+  final PersistenceService persistenceService = PersistenceService();
   await persistenceService.init();
 
   //await persistenceService.clearFavorites();

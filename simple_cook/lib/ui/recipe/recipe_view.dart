@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/service/recipes_model.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:simple_cook/widgets/add_planer.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
-import 'package:simple_cook/common/custom_navbar.dart';
 import 'package:simple_cook/service/single_recipe_model.dart';
 import 'package:simple_cook/service/recipe_service.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:simple_cook/ui/favorites/favorites_provider.dart';
 
-class RecipeView extends StatefulWidget {
+class RecipeView extends ConsumerStatefulWidget {
   final String? recipeUrl;
   final String? difficulty;
 
@@ -26,7 +25,7 @@ class RecipeView extends StatefulWidget {
   _RecipeViewState createState() => _RecipeViewState();
 }
 
-class _RecipeViewState extends State<RecipeView> {
+class _RecipeViewState extends ConsumerState<RecipeView> {
   SingleRecipe? recipe;
   bool isSearching = false;
   bool error = false;
@@ -36,12 +35,12 @@ class _RecipeViewState extends State<RecipeView> {
   void initState() {
     super.initState();
     buildRecipe();
-    // Check favorite status here (e.g., using state management or persistence service)
-    // Example: isFavorite = checkIfFavorite(recipe.id);
   }
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(favoritesProvider);
+
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
         backgroundColor: Colors.grey[200],
@@ -53,9 +52,11 @@ class _RecipeViewState extends State<RecipeView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        AddPlaner(recipe: recipe,),
-                        SizedBox(width: 10),
-                        //HeartButton(false)
+                        if (recipe != null) ...[
+                          AddPlaner(recipe: recipe!),
+                          SizedBox(width: 10),
+                          HeartButton(false, recipe: recipe!),
+                        ],
                       ],
                     )),
                 Expanded(

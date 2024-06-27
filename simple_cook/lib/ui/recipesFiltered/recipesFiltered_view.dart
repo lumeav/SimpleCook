@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/ui/explore/widgets/search_bar_explore.dart';
+//import 'package:simple_cook/ui/explore/widgets/search_bar_explore.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
-import 'package:simple_cook/widgets/filter_button.dart';
+//import 'package:simple_cook/widgets/filter_button.dart';
 import 'package:simple_cook/service/recipes_model.dart';
 import 'package:simple_cook/service/recipe_service.dart';
 import 'package:simple_cook/common/theme.dart';

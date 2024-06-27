@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/common/custom_navbar.dart';
-import 'package:simple_cook/widgets/extended_recipe.dart';
+//import 'package:simple_cook/widgets/extended_recipe.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/time_view_span.dart';
 import 'package:simple_cook/widgets/date.dart';
 import 'package:simple_cook/widgets/remove_button.dart';
-import 'package:simple_cook/widgets/header_recipe_infos.dart';
+//import 'package:simple_cook/widgets/header_recipe_infos.dart';
 import 'package:simple_cook/service/persistence_service.dart';
 import 'package:simple_cook/service/single_recipe_model.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';

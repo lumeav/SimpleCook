@@ -1,5 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive/hive.dart';
 import 'package:simple_cook/service/single_recipe_model.dart';
 import 'package:simple_cook/service/persistence_service.dart';
 

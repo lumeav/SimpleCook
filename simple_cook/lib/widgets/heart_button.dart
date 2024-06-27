@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/service/persistence_service.dart';
 import 'package:simple_cook/service/single_recipe_model.dart';
 import 'package:simple_cook/ui/favorites/favorites_provider.dart';
 
