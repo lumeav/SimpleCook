@@ -38,7 +38,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
 
   @override
   Widget build(BuildContext context) {
-    ref.watch(favoritesProvider);
+    //ref.watch(favoritesProvider);
 
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
@@ -54,7 +54,10 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                         if (recipe != null) ...[
                           AddPlaner(recipe: recipe!),
                           const SizedBox(width: 10),
-                          HeartButton(false, recipe: recipe!),
+                          //error:_Map<dynamic, dynamic>' is not a subtype of type 'Map<String, dynamic>
+                          //so we copy with empty ingredients for now. Doesnt matter because we build it again in buildSingleRecipe
+                          //only works with internet connection
+                          HeartButton(false, recipe: copyWithEmptyIngredients(recipe!)), 
                         ],
                       ],
                     )),

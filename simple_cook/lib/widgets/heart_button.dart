@@ -16,7 +16,7 @@ class HeartButton extends ConsumerWidget {
     final bool isFavorite = ref.watch(favoritesProvider.notifier).isFavorite(recipe);
     ref.watch(favoritesProvider);
 
-    void _onPressed() {
+    void onPressed() {
       favoritesNotifier.toggleFavorite(recipe); // Toggle favorite on press
     }
 
@@ -31,7 +31,7 @@ class HeartButton extends ConsumerWidget {
           ? const BoxDecoration(shape: BoxShape.circle, color: Colors.white)
           : null,
       child: IconButton(
-        onPressed: _onPressed,
+        onPressed: onPressed,
         padding: EdgeInsets.zero,
         icon: Icon(isFavorite ? Icons.favorite : Icons.favorite_border,
             color: SimpleCookColors.primary, size: size),
