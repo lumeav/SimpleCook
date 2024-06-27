@@ -188,9 +188,10 @@ class __$$SingleRecipeImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$SingleRecipeImpl implements _SingleRecipe {
-  _$SingleRecipeImpl(
+  const _$SingleRecipeImpl(
       {required final List<String>? diet,
       required final List<String> imageUrls,
       required final List<Ingredient> ingredients,
@@ -302,7 +303,7 @@ class _$SingleRecipeImpl implements _SingleRecipe {
 }
 
 abstract class _SingleRecipe implements SingleRecipe {
-  factory _SingleRecipe(
+  const factory _SingleRecipe(
       {required final List<String>? diet,
       required final List<String> imageUrls,
       required final List<Ingredient> ingredients,

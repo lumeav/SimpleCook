@@ -1,29 +1,36 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'dart:convert';
-part 'single_recipe_model.freezed.dart';
-part 'single_recipe_model.g.dart';
+// To parse this JSON data, do
+//
+//     final singleRecipe = singleRecipeFromJson(jsonString);
 
+import 'dart:convert';
 
 SingleRecipe singleRecipeFromJson(String str) =>
     SingleRecipe.fromJson(json.decode(str));
 
 String singleRecipeToJson(SingleRecipe data) => json.encode(data.toJson());
 
-@freezed
-class SingleRecipe with _$SingleRecipe {
-  factory SingleRecipe({
-    required List<String>? diet,
-    required List<String> imageUrls,
-    required List<Ingredient> ingredients,
-    required int portions,
-    required String source,
-    required List<String> steps,
-    required String title,
-    required double totalTime,
-  }) = _SingleRecipe;
+class SingleRecipe {
+  List<String>? diet;
+  List<String> imageUrls;
+  List<Ingredient> ingredients;
+  int portions;
+  String source;
+  List<String> steps;
+  String title;
+  double totalTime;
 
-  factory SingleRecipe.fromJson(Map<String, dynamic> json) {
-      return SingleRecipe(
+  SingleRecipe({
+    required this.diet,
+    required this.imageUrls,
+    required this.ingredients,
+    required this.portions,
+    required this.source,
+    required this.steps,
+    required this.title,
+    required this.totalTime,
+  });
+
+  factory SingleRecipe.fromJson(Map<String, dynamic> json) => SingleRecipe(
         diet: json["diet"] == null
             ? []
             : List<String>.from(json["diet"].map((x) => x)),
@@ -36,17 +43,39 @@ class SingleRecipe with _$SingleRecipe {
         title: json["title"],
         totalTime: json["totalTime"] / 60,
       );
-  }
+
+  Map<String, dynamic> toJson() => {
+        "diet": diet == null ? [] : List<dynamic>.from(diet!.map((x) => x)),
+        "image_urls": List<dynamic>.from(imageUrls.map((x) => x)),
+        "ingredients": List<dynamic>.from(ingredients.map((x) => x.toJson())),
+        "portions": portions,
+        "source": source,
+        "steps": List<dynamic>.from(steps.map((x) => x)),
+        "title": title,
+        "totalTime": totalTime,
+      };
 }
 
-@freezed
-class Ingredient with _$Ingredient {
-  factory Ingredient({
-    required String amount,
-    required String name,
-    required String unit,
-  }) = _Ingredient;
+class Ingredient {
+  String amount;
+  String name;
+  String unit;
 
-  factory Ingredient.fromJson(Map<String, dynamic> json) =>
-      _$IngredientFromJson(json);
+  Ingredient({
+    required this.amount,
+    required this.name,
+    required this.unit,
+  });
+
+  factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
+        amount: json["amount"],
+        name: json["name"],
+        unit: json["unit"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "amount": amount,
+        "name": name,
+        "unit": unit,
+      };
 }

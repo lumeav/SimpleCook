@@ -10,13 +10,13 @@ _$SingleRecipeImpl _$$SingleRecipeImplFromJson(Map<String, dynamic> json) =>
     _$SingleRecipeImpl(
       diet: (json['diet'] as List<dynamic>?)?.map((e) => e as String).toList(),
       imageUrls:
-          (json['imageUrls'] as List<dynamic>).map((e) => e as String).toList(),
+          (json['image_urls'] as List<dynamic>).map((e) => e as String).toList(),
       ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) => Ingredient.fromJson(e as Map<String, dynamic>))
           .toList(),
       portions: (json['portions'] as num).toInt(),
       source: json['source'] as String,
-      steps: (json['steps'] as List<dynamic>).map((e)q => e as String).toList(),
+      steps: (json['steps'] as List<dynamic>).map((e) => e as String).toList(),
       title: json['title'] as String,
       totalTime: (json['totalTime'] as num).toDouble(),
     );
@@ -24,8 +24,8 @@ _$SingleRecipeImpl _$$SingleRecipeImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$SingleRecipeImplToJson(_$SingleRecipeImpl instance) =>
     <String, dynamic>{
       'diet': instance.diet,
-      'imageUrls': instance.imageUrls,
-      'ingredients': instance.ingredients,
+      'image_urls': instance.imageUrls,
+      'ingredients': instance.ingredients.map((e) => e.toJson()).toList(),
       'portions': instance.portions,
       'source': instance.source,
       'steps': instance.steps,
