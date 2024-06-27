@@ -23,7 +23,7 @@ class SimpleRecipe extends StatefulWidget {
 class _SimpleRecipeState extends State<SimpleRecipe> {
   @override
   Widget build(BuildContext context) {
-    final recipe = SingleRecipe(
+    final SingleRecipe recipe = SingleRecipe(
       diet: [], // Provide actual values as needed
       imageUrls: [widget.imgPath],
       ingredients: [], // Provide actual values as needed

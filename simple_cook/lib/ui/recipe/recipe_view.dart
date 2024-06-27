@@ -29,7 +29,6 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
   SingleRecipe? recipe;
   bool isSearching = false;
   bool error = false;
-  bool isFavorite = false; // Track favorite status
 
   @override
   void initState() {
@@ -42,20 +41,20 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
     ref.watch(favoritesProvider);
 
     return Scaffold(
-        appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+        appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
         backgroundColor: Colors.grey[200],
         body: isSearching
             ? Column(children: [
                 Container(
-                    padding: EdgeInsets.symmetric(vertical: 5),
+                    padding: const EdgeInsets.symmetric(vertical: 5),
                     color: Colors.white,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         if (recipe != null) ...[
                           AddPlaner(recipe: recipe!),
-                          SizedBox(width: 10),
-                          HeartButton(false, recipe: recipe!),
+                          const SizedBox(width: 10),
+                          HeartButton(false, recipe: copyWithEmptyIngredients(recipe!)),
                         ],
                       ],
                     )),
@@ -86,7 +85,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
   }
 
   Future<void> buildRecipe() async {
-    final service = RecipeService();
+    final RecipeService service = RecipeService();
     recipe = await service.getSingleRecipe(widget.recipeUrl!);
     if (recipe == null) {
       error = true;
@@ -131,6 +130,18 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
               [for (var preparation in singleRecipe.steps) preparation]),
         )
       ],
+    );
+  }
+  SingleRecipe copyWithEmptyIngredients(SingleRecipe recipe) {
+    return SingleRecipe(
+      diet: recipe.diet,
+      imageUrls: recipe.imageUrls,
+      ingredients: [], // Empty ingredients list
+      portions: recipe.portions,
+      source: recipe.source,
+      steps: recipe.steps,
+      title: recipe.title,
+      totalTime: recipe.totalTime,
     );
   }
 }
