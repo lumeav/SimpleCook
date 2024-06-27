@@ -21,7 +21,8 @@ class RecipeGenView extends StatefulWidget {
 class _RecipeGenViewState extends State<RecipeGenView> {
   GenRecipe? recipe;
   String? url;
-  bool isSearching = false;
+  bool isLoadingRecipe = false;
+  bool isLoadingImg = false;
   bool error = false;
 
   @override
@@ -36,7 +37,7 @@ class _RecipeGenViewState extends State<RecipeGenView> {
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
-        body: isSearching
+        body: !error
             ? Column(children: [
                 Container(
                     padding: EdgeInsets.symmetric(vertical: 5),
@@ -66,23 +67,31 @@ class _RecipeGenViewState extends State<RecipeGenView> {
                   ),
                 )),
               ])
-            : !error
-                ? const Center(
-                    child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            SimpleCookColors.primary)))
-                : const Center(child: Text('Error while loading recipe')));
+            : const Center(child: Text('Error while loading recipe')));
   }
 
   void getRecipe() async {
     final service = RecipeService();
-    recipe = await service.postGenRecipeAndImg(widget.text!);
+    recipe = await service.postGenRecipe(widget.text!);
     if (recipe == null) {
       print('error');
       error = true;
     }
+    getRecipeImg(recipe!);
     setState(() {
-      isSearching = true;
+      isLoadingRecipe = true;
+    });
+  }
+
+  void getRecipeImg(GenRecipe genRecipe) async {
+    final service = RecipeService();
+    url = await service.postGenRecipeImg(genRecipe);
+    if (url == null) {
+      print('error');
+      error = true;
+    }
+    setState(() {
+      isLoadingImg = true;
     });
   }
 
@@ -91,34 +100,54 @@ class _RecipeGenViewState extends State<RecipeGenView> {
       children: [
         Stack(children: [
           ClipRRect(
-            borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(12), topRight: Radius.circular(12)),
-            child: AspectRatio(
-                aspectRatio: 1.8,
-                child: Image.network(
-                  recipe!.imgUrl!,
-                  fit: BoxFit.cover,
-                )),
-          )
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(12), topRight: Radius.circular(12)),
+              child: isLoadingImg
+                  ? AspectRatio(
+                      aspectRatio: 1.8,
+                      child: Image.network(
+                        url!,
+                        fit: BoxFit.cover,
+                      ))
+                  : const AspectRatio(
+                          aspectRatio: 1.8,
+                          child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  SimpleCookColors.primary))),
+                    )
         ]),
-        HeaderRecipeInfos(
-            recipe!.title, recipe!.totalTime.toStringAsFixed(0), 'unbekannt'),
-        const Padding(
-            padding: EdgeInsets.only(left: 15, right: 15), child: Divider()),
-        Ingredients([
-          for (var ingredient in recipe!.ingredients)
-            if (ingredient.amount == "" && ingredient.unit == "")
-              ingredient.name
-            else if (ingredient.amount != "" && ingredient.unit == "")
-              '${ingredient.amount} ${ingredient.name}'
-            else
-              '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
-        ]),
-        Padding(
-          padding: const EdgeInsets.only(top: 10.0),
-          child: Preparation(
-              [for (var preparation in recipe!.instructions) preparation]),
-        )
+        isLoadingRecipe
+            ? Column(
+                children: [
+                  HeaderRecipeInfos(recipe!.title,
+                      recipe!.totalTime.toStringAsFixed(0), 'unbekannt'),
+                  const Padding(
+                      padding: EdgeInsets.only(left: 15, right: 15),
+                      child: Divider()),
+                  Ingredients([
+                    for (var ingredient in recipe!.ingredients)
+                      if (ingredient.amount == null && ingredient.unit == "")
+                        ingredient.name
+                      else if (ingredient.amount != null && ingredient.unit == "")
+                        '${ingredient.amount} ${ingredient.name}'
+                      else
+                        '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
+                  ]),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Preparation([
+                      for (var preparation in recipe!.instructions)
+                        preparation
+                            .substring(preparation.indexOf(' ') + 1)
+                            .trim()
+                    ]),
+                  )
+                ],
+              )
+            : const Center(
+                child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                        SimpleCookColors.primary)))
       ],
     );
   }

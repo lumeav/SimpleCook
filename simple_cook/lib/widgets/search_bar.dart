@@ -105,13 +105,12 @@ class database {
     'Kartoffel',
     'Ei',
     'Karrotte',
-    'Karrtr'
-        'Kardfcgdfb'
-        'Klöereasr'
-        'Zwiebel',
+    'Kardfcgdfb'
+    'Zwiebel',
     'Knoblauch',
     'Paprika',
-    'Noah',
+    'Gurke',
+    'Salat',
   ];
 
   static Future<Iterable<String>> search(String query) async {

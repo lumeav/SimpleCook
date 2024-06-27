@@ -43,31 +43,41 @@ class RecipeClient {
     }
   }
 
-  Future<GenRecipe> postGenRecipeAndImg(String request) async {
+  Future<GenRecipe> postGenRecipe(String request) async {
 
-    var url = baseUrl + 'generateRecipe';
-
-    var response = await client.post(Uri.parse(url), headers: headers, body: jsonEncode({'text': request}));
+    var response = await client.post(Uri.parse(baseUrl + 'generateRecipe'), headers: headers, body: jsonEncode({'text': request}));
 
     if (response.statusCode == 200) {
       var genRecipe = genRecipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
       print('response genrecipe: $genRecipe');
-      var imgRecipe = imgRecipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
+      return genRecipe;
+    } else {
+      throw Exception('Failed to load recipes. Status code: ${response.statusCode}, Response body: ${response.body}');
+    }
+  }
+
+  Future<String> postGenRecipeImg(GenRecipe recipe) async {
+
+      var genRecipeJson = genRecipeToJson(recipe);
+      var imgRecipe = imgRecipeFromJson(genRecipeJson);
       var imgRecipeJson = imgRecipeToJson(imgRecipe);
       var imgResponse = await client.post(Uri.parse(baseUrl + 'generateRecipeImage'), headers: headers, body: imgRecipeJson);
 
       if (imgResponse.statusCode == 200) {
-        var imgUrl = urlFromJson(const Utf8Decoder().convert(imgResponse.bodyBytes));
-        print(imgUrl.url);
-        genRecipe.imgUrl = imgUrl.url;
-        print('genRecipe MAPED: $genRecipe');
-        return genRecipe;
+          var imgUrl = urlFromJson(const Utf8Decoder().convert(imgResponse.bodyBytes));
+          print('imgUrl: ${imgUrl.url}');
+          return imgUrl.url;
+          /*
+          var imgUrl = urlFromJson(const Utf8Decoder().convert(imgResponse.bodyBytes));
+          print(imgUrl.url);
+          recipe.imgUrl = imgUrl.url;
+          print('genRecipe MAPED: $recipe');
+          return recipe;*
+  */
       } else {
-        throw Exception('Failed to load recipes. Status code: ${imgResponse.statusCode}, Response body: ${imgResponse.body}');
+          throw Exception('Failed to load recipes. Status code: ${imgResponse.statusCode}, Response body: ${imgResponse.body}');
       }
-    } else {
-      throw Exception('Failed to load recipes. Status code: ${response.statusCode}, Response body: ${response.body}');
-    }
+
   }
 
 

@@ -10,7 +10,7 @@ class GenRecipe {
     List<String> instructions;
     int portions;
     String title;
-    int totalTime;
+    double totalTime;
     String? imgUrl;
 
     GenRecipe({
@@ -27,7 +27,7 @@ class GenRecipe {
         instructions: List<String>.from(json["instructions"].map((x) => x)),
         portions: json["portions"],
         title: json["title"],
-        totalTime: json["totalTime"],
+        totalTime: json["totalTime"] / 60,  //divide trough 60 and cast to int,
         imgUrl: json["imgUrl"],
     );
 
@@ -54,13 +54,13 @@ class Ingredient {
 
     factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
         name: json["name"],
-        amount: json["amount"],
-        unit: json["unit"],
+        amount: json["amount"] == null ? null : json["amount"],
+        unit: json["unit"] == null ? "" : json["unit"],
     );
 
     Map<String, dynamic> toJson() => {
         "name": name,
-        "amount": amount,
-        "unit": unit,
+        "amount": name == null ? "" : amount,
+        "unit": unit == null ? "" : unit,
     };
 }

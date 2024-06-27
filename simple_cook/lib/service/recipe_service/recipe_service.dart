@@ -14,7 +14,11 @@ class RecipeService {
     return api.getSingleRecipe(recipeUrl);
   }
 
-  Future<GenRecipe> postGenRecipeAndImg(String request) async {
-    return api.postGenRecipeAndImg(request);
+  Future<GenRecipe> postGenRecipe(String request) async {
+    return api.postGenRecipe(request);
+  }
+
+  Future<String> postGenRecipeImg(GenRecipe recipe) async {
+    return api.postGenRecipeImg(recipe);
   }
 }
