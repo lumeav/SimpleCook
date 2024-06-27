@@ -14,7 +14,7 @@ class SingleRecipe with _$SingleRecipe {
   @JsonSerializable(explicitToJson: true)
   const factory SingleRecipe({
     required List<String>? diet,
-    required List<String> imageUrls,
+    required List<String> image_urls,
     required List<Ingredient> ingredients,
     required int portions,
     required String source,
@@ -29,7 +29,8 @@ class SingleRecipe with _$SingleRecipe {
 
 @freezed
 class Ingredient with _$Ingredient {
-  factory Ingredient({
+  @JsonSerializable(explicitToJson: true)
+  const factory Ingredient({
     required String amount,
     required String name,
     required String unit,

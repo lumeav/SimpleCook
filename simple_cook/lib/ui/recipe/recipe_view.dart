@@ -106,7 +106,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
             child: AspectRatio(
                 aspectRatio: 1.8,
                 child: Image.network(
-                  singleRecipe.imageUrls.first,
+                  singleRecipe.image_urls.first,
                   fit: BoxFit.cover,
                 )),
           )
@@ -135,7 +135,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
   SingleRecipe copyWithEmptyIngredients(SingleRecipe recipe) {
     return SingleRecipe(
       diet: recipe.diet,
-      imageUrls: recipe.imageUrls,
+      image_urls: recipe.image_urls,
       ingredients: [], // Empty ingredients list
       portions: recipe.portions,
       source: recipe.source,

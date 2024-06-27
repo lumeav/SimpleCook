@@ -103,7 +103,7 @@ class _PlannerViewState extends State<PlannerView> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SimpleRecipe(
-          recipe.imageUrls.isNotEmpty ? recipe.imageUrls.first : '',
+          recipe.image_urls.isNotEmpty ? recipe.image_urls.first : '',
           recipe.title,
           recipe.source,
           '', // Replace with actual difficulty

@@ -21,7 +21,7 @@ SingleRecipe _$SingleRecipeFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$SingleRecipe {
   List<String>? get diet => throw _privateConstructorUsedError;
-  List<String> get imageUrls => throw _privateConstructorUsedError;
+  List<String> get image_urls => throw _privateConstructorUsedError;
   List<Ingredient> get ingredients => throw _privateConstructorUsedError;
   int get portions => throw _privateConstructorUsedError;
   String get source => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $SingleRecipeCopyWith<$Res> {
   @useResult
   $Res call(
       {List<String>? diet,
-      List<String> imageUrls,
+      List<String> image_urls,
       List<Ingredient> ingredients,
       int portions,
       String source,
@@ -66,7 +66,7 @@ class _$SingleRecipeCopyWithImpl<$Res, $Val extends SingleRecipe>
   @override
   $Res call({
     Object? diet = freezed,
-    Object? imageUrls = null,
+    Object? image_urls = null,
     Object? ingredients = null,
     Object? portions = null,
     Object? source = null,
@@ -79,9 +79,9 @@ class _$SingleRecipeCopyWithImpl<$Res, $Val extends SingleRecipe>
           ? _value.diet
           : diet // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      imageUrls: null == imageUrls
-          ? _value.imageUrls
-          : imageUrls // ignore: cast_nullable_to_non_nullable
+      image_urls: null == image_urls
+          ? _value.image_urls
+          : image_urls // ignore: cast_nullable_to_non_nullable
               as List<String>,
       ingredients: null == ingredients
           ? _value.ingredients
@@ -121,7 +121,7 @@ abstract class _$$SingleRecipeImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<String>? diet,
-      List<String> imageUrls,
+      List<String> image_urls,
       List<Ingredient> ingredients,
       int portions,
       String source,
@@ -142,7 +142,7 @@ class __$$SingleRecipeImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? diet = freezed,
-    Object? imageUrls = null,
+    Object? image_urls = null,
     Object? ingredients = null,
     Object? portions = null,
     Object? source = null,
@@ -155,9 +155,9 @@ class __$$SingleRecipeImplCopyWithImpl<$Res>
           ? _value._diet
           : diet // ignore: cast_nullable_to_non_nullable
               as List<String>?,
-      imageUrls: null == imageUrls
-          ? _value._imageUrls
-          : imageUrls // ignore: cast_nullable_to_non_nullable
+      image_urls: null == image_urls
+          ? _value._image_urls
+          : image_urls // ignore: cast_nullable_to_non_nullable
               as List<String>,
       ingredients: null == ingredients
           ? _value._ingredients
@@ -193,7 +193,7 @@ class __$$SingleRecipeImplCopyWithImpl<$Res>
 class _$SingleRecipeImpl implements _SingleRecipe {
   const _$SingleRecipeImpl(
       {required final List<String>? diet,
-      required final List<String> imageUrls,
+      required final List<String> image_urls,
       required final List<Ingredient> ingredients,
       required this.portions,
       required this.source,
@@ -201,7 +201,7 @@ class _$SingleRecipeImpl implements _SingleRecipe {
       required this.title,
       required this.totalTime})
       : _diet = diet,
-        _imageUrls = imageUrls,
+        _image_urls = image_urls,
         _ingredients = ingredients,
         _steps = steps;
 
@@ -218,12 +218,12 @@ class _$SingleRecipeImpl implements _SingleRecipe {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<String> _imageUrls;
+  final List<String> _image_urls;
   @override
-  List<String> get imageUrls {
-    if (_imageUrls is EqualUnmodifiableListView) return _imageUrls;
+  List<String> get image_urls {
+    if (_image_urls is EqualUnmodifiableListView) return _image_urls;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_imageUrls);
+    return EqualUnmodifiableListView(_image_urls);
   }
 
   final List<Ingredient> _ingredients;
@@ -253,7 +253,7 @@ class _$SingleRecipeImpl implements _SingleRecipe {
 
   @override
   String toString() {
-    return 'SingleRecipe(diet: $diet, imageUrls: $imageUrls, ingredients: $ingredients, portions: $portions, source: $source, steps: $steps, title: $title, totalTime: $totalTime)';
+    return 'SingleRecipe(diet: $diet, image_urls: $image_urls, ingredients: $ingredients, portions: $portions, source: $source, steps: $steps, title: $title, totalTime: $totalTime)';
   }
 
   @override
@@ -263,7 +263,7 @@ class _$SingleRecipeImpl implements _SingleRecipe {
             other is _$SingleRecipeImpl &&
             const DeepCollectionEquality().equals(other._diet, _diet) &&
             const DeepCollectionEquality()
-                .equals(other._imageUrls, _imageUrls) &&
+                .equals(other._image_urls, _image_urls) &&
             const DeepCollectionEquality()
                 .equals(other._ingredients, _ingredients) &&
             (identical(other.portions, portions) ||
@@ -280,7 +280,7 @@ class _$SingleRecipeImpl implements _SingleRecipe {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_diet),
-      const DeepCollectionEquality().hash(_imageUrls),
+      const DeepCollectionEquality().hash(_image_urls),
       const DeepCollectionEquality().hash(_ingredients),
       portions,
       source,
@@ -305,7 +305,7 @@ class _$SingleRecipeImpl implements _SingleRecipe {
 abstract class _SingleRecipe implements SingleRecipe {
   const factory _SingleRecipe(
       {required final List<String>? diet,
-      required final List<String> imageUrls,
+      required final List<String> image_urls,
       required final List<Ingredient> ingredients,
       required final int portions,
       required final String source,
@@ -319,7 +319,7 @@ abstract class _SingleRecipe implements SingleRecipe {
   @override
   List<String>? get diet;
   @override
-  List<String> get imageUrls;
+  List<String> get image_urls;
   @override
   List<Ingredient> get ingredients;
   @override
@@ -441,9 +441,10 @@ class __$$IngredientImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$IngredientImpl implements _Ingredient {
-  _$IngredientImpl(
+  const _$IngredientImpl(
       {required this.amount, required this.name, required this.unit});
 
   factory _$IngredientImpl.fromJson(Map<String, dynamic> json) =>
@@ -490,7 +491,7 @@ class _$IngredientImpl implements _Ingredient {
 }
 
 abstract class _Ingredient implements Ingredient {
-  factory _Ingredient(
+  const factory _Ingredient(
       {required final String amount,
       required final String name,
       required final String unit}) = _$IngredientImpl;

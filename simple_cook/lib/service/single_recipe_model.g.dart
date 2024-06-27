@@ -9,7 +9,7 @@ part of 'single_recipe_model.dart';
 _$SingleRecipeImpl _$$SingleRecipeImplFromJson(Map<String, dynamic> json) =>
     _$SingleRecipeImpl(
       diet: (json['diet'] as List<dynamic>?)?.map((e) => e as String).toList(),
-      imageUrls:
+      image_urls:
           (json['image_urls'] as List<dynamic>).map((e) => e as String).toList(),
       ingredients: (json['ingredients'] as List<dynamic>)
           .map((e) => Ingredient.fromJson(e as Map<String, dynamic>))
@@ -24,7 +24,7 @@ _$SingleRecipeImpl _$$SingleRecipeImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$SingleRecipeImplToJson(_$SingleRecipeImpl instance) =>
     <String, dynamic>{
       'diet': instance.diet,
-      'image_urls': instance.imageUrls,
+      'image_urls': instance.image_urls,
       'ingredients': instance.ingredients.map((e) => e.toJson()).toList(),
       'portions': instance.portions,
       'source': instance.source,

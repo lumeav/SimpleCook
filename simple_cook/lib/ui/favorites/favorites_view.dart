@@ -31,7 +31,7 @@ class FavoritesView extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final recipe = favoriteRecipes[index];
                 return SimpleRecipe(
-                  recipe.imageUrls.isNotEmpty ? recipe.imageUrls.first : '',
+                  recipe.image_urls.isNotEmpty ? recipe.image_urls.first : '',
                   recipe.title,
                   recipe.source,
                   '', // Add actual difficulty if available or leave it as an empty string
