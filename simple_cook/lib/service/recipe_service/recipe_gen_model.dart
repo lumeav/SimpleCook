@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 GenRecipe genRecipeFromJson(String str) => GenRecipe.fromJson(json.decode(str));
 

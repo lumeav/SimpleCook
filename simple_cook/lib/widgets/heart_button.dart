@@ -34,7 +34,7 @@ class _HeartButtonState extends ConsumerState<HeartButton> {
 
     var size = MediaQuery.of(context).size.width * 0.07;
     if (!widget.border) {
-      size = size + 22;
+      size = size + 12;
     }
     return Container(
       width: size + 8,

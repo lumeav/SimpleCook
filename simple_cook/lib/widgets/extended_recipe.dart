@@ -22,7 +22,7 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
     return InkWell(
       onTap: () {
         // Placeholder for future logic
-        context.goNamed('subRecipeView', queryParameters: {'recipeUrl': widget.source, 'difficulty': widget.difficulty});
+        context.pushNamed('singleRecipeView', queryParameters: {'recipeUrl': widget.source, 'difficulty': widget.difficulty});
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
