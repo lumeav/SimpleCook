@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/ui/recipefinder/recipefinder_provider.dart';
+import 'package:simple_cook/ui/recipefinder/recipefinder_controller_implementation.dart';
 
 
 class SearchBarFilter extends ConsumerStatefulWidget {
@@ -22,7 +22,7 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
   late Iterable<Widget> lastVegetables = <Widget>[];
   @override
   Widget build(BuildContext context) {
-    final filter = ref.watch(recipeFinderProvider.notifier);
+    final recipeFinderNotifier = ref.watch(recipeFinderControllerImplementationProvider.notifier);
     return Column(children: [
       Container(
         width: MediaQuery.of(context).size.width,
@@ -46,10 +46,10 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
                   titleAlignment: ListTileTitleAlignment.center,
                   onTap: () {
                     setState(() {
-                      filter.setFilterActive(item);
                       controller.closeView("");
                       selectedTile = item;
                       buttons.add(selectedTile);
+                      recipeFinderNotifier.setFilterActive(item);
                     });
                   },
                 );
@@ -87,7 +87,7 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                   onDeleted: () => setState(() {
-                    filter.setFilterInactive(buttons[index]);
+                    recipeFinderNotifier.setFilterInactive(buttons[index]);
                     buttons.removeAt(index);
                   }),
                 ));

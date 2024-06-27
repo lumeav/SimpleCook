@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/custom_navbar.dart';
+import 'package:simple_cook/ui/recipefinder/recipefinder_controller_implementation.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/filter_tag.dart';
 import 'package:simple_cook/widgets/slider_filter.dart';
@@ -9,8 +10,6 @@ import 'package:simple_cook/widgets/search_bar.dart';
 import 'package:simple_cook/widgets/search_recipe_button.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';
-import 'package:simple_cook/ui/recipefinder/recipefinder_provider.dart';
-
 
 class RecipefinderView extends ConsumerStatefulWidget {
 
@@ -27,7 +26,7 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
 
   @override
   Widget build(BuildContext context) {
-    final filter = ref.watch(recipeFinderProvider.notifier);
+    final recipeFinderState = ref.watch(recipeFinderControllerImplementationProvider);
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
         backgroundColor: Colors.grey[200],
@@ -36,23 +35,23 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
             radius: Radius.circular(50),
             thickness: 5,
             child: SingleChildScrollView(
-              physics: ClampingScrollPhysics(),
+              physics:  ClampingScrollPhysics(),
               child: Column(
                 children: [
-                  SearchBarFilter(),
-                  HeaderGreyBackground("Kategorie", FontWeight.bold),
-                  _buildFilterTags(kategorieList),
-                 HeaderGreyBackground("Ernährungsart", FontWeight.bold), // HeaderGreyBackground("Ernährungsart"
-                  _buildFilterTags(ernaehrungsartList),
-                  HeaderGreyBackground("Zubereitungszeit", FontWeight.bold),
-                  Padding(
+                  const SearchBarFilter(),
+                  const HeaderGreyBackground("Kategorie", FontWeight.bold),
+                  _buildFilterTags(recipeFinderState.categories),
+                  const HeaderGreyBackground("Ernährungsart", FontWeight.bold), // HeaderGreyBackground("Ernährungsart"
+                  _buildFilterTags(recipeFinderState.diets),
+                  const HeaderGreyBackground("Zubereitungszeit", FontWeight.bold),
+                  const Padding(
                     padding: EdgeInsets.only(left: 15, right: 15),
                     child: SliderFilter(),
                   ),
                   Container(
-                    margin: EdgeInsets.only(top: 50, bottom: 30),
+                    margin: const EdgeInsets.only(top: 50, bottom: 30),
                     alignment: Alignment.center,
-                    child: SearchRecipesButton("Rezept generieren", "subRecipesFiltered")
+                    child: const SearchRecipesButton("Rezept generieren", "subRecipesFiltered")
 
                   )
                 ],
@@ -61,24 +60,6 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
           ),
         ));
   }
-
-
-  List<String> kategorieList = [
-    'Alle',
-    'Vorspeise',
-    'Hauptspeise',
-    'Dessert',
-    'Snacks',
-  ];
-
-  List<String> ernaehrungsartList = [
-    'Vegetarisch',
-    'Vegan',
-    'Glutenfrei',
-    'Laktosefrei',
-    'Low Carb',
-  ];
-  //maybe refactor methods to widgets
 
   Widget _buildFilterTags(List<String> filterList) {
     return Align(
@@ -99,6 +80,12 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
           )),
     );
   }
+}
+
+abstract class RecipeFinderController {
+  void setFilterActive(String filter);
+  void setFilterInactive(String filter);
+  String getFilter();
 }
 
 

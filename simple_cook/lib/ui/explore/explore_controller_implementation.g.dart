@@ -7,7 +7,7 @@ part of 'explore_controller_implementation.dart';
 // **************************************************************************
 
 String _$exploreControllerImplementationHash() =>
-    r'a0dad739749c8ddba2123483dea5ab4bb5bfb431';
+    r'c7fd4974f4f038fbe3e474027463e3f900f2ae45';
 
 /// See also [ExploreControllerImplementation].
 @ProviderFor(ExploreControllerImplementation)

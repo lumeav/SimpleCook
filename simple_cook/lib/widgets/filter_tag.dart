@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/ui/recipefinder/recipefinder_provider.dart';
+import 'package:simple_cook/ui/recipefinder/recipefinder_controller_implementation.dart';
+
 
 class FilterTag extends ConsumerStatefulWidget {
   final String text;
@@ -18,27 +19,27 @@ class FilterTag extends ConsumerStatefulWidget {
 class _FilterTagState extends ConsumerState<FilterTag> {
   bool _pressed = false;
 
-  void _onPressed(RecipeFinderProvider filterProvider) {
+  void _onPressed(RecipeFinderControllerImplementation recipeFinderProvider) {
     setState(() {
       _pressed = !_pressed;
     });
     if (_pressed) {
-      filterProvider.setFilterActive(widget.text);
+      recipeFinderProvider.setFilterActive(widget.text);
     } else {
-      filterProvider.setFilterInactive(widget.text);
+      recipeFinderProvider.setFilterInactive(widget.text);
       // Placeholder for future logic
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final filter = ref.watch(recipeFinderProvider.notifier);
+    final recipeFinderNotifier = ref.watch(recipeFinderControllerImplementationProvider.notifier);
     return Container(
       padding: EdgeInsets.zero,
       margin: EdgeInsets.zero,
       child: _pressed
           ? ElevatedButton.icon(
-              onPressed: () => _onPressed(filter),
+              onPressed: () => _onPressed(recipeFinderNotifier),
               style: ElevatedButton.styleFrom(
                 shadowColor: Colors.transparent,
                 foregroundColor: Colors.transparent,
@@ -62,7 +63,7 @@ class _FilterTagState extends ConsumerState<FilterTag> {
               ),
             )
           : ElevatedButton(
-              onPressed: () => _onPressed(filter),
+              onPressed: () => _onPressed(recipeFinderNotifier),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.transparent,
                 surfaceTintColor: Colors.transparent,
