@@ -47,7 +47,7 @@ class _RecipefinderViewState extends State<RecipefinderView> {
                       onPressed: () {
                         loadRecipes();
                       },
-                      child: Text('Rezepte suchen')),
+                      child: const Text('Rezepte suchen')),
                   Container(
                       margin: const EdgeInsets.only(top: 50, bottom: 30),
                       alignment: Alignment.center,

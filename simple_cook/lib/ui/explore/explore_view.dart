@@ -37,7 +37,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
     ref.watch(favoritesProvider); // watch if Recipe gets added to Favorites
 
     return Scaffold(
-        appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+        appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
         backgroundColor: Colors.grey[200],
         body: exploreState.isSearching
             ? CustomScrollView(slivers: [

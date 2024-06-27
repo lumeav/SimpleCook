@@ -54,7 +54,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                         if (recipe != null) ...[
                           AddPlaner(recipe: recipe!),
                           const SizedBox(width: 10),
-                          HeartButton(false, recipe: copyWithEmptyIngredients(recipe!)),
+                          HeartButton(false, recipe: recipe!),
                         ],
                       ],
                     )),

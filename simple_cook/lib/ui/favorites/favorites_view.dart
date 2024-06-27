@@ -41,28 +41,3 @@ class FavoritesView extends ConsumerWidget {
     );
   }
 }
-
-List<Widget> _buildRecipeWidgets(List<SingleRecipe> recipes) {
-  return recipes.map((recipe) {
-    return SimpleRecipe(
-      recipe.imageUrls.isNotEmpty ? recipe.imageUrls.first : '',
-      recipe.title,
-      recipe.source,
-      '', // Add actual difficulty if available or leave it as an empty string
-    );
-  }).toList();
-}
-
-Widget _buildRowsRecipe(List<Widget> recipeWidgets, double height) {
-  return Container(
-    height: height,
-    padding: const EdgeInsets.all(15),
-    child: GridView.count(
-      childAspectRatio: 0.78,
-      crossAxisCount: 2,
-      mainAxisSpacing: 10,
-      crossAxisSpacing: 10,
-      children: recipeWidgets,
-    ),
-  );
-}
