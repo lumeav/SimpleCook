@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
+import 'package:simple_cook/widgets/loading_indicator.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:simple_cook/widgets/add_planer.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
-import 'package:simple_cook/common/custom_navbar.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
-import 'package:simple_cook/common/theme.dart';
 
 class RecipeView extends StatefulWidget {
   final String? recipeUrl;
@@ -74,10 +73,7 @@ class _RecipeViewState extends State<RecipeView> {
                 )),
               ])
             : !error
-                ? const Center(
-                    child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            SimpleCookColors.primary)))
+                ? LoadingIndicator()
                 : const Center(child: Text('Error while loading recipe')));
   }
 
