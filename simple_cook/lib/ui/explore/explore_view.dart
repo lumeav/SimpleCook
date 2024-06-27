@@ -27,14 +27,12 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
   @override
   void initState() {
     super.initState();
-    //buildRecipes();
     ref.read(exploreControllerImplementationProvider.notifier).buildRecipes();
   }
 
   @override
   Widget build(BuildContext context) {
     final exploreState = ref.watch(exploreControllerImplementationProvider);
-    ref.watch(favoritesProvider); // watch if Recipe gets added to Favorites
 
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
