@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:simple_cook/ui/recipefinder/recipefinder_provider.dart';
 
-class SearchBarFilter extends StatefulWidget {
+
+class SearchBarFilter extends ConsumerStatefulWidget {
   const SearchBarFilter({super.key});
 
   @override
-  State<SearchBarFilter> createState() => _SearchBarState();
+  ConsumerState<SearchBarFilter> createState() => _SearchBarState();
 }
 
 //TODO buttons are not deleted right
 
-class _SearchBarState extends State<SearchBarFilter> {
+class _SearchBarState extends ConsumerState<SearchBarFilter> {
   String? searchQuery;
   String selectedTile = '';
 
   List<String> buttons = [];
   //last vegetables from db
   late Iterable<Widget> lastVegetables = <Widget>[];
-
-
   @override
   Widget build(BuildContext context) {
-
-
+    final filter = ref.watch(recipeFinderProvider.notifier);
     return Column(children: [
       Container(
         width: MediaQuery.of(context).size.width,
@@ -39,7 +39,6 @@ class _SearchBarState extends State<SearchBarFilter> {
               searchQuery = controller.text;
               final List<String> vegetables =
                   (await database.search(searchQuery!)).toList();
-
               return List<ListTile>.generate(vegetables.length, (int index) {
                 final String item = vegetables[index];
                 return ListTile(
@@ -47,6 +46,7 @@ class _SearchBarState extends State<SearchBarFilter> {
                   titleAlignment: ListTileTitleAlignment.center,
                   onTap: () {
                     setState(() {
+                      filter.setFilterActive(item);
                       controller.closeView("");
                       selectedTile = item;
                       buttons.add(selectedTile);
@@ -87,6 +87,7 @@ class _SearchBarState extends State<SearchBarFilter> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                   onDeleted: () => setState(() {
+                    filter.setFilterInactive(buttons[index]);
                     buttons.removeAt(index);
                   }),
                 ));

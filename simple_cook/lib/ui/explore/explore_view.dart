@@ -6,8 +6,8 @@ import 'package:simple_cook/widgets/search_bar_explore.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
-import 'package:simple_cook/service/recipe_service.dart';
-import 'package:simple_cook/service/recipes_model.dart';
+import 'package:simple_cook/service/recipe_service/recipe_service.dart';
+import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'dart:math';
 

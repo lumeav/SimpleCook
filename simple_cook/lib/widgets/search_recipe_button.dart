@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:simple_cook/ui/recipefinder/recipefinder_provider.dart';
 
 //This is the "Rezepte Suchen" button that is orange with white letters
 
-class SearchRecipesButton extends StatelessWidget {
+class SearchRecipesButton extends ConsumerWidget {
   final String buttontext;
   final String viewName;
 
   const SearchRecipesButton(this.buttontext, this.viewName, {super.key,});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final filter = ref.watch(recipeFinderProvider.notifier);
     return SizedBox(
       height: 50,
       child: ElevatedButton(
             onPressed: () {
-              context.goNamed(viewName);
-            //TODO!!!: Add functionality to navigate to the recipeFinder page
-
+              context.goNamed('subGenRecipeView', queryParameters: {'text': filter.getFilter()});
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(SimpleCookColors.primary),

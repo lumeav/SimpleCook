@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/custom_navbar.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
@@ -7,10 +8,11 @@ import 'package:simple_cook/widgets/slider_filter.dart';
 import 'package:simple_cook/widgets/search_bar.dart';
 import 'package:simple_cook/widgets/search_recipe_button.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
-import 'package:simple_cook/service/recipe_service.dart';
+import 'package:simple_cook/service/recipe_service/recipe_service.dart';
+import 'package:simple_cook/ui/recipefinder/recipefinder_provider.dart';
 
 
-class RecipefinderView extends StatefulWidget {
+class RecipefinderView extends ConsumerStatefulWidget {
 
 
   RecipefinderView({
@@ -18,12 +20,14 @@ class RecipefinderView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _RecipefinderViewState createState() => _RecipefinderViewState();
+  ConsumerState<RecipefinderView> createState() => _RecipefinderViewState();
 }
 
-class _RecipefinderViewState extends State<RecipefinderView> {
+class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
+
   @override
   Widget build(BuildContext context) {
+    final filter = ref.watch(recipeFinderProvider.notifier);
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
         backgroundColor: Colors.grey[200],
@@ -45,14 +49,12 @@ class _RecipefinderViewState extends State<RecipefinderView> {
                     padding: EdgeInsets.only(left: 15, right: 15),
                     child: SliderFilter(),
                   ),
-                  ElevatedButton(onPressed: () {
-                    loadRecipes();
-                  }, child: Text('Rezepte suchen')),
                   Container(
                     margin: EdgeInsets.only(top: 50, bottom: 30),
                     alignment: Alignment.center,
-                    child: SearchRecipesButton("Rezepte suchen", "subRecipesFiltered")),
+                    child: SearchRecipesButton("Rezept generieren", "subRecipesFiltered")
 
+                  )
                 ],
               ),
             ),
@@ -60,13 +62,6 @@ class _RecipefinderViewState extends State<RecipefinderView> {
         ));
   }
 
-  Future<void> loadRecipes() async {
-    final recipeService = RecipeService();
-    final singlerecipe = await recipeService.getSingleRecipe('https://www.lecker.de/deftiger-kuechenzauber-topf-83483.html');//getAllRecipes('Tomate', null, null);
-    for (var recipe in singlerecipe!.ingredients!) {
-      print(recipe);
-    }
-  }
 
   List<String> kategorieList = [
     'Alle',

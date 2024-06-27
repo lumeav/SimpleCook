@@ -1,46 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/service/recipe_service/recipes_model.dart';
-import 'package:simple_cook/widgets/preparation.dart';
-import 'package:simple_cook/widgets/simple_cook_appbar.dart';
-import 'package:simple_cook/widgets/heart_button.dart';
-import 'package:simple_cook/widgets/add_planer.dart';
-import 'package:simple_cook/widgets/ingredients.dart';
-import 'package:simple_cook/common/custom_navbar.dart';
-import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
+import 'package:simple_cook/service/recipe_service/gen_recipe_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';
+import 'package:simple_cook/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/widgets/add_planer.dart';
+import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
+import 'package:simple_cook/widgets/ingredients.dart';
+import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/common/theme.dart';
 
-class RecipeView extends StatefulWidget {
-  final String? recipeUrl;
-  final String? difficulty;
+class RecipeGenView extends StatefulWidget {
+  final String? text;
 
-  const RecipeView({
-    Key? key,
-    this.recipeUrl,
-    this.difficulty,
-  }) : super(key: key);
+  const RecipeGenView({Key? key, this.text}) : super(key: key);
 
   @override
-  _RecipeViewState createState() => _RecipeViewState();
+  _RecipeGenViewState createState() => _RecipeGenViewState();
 }
 
-class _RecipeViewState extends State<RecipeView> {
-  SingleRecipe? recipe;
+class _RecipeGenViewState extends State<RecipeGenView> {
+  GenRecipe? recipe;
+  String? url;
   bool isSearching = false;
   bool error = false;
 
   @override
   void initState() {
     super.initState();
-    buildRecipe();
+    print('text: ${widget.text}');
+    getRecipe();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+        appBar: SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
         body: isSearching
             ? Column(children: [
@@ -66,8 +60,7 @@ class _RecipeViewState extends State<RecipeView> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.white),
-                            child: buildSingleRecipe(recipe!, widget.recipeUrl!,
-                                widget.difficulty!)),
+                            child: buildRecipe()),
                       ),
                     ],
                   ),
@@ -81,10 +74,11 @@ class _RecipeViewState extends State<RecipeView> {
                 : const Center(child: Text('Error while loading recipe')));
   }
 
-  Future<void> buildRecipe() async {
+  void getRecipe() async {
     final service = RecipeService();
-    recipe = await service.getSingleRecipe(widget.recipeUrl!);
+    recipe = await service.postGenRecipeAndImg(widget.text!);
     if (recipe == null) {
+      print('error');
       error = true;
     }
     setState(() {
@@ -92,8 +86,7 @@ class _RecipeViewState extends State<RecipeView> {
     });
   }
 
-  Widget buildSingleRecipe(
-      SingleRecipe singleRecipe, String recipeUrl, String difficulty) {
+  Widget buildRecipe() {
     return Column(
       children: [
         Stack(children: [
@@ -103,17 +96,17 @@ class _RecipeViewState extends State<RecipeView> {
             child: AspectRatio(
                 aspectRatio: 1.8,
                 child: Image.network(
-                  singleRecipe.imageUrls.first,
+                  recipe!.imgUrl!,
                   fit: BoxFit.cover,
                 )),
           )
         ]),
-        HeaderRecipeInfos(singleRecipe.title,
-            singleRecipe.totalTime.toStringAsFixed(0), difficulty!),
+        HeaderRecipeInfos(
+            recipe!.title, recipe!.totalTime.toStringAsFixed(0), 'unbekannt'),
         const Padding(
             padding: EdgeInsets.only(left: 15, right: 15), child: Divider()),
         Ingredients([
-          for (var ingredient in singleRecipe.ingredients)
+          for (var ingredient in recipe!.ingredients)
             if (ingredient.amount == "" && ingredient.unit == "")
               ingredient.name
             else if (ingredient.amount != "" && ingredient.unit == "")
@@ -124,7 +117,7 @@ class _RecipeViewState extends State<RecipeView> {
         Padding(
           padding: const EdgeInsets.only(top: 10.0),
           child: Preparation(
-              [for (var preparation in singleRecipe.steps) preparation]),
+              [for (var preparation in recipe!.instructions) preparation]),
         )
       ],
     );

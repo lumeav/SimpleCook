@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:simple_cook/ui/recipefinder/recipefinder_provider.dart';
 
-class FilterTag extends StatefulWidget {
+class FilterTag extends ConsumerStatefulWidget {
   final String text;
 
   const FilterTag(
@@ -10,68 +12,74 @@ class FilterTag extends StatefulWidget {
   });
 
   @override
-  State<FilterTag> createState() => _FilterTagState();
+  ConsumerState<FilterTag> createState() => _FilterTagState();
 }
 
-class _FilterTagState extends State<FilterTag> {
+class _FilterTagState extends ConsumerState<FilterTag> {
   bool _pressed = false;
 
-  void _onPressed() {
+  void _onPressed(RecipeFinderProvider filterProvider) {
     setState(() {
       _pressed = !_pressed;
     });
-
     if (_pressed) {
-      // Placeholder for future logic
+      filterProvider.setFilterActive(widget.text);
     } else {
+      filterProvider.setFilterInactive(widget.text);
       // Placeholder for future logic
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final filter = ref.watch(recipeFinderProvider.notifier);
     return Container(
-        padding: EdgeInsets.zero,
-        margin: EdgeInsets.zero,
-        child: _pressed
-            ? ElevatedButton.icon(
-                onPressed: _onPressed,
-                style: ElevatedButton.styleFrom(
-                  shadowColor: Colors.transparent,
-                  foregroundColor: Colors.transparent,
-                  surfaceTintColor: Colors.transparent,
-                  backgroundColor: SimpleCookColors.primary.withOpacity(0.75),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    side: const BorderSide(
-                        color: SimpleCookColors.border, width: 1.5),
+      padding: EdgeInsets.zero,
+      margin: EdgeInsets.zero,
+      child: _pressed
+          ? ElevatedButton.icon(
+              onPressed: () => _onPressed(filter),
+              style: ElevatedButton.styleFrom(
+                shadowColor: Colors.transparent,
+                foregroundColor: Colors.transparent,
+                surfaceTintColor: Colors.transparent,
+                backgroundColor: SimpleCookColors.primary.withOpacity(0.75),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(
+                    color: SimpleCookColors.border,
+                    width: 1.5,
                   ),
                 ),
-                icon: const Icon(
-                  Icons.close,
-                  color: Colors.white,
+              ),
+              icon: const Icon(
+                Icons.close,
+                color: Colors.white,
+              ),
+              label: Text(
+                widget.text,
+                style: SimpleCookTextstyles.filterTagTapped,
+              ),
+            )
+          : ElevatedButton(
+              onPressed: () => _onPressed(filter),
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.transparent,
+                surfaceTintColor: Colors.transparent,
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  side: const BorderSide(
+                    color: SimpleCookColors.border,
+                    width: 1.5,
+                  ),
                 ),
-                label: Text(
-                  widget.text,
-                  style: SimpleCookTextstyles.filterTagTapped,
-                ),
-              )
-            : ElevatedButton(
-                onPressed: _onPressed,
-                style: ElevatedButton.styleFrom(
-                  foregroundColor: Colors.transparent,
-                  surfaceTintColor: Colors.transparent,
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      side: const BorderSide(
-                          color: SimpleCookColors.border,
-                          width: 1.5)),
-                ),
-                child: Text(
-                  widget.text,
-                  style: SimpleCookTextstyles.filterTagUntapped,
-                ),
-              ));
+              ),
+              child: Text(
+                widget.text,
+                style: SimpleCookTextstyles.filterTagUntapped,
+              ),
+            ),
+    );
   }
 }
