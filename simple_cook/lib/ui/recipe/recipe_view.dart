@@ -45,7 +45,7 @@ class _RecipeViewState extends State<RecipeView> {
         body: isSearching
             ? Column(children: [
                 Container(
-                    padding: EdgeInsets.symmetric(vertical: 5),
+                    padding: EdgeInsets.symmetric(vertical: 2),
                     color: Colors.white,
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
