@@ -1,6 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
-import 'package:simple_cook/service/persistence_service.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
+import 'package:simple_cook/service/persistence_service/persistence_service.dart';
 
 class FavoritesNotifier extends StateNotifier<List<SingleRecipe>> {
   FavoritesNotifier() : super([]) {
@@ -27,7 +27,7 @@ class FavoritesNotifier extends StateNotifier<List<SingleRecipe>> {
   bool isFavorite(SingleRecipe recipe) {
     return _persistenceService.isFavorite(recipe);
   }
-  
+
   Future<void> toggleFavorite(SingleRecipe recipe) async {
     if (isFavorite(recipe)) {
       await removeFavorite(recipe);

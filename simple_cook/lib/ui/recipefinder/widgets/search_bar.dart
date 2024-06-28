@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:simple_cook/ui/recipeFinder/recipefinder_controller_implementation.dart';
 
-class SearchBarFilter extends StatefulWidget {
+
+class SearchBarFilter extends ConsumerStatefulWidget {
   const SearchBarFilter({super.key});
 
   @override
-  State<SearchBarFilter> createState() => _SearchBarState();
+  ConsumerState<SearchBarFilter> createState() => _SearchBarState();
 }
 
 //TODO buttons are not deleted right
 
-class _SearchBarState extends State<SearchBarFilter> {
+class _SearchBarState extends ConsumerState<SearchBarFilter> {
   String? searchQuery;
   String selectedTile = '';
 
   List<String> buttons = [];
   //last vegetables from db
   late Iterable<Widget> lastVegetables = <Widget>[];
-
-
   @override
   Widget build(BuildContext context) {
-
-
+    final recipeFinderNotifier = ref.watch(recipeFinderControllerImplementationProvider.notifier);
     return Column(children: [
       Container(
         width: MediaQuery.of(context).size.width,
@@ -39,7 +39,6 @@ class _SearchBarState extends State<SearchBarFilter> {
               searchQuery = controller.text;
               final List<String> vegetables =
                   (await database.search(searchQuery!)).toList();
-
               return List<ListTile>.generate(vegetables.length, (int index) {
                 final String item = vegetables[index];
                 return ListTile(
@@ -50,6 +49,7 @@ class _SearchBarState extends State<SearchBarFilter> {
                       controller.closeView("");
                       selectedTile = item;
                       buttons.add(selectedTile);
+                      recipeFinderNotifier.setFilterActive(item);
                     });
                   },
                 );
@@ -87,6 +87,7 @@ class _SearchBarState extends State<SearchBarFilter> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                   onDeleted: () => setState(() {
+                    recipeFinderNotifier.setFilterInactive(buttons[index]);
                     buttons.removeAt(index);
                   }),
                 ));
@@ -104,13 +105,12 @@ class database {
     'Kartoffel',
     'Ei',
     'Karrotte',
-    'Karrtr'
-        'Kardfcgdfb'
-        'Klöereasr'
-        'Zwiebel',
+    'Kardfcgdfb'
+    'Zwiebel',
     'Knoblauch',
     'Paprika',
-    'Noah',
+    'Gurke',
+    'Salat',
   ];
 
   static Future<Iterable<String>> search(String query) async {

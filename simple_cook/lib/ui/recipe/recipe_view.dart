@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+//import 'package:simple_cook/service/recipe_service/recipes_model.dart';
+import 'package:simple_cook/widgets/loading_indicator.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:simple_cook/widgets/add_planer.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
-import 'package:simple_cook/service/recipe_service.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
+import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/ui/favorites/favorites_provider.dart';
@@ -46,7 +48,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
         body: isSearching
             ? Column(children: [
                 Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
+                    padding: EdgeInsets.symmetric(vertical: 2),
                     color: Colors.white,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -57,7 +59,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                           //error:_Map<dynamic, dynamic>' is not a subtype of type 'Map<String, dynamic>
                           //so we copy with empty ingredients for now. Doesnt matter because we build it again in buildSingleRecipe
                           //only works with internet connection
-                          HeartButton(false, recipe: copyWithEmptyIngredients(recipe!)), 
+                          HeartButton(false, recipe: copyWithEmptyIngredients(recipe!)),
                         ],
                       ],
                     )),
@@ -80,10 +82,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                 )),
               ])
             : !error
-                ? const Center(
-                    child: CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(
-                            SimpleCookColors.primary)))
+                ? LoadingIndicator()
                 : const Center(child: Text('Error while loading recipe')));
   }
 

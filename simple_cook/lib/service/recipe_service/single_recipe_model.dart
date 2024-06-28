@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
 part 'single_recipe_model.freezed.dart';
 part 'single_recipe_model.g.dart';
 

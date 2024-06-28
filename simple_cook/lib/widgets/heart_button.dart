@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/ui/favorites/favorites_provider.dart';
 
 class HeartButton extends ConsumerWidget {
@@ -22,7 +22,7 @@ class HeartButton extends ConsumerWidget {
 
     var size = MediaQuery.of(context).size.width * 0.07;
     if (!border) {
-      size = size + 22;
+      size = size + 12;
     }
     return Container(
       width: size + 8,
