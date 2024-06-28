@@ -19,7 +19,7 @@ class SimpleCookAppBar extends StatelessWidget implements PreferredSizeWidget {
           PhosphorIcon(
             PhosphorIcons.chefHat(PhosphorIconsStyle.regular),
             color: SimpleCookColors.primary,
-            size: 40,
+            size: 45,
           ),
           const SizedBox(
               width: 8.0), // Add some spacing between the icon and the text
@@ -27,7 +27,7 @@ class SimpleCookAppBar extends StatelessWidget implements PreferredSizeWidget {
             title,
             style: const TextStyle(
                 color: SimpleCookColors.primary,
-                fontSize: 35,
+                fontSize: 40,
                 fontFamily: 'BigShouldersText'),
           ),
         ],

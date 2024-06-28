@@ -5,6 +5,7 @@ import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:simple_cook/service/recipe_service.dart';
 import 'package:simple_cook/service/single_recipe_model.dart';
+import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 
 class SimpleRecipe extends StatefulWidget {
   final String imgPath;
@@ -37,10 +38,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
     return Container(
       child: InkWell(
         onTap: () {
-          context.goNamed('subRecipeView', queryParameters: {
-            'recipeUrl': widget.source,
-            'difficulty': widget.difficulty
-          });
+          context.pushNamed('singleRecipeView', queryParameters: {'recipeUrl': widget.source, 'difficulty': widget.difficulty});
         },
         child: Ink(
             decoration: BoxDecoration(

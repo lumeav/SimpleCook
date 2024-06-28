@@ -1,7 +1,7 @@
 import 'dart:math';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:simple_cook/service/recipes_model.dart';
-import 'package:simple_cook/service/recipe_service.dart';
+import 'package:simple_cook/service/recipe_service/recipes_model.dart';
+import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:simple_cook/ui/explore/explore_model.dart';
 import 'package:simple_cook/ui/explore/explore_view.dart';
 

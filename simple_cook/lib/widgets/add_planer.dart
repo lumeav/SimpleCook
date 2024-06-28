@@ -23,7 +23,7 @@ class _AddPlanerState extends State<AddPlaner> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size.width * 0.075;
+    var size = MediaQuery.of(context).size.width * 0.062;
     return Container(
       width: size + 8,
       height: size + 8,

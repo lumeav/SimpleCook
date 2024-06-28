@@ -21,8 +21,8 @@ class HeartButton extends ConsumerWidget {
     }
 
     var size = MediaQuery.of(context).size.width * 0.07;
-    if (!border) {
-      size = size + 22;
+    if (!widget.border) {
+      size = size + 12;
     }
     return Container(
       width: size + 8,
