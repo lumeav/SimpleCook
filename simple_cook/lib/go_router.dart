@@ -34,16 +34,16 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
               },
               routes: [
                 GoRoute(
-                  path: 'subRecipesFiltered',
-                  name: 'subRecipesFiltered',
-                  pageBuilder: (context, state) {
-                  return NoTransitionPage(
-                      key: state.pageKey,
-                      child: RecipesFilteredView(
-                        key: state.pageKey,
-                        search: state.uri.queryParameters['search'],
-                        ));
-                })
+                    path: 'subRecipesFiltered',
+                    name: 'subRecipesFiltered',
+                    pageBuilder: (context, state) {
+                      return NoTransitionPage(
+                          key: state.pageKey,
+                          child: RecipesFilteredView(
+                            key: state.pageKey,
+                            search: state.uri.queryParameters['search'],
+                          ));
+                    })
               ]),
         ]),
         StatefulShellBranch(routes: [
@@ -57,22 +57,7 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                     key: state.pageKey,
                   ),
                 );
-              },
-              routes: [
-                GoRoute(
-                  path: 'RecipeGenView',
-                  name: 'RecipeGenView',
-                  pageBuilder: (context, state) {
-                    return NoTransitionPage(
-                      key: state.pageKey,
-                      child: RecipeGenView(
-                        key: state.pageKey,
-                        text: state.uri.queryParameters['text'],
-                      ),
-                    );
-                  },
-                ),
-              ])
+              })
         ]),
         StatefulShellBranch(routes: [
           GoRoute(
@@ -101,20 +86,31 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
               })
         ])
       ]),
-      GoRoute(
-        path: '/singleRecipeView',
-        name: 'singleRecipeView',
-        pageBuilder: (context, state) {
-          return NoTransitionPage(
-            key: state.pageKey,
-            child: Scaffold(
-              body: RecipeView(
-                key: state.pageKey,
-                recipeUrl: state.uri.queryParameters['recipeUrl'],
-                difficulty: state.uri.queryParameters['difficulty'],
-              ),
-            ),
-          );
-        },
-      )
+  GoRoute(
+    path: '/singleRecipeView',
+    name: 'singleRecipeView',
+    pageBuilder: (context, state) {
+      return NoTransitionPage(
+        key: state.pageKey,
+        child: RecipeView(
+          key: state.pageKey,
+          recipeUrl: state.uri.queryParameters['recipeUrl'],
+          difficulty: state.uri.queryParameters['difficulty'],
+        ),
+      );
+    },
+  ),
+  GoRoute(
+    path: '/singleRecipeGenView',
+    name: 'singleRecipeGenView',
+    pageBuilder: (context, state) {
+      return NoTransitionPage(
+        key: state.pageKey,
+        child: RecipeGenView(
+          key: state.pageKey,
+          text: state.uri.queryParameters['text'],
+        ),
+      );
+    },
+  )
 ]);

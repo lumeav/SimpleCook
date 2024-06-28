@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 
 class SingleRecipeAdapter extends TypeAdapter<SingleRecipe> {
   @override

@@ -18,11 +18,11 @@ class LoadingIndicator extends StatelessWidget {
               width: size,
               child: CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(SimpleCookColors.primary),
-                strokeWidth: 6,
+                strokeWidth: 4,
               ),
             ),
             PhosphorIcon(
-              PhosphorIcons.chefHat(PhosphorIconsStyle.regular),
+              PhosphorIcons.chefHat(PhosphorIconsStyle.light),
                 color: SimpleCookColors.primary,
                 size: size - 50,),
           ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 
 class RemoveButton extends StatelessWidget {
   final SingleRecipe recipe;

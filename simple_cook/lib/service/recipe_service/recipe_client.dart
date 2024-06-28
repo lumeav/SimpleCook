@@ -20,7 +20,7 @@ class RecipeClient {
   Future<List<Recipe>?> getRecipes(String parameter) async {
 
     var url = baseUrl + 'search_api?text=' + parameter;
-  print(url);
+    print(url);
     var response = await client.get(Uri.parse(url), headers: headers);
 
     if (response.statusCode == 200) {
@@ -37,7 +37,7 @@ class RecipeClient {
     var response = await client.get(Uri.parse(url), headers: headers);
 
     if (response.statusCode == 200) {
-      return singleRecipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
+      return SingleRecipe.fromJson(jsonDecode(const Utf8Decoder().convert(response.bodyBytes)));
     } else {
       throw Exception('Failed to load recipes. Status code: ${response.statusCode}, Response body: ${response.body}');
     }

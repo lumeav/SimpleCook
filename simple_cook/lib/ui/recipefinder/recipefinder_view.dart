@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:simple_cook/common/custom_navbar.dart';
 import 'package:simple_cook/ui/recipeFinder/recipefinder_controller_implementation.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/filter_tag.dart';
@@ -10,7 +7,6 @@ import 'package:simple_cook/widgets/slider_filter.dart';
 import 'package:simple_cook/ui/recipeFinder/widgets/search_bar.dart';
 import 'package:simple_cook/widgets/search_recipe_button.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
-import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 
 class RecipefinderView extends ConsumerStatefulWidget {
 

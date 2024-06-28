@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/service/persistence_service.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
+import 'package:simple_cook/service/persistence_service/persistence_service.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 
 class AddPlaner extends StatefulWidget {
   final SingleRecipe? recipe;

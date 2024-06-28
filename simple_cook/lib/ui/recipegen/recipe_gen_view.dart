@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/service/recipe_service/recipe_gen_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';
+import 'package:simple_cook/widgets/loading_indicator.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/add_planer.dart';
 import 'package:simple_cook/widgets/heart_button.dart';
@@ -36,17 +37,17 @@ class _RecipeGenViewState extends State<RecipeGenView> {
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
-        body: !isLoadingRecipe
+        body: isLoadingRecipe
             ? Column(children: [
                 Container(
-                    padding: EdgeInsets.symmetric(vertical: 5),
+                    padding: EdgeInsets.symmetric(vertical: 10),
                     color: Colors.white,
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         AddPlaner(),
                         SizedBox(width: 10),
-                        HeartButton(false)
+                        //HeartButton(false)
                       ],
                     )),
                 Expanded(
@@ -66,11 +67,7 @@ class _RecipeGenViewState extends State<RecipeGenView> {
                   ),
                 )),
               ])
-            : Center(
-                child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                        SimpleCookColors.primary)),
-              ));
+            : LoadingIndicator());
   }
 
   void getRecipe() async {
@@ -81,9 +78,6 @@ class _RecipeGenViewState extends State<RecipeGenView> {
       error = true;
     }
     getRecipeImg(recipe!);
-    setState(() {
-      isLoadingRecipe = true;
-    });
   }
 
   void getRecipeImg(GenRecipe genRecipe) async {

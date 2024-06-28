@@ -6,7 +6,7 @@ import 'package:simple_cook/ui/explore/widgets/search_bar_explore.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
-import 'package:simple_cook/service/recipes_model.dart';
+import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/ui/favorites/favorites_provider.dart';
 //import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/common/theme.dart';

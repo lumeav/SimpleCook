@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 
 class PersistenceService {
   static final PersistenceService _instance = PersistenceService._internal();
@@ -11,7 +11,7 @@ class PersistenceService {
   PersistenceService._internal();
 
   late Box<SingleRecipe> _favoritesBox;
-  late Box<List<SingleRecipe>> _plannerBox; 
+  late Box<List<SingleRecipe>> _plannerBox;
 
   Future<void> init() async {
     try {
@@ -55,7 +55,7 @@ class PersistenceService {
   List<SingleRecipe> getRecipesForDate(String date) {
     return _plannerBox.get(date, defaultValue: []) ?? []; // Handle potential null by providing default empty list
   }
-  
+
   Future<void> removeRecipeFromPlanner(String date, SingleRecipe recipe) async {
     List<SingleRecipe> recipes = _plannerBox.get(date, defaultValue: []) ?? [];
     recipes.removeWhere((SingleRecipe r) => r.title == recipe.title); // Remove based on title

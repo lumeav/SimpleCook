@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/service/persistence_service.dart';
-import 'package:simple_cook/service/persistence_service_model.dart';
+import 'package:simple_cook/service/persistence_service/persistence_service.dart';
+import 'package:simple_cook/service/persistence_service/persistence_service_model.dart';
 import 'go_router.dart';
 
 void main() async {

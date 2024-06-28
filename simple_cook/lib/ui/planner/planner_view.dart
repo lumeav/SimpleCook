@@ -5,8 +5,8 @@ import 'package:simple_cook/widgets/time_view_span.dart';
 import 'package:simple_cook/widgets/date.dart';
 import 'package:simple_cook/widgets/remove_button.dart';
 //import 'package:simple_cook/widgets/header_recipe_infos.dart';
-import 'package:simple_cook/service/persistence_service.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
+import 'package:simple_cook/service/persistence_service/persistence_service.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 
 class PlannerView extends StatefulWidget {
@@ -55,7 +55,7 @@ class _PlannerViewState extends State<PlannerView> {
   List<Widget> _buildPlannerRows() {
     DateTime today = DateTime.now();
     List<Widget> plannerRows = [];
-    
+
     for (int i = 0; i < 7; i++) {
       DateTime date = today.add(Duration(days: i));
       String formattedDate = '${date.day}.${date.month}.${date.year}';
@@ -77,7 +77,7 @@ class _PlannerViewState extends State<PlannerView> {
         ),
       );
     }
-    return plannerRows; 
+    return plannerRows;
   }
 
   Widget _buildRecipeWidgets(List<SingleRecipe> recipes) {
