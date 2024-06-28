@@ -1,8 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:simple_cook/ui/recipeFinder/recipefinder_model.dart';
-import 'package:simple_cook/ui/recipeFinder/recipefinder_view.dart';
+import 'package:simple_cook/ui/recipe_finder/recipe_finder_model.dart';
+import 'package:simple_cook/ui/recipe_finder/recipe_finder_view.dart';
 
-part 'recipefinder_controller_implementation.g.dart';
+part 'recipe_finder_controller_implementation.g.dart';
 
 @riverpod
 class RecipeFinderControllerImplementation extends _$RecipeFinderControllerImplementation

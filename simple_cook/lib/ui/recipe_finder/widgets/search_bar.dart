@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/ui/recipeFinder/recipefinder_controller_implementation.dart';
+import 'package:simple_cook/ui/recipe_finder/recipe_finder_controller_implementation.dart';
 
 
 class SearchBarFilter extends ConsumerStatefulWidget {

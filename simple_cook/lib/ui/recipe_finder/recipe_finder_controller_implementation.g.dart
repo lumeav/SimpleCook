@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'recipefinder_controller_implementation.dart';
+part of 'recipe_finder_controller_implementation.dart';
 
 // **************************************************************************
 // RiverpodGenerator

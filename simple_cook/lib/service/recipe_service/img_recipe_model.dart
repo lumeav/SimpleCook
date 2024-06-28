@@ -1,23 +1,23 @@
 import 'dart:convert';
 
-ImgRecipe imgRecipeFromJson(String str) => ImgRecipe.fromJson(json.decode(str));
+ImgRecipeModel imgRecipeFromJson(String str) => ImgRecipeModel.fromJson(json.decode(str));
 
-String imgRecipeToJson(ImgRecipe data) => json.encode(data.toJson());
+String imgRecipeToJson(ImgRecipeModel data) => json.encode(data.toJson());
 
-class ImgRecipe {
+class ImgRecipeModel {
     List<Ingredient> ingredients;
     List<String> steps;
     String title;
     String? imageSize;
 
-    ImgRecipe({
+    ImgRecipeModel({
         required this.ingredients,
         required this.steps,
         required this.title,
         required this.imageSize,
     });
 
-    factory ImgRecipe.fromJson(Map<String, dynamic> json) => ImgRecipe(
+    factory ImgRecipeModel.fromJson(Map<String, dynamic> json) => ImgRecipeModel(
         ingredients: List<Ingredient>.from(json["ingredients"].map((x) => Ingredient.fromJson(x))),
         steps: List<String>.from(json["instructions"].map((x) => x)),
         title: json["title"],

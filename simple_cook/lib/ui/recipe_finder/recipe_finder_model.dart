@@ -1,7 +1,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'recipefinder_model.freezed.dart';
+part 'recipe_finder_model.freezed.dart';
 
 @freezed
 class RecipeFinderModel with _$RecipeFinderModel {

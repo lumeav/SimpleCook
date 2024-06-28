@@ -43,7 +43,7 @@ class RecipeClient {
     }
   }
 
-  Future<GenRecipe> postGenRecipe(String request) async {
+  Future<GenRecipeModel> postGenRecipeModel(String request) async {
 
     var response = await client.post(Uri.parse(baseUrl + 'generateRecipe'), headers: headers, body: jsonEncode({'text': request}));
 
@@ -56,7 +56,7 @@ class RecipeClient {
     }
   }
 
-  Future<String> postGenRecipeImg(GenRecipe recipe) async {
+  Future<String> postGenRecipeModelImg(GenRecipeModel recipe) async {
 
       var genRecipeJson = genRecipeToJson(recipe);
       var imgRecipe = imgRecipeFromJson(genRecipeJson);

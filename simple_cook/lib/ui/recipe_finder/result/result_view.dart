@@ -10,17 +10,17 @@ import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/common/theme.dart';
 
-class RecipeGenView extends StatefulWidget {
+class ResultView extends StatefulWidget {
   final String? text;
 
-  const RecipeGenView({Key? key, this.text}) : super(key: key);
+  const ResultView({Key? key, this.text}) : super(key: key);
 
   @override
-  _RecipeGenViewState createState() => _RecipeGenViewState();
+  _ResultViewState createState() => _ResultViewState();
 }
 
-class _RecipeGenViewState extends State<RecipeGenView> {
-  GenRecipe? recipe;
+class _ResultViewState extends State<ResultView> {
+  GenRecipeModel? recipe;
   String? url;
   bool isLoadingRecipe = false;
   bool error = false;
@@ -72,7 +72,7 @@ class _RecipeGenViewState extends State<RecipeGenView> {
 
   void getRecipe() async {
     final service = RecipeService();
-    recipe = await service.postGenRecipe(widget.text!);
+    recipe = await service.postGenRecipeModel(widget.text!);
     if (recipe == null) {
       print('error');
       error = true;
@@ -80,9 +80,9 @@ class _RecipeGenViewState extends State<RecipeGenView> {
     getRecipeImg(recipe!);
   }
 
-  void getRecipeImg(GenRecipe genRecipe) async {
+  void getRecipeImg(GenRecipeModel genRecipe) async {
     final service = RecipeService();
-    url = await service.postGenRecipeImg(genRecipe);
+    url = await service.postGenRecipeModelImg(genRecipe);
     if (url == null) {
       print('error');
       error = true;

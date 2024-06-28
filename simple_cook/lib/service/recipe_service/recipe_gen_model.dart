@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-GenRecipe genRecipeFromJson(String str) => GenRecipe.fromJson(json.decode(str));
+GenRecipeModel genRecipeFromJson(String str) => GenRecipeModel.fromJson(json.decode(str));
 
-String genRecipeToJson(GenRecipe data) => json.encode(data.toJson());
+String genRecipeToJson(GenRecipeModel data) => json.encode(data.toJson());
 
-class GenRecipe {
+class GenRecipeModel {
     List<Ingredient> ingredients;
     List<String> instructions;
     int portions;
@@ -12,7 +12,7 @@ class GenRecipe {
     double totalTime;
     String? imgUrl;
 
-    GenRecipe({
+    GenRecipeModel({
         required this.ingredients,
         required this.instructions,
         required this.portions,
@@ -21,7 +21,7 @@ class GenRecipe {
         required this.imgUrl,
     });
 
-    factory GenRecipe.fromJson(Map<String, dynamic> json) => GenRecipe(
+    factory GenRecipeModel.fromJson(Map<String, dynamic> json) => GenRecipeModel(
         ingredients: List<Ingredient>.from(json["ingredients"].map((x) => Ingredient.fromJson(x))),
         instructions: List<String>.from(json["instructions"].map((x) => x)),
         portions: json["portions"],

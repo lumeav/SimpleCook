@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/ui/recipeFinder/recipefinder_controller_implementation.dart';
+import 'package:simple_cook/ui/recipe_finder/recipe_finder_controller_implementation.dart';
 
 //This is the "Rezepte Suchen" button that is orange with white letters
 
@@ -19,7 +19,7 @@ class SearchRecipesButton extends ConsumerWidget {
       height: 50,
       child: ElevatedButton(
             onPressed: () {
-              context.pushNamed('singleRecipeGenView', queryParameters: {'text': recipeFinderNotifier.getFilter()});
+              context.pushNamed('singleResultView', queryParameters: {'text': recipeFinderNotifier.getFilter()});
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(SimpleCookColors.primary),
