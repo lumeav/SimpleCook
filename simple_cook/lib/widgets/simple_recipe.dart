@@ -25,7 +25,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
     //print('Image URL: ${widget.imgPath}');
     final SingleRecipe recipe = SingleRecipe(
       diet: [], // Provide actual values as needed
-      image_urls: [widget.imgPath],
+      imageUrls: [widget.imgPath],
       ingredients: [], // Provide actual values as needed
       portions: 1, // Provide actual values as needed
       source: widget.source,

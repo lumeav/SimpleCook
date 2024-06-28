@@ -115,9 +115,9 @@ class _RecipeGenViewState extends State<RecipeGenView> {
                 child: Divider()),
             Ingredients([
               for (var ingredient in recipe!.ingredients)
-                if (ingredient.amount == null && ingredient.unit == "")
+                if (ingredient.amount == "" && ingredient.unit == "")
                   ingredient.name
-                else if (ingredient.amount != null && ingredient.unit == "")
+                else if (ingredient.amount != "" && ingredient.unit == "")
                   '${ingredient.amount} ${ingredient.name}'
                 else
                   '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
