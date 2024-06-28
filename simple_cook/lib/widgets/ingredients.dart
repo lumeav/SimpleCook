@@ -4,7 +4,8 @@ import 'package:simple_cook/widgets/recipe_portion.dart';
 
 class Ingredients extends StatefulWidget {
   final List<String> ingredientList;
-  const Ingredients(this.ingredientList, {super.key});
+  final int portion;
+  const Ingredients(this.ingredientList, this.portion, {super.key});
 
   @override
   State<Ingredients> createState() => _IngredientsState();
@@ -28,11 +29,17 @@ class _IngredientsState extends State<Ingredients> {
       padding: const EdgeInsets.only(left: 15, right: 15),
       child: Column(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text("Zutaten",
-                style: SimpleCookTextstyles.subheader),
-            RecipePortion()
+            children: [
+              Text(
+                "Zutaten",
+                style: SimpleCookTextstyles.subheader
+              ),
+              Text(
+                widget.portion.toString() + " Port.",
+                style: SimpleCookTextstyles.portions
+              ),
             ]
           ),
           Padding(

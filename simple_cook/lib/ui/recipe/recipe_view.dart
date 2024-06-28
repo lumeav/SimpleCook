@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-//import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/widgets/loading_indicator.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/widgets/simple_cook_appbar.dart';
@@ -53,14 +52,12 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        if (recipe != null) ...[
                           AddPlaner(recipe: recipe!),
                           const SizedBox(width: 10),
                           //error:_Map<dynamic, dynamic>' is not a subtype of type 'Map<String, dynamic>
                           //so we copy with empty ingredients for now. Doesnt matter because we build it again in buildSingleRecipe
                           //only works with internet connection
                           HeartButton(false, recipe: copyWithEmptyIngredients(recipe!)),
-                        ],
                       ],
                     )),
                 Expanded(
@@ -125,7 +122,8 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
               '${ingredient.amount} ${ingredient.name}'
             else
               '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
-        ]),
+        ],
+        recipe!.portions),
         Padding(
           padding: const EdgeInsets.only(top: 10.0),
           child: Preparation(

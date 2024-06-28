@@ -42,7 +42,7 @@ class RecipeInfos extends StatelessWidget {
                   const Icon(Icons.access_time, color: Colors.grey),
                   SizedBox(width: 5),
                   Text(
-                    text_time,
+                    text_time + ' min',
                     style: SimpleCookTextstyles.recInfos,
                   ),
                 ],
