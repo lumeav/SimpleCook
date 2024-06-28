@@ -121,7 +121,8 @@ class _RecipeGenViewState extends State<RecipeGenView> {
                   '${ingredient.amount} ${ingredient.name}'
                 else
                   '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
-            ]),
+            ],
+            recipe!.portions),
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: Preparation([

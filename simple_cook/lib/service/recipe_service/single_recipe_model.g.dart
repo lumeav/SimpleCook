@@ -19,7 +19,7 @@ _$SingleRecipeImpl _$$SingleRecipeImplFromJson(Map<String, dynamic> json) =>
       source: json['source'] as String,
       steps: (json['steps'] as List<dynamic>).map((e) => e as String).toList(),
       title: json['title'] as String,
-      totalTime: (json['totalTime'] as num).toDouble(),
+      totalTime: (json['totalTime'] as num).toDouble() / 60,
     );
 
 Map<String, dynamic> _$$SingleRecipeImplToJson(_$SingleRecipeImpl instance) =>
