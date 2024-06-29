@@ -22,7 +22,9 @@ class GenRecipeModel {
     });
 
     factory GenRecipeModel.fromJson(Map<String, dynamic> json) => GenRecipeModel(
-        ingredients: List<Ingredient>.from(json["ingredients"].map((x) => Ingredient.fromJson(x))),
+        ingredients:(json['ingredients'] as List)
+          .map((e) => Ingredient.fromJson(Map<String, dynamic>.from(e as Map)))
+          .toList(),
         instructions: List<String>.from(json["instructions"].map((x) => x)),
         portions: json["portions"],
         title: json["title"],
