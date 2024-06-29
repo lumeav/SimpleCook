@@ -118,8 +118,14 @@ class _ResultViewState extends State<ResultView> {
                 if (ingredient.amount == "" && ingredient.unit == "")
                   ingredient.name
                 else if (ingredient.amount != "" && ingredient.unit == "")
+                  if (ingredient.amount! % 1 == 0)
+                    '${ingredient.amount!.toInt()} ${ingredient.name}'
+                  else
                   '${ingredient.amount} ${ingredient.name}'
-                else
+                else if (ingredient.amount != "" && ingredient.unit != "")
+                  if (ingredient.amount! % 1 == 0)
+                    '${ingredient.amount!.toInt()} ${ingredient.unit} ${ingredient.name}'
+                  else
                   '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
             ],
             recipe!.portions),

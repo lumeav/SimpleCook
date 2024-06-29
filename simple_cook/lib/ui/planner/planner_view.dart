@@ -29,7 +29,7 @@ class _PlannerViewState extends State<PlannerView> {
   }
 
   Future<void> _initializePlannerBox() async {
-    await _persistenceService.init();
+    //await _persistenceService.init();
   }
 
   @override

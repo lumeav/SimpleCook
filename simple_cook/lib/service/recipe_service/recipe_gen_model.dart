@@ -44,7 +44,7 @@ class GenRecipeModel {
 
 class Ingredient {
     String name;
-    int? amount;
+    double? amount;
     String? unit;
 
     Ingredient({
@@ -55,7 +55,7 @@ class Ingredient {
 
     factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
         name: json["name"],
-        amount: json["amount"] == null ? null : json["amount"],
+        amount: json["amount"] != null ? json["amount"].toDouble() : null,
         unit: json["unit"] == null ? "" : json["unit"],
     );
 
