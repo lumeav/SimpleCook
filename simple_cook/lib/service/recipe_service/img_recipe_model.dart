@@ -18,7 +18,9 @@ class ImgRecipeModel {
     });
 
     factory ImgRecipeModel.fromJson(Map<String, dynamic> json) => ImgRecipeModel(
-        ingredients: List<Ingredient>.from(json["ingredients"].map((x) => Ingredient.fromJson(x))),
+        ingredients: (json['ingredients'] as List)
+          .map((e) => Ingredient.fromJson(Map<String, dynamic>.from(e as Map)))
+          .toList(),
         steps: List<String>.from(json["instructions"].map((x) => x)),
         title: json["title"],
         imageSize: json["image_size"] ?? '256x256',
