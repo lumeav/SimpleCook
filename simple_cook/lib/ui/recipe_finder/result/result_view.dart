@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/service/recipe_service/recipe_gen_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:simple_cook/widgets/loading_indicator.dart';
@@ -8,36 +9,35 @@ import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/widgets/preparation.dart';
+import 'package:simple_cook/ui/recipe_finder/result/result_controller_implementation.dart';
 import 'package:simple_cook/common/theme.dart';
 
-class ResultView extends StatefulWidget {
+class ResultView extends ConsumerStatefulWidget {
   final String? text;
 
   const ResultView({Key? key, this.text}) : super(key: key);
 
   @override
-  _ResultViewState createState() => _ResultViewState();
+  ConsumerState<ResultView> createState() => _ResultViewState();
 }
 
-class _ResultViewState extends State<ResultView> {
-  GenRecipeModel? recipe;
-  String? url;
-  bool isLoadingRecipe = false;
-  bool error = false;
+class _ResultViewState extends ConsumerState<ResultView> {
 
   @override
   void initState() {
     super.initState();
     print('text: ${widget.text}');
-    getRecipe();
+    ref.read(resultControllerImplementationProvider.notifier).fetchRecipe(widget.text!);
   }
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(resultControllerImplementationProvider);
+
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
-        body: isLoadingRecipe
+        body: state.isLoadRecipe
             ? Column(children: [
                 Container(
                     padding: EdgeInsets.symmetric(vertical: 10),
@@ -61,7 +61,14 @@ class _ResultViewState extends State<ResultView> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.white),
-                            child: buildRecipe()),
+                            child: state.error
+                                ? const Center(
+                                    child: Text(
+                                      'Error loading recipe',
+                                      style: TextStyle(color: Colors.grey),
+                                    ),
+                                  )
+                                : buildRecipe(state.recipe!, state.url!)),
                       ),
                     ],
                   ),
@@ -70,29 +77,7 @@ class _ResultViewState extends State<ResultView> {
             : LoadingIndicator());
   }
 
-  void getRecipe() async {
-    final service = RecipeService();
-    recipe = await service.postGenRecipeModel(widget.text!);
-    if (recipe == null) {
-      print('error');
-      error = true;
-    }
-    getRecipeImg(recipe!);
-  }
-
-  void getRecipeImg(GenRecipeModel genRecipe) async {
-    final service = RecipeService();
-    url = await service.postGenRecipeModelImg(genRecipe);
-    if (url == null) {
-      print('error');
-      error = true;
-    }
-    setState(() {
-      isLoadingRecipe = true;
-    });
-  }
-
-  Widget buildRecipe() {
+  Widget buildRecipe(GenRecipeModel recipe, String url) {
     return Column(
       children: [
         Stack(children: [
@@ -102,19 +87,19 @@ class _ResultViewState extends State<ResultView> {
               child: AspectRatio(
                   aspectRatio: 1.8,
                   child: Image.network(
-                    url!,
+                    url,
                     fit: BoxFit.cover,
                   )))
         ]),
         Column(
           children: [
-            HeaderRecipeInfos(recipe!.title,
-                recipe!.totalTime.toStringAsFixed(0), 'unbekannt'),
+            HeaderRecipeInfos(recipe.title,
+                recipe.totalTime.toStringAsFixed(0), 'unbekannt'),
             const Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 child: Divider()),
             Ingredients([
-              for (var ingredient in recipe!.ingredients)
+              for (var ingredient in recipe.ingredients)
                 if (ingredient.amount == "" && ingredient.unit == "")
                   ingredient.name
                 else if (ingredient.amount != "" && ingredient.unit == "")
@@ -122,11 +107,11 @@ class _ResultViewState extends State<ResultView> {
                 else
                   '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
             ],
-            recipe!.portions),
+            recipe.portions),
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: Preparation([
-                for (var preparation in recipe!.instructions)
+                for (var preparation in recipe.instructions)
                   preparation.substring(preparation.indexOf(' ') + 1).trim()
               ]),
             )
@@ -135,4 +120,8 @@ class _ResultViewState extends State<ResultView> {
       ],
     );
   }
+}
+
+abstract class ResultController {
+  void fetchRecipe(String query);
 }
