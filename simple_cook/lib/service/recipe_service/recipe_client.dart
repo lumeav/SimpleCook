@@ -67,13 +67,7 @@ class RecipeClient {
           var imgUrl = urlFromJson(const Utf8Decoder().convert(imgResponse.bodyBytes));
           print('imgUrl: ${imgUrl.url}');
           return imgUrl.url;
-          /*
-          var imgUrl = urlFromJson(const Utf8Decoder().convert(imgResponse.bodyBytes));
-          print(imgUrl.url);
-          recipe.imgUrl = imgUrl.url;
-          print('genRecipe MAPED: $recipe');
-          return recipe;*
-  */
+
       } else {
           throw Exception('Failed to load recipes. Status code: ${imgResponse.statusCode}, Response body: ${imgResponse.body}');
       }

@@ -111,6 +111,7 @@ class database {
     'Paprika',
     'Gurke',
     'Salat',
+    'Erdbeere'
   ];
 
   static Future<Iterable<String>> search(String query) async {

@@ -46,9 +46,9 @@ class Ingredient {
     });
 
     factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
-        amount: json["amount"]?.toString(),
+        amount: json["amount"] == null ? "" : json["amount"].toString(),
         name: json["name"],
-        unit: json["unit"]?.toString(),
+        unit: json["unit"] ?? "",
     );
 
     Map<String, dynamic> toJson() => {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/common/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';
