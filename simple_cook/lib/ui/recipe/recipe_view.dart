@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/widgets/loading_indicator.dart';
 import 'package:simple_cook/widgets/preparation.dart';
-import 'package:simple_cook/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/common/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:simple_cook/widgets/add_planer.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
@@ -120,7 +120,9 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
               ingredient.name
             else if (ingredient.amount != "" && ingredient.unit == "")
               '${ingredient.amount} ${ingredient.name}'
-            else
+            else if (ingredient.amount == "" && ingredient.unit != "")
+              '${ingredient.unit} ${ingredient.name}'
+            else if (ingredient.amount != "" && ingredient.unit != "")
               '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
         ],
         recipe!.portions),

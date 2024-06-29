@@ -42,7 +42,7 @@ class ExploreControllerImplementation extends _$ExploreControllerImplementation
     } else if (diff == 'hard') {
       return 'schwer';
     } else {
-      return 'unbekannt';
+      return '';
     }
   }
 }

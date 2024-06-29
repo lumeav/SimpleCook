@@ -53,7 +53,7 @@ class Ingredient {
 
     factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
         name: json["name"],
-        amount: json["amount"] == null ? (json["amount"] is int ? json["amount"].toDouble() : json["amount"]) : null,
+        amount: json["amount"] == null ? null : json["amount"],
         unit: json["unit"] == null ? "" : json["unit"],
     );
 

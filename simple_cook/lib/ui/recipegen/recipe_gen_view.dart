@@ -10,16 +10,17 @@ import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/common/theme.dart';
 
-class ResultView extends StatefulWidget {
+
+class RecipeGenView extends StatefulWidget {
   final String? text;
 
-  const ResultView({Key? key, this.text}) : super(key: key);
+  const RecipeGenView({Key? key, this.text}) : super(key: key);
 
   @override
-  _ResultViewState createState() => _ResultViewState();
+  _RecipeGenViewState createState() => _RecipeGenViewState();
 }
 
-class _ResultViewState extends State<ResultView> {
+class _RecipeGenViewState extends State<RecipeGenView> {
   GenRecipeModel? recipe;
   String? url;
   bool isLoadingRecipe = false;
@@ -109,7 +110,7 @@ class _ResultViewState extends State<ResultView> {
         Column(
           children: [
             HeaderRecipeInfos(recipe!.title,
-                recipe!.totalTime.toStringAsFixed(0), 'unbekannt'),
+                recipe!.totalTime.toStringAsFixed(0), ''),
             const Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 child: Divider()),
