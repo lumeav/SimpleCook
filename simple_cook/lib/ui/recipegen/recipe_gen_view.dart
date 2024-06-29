@@ -121,7 +121,7 @@ class _RecipeGenViewState extends State<RecipeGenView> {
                 else if (ingredient.amount != "" && ingredient.unit == "")
                   '${ingredient.amount} ${ingredient.name}'
                 else
-                  '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
+                  '${ingredient.unit} ${ingredient.unit} ${ingredient.name}'
             ],
             recipe!.portions),
             Padding(

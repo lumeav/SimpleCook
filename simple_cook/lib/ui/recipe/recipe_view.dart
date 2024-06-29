@@ -80,7 +80,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
               ])
             : !error
                 ? LoadingIndicator()
-                : const Center(child: Text('Error while loading recipe')));
+                : LoadingIndicator());
   }
 
   Future<void> buildRecipe() async {
