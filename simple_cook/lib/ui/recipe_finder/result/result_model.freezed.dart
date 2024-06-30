@@ -18,8 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ResultModel {
   GenRecipeModel? get recipe => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
-  bool get isLoadRecipe => throw _privateConstructorUsedError;
+  bool get fetchFinished => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ResultModelCopyWith<ResultModel> get copyWith =>
@@ -33,7 +34,11 @@ abstract class $ResultModelCopyWith<$Res> {
       _$ResultModelCopyWithImpl<$Res, ResultModel>;
   @useResult
   $Res call(
-      {GenRecipeModel? recipe, String? url, bool isLoadRecipe, bool error});
+      {GenRecipeModel? recipe,
+      String? url,
+      bool fetchFinished,
+      bool error,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -51,8 +56,9 @@ class _$ResultModelCopyWithImpl<$Res, $Val extends ResultModel>
   $Res call({
     Object? recipe = freezed,
     Object? url = freezed,
-    Object? isLoadRecipe = null,
+    Object? fetchFinished = null,
     Object? error = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       recipe: freezed == recipe
@@ -63,14 +69,18 @@ class _$ResultModelCopyWithImpl<$Res, $Val extends ResultModel>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      isLoadRecipe: null == isLoadRecipe
-          ? _value.isLoadRecipe
-          : isLoadRecipe // ignore: cast_nullable_to_non_nullable
+      fetchFinished: null == fetchFinished
+          ? _value.fetchFinished
+          : fetchFinished // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -84,7 +94,11 @@ abstract class _$$ResultModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {GenRecipeModel? recipe, String? url, bool isLoadRecipe, bool error});
+      {GenRecipeModel? recipe,
+      String? url,
+      bool fetchFinished,
+      bool error,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -100,8 +114,9 @@ class __$$ResultModelImplCopyWithImpl<$Res>
   $Res call({
     Object? recipe = freezed,
     Object? url = freezed,
-    Object? isLoadRecipe = null,
+    Object? fetchFinished = null,
     Object? error = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$ResultModelImpl(
       recipe: freezed == recipe
@@ -112,14 +127,18 @@ class __$$ResultModelImplCopyWithImpl<$Res>
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
               as String?,
-      isLoadRecipe: null == isLoadRecipe
-          ? _value.isLoadRecipe
-          : isLoadRecipe // ignore: cast_nullable_to_non_nullable
+      fetchFinished: null == fetchFinished
+          ? _value.fetchFinished
+          : fetchFinished // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -128,7 +147,11 @@ class __$$ResultModelImplCopyWithImpl<$Res>
 
 class _$ResultModelImpl implements _ResultModel {
   const _$ResultModelImpl(
-      {this.recipe, this.url, this.isLoadRecipe = false, this.error = false});
+      {this.recipe,
+      this.url,
+      this.fetchFinished = false,
+      this.error = false,
+      this.errorMessage});
 
   @override
   final GenRecipeModel? recipe;
@@ -136,14 +159,16 @@ class _$ResultModelImpl implements _ResultModel {
   final String? url;
   @override
   @JsonKey()
-  final bool isLoadRecipe;
+  final bool fetchFinished;
   @override
   @JsonKey()
   final bool error;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'ResultModel(recipe: $recipe, url: $url, isLoadRecipe: $isLoadRecipe, error: $error)';
+    return 'ResultModel(recipe: $recipe, url: $url, fetchFinished: $fetchFinished, error: $error, errorMessage: $errorMessage)';
   }
 
   @override
@@ -153,14 +178,16 @@ class _$ResultModelImpl implements _ResultModel {
             other is _$ResultModelImpl &&
             (identical(other.recipe, recipe) || other.recipe == recipe) &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.isLoadRecipe, isLoadRecipe) ||
-                other.isLoadRecipe == isLoadRecipe) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.fetchFinished, fetchFinished) ||
+                other.fetchFinished == fetchFinished) &&
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, recipe, url, isLoadRecipe, error);
+      Object.hash(runtimeType, recipe, url, fetchFinished, error, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -173,17 +200,20 @@ abstract class _ResultModel implements ResultModel {
   const factory _ResultModel(
       {final GenRecipeModel? recipe,
       final String? url,
-      final bool isLoadRecipe,
-      final bool error}) = _$ResultModelImpl;
+      final bool fetchFinished,
+      final bool error,
+      final String? errorMessage}) = _$ResultModelImpl;
 
   @override
   GenRecipeModel? get recipe;
   @override
   String? get url;
   @override
-  bool get isLoadRecipe;
+  bool get fetchFinished;
   @override
   bool get error;
+  @override
+  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$ResultModelImplCopyWith<_$ResultModelImpl> get copyWith =>

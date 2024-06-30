@@ -20,6 +20,7 @@ mixin _$ExploreModel {
   Recipe? get recipeOfTheDay => throw _privateConstructorUsedError;
   bool get isSearching => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ExploreModelCopyWith<ExploreModel> get copyWith =>
@@ -36,7 +37,8 @@ abstract class $ExploreModelCopyWith<$Res> {
       {List<Recipe>? recipes,
       Recipe? recipeOfTheDay,
       bool isSearching,
-      bool error});
+      bool error,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -56,6 +58,7 @@ class _$ExploreModelCopyWithImpl<$Res, $Val extends ExploreModel>
     Object? recipeOfTheDay = freezed,
     Object? isSearching = null,
     Object? error = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       recipes: freezed == recipes
@@ -74,6 +77,10 @@ class _$ExploreModelCopyWithImpl<$Res, $Val extends ExploreModel>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -90,7 +97,8 @@ abstract class _$$ExploreModelImplCopyWith<$Res>
       {List<Recipe>? recipes,
       Recipe? recipeOfTheDay,
       bool isSearching,
-      bool error});
+      bool error,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -108,6 +116,7 @@ class __$$ExploreModelImplCopyWithImpl<$Res>
     Object? recipeOfTheDay = freezed,
     Object? isSearching = null,
     Object? error = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$ExploreModelImpl(
       recipes: freezed == recipes
@@ -126,6 +135,10 @@ class __$$ExploreModelImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -137,7 +150,8 @@ class _$ExploreModelImpl implements _ExploreModel {
       {final List<Recipe>? recipes,
       this.recipeOfTheDay,
       this.isSearching = false,
-      this.error = false})
+      this.error = false,
+      this.errorMessage})
       : _recipes = recipes;
 
   final List<Recipe>? _recipes;
@@ -158,10 +172,12 @@ class _$ExploreModelImpl implements _ExploreModel {
   @override
   @JsonKey()
   final bool error;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'ExploreModel(recipes: $recipes, recipeOfTheDay: $recipeOfTheDay, isSearching: $isSearching, error: $error)';
+    return 'ExploreModel(recipes: $recipes, recipeOfTheDay: $recipeOfTheDay, isSearching: $isSearching, error: $error, errorMessage: $errorMessage)';
   }
 
   @override
@@ -174,7 +190,9 @@ class _$ExploreModelImpl implements _ExploreModel {
                 other.recipeOfTheDay == recipeOfTheDay) &&
             (identical(other.isSearching, isSearching) ||
                 other.isSearching == isSearching) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
@@ -183,7 +201,8 @@ class _$ExploreModelImpl implements _ExploreModel {
       const DeepCollectionEquality().hash(_recipes),
       recipeOfTheDay,
       isSearching,
-      error);
+      error,
+      errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -197,7 +216,8 @@ abstract class _ExploreModel implements ExploreModel {
       {final List<Recipe>? recipes,
       final Recipe? recipeOfTheDay,
       final bool isSearching,
-      final bool error}) = _$ExploreModelImpl;
+      final bool error,
+      final String? errorMessage}) = _$ExploreModelImpl;
 
   @override
   List<Recipe>? get recipes;
@@ -207,6 +227,8 @@ abstract class _ExploreModel implements ExploreModel {
   bool get isSearching;
   @override
   bool get error;
+  @override
+  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$ExploreModelImplCopyWith<_$ExploreModelImpl> get copyWith =>

@@ -8,7 +8,8 @@ class ResultModel with _$ResultModel {
   const factory ResultModel({
     GenRecipeModel? recipe,
     String? url,
-    @Default(false) bool isLoadRecipe,
+    @Default(false) bool fetchFinished,
     @Default(false) bool error,
+    String? errorMessage,
   }) = _ResultModel;
 }

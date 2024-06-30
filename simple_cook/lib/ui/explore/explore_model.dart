@@ -10,6 +10,7 @@ class ExploreModel with _$ExploreModel {
     Recipe? recipeOfTheDay,
     @Default(false) bool isSearching,
     @Default(false) bool error,
+    String? errorMessage,
   }) = _ExploreModel;
 }
 

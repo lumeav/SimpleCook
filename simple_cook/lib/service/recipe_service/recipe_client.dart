@@ -1,78 +1,134 @@
 import 'dart:convert';
+import 'dart:io';
+import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:simple_cook/service/recipe_service/api_response.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_gen_model.dart';
 import 'package:simple_cook/service/recipe_service/img_recipe_model.dart';
-import 'package:simple_cook/service/recipe_service/img_Url_model.dart';
-
+import 'package:simple_cook/service/recipe_service/img_url.dart';
 
 class RecipeClient {
-
-  var client = http.Client();
+  final http.Client client = http.Client();
   final String baseUrl = 'https://gustar-io-deutsche-rezepte.p.rapidapi.com/';
 
   Map<String, String> headers = {
-    'x-rapidapi-host' : 'gustar-io-deutsche-rezepte.p.rapidapi.com',
-    'x-rapidapi-key' : 'c8b7b6419bmshc6806e6941f2ff2p19aa9fjsn6b22a136729f',
+    'x-rapidapi-host': 'gustar-io-deutsche-rezepte.p.rapidapi.com',
+    'x-rapidapi-key': 'ee0ed29094msh0d64ef67cc2c659p1e4fc3jsnc07fe7ac6391',
   };
 
-  Future<List<Recipe>?> getRecipes(String parameter) async {
-
-    var url = baseUrl + 'search_api?text=' + parameter;
+  Future<ApiResponse<List<Recipe>?>> getRecipes(String parameter) async {
+    final String url = baseUrl + 'search_api?text=' + parameter;
     print(url);
-    var response = await client.get(Uri.parse(url), headers: headers);
-
-    if (response.statusCode == 200) {
-      return recipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
-    } else {
-       throw Exception('Failed to load recipes. Status code: ${response.statusCode}, Response body: ${response.body}');
-    }
+    return await _handleRequest(() async {
+      var response = await client
+          .get(Uri.parse(url), headers: headers)
+          .timeout(const Duration(seconds: 10));
+      if (response.statusCode == 200) {
+        return ApiResponse<List<Recipe>?>(
+            data: recipeFromJson(
+                const Utf8Decoder().convert(response.bodyBytes)));
+      } else if (response.statusCode == 429) {
+        return ApiResponse<List<Recipe>?>(
+            errorMessage:
+                'The API key has expired! Please upgrade on $baseUrl');
+      } else {
+        return ApiResponse<List<Recipe>?>(
+            errorMessage: 'Failed to load recipes. Check for connection!');
+      }
+    });
   }
 
-  Future<SingleRecipe> getSingleRecipe(String recipeUrl) async {
+  Future<ApiResponse<SingleRecipe>> getSingleRecipe(String recipeUrl) async {
+    final String url = baseUrl + 'crawl?target_url=' + recipeUrl;
 
-    var url = baseUrl + 'crawl?target_url=' + recipeUrl;
-
-    var response = await client.get(Uri.parse(url), headers: headers);
-
-    if (response.statusCode == 200) {
-      return SingleRecipe.fromJson(jsonDecode(const Utf8Decoder().convert(response.bodyBytes)));
-    } else {
-      throw Exception('Failed to load recipes. Status code: ${response.statusCode}, Response body: ${response.body}');
-    }
+    return await _handleRequest(() async {
+      var response = await client
+          .get(Uri.parse(url), headers: headers)
+          .timeout(const Duration(seconds: 10));
+      if (response.statusCode == 200) {
+        return ApiResponse<SingleRecipe>(
+            data: SingleRecipe.fromJson(
+                jsonDecode(const Utf8Decoder().convert(response.bodyBytes))));
+      } else if (response.statusCode == 429) {
+        return ApiResponse<SingleRecipe>(
+            errorMessage:
+                'The API key has expired! Please upgrade on $baseUrl');
+      } else {
+        return ApiResponse<SingleRecipe>(
+            errorMessage: 'Failed to load recipe. Check for connection!');
+      }
+    });
   }
 
-  Future<GenRecipeModel> postGenRecipeModel(String request) async {
-
-    var response = await client.post(Uri.parse(baseUrl + 'generateRecipe'), headers: headers, body: jsonEncode({'text': request}));
-
-    if (response.statusCode == 200) {
-      var genRecipe = genRecipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
-      print('response genrecipe: $genRecipe');
-      return genRecipe;
-    } else {
-      throw Exception('Failed to load recipes. Status code: ${response.statusCode}, Response body: ${response.body}');
-    }
+  Future<ApiResponse<GenRecipeModel>> postGenRecipeModel(String request) async {
+    return await _handleRequest(() async {
+      var response = await client
+          .post(
+            Uri.parse(baseUrl + 'generateRecipe'),
+            headers: headers,
+            body: jsonEncode({'text': request}),
+          )
+          .timeout(const Duration(seconds: 30));
+      if (response.statusCode == 200) {
+        var genRecipe =
+            genRecipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
+        return ApiResponse<GenRecipeModel>(data: genRecipe);
+      } else if (response.statusCode == 429) {
+        return ApiResponse<GenRecipeModel>(
+            errorMessage:
+                'The API key has expired! Please upgrade on $baseUrl');
+      } else {
+        return ApiResponse<GenRecipeModel>(
+            errorMessage: 'Failed to load recipe. Check for connection!');
+      }
+    });
   }
 
-  Future<String> postGenRecipeModelImg(GenRecipeModel recipe) async {
-
+  Future<ApiResponse<String>> postGenRecipeModelImg(
+      GenRecipeModel recipe) async {
+    return await _handleRequest(() async {
       var genRecipeJson = genRecipeToJson(recipe);
       var imgRecipe = imgRecipeFromJson(genRecipeJson);
       var imgRecipeJson = imgRecipeToJson(imgRecipe);
-      var imgResponse = await client.post(Uri.parse(baseUrl + 'generateRecipeImage'), headers: headers, body: imgRecipeJson);
-
-      if (imgResponse.statusCode == 200) {
-          var imgUrl = urlFromJson(const Utf8Decoder().convert(imgResponse.bodyBytes));
-          print('imgUrl: ${imgUrl.url}');
-          return imgUrl.url;
-
+      var response = await client
+          .post(
+            Uri.parse(baseUrl + 'generateRecipeImage'),
+            headers: headers,
+            body: imgRecipeJson,
+          )
+          .timeout(const Duration(seconds: 30));
+      if (response.statusCode == 200) {
+        var imgUrl =
+            urlFromJson(const Utf8Decoder().convert(response.bodyBytes));
+        return ApiResponse<String>(data: imgUrl.url);
+      } else if (response.statusCode == 429) {
+        return ApiResponse<String>(
+            errorMessage:
+                'The API key has expired! Please upgrade on $baseUrl');
       } else {
-          throw Exception('Failed to load recipes. Status code: ${imgResponse.statusCode}, Response body: ${imgResponse.body}');
+        return ApiResponse<String>(
+            errorMessage: 'Failed to load recipe image. Check for connection!');
       }
-
+    });
   }
 
-
+  Future<ApiResponse<T>> _handleRequest<T>(
+      Future<ApiResponse<T>> Function() requestFunction) async {
+    try {
+      return await requestFunction();
+    } on TimeoutException {
+      return ApiResponse<T>(
+          errorMessage:
+              'The connection has timed out. Please try again later.');
+    } on SocketException {
+      return ApiResponse<T>(errorMessage: 'No Internet connection.');
+    } on http.ClientException {
+      return ApiResponse<T>(
+          errorMessage: 'Network error. Check for connection!');
+    } catch (e) {
+      return ApiResponse<T>(errorMessage: 'Unexpected error.');
+    }
+  }
 }

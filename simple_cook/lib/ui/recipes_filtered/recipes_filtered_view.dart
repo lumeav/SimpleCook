@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/simple_cook_appbar.dart';
+import 'package:simple_cook/service/recipe_service/api_response.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';
@@ -68,9 +69,12 @@ class _RecipesTagViewState extends State<RecipesFilteredView> {
 
   Future<void> buildRecipes(String search) async {
     final recipeService = RecipeService();
-    recipes = await recipeService.getAllRecipes(search);
-    if (recipes == null) {
+    //recipes = await recipeService.getAllRecipes(search);
+    ApiResponse<List<Recipe>?> response = await recipeService.getAllRecipes(search);
+    if (response.data == null) {
       error = true;
+    } else {
+      recipes = response.data;
     }
     setState(() {
       isSearching = true;

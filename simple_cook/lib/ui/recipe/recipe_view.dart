@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/service/recipe_service/api_response.dart';
 import 'package:simple_cook/widgets/loading_indicator.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/common/simple_cook_appbar.dart';
@@ -85,9 +86,12 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
 
   Future<void> buildRecipe() async {
     final RecipeService service = RecipeService();
-    recipe = await service.getSingleRecipe(widget.recipeUrl!);
-    if (recipe == null) {
+    //recipe = await service.getSingleRecipe(widget.recipeUrl!);
+    ApiResponse<SingleRecipe> response = await service.getSingleRecipe(widget.recipeUrl!);
+    if (response.data == null) {
       error = true;
+    } else {
+      recipe = response.data;
     }
     setState(() {
       isSearching = true;
