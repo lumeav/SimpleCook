@@ -4,12 +4,12 @@ import 'package:simple_cook/service/persistence_service/persistence_service.dart
 
 class FavoritesNotifier extends StateNotifier<List<SingleRecipe>> {
   FavoritesNotifier() : super([]) {
-    _loadFavorites();
+    loadFavorites();
   }
 
   final PersistenceService _persistenceService = PersistenceService();
 
-  Future<void> _loadFavorites() async {
+  Future<void> loadFavorites() async {
     final favorites = _persistenceService.getFavoriteRecipes();
     state = favorites;
   }

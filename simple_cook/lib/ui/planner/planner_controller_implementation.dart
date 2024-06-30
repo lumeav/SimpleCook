@@ -1,7 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/ui/planner/planner_model.dart';
 import 'package:simple_cook/ui/planner/widgets/date.dart';
 import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
+import 'package:simple_cook/service/persistence_service/persistence_service.dart';
 
 part 'planner_controller_implementation.g.dart';
 
@@ -34,8 +36,6 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
       end: state.end.add(const Duration(days: 7)),
       dates: setDatesWeek(data, state.actual),
     );
-    print('next week');
-    print(state.dates);
   }
   @override
   void previousWeek() {
@@ -47,8 +47,6 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
         dates: setDatesWeek(data, state.actual),
       );
     }
-    print('previous week');
-    print(state.dates);
   }
 
   DateTime getFirstDateOfWeek() {
@@ -68,14 +66,12 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
   List<DateTime> setDatesWeek(DateTime start, DateTime actual) {
     List<DateTime> dates = [];
     if (isSameDate(start, getFirstDateOfWeek())) {
-      print('111');
         int dayOffset = DateTime.sunday - actual.weekday;
         for (int i = 0; i <= dayOffset; i++) {
           dates.add(actual.add(Duration(days: i)));
         }
         return dates;
     } else {
-      print('222');
       for (int i = 0; i < 7; i++) {
         dates.add(start.add(Duration(days: i)));
       }
