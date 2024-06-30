@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'explore_model.dart';
+part of 'recipe_info_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,36 +15,34 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ExploreModel {
-  List<Recipe>? get recipes => throw _privateConstructorUsedError;
-  Recipe? get recipeOfTheDay => throw _privateConstructorUsedError;
+mixin _$RecipeInfoModel {
+  SingleRecipe? get recipe => throw _privateConstructorUsedError;
   bool get fetchFinished => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ExploreModelCopyWith<ExploreModel> get copyWith =>
+  $RecipeInfoModelCopyWith<RecipeInfoModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ExploreModelCopyWith<$Res> {
-  factory $ExploreModelCopyWith(
-          ExploreModel value, $Res Function(ExploreModel) then) =
-      _$ExploreModelCopyWithImpl<$Res, ExploreModel>;
+abstract class $RecipeInfoModelCopyWith<$Res> {
+  factory $RecipeInfoModelCopyWith(
+          RecipeInfoModel value, $Res Function(RecipeInfoModel) then) =
+      _$RecipeInfoModelCopyWithImpl<$Res, RecipeInfoModel>;
   @useResult
   $Res call(
-      {List<Recipe>? recipes,
-      Recipe? recipeOfTheDay,
+      {SingleRecipe? recipe,
       bool fetchFinished,
       bool error,
       String? errorMessage});
 }
 
 /// @nodoc
-class _$ExploreModelCopyWithImpl<$Res, $Val extends ExploreModel>
-    implements $ExploreModelCopyWith<$Res> {
-  _$ExploreModelCopyWithImpl(this._value, this._then);
+class _$RecipeInfoModelCopyWithImpl<$Res, $Val extends RecipeInfoModel>
+    implements $RecipeInfoModelCopyWith<$Res> {
+  _$RecipeInfoModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -54,21 +52,16 @@ class _$ExploreModelCopyWithImpl<$Res, $Val extends ExploreModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? recipes = freezed,
-    Object? recipeOfTheDay = freezed,
+    Object? recipe = freezed,
     Object? fetchFinished = null,
     Object? error = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
-      recipes: freezed == recipes
-          ? _value.recipes
-          : recipes // ignore: cast_nullable_to_non_nullable
-              as List<Recipe>?,
-      recipeOfTheDay: freezed == recipeOfTheDay
-          ? _value.recipeOfTheDay
-          : recipeOfTheDay // ignore: cast_nullable_to_non_nullable
-              as Recipe?,
+      recipe: freezed == recipe
+          ? _value.recipe
+          : recipe // ignore: cast_nullable_to_non_nullable
+              as SingleRecipe?,
       fetchFinished: null == fetchFinished
           ? _value.fetchFinished
           : fetchFinished // ignore: cast_nullable_to_non_nullable
@@ -86,47 +79,41 @@ class _$ExploreModelCopyWithImpl<$Res, $Val extends ExploreModel>
 }
 
 /// @nodoc
-abstract class _$$ExploreModelImplCopyWith<$Res>
-    implements $ExploreModelCopyWith<$Res> {
-  factory _$$ExploreModelImplCopyWith(
-          _$ExploreModelImpl value, $Res Function(_$ExploreModelImpl) then) =
-      __$$ExploreModelImplCopyWithImpl<$Res>;
+abstract class _$$RecipeInfoModelImplCopyWith<$Res>
+    implements $RecipeInfoModelCopyWith<$Res> {
+  factory _$$RecipeInfoModelImplCopyWith(_$RecipeInfoModelImpl value,
+          $Res Function(_$RecipeInfoModelImpl) then) =
+      __$$RecipeInfoModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {List<Recipe>? recipes,
-      Recipe? recipeOfTheDay,
+      {SingleRecipe? recipe,
       bool fetchFinished,
       bool error,
       String? errorMessage});
 }
 
 /// @nodoc
-class __$$ExploreModelImplCopyWithImpl<$Res>
-    extends _$ExploreModelCopyWithImpl<$Res, _$ExploreModelImpl>
-    implements _$$ExploreModelImplCopyWith<$Res> {
-  __$$ExploreModelImplCopyWithImpl(
-      _$ExploreModelImpl _value, $Res Function(_$ExploreModelImpl) _then)
+class __$$RecipeInfoModelImplCopyWithImpl<$Res>
+    extends _$RecipeInfoModelCopyWithImpl<$Res, _$RecipeInfoModelImpl>
+    implements _$$RecipeInfoModelImplCopyWith<$Res> {
+  __$$RecipeInfoModelImplCopyWithImpl(
+      _$RecipeInfoModelImpl _value, $Res Function(_$RecipeInfoModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? recipes = freezed,
-    Object? recipeOfTheDay = freezed,
+    Object? recipe = freezed,
     Object? fetchFinished = null,
     Object? error = null,
     Object? errorMessage = freezed,
   }) {
-    return _then(_$ExploreModelImpl(
-      recipes: freezed == recipes
-          ? _value._recipes
-          : recipes // ignore: cast_nullable_to_non_nullable
-              as List<Recipe>?,
-      recipeOfTheDay: freezed == recipeOfTheDay
-          ? _value.recipeOfTheDay
-          : recipeOfTheDay // ignore: cast_nullable_to_non_nullable
-              as Recipe?,
+    return _then(_$RecipeInfoModelImpl(
+      recipe: freezed == recipe
+          ? _value.recipe
+          : recipe // ignore: cast_nullable_to_non_nullable
+              as SingleRecipe?,
       fetchFinished: null == fetchFinished
           ? _value.fetchFinished
           : fetchFinished // ignore: cast_nullable_to_non_nullable
@@ -145,27 +132,15 @@ class __$$ExploreModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ExploreModelImpl implements _ExploreModel {
-  const _$ExploreModelImpl(
-      {final List<Recipe>? recipes,
-      this.recipeOfTheDay,
+class _$RecipeInfoModelImpl implements _RecipeInfoModel {
+  const _$RecipeInfoModelImpl(
+      {this.recipe,
       this.fetchFinished = false,
       this.error = false,
-      this.errorMessage})
-      : _recipes = recipes;
-
-  final List<Recipe>? _recipes;
-  @override
-  List<Recipe>? get recipes {
-    final value = _recipes;
-    if (value == null) return null;
-    if (_recipes is EqualUnmodifiableListView) return _recipes;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(value);
-  }
+      this.errorMessage});
 
   @override
-  final Recipe? recipeOfTheDay;
+  final SingleRecipe? recipe;
   @override
   @JsonKey()
   final bool fetchFinished;
@@ -177,17 +152,15 @@ class _$ExploreModelImpl implements _ExploreModel {
 
   @override
   String toString() {
-    return 'ExploreModel(recipes: $recipes, recipeOfTheDay: $recipeOfTheDay, fetchFinished: $fetchFinished, error: $error, errorMessage: $errorMessage)';
+    return 'RecipeInfoModel(recipe: $recipe, fetchFinished: $fetchFinished, error: $error, errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ExploreModelImpl &&
-            const DeepCollectionEquality().equals(other._recipes, _recipes) &&
-            (identical(other.recipeOfTheDay, recipeOfTheDay) ||
-                other.recipeOfTheDay == recipeOfTheDay) &&
+            other is _$RecipeInfoModelImpl &&
+            (identical(other.recipe, recipe) || other.recipe == recipe) &&
             (identical(other.fetchFinished, fetchFinished) ||
                 other.fetchFinished == fetchFinished) &&
             (identical(other.error, error) || other.error == error) &&
@@ -196,33 +169,26 @@ class _$ExploreModelImpl implements _ExploreModel {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_recipes),
-      recipeOfTheDay,
-      fetchFinished,
-      error,
-      errorMessage);
+  int get hashCode =>
+      Object.hash(runtimeType, recipe, fetchFinished, error, errorMessage);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ExploreModelImplCopyWith<_$ExploreModelImpl> get copyWith =>
-      __$$ExploreModelImplCopyWithImpl<_$ExploreModelImpl>(this, _$identity);
+  _$$RecipeInfoModelImplCopyWith<_$RecipeInfoModelImpl> get copyWith =>
+      __$$RecipeInfoModelImplCopyWithImpl<_$RecipeInfoModelImpl>(
+          this, _$identity);
 }
 
-abstract class _ExploreModel implements ExploreModel {
-  const factory _ExploreModel(
-      {final List<Recipe>? recipes,
-      final Recipe? recipeOfTheDay,
+abstract class _RecipeInfoModel implements RecipeInfoModel {
+  const factory _RecipeInfoModel(
+      {final SingleRecipe? recipe,
       final bool fetchFinished,
       final bool error,
-      final String? errorMessage}) = _$ExploreModelImpl;
+      final String? errorMessage}) = _$RecipeInfoModelImpl;
 
   @override
-  List<Recipe>? get recipes;
-  @override
-  Recipe? get recipeOfTheDay;
+  SingleRecipe? get recipe;
   @override
   bool get fetchFinished;
   @override
@@ -231,6 +197,6 @@ abstract class _ExploreModel implements ExploreModel {
   String? get errorMessage;
   @override
   @JsonKey(ignore: true)
-  _$$ExploreModelImplCopyWith<_$ExploreModelImpl> get copyWith =>
+  _$$RecipeInfoModelImplCopyWith<_$RecipeInfoModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

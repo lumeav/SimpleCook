@@ -1,10 +1,10 @@
 import 'dart:convert';
 
-GenRecipe genRecipeFromJson(String str) => GenRecipe.fromJson(json.decode(str));
+GenRecipeModel genRecipeFromJson(String str) => GenRecipeModel.fromJson(json.decode(str));
 
-String genRecipeToJson(GenRecipe data) => json.encode(data.toJson());
+String genRecipeToJson(GenRecipeModel data) => json.encode(data.toJson());
 
-class GenRecipe {
+class GenRecipeModel {
     List<Ingredient> ingredients;
     List<String> instructions;
     int portions;
@@ -12,7 +12,7 @@ class GenRecipe {
     double totalTime;
     String? imgUrl;
 
-    GenRecipe({
+    GenRecipeModel({
         required this.ingredients,
         required this.instructions,
         required this.portions,
@@ -21,8 +21,10 @@ class GenRecipe {
         required this.imgUrl,
     });
 
-    factory GenRecipe.fromJson(Map<String, dynamic> json) => GenRecipe(
-        ingredients: List<Ingredient>.from(json["ingredients"].map((x) => Ingredient.fromJson(x))),
+    factory GenRecipeModel.fromJson(Map<String, dynamic> json) => GenRecipeModel(
+        ingredients:(json['ingredients'] as List)
+          .map((e) => Ingredient.fromJson(Map<String, dynamic>.from(e as Map)))
+          .toList(),
         instructions: List<String>.from(json["instructions"].map((x) => x)),
         portions: json["portions"],
         title: json["title"],
@@ -42,7 +44,7 @@ class GenRecipe {
 
 class Ingredient {
     String name;
-    int? amount;
+    double? amount;
     String? unit;
 
     Ingredient({
@@ -53,7 +55,7 @@ class Ingredient {
 
     factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
         name: json["name"],
-        amount: json["amount"] == null ? null : json["amount"],
+        amount: json["amount"] != null ? json["amount"].toDouble() : null,
         unit: json["unit"] == null ? "" : json["unit"],
     );
 

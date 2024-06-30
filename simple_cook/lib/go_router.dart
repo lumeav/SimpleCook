@@ -3,12 +3,12 @@ import 'package:go_router/go_router.dart';
 import 'package:simple_cook/ui/explore/explore_view.dart';
 import 'package:simple_cook/ui/favorites/favorites_view.dart';
 import 'package:simple_cook/ui/planner/planner_view.dart';
-import 'package:simple_cook/ui/recipeFinder/recipefinder_view.dart';
+import 'package:simple_cook/ui/recipe_finder/recipe_finder_view.dart';
+import 'package:simple_cook/ui/recipe_finder/result/result_view.dart';
 import 'package:go_router/go_router.dart';
-import 'package:simple_cook/ui/recipeGen/recipe_gen_view.dart';
-import 'package:simple_cook/ui/recipesFiltered/recipesFiltered_view.dart';
+import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_view.dart';
 // To test:
-import 'package:simple_cook/ui/recipe/recipe_view.dart';
+import 'package:simple_cook/ui/recipe_info/recipe_info_view.dart';
 import 'package:simple_cook/wrapper/main_wrapper.dart';
 
 final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
@@ -39,7 +39,7 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                     pageBuilder: (context, state) {
                       return NoTransitionPage(
                           key: state.pageKey,
-                          child: RecipesFilteredView(
+                          child: ExploreFilteredView(
                             key: state.pageKey,
                             search: state.uri.queryParameters['search'],
                           ));
@@ -101,12 +101,12 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
     },
   ),
   GoRoute(
-    path: '/singleRecipeGenView',
-    name: 'singleRecipeGenView',
+    path: '/singleResultView',
+    name: 'singleResultView',
     pageBuilder: (context, state) {
       return NoTransitionPage(
         key: state.pageKey,
-        child: RecipeGenView(
+        child: ResultView(
           key: state.pageKey,
           text: state.uri.queryParameters['text'],
         ),

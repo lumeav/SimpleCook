@@ -1,40 +1,34 @@
-import 'dart:math';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:simple_cook/service/recipe_service/api_response.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';
-import 'package:simple_cook/ui/explore/explore_model.dart';
-import 'package:simple_cook/ui/explore/explore_view.dart';
+import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_model.dart';
+import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_view.dart';
 
-part 'explore_controller_implementation.g.dart';
+part 'explore_filtered_controller_implementation.g.dart';
 
 @riverpod
-class ExploreControllerImplementation extends _$ExploreControllerImplementation
-    implements ExploreController {
-      
-  @override
-  ExploreModel build() => const ExploreModel();
+class ExploreFilteredControllerImplementation extends _$ExploreFilteredControllerImplementation
+    implements ExploreFilteredController {
 
   @override
-  Future<void> rebuildRecipes() async {
-    state = const ExploreModel();
-    await buildRecipes();
+  ExploreFilteredModel build() => const ExploreFilteredModel();
+
+  @override
+  Future<void> rebuildRecipes(String search) async {
+    state = const ExploreFilteredModel();
+    await buildRecipes(search);
   }
 
   @override
-  Future<void> buildRecipes() async {
+  Future<void> buildRecipes(String search) async {
     try {
       final RecipeService recipeService = RecipeService();
       ApiResponse<List<Recipe>?> response =
-          await recipeService.getAllRecipes('Hauptspeise');
+          await recipeService.getAllRecipes(search);
       if (response.data != null && response.errorMessage == null) {
-        List<Recipe> recipes = response.data!;
-        final Random random = Random();
-        Recipe recipeOfTheDay = recipes[random.nextInt(recipes.length)];
-        recipes.remove(recipeOfTheDay);
         state = state.copyWith(
-          recipes: recipes,
-          recipeOfTheDay: recipeOfTheDay,
+          filteredRecipes: response.data,
           fetchFinished: true,
         );
       } else if (response.data == null && response.errorMessage != null) {

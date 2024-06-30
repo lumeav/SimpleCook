@@ -1,24 +1,23 @@
 import 'dart:convert';
 
-ImgRecipe imgRecipeFromJson(String str) => ImgRecipe.fromJson(json.decode(str));
+ImgRecipeModel imgRecipeFromJson(String str) => ImgRecipeModel.fromJson(json.decode(str));
 
-String imgRecipeToJson(ImgRecipe data) => json.encode(data.toJson());
+String imgRecipeToJson(ImgRecipeModel data) => json.encode(data.toJson());
 
-class ImgRecipe {
+class ImgRecipeModel {
     List<Ingredient> ingredients;
     List<String> steps;
     String title;
     String? imageSize;
 
-    ImgRecipe({
+    ImgRecipeModel({
         required this.ingredients,
         required this.steps,
         required this.title,
-        required this.imageSize,
-    });
-
-    factory ImgRecipe.fromJson(Map<String, dynamic> json) => ImgRecipe(
-        ingredients: List<Ingredient>.from(json["ingredients"].map((x) => Ingredient.fromJson(x))),
+    factory ImgRecipeModel.fromJson(Map<String, dynamic> json) => ImgRecipeModel(
+        ingredients: (json['ingredients'] as List)
+          .map((e) => Ingredient.fromJson(Map<String, dynamic>.from(e as Map)))
+          .toList(),
         steps: List<String>.from(json["instructions"].map((x) => x)),
         title: json["title"],
         imageSize: json["image_size"] ?? '256x256',
@@ -44,9 +43,9 @@ class Ingredient {
     });
 
     factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
-        amount: json["amount"]?.toString(),
+        amount: json["amount"] == null ? "" : json["amount"].toString(),
         name: json["name"],
-        unit: json["unit"]?.toString(),
+        unit: json["unit"] ?? "",
     );
 
     Map<String, dynamic> toJson() => {

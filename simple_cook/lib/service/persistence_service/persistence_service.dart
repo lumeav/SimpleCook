@@ -11,14 +11,14 @@ class PersistenceService {
   PersistenceService._internal();
 
   late Box<SingleRecipe> _favoritesBox;
-  late Box<List<SingleRecipe>> _plannerBox;
+  late Box<List<dynamic>> _plannerBox;
 
   Future<void> init() async {
     try {
       // Open the box for 'favoritesBox'
       //print("Looks like it worked");
       _favoritesBox = await Hive.openBox<SingleRecipe>('favoritesBox');
-      _plannerBox = await Hive.openBox<List<SingleRecipe>>('plannerBox');
+      _plannerBox = await Hive.openBox<List>('plannerBox');
     } catch (e) {
       print('Error initializing Hive box: $e');
       // Handle initialization error gracefully
@@ -45,19 +45,28 @@ class PersistenceService {
   Future<void> removeFavorite(SingleRecipe recipe) async {
     await _favoritesBox.delete(recipe.title);
   }
+
+  Map<String, List<SingleRecipe>> loadPlanner() {
+    return _plannerBox.toMap().map((key, value) => MapEntry(key as String, value.cast<SingleRecipe>()));
+  }
+
+  Future<void> clearPlanner() async {
+    await _plannerBox.clear();
+  }
+
   Future<void> addRecipeToPlanner(String date, SingleRecipe recipe) async {
-    List<SingleRecipe> recipes = _plannerBox.get(date, defaultValue: []) ?? [];
+    List<SingleRecipe> recipes = _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? [];
     recipes.add(recipe);
     await _plannerBox.put(date, recipes);
   }
 
   // Method to get recipes for a specific date from planner
   List<SingleRecipe> getRecipesForDate(String date) {
-    return _plannerBox.get(date, defaultValue: []) ?? []; // Handle potential null by providing default empty list
+    return _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? []; // Handle potential null by providing default empty list
   }
 
   Future<void> removeRecipeFromPlanner(String date, SingleRecipe recipe) async {
-    List<SingleRecipe> recipes = _plannerBox.get(date, defaultValue: []) ?? [];
+    List<SingleRecipe> recipes = _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? [];
     recipes.removeWhere((SingleRecipe r) => r.title == recipe.title); // Remove based on title
     await _plannerBox.put(date, recipes);
   }
