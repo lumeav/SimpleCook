@@ -1,77 +1,72 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:simple_cook/ui/planner/planner_controller_implementation.dart';
+import 'package:simple_cook/ui/planner/planner_model.dart';
 
-class TimeViewSpan extends StatefulWidget {
+class TimeViewSpan extends ConsumerStatefulWidget {
 
   const TimeViewSpan({
     super.key,
   });
 
   @override
-  State<TimeViewSpan> createState() => _TimeViewSpanState();
+  ConsumerState<TimeViewSpan> createState() => _TimeViewSpanState();
 }
 
-class _TimeViewSpanState extends State<TimeViewSpan> {
-  static const _daysToNextWeek = 7;
-  static const _daysToEndOfWeek = 6;
-  late DateTime _begin;
-  late DateTime _end;
+class _TimeViewSpanState extends ConsumerState<TimeViewSpan> {
 
-  DateTime _getFirstDateOfWeek(DateTime date) {
-    int dayOffset = date.weekday - DateTime.monday;
-    DateTime firstDateOfWeek = date.subtract(Duration(days: dayOffset));
-    return firstDateOfWeek;
-  }
-
-  bool _isSameDate(DateTime date1, DateTime date2) {
-    return date1.year == date2.year &&
-        date1.month == date2.month &&
-        date1.day == date2.day;
-  }
 
   @override
   void initState() {
     super.initState();
-    _begin = _getFirstDateOfWeek(DateTime.now());
-    _end = _begin.add(const Duration(days: _daysToEndOfWeek));
+    ref.read(plannerControllerImplementationProvider.notifier).build();
   }
 
-  void _onPressed(String buttonType) {
+
+  void _onPressed(PlannerControllerImplementation planner, String buttonType) {
     setState(() {
       if (buttonType == 'prev') {
-        if (!(_isSameDate(_begin, _getFirstDateOfWeek(DateTime.now())))) {
-          _begin = _begin.subtract(const Duration(days: _daysToNextWeek));
-          _end = _end.subtract(const Duration(days: _daysToNextWeek));
-        }
+        //print('prev ${planner.state.start} ${planner.state.end} ${planner.state.actual}');
+        planner.previousWeek();
       } else if (buttonType == 'next') {
-        _begin = _begin.add(const Duration(days: _daysToNextWeek));
-        _end = _end.add(const Duration(days: _daysToNextWeek));
+        planner.nextWeek();
+        //print('prev ${planner.state.start} ${planner.state.end} ${planner.state.actual}');
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    final plannerNotifier = ref.watch(plannerControllerImplementationProvider.notifier);
     return Center(
         child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-              onPressed: () => _onPressed('prev'),
+              onPressed: () => _onPressed(plannerNotifier, 'prev'),
               icon:
                   const Icon(Icons.chevron_left, color: Colors.grey, size: 32)),
           Flexible(
             child: Text(
-                "Wochenplan ${DateFormat('dd.MM', 'de_DE').format(_begin)} - ${DateFormat('dd.MM', 'de_DE').format(_end)}",
+                "Wochenplan ${DateFormat('dd.MM', 'de_DE').format(plannerNotifier.state.start!)} - ${DateFormat('dd.MM', 'de_DE').format(plannerNotifier.state.end!)}",
                 style: SimpleCookTextstyles.header),
           ),
           IconButton(
-              onPressed: () => _onPressed('next'),
+              onPressed: () => _onPressed(plannerNotifier, 'next'),
               icon:
                   const Icon(Icons.chevron_right, color: Colors.grey, size: 32))
         ],
       ),
     );
   }
+}
+
+abstract class PlannerController {
+  PlannerModel build();
+  void nextWeek();
+  void previousWeek();
 }

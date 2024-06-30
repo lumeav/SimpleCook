@@ -19,6 +19,7 @@ mixin _$PlannerModel {
   DateTime get start => throw _privateConstructorUsedError;
   DateTime get actual => throw _privateConstructorUsedError;
   DateTime get end => throw _privateConstructorUsedError;
+  List<DateTime> get dates => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlannerModelCopyWith<PlannerModel> get copyWith =>
@@ -31,7 +32,8 @@ abstract class $PlannerModelCopyWith<$Res> {
           PlannerModel value, $Res Function(PlannerModel) then) =
       _$PlannerModelCopyWithImpl<$Res, PlannerModel>;
   @useResult
-  $Res call({DateTime start, DateTime actual, DateTime end});
+  $Res call(
+      {DateTime start, DateTime actual, DateTime end, List<DateTime> dates});
 }
 
 /// @nodoc
@@ -50,6 +52,7 @@ class _$PlannerModelCopyWithImpl<$Res, $Val extends PlannerModel>
     Object? start = null,
     Object? actual = null,
     Object? end = null,
+    Object? dates = null,
   }) {
     return _then(_value.copyWith(
       start: null == start
@@ -64,6 +67,10 @@ class _$PlannerModelCopyWithImpl<$Res, $Val extends PlannerModel>
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      dates: null == dates
+          ? _value.dates
+          : dates // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>,
     ) as $Val);
   }
 }
@@ -76,7 +83,8 @@ abstract class _$$PlannerModelImplCopyWith<$Res>
       __$$PlannerModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime start, DateTime actual, DateTime end});
+  $Res call(
+      {DateTime start, DateTime actual, DateTime end, List<DateTime> dates});
 }
 
 /// @nodoc
@@ -93,6 +101,7 @@ class __$$PlannerModelImplCopyWithImpl<$Res>
     Object? start = null,
     Object? actual = null,
     Object? end = null,
+    Object? dates = null,
   }) {
     return _then(_$PlannerModelImpl(
       start: null == start
@@ -107,6 +116,10 @@ class __$$PlannerModelImplCopyWithImpl<$Res>
           ? _value.end
           : end // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      dates: null == dates
+          ? _value._dates
+          : dates // ignore: cast_nullable_to_non_nullable
+              as List<DateTime>,
     ));
   }
 }
@@ -115,7 +128,11 @@ class __$$PlannerModelImplCopyWithImpl<$Res>
 
 class _$PlannerModelImpl implements _PlannerModel {
   const _$PlannerModelImpl(
-      {required this.start, required this.actual, required this.end});
+      {required this.start,
+      required this.actual,
+      required this.end,
+      required final List<DateTime> dates})
+      : _dates = dates;
 
   @override
   final DateTime start;
@@ -123,10 +140,17 @@ class _$PlannerModelImpl implements _PlannerModel {
   final DateTime actual;
   @override
   final DateTime end;
+  final List<DateTime> _dates;
+  @override
+  List<DateTime> get dates {
+    if (_dates is EqualUnmodifiableListView) return _dates;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dates);
+  }
 
   @override
   String toString() {
-    return 'PlannerModel(start: $start, actual: $actual, end: $end)';
+    return 'PlannerModel(start: $start, actual: $actual, end: $end, dates: $dates)';
   }
 
   @override
@@ -136,11 +160,13 @@ class _$PlannerModelImpl implements _PlannerModel {
             other is _$PlannerModelImpl &&
             (identical(other.start, start) || other.start == start) &&
             (identical(other.actual, actual) || other.actual == actual) &&
-            (identical(other.end, end) || other.end == end));
+            (identical(other.end, end) || other.end == end) &&
+            const DeepCollectionEquality().equals(other._dates, _dates));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, start, actual, end);
+  int get hashCode => Object.hash(runtimeType, start, actual, end,
+      const DeepCollectionEquality().hash(_dates));
 
   @JsonKey(ignore: true)
   @override
@@ -153,7 +179,8 @@ abstract class _PlannerModel implements PlannerModel {
   const factory _PlannerModel(
       {required final DateTime start,
       required final DateTime actual,
-      required final DateTime end}) = _$PlannerModelImpl;
+      required final DateTime end,
+      required final List<DateTime> dates}) = _$PlannerModelImpl;
 
   @override
   DateTime get start;
@@ -161,6 +188,8 @@ abstract class _PlannerModel implements PlannerModel {
   DateTime get actual;
   @override
   DateTime get end;
+  @override
+  List<DateTime> get dates;
   @override
   @JsonKey(ignore: true)
   _$$PlannerModelImplCopyWith<_$PlannerModelImpl> get copyWith =>
