@@ -132,8 +132,8 @@ class _ResultViewState extends ConsumerState<ResultView> {
         ]),
         Column(
           children: [
-            HeaderRecipeInfos(
-                recipe.title, recipe.totalTime.toStringAsFixed(0), 'unbekannt'),
+            HeaderRecipeInfos(recipe.title,
+                recipe.totalTime.toStringAsFixed(0), ''),
             const Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 child: Divider()),
@@ -145,7 +145,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
                   if (ingredient.amount! % 1 == 0)
                     '${ingredient.amount!.toInt()} ${ingredient.name}'
                   else
-                    '${ingredient.amount} ${ingredient.name}'
+                  '${ingredient.amount} ${ingredient.name}'
                 else if (ingredient.amount != null && ingredient.unit != "")
                   if (ingredient.amount! % 1 == 0)
                     '${ingredient.amount!.toInt()} ${ingredient.unit} ${ingredient.name}'

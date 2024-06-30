@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 //import 'package:simple_cook/widgets/extended_recipe.dart';
 import 'package:simple_cook/common/simple_cook_appbar.dart';
+import 'package:simple_cook/ui/planner/planner_model.dart';
 import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
 import 'package:simple_cook/ui/planner/widgets/date.dart';
 import 'package:simple_cook/ui/planner/widgets/remove_button.dart';
@@ -8,8 +10,8 @@ import 'package:simple_cook/ui/planner/widgets/remove_button.dart';
 import 'package:simple_cook/service/persistence_service/persistence_service.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
-
-class PlannerView extends StatefulWidget {
+import 'package:simple_cook/ui/planner/planner_controller_implementation.dart';
+class PlannerView extends ConsumerStatefulWidget {
   const PlannerView({
     Key? key,
   }) : super(key: key);
@@ -18,22 +20,20 @@ class PlannerView extends StatefulWidget {
   _PlannerViewState createState() => _PlannerViewState();
 }
 
-class _PlannerViewState extends State<PlannerView> {
+class _PlannerViewState extends ConsumerState<PlannerView> {
   late PersistenceService _persistenceService;
 
   @override
   void initState() {
     super.initState();
     _persistenceService = PersistenceService();
-    _initializePlannerBox();
+    ref.read(plannerControllerImplementationProvider.notifier).build();
   }
 
-  Future<void> _initializePlannerBox() async {
-    //await _persistenceService.init();
-  }
 
   @override
   Widget build(BuildContext context) {
+    final plannerState = ref.watch(plannerControllerImplementationProvider);
     return Scaffold(
       appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
       backgroundColor: Colors.grey[200],
@@ -45,19 +45,19 @@ class _PlannerViewState extends State<PlannerView> {
         Expanded(
             child: SingleChildScrollView(
           child: Column(
-            children: _buildPlannerRows(),
+            children: _buildPlannerRows(plannerState),
           ),
         )),
       ]),
     );
   }
 
-  List<Widget> _buildPlannerRows() {
-    DateTime today = DateTime.now();
+  List<Widget> _buildPlannerRows(PlannerModel plannerState) {
     List<Widget> plannerRows = [];
 
-    for (int i = 0; i < 7; i++) {
-      DateTime date = today.add(Duration(days: i));
+    for (DateTime date in plannerState.dates) {
+      print(plannerState.dates);
+      print('${date.day} ${date.month}${date.year}');
       String formattedDate = '${date.day}.${date.month}.${date.year}';
       List<SingleRecipe> recipes = _persistenceService.getRecipesForDate(formattedDate);
 
@@ -126,3 +126,4 @@ class _PlannerViewState extends State<PlannerView> {
     });
   }
 }
+

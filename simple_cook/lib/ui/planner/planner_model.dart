@@ -9,5 +9,6 @@ class PlannerModel with _$PlannerModel {
     required DateTime start,
     required DateTime actual,
     required DateTime end,
+    required List<DateTime> dates,
   }) = _PlannerModel;
 }
