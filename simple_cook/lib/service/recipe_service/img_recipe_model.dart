@@ -14,6 +14,9 @@ class ImgRecipeModel {
         required this.ingredients,
         required this.steps,
         required this.title,
+        required this.imageSize,
+    });
+
     factory ImgRecipeModel.fromJson(Map<String, dynamic> json) => ImgRecipeModel(
         ingredients: (json['ingredients'] as List)
           .map((e) => Ingredient.fromJson(Map<String, dynamic>.from(e as Map)))

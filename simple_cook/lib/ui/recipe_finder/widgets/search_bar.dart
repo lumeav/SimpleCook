@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/theme.dart';
-<<<<<<<< Updated upstream:simple_cook/lib/ui/recipefinder/widgets/search_bar.dart
-import 'package:simple_cook/ui/recipeFinder/recipefinder_controller_implementation.dart';
-========
 import 'package:simple_cook/ui/recipe_finder/recipe_finder_controller_implementation.dart';
->>>>>>>> Stashed changes:simple_cook/lib/ui/recipe_finder/widgets/search_bar.dart
 
 
 class SearchBarFilter extends ConsumerStatefulWidget {
@@ -115,10 +111,7 @@ class database {
     'Paprika',
     'Gurke',
     'Salat',
-<<<<<<<< Updated upstream:simple_cook/lib/ui/recipefinder/widgets/search_bar.dart
-========
     'Erdbeere'
->>>>>>>> Stashed changes:simple_cook/lib/ui/recipe_finder/widgets/search_bar.dart
   ];
 
   static Future<Iterable<String>> search(String query) async {
