@@ -23,7 +23,6 @@ class ExploreView extends ConsumerStatefulWidget {
 
 class _ExploreViewState extends ConsumerState<ExploreView> {
 
-
   @override
   void initState() {
     super.initState();
@@ -37,7 +36,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
         backgroundColor: Colors.grey[200],
-        body: exploreState.isSearching
+        body: exploreState.fetchFinished
             ? CustomScrollView(slivers: [
                 const SliverAppBar(
                   pinned: true,
