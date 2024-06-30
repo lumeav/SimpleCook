@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/service/recipe_service/api_response.dart';
+import 'package:simple_cook/ui/recipe_info/recipe_info_controller_implementation.dart';
 import 'package:simple_cook/widgets/loading_indicator.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/common/simple_cook_appbar.dart';
@@ -18,34 +19,31 @@ class RecipeView extends ConsumerStatefulWidget {
   final String? difficulty;
 
   const RecipeView({
-    Key? key,
+    super.key,
     this.recipeUrl,
     this.difficulty,
-  }) : super(key: key);
+  });
 
   @override
-  _RecipeViewState createState() => _RecipeViewState();
+  ConsumerState<RecipeView> createState() => _RecipeViewState();
 }
 
 class _RecipeViewState extends ConsumerState<RecipeView> {
-  SingleRecipe? recipe;
-  bool isSearching = false;
-  bool error = false;
 
   @override
   void initState() {
     super.initState();
-    buildRecipe();
+    ref.read(recipeInfoControllerImplementationProvider.notifier).fetchRecipe(widget.recipeUrl);
   }
 
   @override
   Widget build(BuildContext context) {
-    //ref.watch(favoritesProvider);
+    final recipeInfoState = ref.watch(recipeInfoControllerImplementationProvider);
 
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
         backgroundColor: Colors.grey[200],
-        body: isSearching
+        body: recipeInfoState.fetchFinished
             ? Column(children: [
                 Container(
                     padding: EdgeInsets.symmetric(vertical: 2),
@@ -53,12 +51,12 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                          AddPlaner(recipe: recipe!),
+                          AddPlaner(recipe: recipeInfoState.recipe),
                           const SizedBox(width: 10),
                           //error:_Map<dynamic, dynamic>' is not a subtype of type 'Map<String, dynamic>
                           //so we copy with empty ingredients for now. Doesnt matter because we build it again in buildSingleRecipe
                           //only works with internet connection
-                          HeartButton(false, recipe: copyWithEmptyIngredients(recipe!)),
+                          HeartButton(false, recipe: copyWithEmptyIngredients(recipeInfoState.recipe!)),
                       ],
                     )),
                 Expanded(
@@ -72,30 +70,59 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.white),
-                            child: buildSingleRecipe(recipe!, widget.recipeUrl!,
+                            child: buildSingleRecipe(recipeInfoState.recipe!, widget.recipeUrl!,
                                 widget.difficulty!)),
                       ),
                     ],
                   ),
                 )),
               ])
-            : !error
-                ? LoadingIndicator()
+            : recipeInfoState.error
+                ? Center(
+                    child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(recipeInfoState.errorMessage!,
+                            style: const TextStyle(color: Colors.grey)),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                            height: 50,
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  ref
+                                      .read(
+                                          recipeInfoControllerImplementationProvider
+                                              .notifier)
+                                      .refetchRecipe(widget.recipeUrl);
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          SimpleCookColors.primary),
+                                  foregroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      side: const BorderSide(
+                                          color: SimpleCookColors.border,
+                                          width: 1.5),
+                                    ),
+                                  ),
+                                ),
+                                child: const Text(
+                                  "Try again",
+                                  style: SimpleCookTextstyles.filterTagTapped,
+                                )))
+                      ],
+                    ),
+                  ))
                 : LoadingIndicator());
-  }
-
-  Future<void> buildRecipe() async {
-    final RecipeService service = RecipeService();
-    //recipe = await service.getSingleRecipe(widget.recipeUrl!);
-    ApiResponse<SingleRecipe> response = await service.getSingleRecipe(widget.recipeUrl!);
-    if (response.data == null) {
-      error = true;
-    } else {
-      recipe = response.data;
-    }
-    setState(() {
-      isSearching = true;
-    });
   }
 
   Widget buildSingleRecipe(
@@ -115,7 +142,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
           )
         ]),
         HeaderRecipeInfos(singleRecipe.title,
-            singleRecipe.totalTime.toStringAsFixed(0), difficulty!),
+            singleRecipe.totalTime.toStringAsFixed(0), difficulty),
         const Padding(
             padding: EdgeInsets.only(left: 15, right: 15), child: Divider()),
         Ingredients([
@@ -129,7 +156,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
             else if (ingredient.amount != "" && ingredient.unit != "")
               '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
         ],
-        recipe!.portions),
+        singleRecipe.portions),
         Padding(
           padding: const EdgeInsets.only(top: 10.0),
           child: Preparation(
@@ -138,6 +165,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
       ],
     );
   }
+
   SingleRecipe copyWithEmptyIngredients(SingleRecipe recipe) {
     return SingleRecipe(
       diet: recipe.diet,
@@ -150,4 +178,9 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
       totalTime: recipe.totalTime,
     );
   }
+}
+
+abstract class RecipeInfoController {
+  Future<void> fetchRecipe(String? recipeUrl);
+  Future<void> refetchRecipe(String? recipeUrl);
 }

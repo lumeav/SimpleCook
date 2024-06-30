@@ -6,9 +6,9 @@ import 'package:simple_cook/ui/planner/planner_view.dart';
 import 'package:simple_cook/ui/recipe_finder/recipe_finder_view.dart';
 import 'package:simple_cook/ui/recipe_finder/result/result_view.dart';
 import 'package:go_router/go_router.dart';
-import 'package:simple_cook/ui/recipes_filtered/recipes_filtered_view.dart';
+import 'package:simple_cook/ui/explore/recipes_filtered/recipes_filtered_view.dart';
 // To test:
-import 'package:simple_cook/ui/recipe/recipe_view.dart';
+import 'package:simple_cook/ui/recipe_info/recipe_info_view.dart';
 import 'package:simple_cook/wrapper/main_wrapper.dart';
 
 final GoRouter router = GoRouter(initialLocation: '/explore', routes: [

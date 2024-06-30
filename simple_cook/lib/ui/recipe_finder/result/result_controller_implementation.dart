@@ -10,12 +10,9 @@ part 'result_controller_implementation.g.dart';
 @riverpod
 class ResultControllerImplementation extends _$ResultControllerImplementation
     implements ResultController {
+
   @override
   ResultModel build() => const ResultModel();
-
-  //Future<void> resetState() async {
-  //  state = const ResultModel();
-  //}
 
   @override
   Future<void> refetchRecipe(String query) async {
@@ -26,7 +23,6 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
   @override
   Future<void> fetchRecipe(String query) async {
     try {
-      //await _resetState();
       final RecipeService service = RecipeService();
       final ApiResponse<GenRecipeModel> response =
           await service.postGenRecipeModel(query);
@@ -41,7 +37,6 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
         await _fetchRecipeImg(response.data!);
       }
     } catch (e) {
-      print(e);
       state = state.copyWith(
         error: true,
         errorMessage: "An unexpected error occured!",

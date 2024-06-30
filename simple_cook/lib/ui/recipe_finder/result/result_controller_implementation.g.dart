@@ -7,7 +7,7 @@ part of 'result_controller_implementation.dart';
 // **************************************************************************
 
 String _$resultControllerImplementationHash() =>
-    r'893344f1d836de93256aa2f7d101c6aa8dacfecc';
+    r'76119736df440905ead6a5d7faf3374b2f1ac486';
 
 /// See also [ResultControllerImplementation].
 @ProviderFor(ResultControllerImplementation)

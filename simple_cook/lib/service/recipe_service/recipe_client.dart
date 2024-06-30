@@ -29,7 +29,7 @@ class RecipeClient {
         return ApiResponse<List<Recipe>?>(
             data: recipeFromJson(
                 const Utf8Decoder().convert(response.bodyBytes)));
-      } else if (response.statusCode == 429) {
+      } else if (response.statusCode == 429 || response.statusCode == 403) {
         return ApiResponse<List<Recipe>?>(
             errorMessage:
                 'The API key has expired! Please upgrade on $baseUrl');
@@ -51,7 +51,7 @@ class RecipeClient {
         return ApiResponse<SingleRecipe>(
             data: SingleRecipe.fromJson(
                 jsonDecode(const Utf8Decoder().convert(response.bodyBytes))));
-      } else if (response.statusCode == 429) {
+      } else if (response.statusCode == 429 || response.statusCode == 403) {
         return ApiResponse<SingleRecipe>(
             errorMessage:
                 'The API key has expired! Please upgrade on $baseUrl');
@@ -75,7 +75,7 @@ class RecipeClient {
         var genRecipe =
             genRecipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
         return ApiResponse<GenRecipeModel>(data: genRecipe);
-      } else if (response.statusCode == 429) {
+      } else if (response.statusCode == 429 || response.statusCode == 403) {
         return ApiResponse<GenRecipeModel>(
             errorMessage:
                 'The API key has expired! Please upgrade on $baseUrl');
@@ -103,7 +103,7 @@ class RecipeClient {
         var imgUrl =
             urlFromJson(const Utf8Decoder().convert(response.bodyBytes));
         return ApiResponse<String>(data: imgUrl.url);
-      } else if (response.statusCode == 429) {
+      } else if (response.statusCode == 429 || response.statusCode == 403) {
         return ApiResponse<String>(
             errorMessage:
                 'The API key has expired! Please upgrade on $baseUrl');

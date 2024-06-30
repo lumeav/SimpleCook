@@ -69,7 +69,6 @@ class _RecipesTagViewState extends State<RecipesFilteredView> {
 
   Future<void> buildRecipes(String search) async {
     final recipeService = RecipeService();
-    //recipes = await recipeService.getAllRecipes(search);
     ApiResponse<List<Recipe>?> response = await recipeService.getAllRecipes(search);
     if (response.data == null) {
       error = true;
