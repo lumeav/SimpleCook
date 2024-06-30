@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'result_model.dart';
+part of 'recipe_info_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,36 +15,34 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$ResultModel {
-  GenRecipeModel? get recipe => throw _privateConstructorUsedError;
-  String? get url => throw _privateConstructorUsedError;
+mixin _$RecipeInfoModel {
+  SingleRecipe? get recipe => throw _privateConstructorUsedError;
   bool get fetchFinished => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $ResultModelCopyWith<ResultModel> get copyWith =>
+  $RecipeInfoModelCopyWith<RecipeInfoModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ResultModelCopyWith<$Res> {
-  factory $ResultModelCopyWith(
-          ResultModel value, $Res Function(ResultModel) then) =
-      _$ResultModelCopyWithImpl<$Res, ResultModel>;
+abstract class $RecipeInfoModelCopyWith<$Res> {
+  factory $RecipeInfoModelCopyWith(
+          RecipeInfoModel value, $Res Function(RecipeInfoModel) then) =
+      _$RecipeInfoModelCopyWithImpl<$Res, RecipeInfoModel>;
   @useResult
   $Res call(
-      {GenRecipeModel? recipe,
-      String? url,
+      {SingleRecipe? recipe,
       bool fetchFinished,
       bool error,
       String? errorMessage});
 }
 
 /// @nodoc
-class _$ResultModelCopyWithImpl<$Res, $Val extends ResultModel>
-    implements $ResultModelCopyWith<$Res> {
-  _$ResultModelCopyWithImpl(this._value, this._then);
+class _$RecipeInfoModelCopyWithImpl<$Res, $Val extends RecipeInfoModel>
+    implements $RecipeInfoModelCopyWith<$Res> {
+  _$RecipeInfoModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -55,7 +53,6 @@ class _$ResultModelCopyWithImpl<$Res, $Val extends ResultModel>
   @override
   $Res call({
     Object? recipe = freezed,
-    Object? url = freezed,
     Object? fetchFinished = null,
     Object? error = null,
     Object? errorMessage = freezed,
@@ -64,11 +61,7 @@ class _$ResultModelCopyWithImpl<$Res, $Val extends ResultModel>
       recipe: freezed == recipe
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
-              as GenRecipeModel?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as SingleRecipe?,
       fetchFinished: null == fetchFinished
           ? _value.fetchFinished
           : fetchFinished // ignore: cast_nullable_to_non_nullable
@@ -86,47 +79,41 @@ class _$ResultModelCopyWithImpl<$Res, $Val extends ResultModel>
 }
 
 /// @nodoc
-abstract class _$$ResultModelImplCopyWith<$Res>
-    implements $ResultModelCopyWith<$Res> {
-  factory _$$ResultModelImplCopyWith(
-          _$ResultModelImpl value, $Res Function(_$ResultModelImpl) then) =
-      __$$ResultModelImplCopyWithImpl<$Res>;
+abstract class _$$RecipeInfoModelImplCopyWith<$Res>
+    implements $RecipeInfoModelCopyWith<$Res> {
+  factory _$$RecipeInfoModelImplCopyWith(_$RecipeInfoModelImpl value,
+          $Res Function(_$RecipeInfoModelImpl) then) =
+      __$$RecipeInfoModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {GenRecipeModel? recipe,
-      String? url,
+      {SingleRecipe? recipe,
       bool fetchFinished,
       bool error,
       String? errorMessage});
 }
 
 /// @nodoc
-class __$$ResultModelImplCopyWithImpl<$Res>
-    extends _$ResultModelCopyWithImpl<$Res, _$ResultModelImpl>
-    implements _$$ResultModelImplCopyWith<$Res> {
-  __$$ResultModelImplCopyWithImpl(
-      _$ResultModelImpl _value, $Res Function(_$ResultModelImpl) _then)
+class __$$RecipeInfoModelImplCopyWithImpl<$Res>
+    extends _$RecipeInfoModelCopyWithImpl<$Res, _$RecipeInfoModelImpl>
+    implements _$$RecipeInfoModelImplCopyWith<$Res> {
+  __$$RecipeInfoModelImplCopyWithImpl(
+      _$RecipeInfoModelImpl _value, $Res Function(_$RecipeInfoModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? recipe = freezed,
-    Object? url = freezed,
     Object? fetchFinished = null,
     Object? error = null,
     Object? errorMessage = freezed,
   }) {
-    return _then(_$ResultModelImpl(
+    return _then(_$RecipeInfoModelImpl(
       recipe: freezed == recipe
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
-              as GenRecipeModel?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as SingleRecipe?,
       fetchFinished: null == fetchFinished
           ? _value.fetchFinished
           : fetchFinished // ignore: cast_nullable_to_non_nullable
@@ -145,18 +132,15 @@ class __$$ResultModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ResultModelImpl implements _ResultModel {
-  const _$ResultModelImpl(
+class _$RecipeInfoModelImpl implements _RecipeInfoModel {
+  const _$RecipeInfoModelImpl(
       {this.recipe,
-      this.url,
       this.fetchFinished = false,
       this.error = false,
       this.errorMessage});
 
   @override
-  final GenRecipeModel? recipe;
-  @override
-  final String? url;
+  final SingleRecipe? recipe;
   @override
   @JsonKey()
   final bool fetchFinished;
@@ -168,16 +152,15 @@ class _$ResultModelImpl implements _ResultModel {
 
   @override
   String toString() {
-    return 'ResultModel(recipe: $recipe, url: $url, fetchFinished: $fetchFinished, error: $error, errorMessage: $errorMessage)';
+    return 'RecipeInfoModel(recipe: $recipe, fetchFinished: $fetchFinished, error: $error, errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ResultModelImpl &&
+            other is _$RecipeInfoModelImpl &&
             (identical(other.recipe, recipe) || other.recipe == recipe) &&
-            (identical(other.url, url) || other.url == url) &&
             (identical(other.fetchFinished, fetchFinished) ||
                 other.fetchFinished == fetchFinished) &&
             (identical(other.error, error) || other.error == error) &&
@@ -187,27 +170,25 @@ class _$ResultModelImpl implements _ResultModel {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, recipe, url, fetchFinished, error, errorMessage);
+      Object.hash(runtimeType, recipe, fetchFinished, error, errorMessage);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ResultModelImplCopyWith<_$ResultModelImpl> get copyWith =>
-      __$$ResultModelImplCopyWithImpl<_$ResultModelImpl>(this, _$identity);
+  _$$RecipeInfoModelImplCopyWith<_$RecipeInfoModelImpl> get copyWith =>
+      __$$RecipeInfoModelImplCopyWithImpl<_$RecipeInfoModelImpl>(
+          this, _$identity);
 }
 
-abstract class _ResultModel implements ResultModel {
-  const factory _ResultModel(
-      {final GenRecipeModel? recipe,
-      final String? url,
+abstract class _RecipeInfoModel implements RecipeInfoModel {
+  const factory _RecipeInfoModel(
+      {final SingleRecipe? recipe,
       final bool fetchFinished,
       final bool error,
-      final String? errorMessage}) = _$ResultModelImpl;
+      final String? errorMessage}) = _$RecipeInfoModelImpl;
 
   @override
-  GenRecipeModel? get recipe;
-  @override
-  String? get url;
+  SingleRecipe? get recipe;
   @override
   bool get fetchFinished;
   @override
@@ -216,6 +197,6 @@ abstract class _ResultModel implements ResultModel {
   String? get errorMessage;
   @override
   @JsonKey(ignore: true)
-  _$$ResultModelImplCopyWith<_$ResultModelImpl> get copyWith =>
+  _$$RecipeInfoModelImplCopyWith<_$RecipeInfoModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

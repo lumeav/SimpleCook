@@ -23,7 +23,6 @@ class ExploreView extends ConsumerStatefulWidget {
 
 class _ExploreViewState extends ConsumerState<ExploreView> {
 
-
   @override
   void initState() {
     super.initState();
@@ -37,7 +36,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
         backgroundColor: Colors.grey[200],
-        body: exploreState.isSearching
+        body: exploreState.fetchFinished
             ? CustomScrollView(slivers: [
                 const SliverAppBar(
                   pinned: true,
@@ -84,9 +83,50 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                     valueColor:
                         AlwaysStoppedAnimation<Color>(SimpleCookColors.primary),
                   ))
-                : const Center(
-                    child: Text(
-                        'Error while loading recipes, check for connection')));
+                : Center(
+                    child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(exploreState.errorMessage!,
+                            style: const TextStyle(color: Colors.grey)),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                            height: 50,
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  ref
+                                      .read(
+                                          exploreControllerImplementationProvider
+                                              .notifier)
+                                      .rebuildRecipes();
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          SimpleCookColors.primary),
+                                  foregroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      side: const BorderSide(
+                                          color: SimpleCookColors.border,
+                                          width: 1.5),
+                                    ),
+                                  ),
+                                ),
+                                child: const Text(
+                                  "Try again",
+                                  style: SimpleCookTextstyles.filterTagTapped,
+                                )))
+                      ],
+                    ),
+                  )));
   }
 
   Widget buildHeaderRecipeOfTheDay(Recipe recipe) {
@@ -106,6 +146,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
 
 abstract class ExploreController {
   Future<void> buildRecipes();
+  Future<void> rebuildRecipes();
   String checkDiff(String? diff);
     //void goToFilteredRecipesView({required final String query}); // Todo: reimplement with NavigationService
 }

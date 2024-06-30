@@ -18,8 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ExploreModel {
   List<Recipe>? get recipes => throw _privateConstructorUsedError;
   Recipe? get recipeOfTheDay => throw _privateConstructorUsedError;
-  bool get isSearching => throw _privateConstructorUsedError;
+  bool get fetchFinished => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ExploreModelCopyWith<ExploreModel> get copyWith =>
@@ -35,8 +36,9 @@ abstract class $ExploreModelCopyWith<$Res> {
   $Res call(
       {List<Recipe>? recipes,
       Recipe? recipeOfTheDay,
-      bool isSearching,
-      bool error});
+      bool fetchFinished,
+      bool error,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -54,8 +56,9 @@ class _$ExploreModelCopyWithImpl<$Res, $Val extends ExploreModel>
   $Res call({
     Object? recipes = freezed,
     Object? recipeOfTheDay = freezed,
-    Object? isSearching = null,
+    Object? fetchFinished = null,
     Object? error = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
       recipes: freezed == recipes
@@ -66,14 +69,18 @@ class _$ExploreModelCopyWithImpl<$Res, $Val extends ExploreModel>
           ? _value.recipeOfTheDay
           : recipeOfTheDay // ignore: cast_nullable_to_non_nullable
               as Recipe?,
-      isSearching: null == isSearching
-          ? _value.isSearching
-          : isSearching // ignore: cast_nullable_to_non_nullable
+      fetchFinished: null == fetchFinished
+          ? _value.fetchFinished
+          : fetchFinished // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -89,8 +96,9 @@ abstract class _$$ExploreModelImplCopyWith<$Res>
   $Res call(
       {List<Recipe>? recipes,
       Recipe? recipeOfTheDay,
-      bool isSearching,
-      bool error});
+      bool fetchFinished,
+      bool error,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -106,8 +114,9 @@ class __$$ExploreModelImplCopyWithImpl<$Res>
   $Res call({
     Object? recipes = freezed,
     Object? recipeOfTheDay = freezed,
-    Object? isSearching = null,
+    Object? fetchFinished = null,
     Object? error = null,
+    Object? errorMessage = freezed,
   }) {
     return _then(_$ExploreModelImpl(
       recipes: freezed == recipes
@@ -118,14 +127,18 @@ class __$$ExploreModelImplCopyWithImpl<$Res>
           ? _value.recipeOfTheDay
           : recipeOfTheDay // ignore: cast_nullable_to_non_nullable
               as Recipe?,
-      isSearching: null == isSearching
-          ? _value.isSearching
-          : isSearching // ignore: cast_nullable_to_non_nullable
+      fetchFinished: null == fetchFinished
+          ? _value.fetchFinished
+          : fetchFinished // ignore: cast_nullable_to_non_nullable
               as bool,
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -136,8 +149,9 @@ class _$ExploreModelImpl implements _ExploreModel {
   const _$ExploreModelImpl(
       {final List<Recipe>? recipes,
       this.recipeOfTheDay,
-      this.isSearching = false,
-      this.error = false})
+      this.fetchFinished = false,
+      this.error = false,
+      this.errorMessage})
       : _recipes = recipes;
 
   final List<Recipe>? _recipes;
@@ -154,14 +168,16 @@ class _$ExploreModelImpl implements _ExploreModel {
   final Recipe? recipeOfTheDay;
   @override
   @JsonKey()
-  final bool isSearching;
+  final bool fetchFinished;
   @override
   @JsonKey()
   final bool error;
+  @override
+  final String? errorMessage;
 
   @override
   String toString() {
-    return 'ExploreModel(recipes: $recipes, recipeOfTheDay: $recipeOfTheDay, isSearching: $isSearching, error: $error)';
+    return 'ExploreModel(recipes: $recipes, recipeOfTheDay: $recipeOfTheDay, fetchFinished: $fetchFinished, error: $error, errorMessage: $errorMessage)';
   }
 
   @override
@@ -172,9 +188,11 @@ class _$ExploreModelImpl implements _ExploreModel {
             const DeepCollectionEquality().equals(other._recipes, _recipes) &&
             (identical(other.recipeOfTheDay, recipeOfTheDay) ||
                 other.recipeOfTheDay == recipeOfTheDay) &&
-            (identical(other.isSearching, isSearching) ||
-                other.isSearching == isSearching) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.fetchFinished, fetchFinished) ||
+                other.fetchFinished == fetchFinished) &&
+            (identical(other.error, error) || other.error == error) &&
+            (identical(other.errorMessage, errorMessage) ||
+                other.errorMessage == errorMessage));
   }
 
   @override
@@ -182,8 +200,9 @@ class _$ExploreModelImpl implements _ExploreModel {
       runtimeType,
       const DeepCollectionEquality().hash(_recipes),
       recipeOfTheDay,
-      isSearching,
-      error);
+      fetchFinished,
+      error,
+      errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -196,17 +215,20 @@ abstract class _ExploreModel implements ExploreModel {
   const factory _ExploreModel(
       {final List<Recipe>? recipes,
       final Recipe? recipeOfTheDay,
-      final bool isSearching,
-      final bool error}) = _$ExploreModelImpl;
+      final bool fetchFinished,
+      final bool error,
+      final String? errorMessage}) = _$ExploreModelImpl;
 
   @override
   List<Recipe>? get recipes;
   @override
   Recipe? get recipeOfTheDay;
   @override
-  bool get isSearching;
+  bool get fetchFinished;
   @override
   bool get error;
+  @override
+  String? get errorMessage;
   @override
   @JsonKey(ignore: true)
   _$$ExploreModelImplCopyWith<_$ExploreModelImpl> get copyWith =>

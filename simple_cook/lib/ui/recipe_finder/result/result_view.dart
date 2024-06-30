@@ -22,22 +22,23 @@ class ResultView extends ConsumerStatefulWidget {
 }
 
 class _ResultViewState extends ConsumerState<ResultView> {
-
   @override
   void initState() {
     super.initState();
     print('text: ${widget.text}');
-    ref.read(resultControllerImplementationProvider.notifier).fetchRecipe(widget.text!);
+    ref
+        .read(resultControllerImplementationProvider.notifier)
+        .fetchRecipe(widget.text!);
   }
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(resultControllerImplementationProvider);
+    final resultState = ref.watch(resultControllerImplementationProvider);
 
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
-        body: state.isLoadRecipe
+        body: resultState.fetchFinished
             ? Column(children: [
                 Container(
                     padding: EdgeInsets.symmetric(vertical: 10),
@@ -61,20 +62,58 @@ class _ResultViewState extends ConsumerState<ResultView> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.white),
-                            child: state.error
-                                ? const Center(
-                                    child: Text(
-                                      'Error loading recipe',
-                                      style: TextStyle(color: Colors.grey),
-                                    ),
-                                  )
-                                : buildRecipe(state.recipe!, state.url!)),
+                            child: buildRecipe(resultState.recipe!, resultState.url!)),
                       ),
                     ],
                   ),
                 )),
               ])
-            : LoadingIndicator());
+            : resultState.error
+                ? Center(
+                    child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(resultState.errorMessage!,
+                            style: const TextStyle(color: Colors.grey)),
+                        const SizedBox(height: 8),
+                        SizedBox(
+                            height: 50,
+                            child: ElevatedButton(
+                                onPressed: () {
+                                  ref
+                                      .read(
+                                          resultControllerImplementationProvider
+                                              .notifier)
+                                      .refetchRecipe(widget.text!);
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          SimpleCookColors.primary),
+                                  foregroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Colors.white),
+                                  shape: MaterialStateProperty.all<
+                                      RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                      side: const BorderSide(
+                                          color: SimpleCookColors.border,
+                                          width: 1.5),
+                                    ),
+                                  ),
+                                ),
+                                child: const Text(
+                                  "Try again",
+                                  style: SimpleCookTextstyles.filterTagTapped,
+                                )))
+                      ],
+                    ),
+                  ))
+                : const LoadingIndicator());
   }
 
   Widget buildRecipe(GenRecipeModel recipe, String url) {
@@ -111,9 +150,8 @@ class _ResultViewState extends ConsumerState<ResultView> {
                   if (ingredient.amount! % 1 == 0)
                     '${ingredient.amount!.toInt()} ${ingredient.unit} ${ingredient.name}'
                   else
-                  '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
-            ],
-            recipe.portions),
+                    '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
+            ], recipe.portions),
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
               child: Preparation([
@@ -129,5 +167,6 @@ class _ResultViewState extends ConsumerState<ResultView> {
 }
 
 abstract class ResultController {
-  void fetchRecipe(String query);
+  Future<void> fetchRecipe(String query);
+  Future<void> refetchRecipe(String query);
 }
