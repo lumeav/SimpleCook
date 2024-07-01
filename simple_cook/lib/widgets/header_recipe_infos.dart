@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/widgets/recipe_infos.dart';
@@ -15,11 +16,13 @@ class HeaderRecipeInfos extends StatelessWidget {
       padding: const EdgeInsets.only(top: 5, bottom: 15),
       child: Column(children: [
         Padding(
-          padding: const EdgeInsets.only(left: 15.0, bottom: 5.0),
+          padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 5),
           child: Align(
             alignment: Alignment.centerLeft,
-            child: Text(title,
-                style: SimpleCookTextstyles.header),
+            child: AutoSizeText(
+              title,
+              style: SimpleCookTextstyles.header,
+              maxLines: 2,),
           ),
         ),
         Padding(

@@ -21,7 +21,7 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
     return InkWell(
       onTap: () {
         // Placeholder for future logic
-        context.goNamed('subRecipeView', queryParameters: {'recipeUrl': widget.source, 'difficulty': widget.difficulty});
+        context.pushNamed('singleRecipeView', queryParameters: {'recipeUrl': widget.source, 'difficulty': widget.difficulty});
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
@@ -38,23 +38,16 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
                           topRight: Radius.circular(12) // Set the desired border radius for the top left corner
                           ),
                         child: AspectRatio(
-                          aspectRatio: 1.8,
+                          aspectRatio: 1.9,
                           child: Image.network(
                             widget.imgPath,
                             fit: BoxFit.cover,
                           )
                       ),
                     ),
-                    /*
-                    const Positioned(
-                      bottom: 10,
-                      right: 10,
-                      child: HeartButton(true),
-                    )
-                    */
                   ]
                 ),
-                widget.header
+                widget.header,
               ],
             )),
       ),

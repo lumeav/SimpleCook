@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/service/persistence_service.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
+import 'package:simple_cook/service/persistence_service/persistence_service.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
+import 'package:simple_cook/ui/planner/planner_controller_implementation.dart';
+import 'package:simple_cook/ui/planner/planner_model.dart';
+import 'package:simple_cook/ui/planner/planner_provider.dart';
 
-class AddPlaner extends StatefulWidget {
+
+class AddPlaner extends ConsumerStatefulWidget {
   final SingleRecipe? recipe;
 
   const AddPlaner({
@@ -14,16 +19,15 @@ class AddPlaner extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<AddPlaner> createState() => _AddPlanerState();
+  ConsumerState<AddPlaner> createState() => _AddPlanerState();
 }
 
-class _AddPlanerState extends State<AddPlaner> {
+class _AddPlanerState extends ConsumerState<AddPlaner> {
   String? selectedDate;
-  final PersistenceService _persistenceService = PersistenceService();
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size.width * 0.075;
+    var size = MediaQuery.of(context).size.width * 0.062;
     return Container(
       width: size + 8,
       height: size + 8,
@@ -86,6 +90,8 @@ class _AddPlanerState extends State<AddPlaner> {
   }
 
   Widget _buildDatePicker() {
+    //final plannerNotifier = ref.watch(plannerProvider.notifier);
+    final plannerController = ref.watch(plannerProvider.notifier);
     var size = MediaQuery.of(context).size.width * 0.40;
     final List<String> dates = _generateNext14Days();
     return SizedBox(
@@ -97,13 +103,8 @@ class _AddPlanerState extends State<AddPlaner> {
             onTap: () {
               setState(() {
                 selectedDate = date;
-                //Navigator.of(context).pop();
-                // Add selected recipe to planner for selectedDate
                 if (widget.recipe != null && selectedDate != null) {
-                  _persistenceService.addRecipeToPlanner(
-                    selectedDate!,
-                    widget.recipe!,
-                  );
+                  plannerController.addPlanner(selectedDate!.substring(4), widget.recipe!);
                   ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('Recipe added to planner for $selectedDate'),
@@ -135,3 +136,4 @@ class _AddPlanerState extends State<AddPlaner> {
     return dates;
   }
 }
+

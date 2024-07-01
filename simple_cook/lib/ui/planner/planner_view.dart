@@ -1,15 +1,20 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-//import 'package:simple_cook/widgets/extended_recipe.dart';
-import 'package:simple_cook/widgets/simple_cook_appbar.dart';
-import 'package:simple_cook/widgets/time_view_span.dart';
-import 'package:simple_cook/widgets/date.dart';
-import 'package:simple_cook/widgets/remove_button.dart';
-//import 'package:simple_cook/widgets/header_recipe_infos.dart';
-import 'package:simple_cook/service/persistence_service.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
-import 'package:simple_cook/widgets/simple_recipe.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/common/simple_cook_appbar.dart';
+import 'package:simple_cook/ui/planner/planner_provider.dart';
+import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
+import 'package:simple_cook/ui/planner/widgets/date.dart';
+import 'package:intl/intl.dart';
+import 'package:simple_cook/ui/planner/widgets/remove_button.dart';
+import 'package:simple_cook/service/persistence_service/persistence_service.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
+import 'package:simple_cook/widgets/extended_recipe.dart';
+import 'package:simple_cook/widgets/header_recipe_infos.dart';
+import 'package:simple_cook/ui/planner/planner_controller_implementation.dart';
 
-class PlannerView extends StatefulWidget {
+class PlannerView extends ConsumerStatefulWidget {
   const PlannerView({
     Key? key,
   }) : super(key: key);
@@ -18,18 +23,14 @@ class PlannerView extends StatefulWidget {
   _PlannerViewState createState() => _PlannerViewState();
 }
 
-class _PlannerViewState extends State<PlannerView> {
+class _PlannerViewState extends ConsumerState<PlannerView> {
   late PersistenceService _persistenceService;
 
   @override
   void initState() {
     super.initState();
     _persistenceService = PersistenceService();
-    _initializePlannerBox();
-  }
-
-  Future<void> _initializePlannerBox() async {
-    await _persistenceService.init();
+    ref.read(plannerControllerImplementationProvider.notifier).build();
   }
 
   @override
@@ -42,6 +43,12 @@ class _PlannerViewState extends State<PlannerView> {
             padding: EdgeInsets.symmetric(vertical: 5),
             color: Colors.grey[200],
             child: TimeViewSpan()),
+        ElevatedButton(
+          onPressed: () {
+            _persistenceService.clearPlanner();
+          },
+          child: Text('Delete all Plannerrecipe'),
+        ),
         Expanded(
             child: SingleChildScrollView(
           child: Column(
@@ -53,14 +60,18 @@ class _PlannerViewState extends State<PlannerView> {
   }
 
   List<Widget> _buildPlannerRows() {
-    DateTime today = DateTime.now();
+    final plannerController =
+        ref.watch(plannerControllerImplementationProvider);
+    final planner = ref.watch(plannerProvider.notifier);
+    final plannerState = ref.watch(plannerProvider);
     List<Widget> plannerRows = [];
-    
-    for (int i = 0; i < 7; i++) {
-      DateTime date = today.add(Duration(days: i));
-      String formattedDate = '${date.day}.${date.month}.${date.year}';
-      List<SingleRecipe> recipes = _persistenceService.getRecipesForDate(formattedDate);
 
+    for (DateTime date in plannerController.dates) {
+      String formatMonth = DateFormat('MM').format(date);
+      String formatDay = DateFormat('dd').format(date);
+
+      String formattedDate = '${formatDay}.${formatMonth}.${date.year}';
+      List<SingleRecipe> recipes = planner.getRecipesForDate(formattedDate);
       plannerRows.add(
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -71,58 +82,52 @@ class _PlannerViewState extends State<PlannerView> {
               SizedBox(height: 5),
               recipes.isEmpty
                   ? Center(child: Text('No recipes added for this date'))
-                  : _buildRecipeWidgets(recipes),
+                  : _buildRecipeWidgets(
+                      plannerState[formattedDate]!, formattedDate),
             ],
           ),
         ),
       );
     }
-    return plannerRows; 
+    return plannerRows;
   }
 
-  Widget _buildRecipeWidgets(List<SingleRecipe> recipes) {
+  Widget _buildRecipeWidgets(List<SingleRecipe> recipes, String date) {
     return GridView.builder(
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 0.78,
+        crossAxisCount: 1,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
       ),
       itemCount: recipes.length,
       itemBuilder: (context, index) {
         final recipe = recipes[index];
-        return _buildRecipeWidget(recipe);
+        return _buildRecipeWidget(recipe, date);
       },
     );
   }
 
-  Widget _buildRecipeWidget(SingleRecipe recipe) {
+  Widget _buildRecipeWidget(SingleRecipe recipe, String date) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      //crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SimpleRecipe(
-          recipe.image_urls.isNotEmpty ? recipe.image_urls.first : '',
-          recipe.title,
-          recipe.source,
-          '', // Replace with actual difficulty
+        Container(
+          alignment: Alignment.topRight,
+          child: RemoveButton(
+            recipe: recipe,
+            date: date,
+          ),
         ),
-        RemoveButton(
-          recipe: recipe,
-          onPressed: (recipe) {
-            _removeRecipeFromPlanner(recipe);
-          },
-        ),
+        ExtendedRecipe(
+            HeaderRecipeInfos(
+                recipe.title, recipe.totalTime.toStringAsFixed(0), ''),
+            recipe.imageUrls.first,
+            recipe.title,
+            recipe.source,
+            ''),
       ],
     );
-  }
-
-  Future<void> _removeRecipeFromPlanner(SingleRecipe recipe) async {
-    String formattedDate = '${DateTime.now().day}.${DateTime.now().month}.${DateTime.now().year}';
-    await _persistenceService.removeRecipeFromPlanner(formattedDate, recipe);
-    setState(() {
-      // Refresh UI after removal
-    });
   }
 }

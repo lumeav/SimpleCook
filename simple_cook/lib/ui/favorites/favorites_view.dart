@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/common/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/service/single_recipe_model.dart';
 import 'package:simple_cook/ui/favorites/favorites_provider.dart';
 
 class FavoritesView extends ConsumerWidget {
@@ -31,7 +30,7 @@ class FavoritesView extends ConsumerWidget {
               itemBuilder: (context, index) {
                 final recipe = favoriteRecipes[index];
                 return SimpleRecipe(
-                  recipe.image_urls.isNotEmpty ? recipe.image_urls.first : '',
+                  recipe.imageUrls.isNotEmpty ? recipe.imageUrls.first : '',
                   recipe.title,
                   recipe.source,
                   '', // Add actual difficulty if available or leave it as an empty string
