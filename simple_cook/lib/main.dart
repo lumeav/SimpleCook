@@ -21,6 +21,7 @@ void main() async {
   // Register Hive adapters
   Hive.registerAdapter(SingleRecipeAdapter());
   Hive.registerAdapter(IngredientAdapter());
+  Hive.registerAdapter(RecipeAdapter());
 
   // Initialize PersistenceService
   //await PersistenceService().clearFavorites();

@@ -1,5 +1,9 @@
 import 'package:hive/hive.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
+import 'package:simple_cook/service/recipe_service/recipes_model.dart';
+import 'package:simple_cook/service/recipe_service/recipe_service.dart';
+import 'package:simple_cook/service/recipe_service/api_response.dart';
+import 'dart:math';
 
 class PersistenceService {
   static final PersistenceService _instance = PersistenceService._internal();
@@ -12,6 +16,8 @@ class PersistenceService {
 
   late Box<SingleRecipe> _favoritesBox;
   late Box<List<dynamic>> _plannerBox;
+  late Box<Recipe> _recipeOfTheDayBox;
+  late Box<DateTime> _recipeOfTheDayDateBox;
 
   Future<void> init() async {
     try {
@@ -19,6 +25,8 @@ class PersistenceService {
       //print("Looks like it worked");
       _favoritesBox = await Hive.openBox<SingleRecipe>('favoritesBox');
       _plannerBox = await Hive.openBox<List>('plannerBox');
+      _recipeOfTheDayBox = await Hive.openBox<Recipe>('recipeOfTheDayBox');
+      _recipeOfTheDayDateBox = await Hive.openBox<DateTime>('recipeOfTheDayDateBox');
     } catch (e) {
       print('Error initializing Hive box: $e');
       // Handle initialization error gracefully
@@ -69,5 +77,41 @@ class PersistenceService {
     List<SingleRecipe> recipes = _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? [];
     recipes.removeWhere((SingleRecipe r) => r.title == recipe.title); // Remove based on title
     await _plannerBox.put(date, recipes);
+  }
+
+  bool isRecipeOfTheDayBoxEmpty() {
+    return _recipeOfTheDayBox.isEmpty;
+  } 
+
+  Future<void> putRecipeOfTheDay(Recipe newRecipeOfTheDay) async {
+    await _recipeOfTheDayBox.put(0, newRecipeOfTheDay);
+  }
+
+  Future<void> putRecipeOfTheDayDate(DateTime today) async {
+    await _recipeOfTheDayDateBox.put(0, today);
+  }
+
+  Future<Recipe> getRecipeOfTheDay(RecipeService recipeService) async {
+    DateTime today = DateTime.now();
+    DateTime? lastRecipeDate = _recipeOfTheDayDateBox.get(0);
+
+    // Check if today's recipe is already set
+    if (lastRecipeDate != null && lastRecipeDate.year == today.year && lastRecipeDate.month == today.month && lastRecipeDate.day == today.day) {
+      return _recipeOfTheDayBox.get(0)!;
+    } else {
+      List<Recipe> recipes = (await recipeService.getAllRecipes('Hauptspeise')).data!;
+      final Random random = Random();
+      Recipe newRecipeOfTheDay;
+
+      do {
+        newRecipeOfTheDay = recipes[random.nextInt(recipes.length)];
+      } while (_recipeOfTheDayBox.isNotEmpty && newRecipeOfTheDay == _recipeOfTheDayBox.get(0));
+
+      // Update the recipe of the day and date
+      _recipeOfTheDayBox.put(0, newRecipeOfTheDay);
+      _recipeOfTheDayDateBox.put(0, today);
+
+      return newRecipeOfTheDay;
+    }
   }
 }
