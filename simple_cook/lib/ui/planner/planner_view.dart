@@ -60,17 +60,18 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
   }
 
   List<Widget> _buildPlannerRows() {
-    final plannerState = ref.watch(plannerControllerImplementationProvider);
-    final test = ref.watch(plannerProvider.notifier);
-    final plannerProviderState = ref.watch(plannerProvider);
+    final plannerController =
+        ref.watch(plannerControllerImplementationProvider);
+    final planner = ref.watch(plannerProvider.notifier);
+    final plannerState = ref.watch(plannerProvider);
     List<Widget> plannerRows = [];
 
-    for (DateTime date in plannerState.dates) {
+    for (DateTime date in plannerController.dates) {
       String formatMonth = DateFormat('MM').format(date);
       String formatDay = DateFormat('dd').format(date);
 
       String formattedDate = '${formatDay}.${formatMonth}.${date.year}';
-      List<SingleRecipe> recipes = test.getRecipesForDate(formattedDate);
+      List<SingleRecipe> recipes = planner.getRecipesForDate(formattedDate);
       plannerRows.add(
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -82,7 +83,7 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
               recipes.isEmpty
                   ? Center(child: Text('No recipes added for this date'))
                   : _buildRecipeWidgets(
-                      plannerProviderState[formattedDate]!, formattedDate),
+                      plannerState[formattedDate]!, formattedDate),
             ],
           ),
         ),
