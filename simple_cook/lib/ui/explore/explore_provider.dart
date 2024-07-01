@@ -6,11 +6,17 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class RecipeOfTheDayNotifier extends StateNotifier<Recipe?> {
   RecipeOfTheDayNotifier() : super(null) {
-    _loadRecipeOfTheDay();
+    _checkAndLoadRecipeOfTheDay();
   }
 
   final PersistenceService _persistenceService = PersistenceService();
   final RecipeService _recipeService = RecipeService();
+
+  Future<void> _checkAndLoadRecipeOfTheDay() async {
+    if (!isRecipeOfTheDayBoxEmpty()) {
+      await _loadRecipeOfTheDay();
+    }
+  }
 
   Future<void> _loadRecipeOfTheDay() async {
     final recipe = await _persistenceService.getRecipeOfTheDay(_recipeService);
