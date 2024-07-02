@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/ui/recipe_finder/recipe_finder_controller_implementation.dart';
+import 'package:simple_cook/ui/recipe_finder/widgets/search_bar_provider.dart';
 
 
 class SearchBarFilter extends ConsumerStatefulWidget {
@@ -22,6 +23,7 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
   late Iterable<Widget> lastVegetables = <Widget>[];
   @override
   Widget build(BuildContext context) {
+    final searchBarNotifier = ref.watch(searchBarProvider.notifier);
     final recipeFinderNotifier = ref.watch(recipeFinderControllerImplementationProvider.notifier);
     return Column(children: [
       Container(
@@ -38,7 +40,7 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
                 (BuildContext context, SearchController controller) async {
               searchQuery = controller.text;
               final List<String> vegetables =
-                  (await database.search(searchQuery!)).toList();
+                  (await searchBarNotifier.search(searchQuery!)).toList();
               return List<ListTile>.generate(vegetables.length, (int index) {
                 final String item = vegetables[index];
                 return ListTile(

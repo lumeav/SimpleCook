@@ -6,6 +6,22 @@ class SimpleCookColors {
   static const Color border = Color.fromARGB(255, 127, 127, 127);
 }
 
+class SimpleCookIngredientList {
+  static const List<String> kOptions = <String>[
+    'Tomaten',
+    'Kartoffel',
+    'Ei',
+    'Karrotte',
+    'Kardfcgdfb'
+    'Zwiebel',
+    'Knoblauch',
+    'Paprika',
+    'Gurke',
+    'Salat',
+    'Erdbeere'
+  ];
+}
+
 class SimpleCookTextstyles {
   static const TextStyle date =
       TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22);
