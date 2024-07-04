@@ -99,27 +99,3 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
     ]);
   }
 }
-
-class database {
-  //should be updated to build connection to actual database
-  static const List<String> _kOptions = <String>[
-    'Tomaten',
-    'Kartoffel',
-    'Ei',
-    'Karrotte',
-    'Kardfcgdfb'
-    'Zwiebel',
-    'Knoblauch',
-    'Paprika',
-    'Gurke',
-    'Salat',
-    'Erdbeere'
-  ];
-
-  static Future<Iterable<String>> search(String query) async {
-    if (query == null || query.isEmpty) {
-      return Iterable<String>.empty();
-    }
-    return _kOptions.where((String option) => option.contains(query));
-  }
-}

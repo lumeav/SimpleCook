@@ -31,7 +31,10 @@ class PersistenceService {
           await Hive.openBox<DateTime>('recipeOfTheDayDateBox');
       _searchBarIngredientBox =
           await Hive.openBox<List<String>>('searchBarIngredientBox');
-      if (_searchBarIngredientBox.isEmpty) {
+      final List<String>? storedIngredients = _searchBarIngredientBox.get(0);
+      if (storedIngredients == null ||
+          storedIngredients.length !=
+              SimpleCookIngredientList.kOptions.length) {
         await _searchBarIngredientBox.put(0, SimpleCookIngredientList.kOptions);
       }
     } catch (e) {
@@ -133,13 +136,15 @@ class PersistenceService {
   }
 
   Future<void> addToSearchBox(String searchTerm) async {
-    final List<String>? currentHistory = _searchBarIngredientBox.get(0, defaultValue: []);
+    final List<String>? currentHistory =
+        _searchBarIngredientBox.get(0, defaultValue: []);
     final updatedHistory = [...?currentHistory, searchTerm];
     await _searchBarIngredientBox.put(0, updatedHistory);
   }
 
   List<String> getSearchBox() {
-    final List<String>? history = _searchBarIngredientBox.get(0, defaultValue: []);
+    final List<String>? history =
+        _searchBarIngredientBox.get(0, defaultValue: []);
     return history ?? []; // Return an empty list if history is null
   }
 
@@ -148,7 +153,7 @@ class PersistenceService {
       return Iterable<String>.empty();
     }
     final List<String> ingredients = _searchBarIngredientBox.get(0) ?? [];
-    return ingredients.where((String option) => option.contains(query));
+    final lowerCaseQuery = query.toLowerCase();
+    return ingredients.where((String option) => option.toLowerCase().contains(lowerCaseQuery));
   }
-
 }
