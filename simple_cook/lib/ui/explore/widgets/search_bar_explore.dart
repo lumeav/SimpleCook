@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/ui/explore/explore_controller_implementation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class SearchBarExplore extends ConsumerStatefulWidget {

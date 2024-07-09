@@ -8,7 +8,7 @@ import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
 import 'package:simple_cook/ui/planner/widgets/date.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_cook/ui/planner/widgets/remove_button.dart';
-import 'package:simple_cook/service/persistence_service/persistence_service.dart';
+//import 'package:simple_cook/service/persistence_service/persistence_service.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/widgets/extended_recipe.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
@@ -71,10 +71,8 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
     bool hasRecipesForWeek = false;
 
     for (DateTime date in plannerController.dates) {
-      String formatMonth = DateFormat('MM').format(date);
-      String formatDay = DateFormat('dd').format(date);
-
-      String formattedDate = '${formatDay}.${formatMonth}.${date.year}';
+      
+      String formattedDate = DateFormat('dd.MM.yyyy').format(date);
       List<SingleRecipe> recipes = planner.getRecipesForDate(formattedDate);
       if (recipes.isNotEmpty) {
         hasRecipesForWeek = true;

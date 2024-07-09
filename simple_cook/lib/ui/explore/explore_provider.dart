@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:simple_cook/service/persistence_service/persistence_service.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';

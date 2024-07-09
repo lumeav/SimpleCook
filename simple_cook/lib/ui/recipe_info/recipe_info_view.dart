@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/service/recipe_service/api_response.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_controller_implementation.dart';
 import 'package:simple_cook/widgets/loading_indicator.dart';
 import 'package:simple_cook/widgets/preparation.dart';
@@ -9,10 +8,8 @@ import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:simple_cook/widgets/add_planer.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
-import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/ui/favorites/favorites_provider.dart';
 
 class RecipeView extends ConsumerStatefulWidget {
   final String? recipeUrl;

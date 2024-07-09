@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/ui/explore/explore_view.dart';
 import 'package:simple_cook/ui/favorites/favorites_view.dart';
 import 'package:simple_cook/ui/planner/planner_view.dart';
 import 'package:simple_cook/ui/recipe_finder/recipe_finder_view.dart';
 import 'package:simple_cook/ui/recipe_finder/result/result_view.dart';
-import 'package:go_router/go_router.dart';
 import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_view.dart';
 // To test:
 import 'package:simple_cook/ui/recipe_info/recipe_info_view.dart';

@@ -5,7 +5,6 @@ import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:simple_cook/ui/explore/explore_model.dart';
 import 'package:simple_cook/ui/explore/explore_view.dart';
 import 'package:simple_cook/ui/explore/explore_provider.dart';
-import 'package:simple_cook/service/persistence_service/persistence_service.dart';
 import 'dart:math';
 
 part 'explore_controller_implementation.g.dart';
