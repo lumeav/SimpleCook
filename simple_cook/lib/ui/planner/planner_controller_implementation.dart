@@ -7,7 +7,6 @@ part 'planner_controller_implementation.g.dart';
 @riverpod
 class PlannerControllerImplementation extends _$PlannerControllerImplementation
     implements PlannerController {
-
   @override
   PlannerModel build() {
     DateTime data = DateTime.now();
@@ -27,30 +26,36 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
 
   @override
   void nextWeek() {
-    DateTime data = state.start.add(const Duration(days: 7));
-    state = state.copyWith(
-      start: data,
-      end: state.end.add(const Duration(days: 7)),
-      dates: setDatesWeek(data, state.actual),
-    );
+    DateTime nextWeekStart = state.start.add(const Duration(days: 7));
+    DateTime maxAllowedDate =
+        getFirstDateOfWeek().add(const Duration(days: 14));
+    if (nextWeekStart.isBefore(maxAllowedDate) ||
+        nextWeekStart.isAtSameMomentAs(maxAllowedDate)) {
+      state = state.copyWith(
+        start: nextWeekStart,
+        end: state.end.add(const Duration(days: 7)),
+        dates: setDatesWeek(nextWeekStart, state.actual),
+      );
+    }
   }
+
   @override
   void previousWeek() {
-    DateTime data = state.start.subtract(const Duration(days: 7));
+    DateTime prevWeekStart = state.start.subtract(const Duration(days: 7));
     if (!isSameDate(state.start, getFirstDateOfWeek())) {
       state = state.copyWith(
-        start: data,
+        start: prevWeekStart,
         end: state.end.subtract(const Duration(days: 7)),
-        dates: setDatesWeek(data, state.actual),
+        dates: setDatesWeek(prevWeekStart, state.actual),
       );
     }
   }
 
   DateTime getFirstDateOfWeek() {
-  DateTime data = DateTime.now();
-  int dayOffset = data.weekday - DateTime.monday;
-  DateTime firstDateOfWeek = data.subtract(Duration(days: dayOffset));
-  return firstDateOfWeek;
+    DateTime data = DateTime.now();
+    int dayOffset = data.weekday - DateTime.monday;
+    DateTime firstDateOfWeek = data.subtract(Duration(days: dayOffset));
+    return firstDateOfWeek;
   }
 
   bool isSameDate(DateTime date1, DateTime date2) {
@@ -59,15 +64,14 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
         date1.day == date2.day;
   }
 
-
   List<DateTime> setDatesWeek(DateTime start, DateTime actual) {
     List<DateTime> dates = [];
     if (isSameDate(start, getFirstDateOfWeek())) {
-        int dayOffset = DateTime.sunday - actual.weekday;
-        for (int i = 0; i <= dayOffset; i++) {
-          dates.add(actual.add(Duration(days: i)));
-        }
-        return dates;
+      int dayOffset = DateTime.sunday - actual.weekday;
+      for (int i = 0; i <= dayOffset; i++) {
+        dates.add(actual.add(Duration(days: i)));
+      }
+      return dates;
     } else {
       for (int i = 0; i < 7; i++) {
         dates.add(start.add(Duration(days: i)));
@@ -76,4 +80,3 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
     }
   }
 }
-

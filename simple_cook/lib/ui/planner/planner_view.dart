@@ -24,12 +24,12 @@ class PlannerView extends ConsumerStatefulWidget {
 }
 
 class _PlannerViewState extends ConsumerState<PlannerView> {
-  late PersistenceService _persistenceService;
+  //late PersistenceService _persistenceService;
 
   @override
   void initState() {
     super.initState();
-    _persistenceService = PersistenceService();
+    //_persistenceService = PersistenceService();
     ref.read(plannerControllerImplementationProvider.notifier).build();
   }
 
@@ -43,12 +43,14 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
             padding: EdgeInsets.symmetric(vertical: 5),
             color: Colors.grey[200],
             child: TimeViewSpan()),
+        /*
         ElevatedButton(
           onPressed: () {
             _persistenceService.clearPlanner();
           },
           child: Text('Delete all Plannerrecipe'),
         ),
+        */
         Expanded(
             child: SingleChildScrollView(
           child: Column(
@@ -66,29 +68,45 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
     final plannerState = ref.watch(plannerProvider);
     List<Widget> plannerRows = [];
 
+    bool hasRecipesForWeek = false;
+
     for (DateTime date in plannerController.dates) {
       String formatMonth = DateFormat('MM').format(date);
       String formatDay = DateFormat('dd').format(date);
 
       String formattedDate = '${formatDay}.${formatMonth}.${date.year}';
       List<SingleRecipe> recipes = planner.getRecipesForDate(formattedDate);
-      plannerRows.add(
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Date(date),
-              SizedBox(height: 5),
-              recipes.isEmpty
-                  ? Center(child: Text('No recipes added for this date'))
-                  : _buildRecipeWidgets(
-                      plannerState[formattedDate]!, formattedDate),
-            ],
+      if (recipes.isNotEmpty) {
+        hasRecipesForWeek = true;
+        plannerRows.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Date(date),
+                SizedBox(height: 5),
+                _buildRecipeWidgets(
+                    plannerState[formattedDate]!, formattedDate),
+              ],
+            ),
           ),
-        ),
-      );
+        );
+      }
     }
+    if (!hasRecipesForWeek) {
+        plannerRows.add(
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20),
+              child: Text(
+                'Keine Rezepte für diese Woche hinzugefügt',
+                style: TextStyle(fontSize: 18, color: Colors.grey),
+              ),
+            ),
+          ),
+        );
+      }
     return plannerRows;
   }
 
@@ -122,7 +140,7 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
         ),
         ExtendedRecipe(
             HeaderRecipeInfos(
-                recipe.title, recipe.totalTime.toStringAsFixed(0), ''),
+                recipe.title, recipe.totalTime.toString(), ''),
             recipe.imageUrls.first,
             recipe.title,
             recipe.source,
