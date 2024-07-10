@@ -71,7 +71,7 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
     bool hasRecipesForWeek = false;
 
     for (DateTime date in plannerController.dates) {
-      
+
       String formattedDate = DateFormat('dd.MM.yyyy').format(date);
       List<SingleRecipe> recipes = planner.getRecipesForDate(formattedDate);
       if (recipes.isNotEmpty) {
@@ -96,10 +96,10 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
         plannerRows.add(
           const Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
               child: Text(
                 'Keine Rezepte für diese Woche hinzugefügt',
-                style: TextStyle(fontSize: 18, color: Colors.grey),
+                style: TextStyle(fontSize: 17, color: Colors.grey),
               ),
             ),
           ),
