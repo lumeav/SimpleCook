@@ -89,8 +89,11 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(exploreState.errorMessage!,
-                            style: const TextStyle(color: Colors.grey)),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 5),
+                          child: Text(exploreState.errorMessage!,
+                              style: const TextStyle(color: Colors.grey)),
+                        ),
                         const SizedBox(height: 8),
                         SizedBox(
                             height: 50,
