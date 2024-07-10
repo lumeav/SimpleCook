@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/simple_cook_appbar.dart';
+import 'package:simple_cook/widgets/loading_indicator.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
@@ -70,10 +71,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
               )
             : !exploreFilteredState.error
                 ? const Center(
-                    child: CircularProgressIndicator(
-                    valueColor:
-                        AlwaysStoppedAnimation<Color>(SimpleCookColors.primary),
-                  ))
+                    child: LoadingIndicator())
                 : Center(
                     child: Padding(
                     padding: const EdgeInsets.only(left: 15.0, right: 15.0),
