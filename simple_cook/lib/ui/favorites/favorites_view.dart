@@ -17,7 +17,7 @@ class FavoritesView extends ConsumerWidget {
       appBar: SimpleCookAppBar('SimpleCook'),
       backgroundColor: Colors.grey[200],
       body: favoriteRecipes.isEmpty
-          ? const Center(child: Text('No favorite recipes'))
+          ? const Center(child: Text('Keine Favoriten hinzugefügt'))
           : GridView.builder(
               padding: const EdgeInsets.all(15),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
