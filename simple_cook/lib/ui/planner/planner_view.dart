@@ -94,7 +94,7 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
     }
     if (!hasRecipesForWeek) {
         plannerRows.add(
-          Center(
+          const Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Text(
@@ -138,7 +138,7 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
         ),
         ExtendedRecipe(
             HeaderRecipeInfos(
-                recipe.title, recipe.totalTime.toString(), ''),
+                recipe.title, recipe.totalTime.toStringAsFixed(0), ''),
             recipe.imageUrls.first,
             recipe.title,
             recipe.source,

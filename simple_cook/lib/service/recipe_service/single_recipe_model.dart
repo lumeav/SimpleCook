@@ -38,7 +38,7 @@ class SingleRecipe {
         source: json["source"],
         steps: List<String>.from(json["steps"].map((x) => x)),
         title: json["title"],
-        totalTime: json["totalTime"] / 60,
+        totalTime: json["totalTime"] > 200 ? json["totalTime"] / 60 : json["totalTime"],
       );
 
   Map<String, dynamic> toJson() => {
