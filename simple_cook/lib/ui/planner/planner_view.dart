@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/simple_cook_appbar.dart';
+import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_model.dart';
 import 'package:simple_cook/ui/planner/planner_provider.dart';
 import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
 import 'package:simple_cook/ui/planner/widgets/date.dart';
@@ -109,41 +110,43 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
   }
 
   Widget _buildRecipeWidgets(List<SingleRecipe> recipes, String date) {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 1,
-        mainAxisSpacing: 10,
-        crossAxisSpacing: 10,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+
+        itemCount: recipes.length,
+        itemBuilder: (context, index) {
+          final recipe = recipes[index];
+          return _buildRecipeWidget(recipe, date);
+        },
       ),
-      itemCount: recipes.length,
-      itemBuilder: (context, index) {
-        final recipe = recipes[index];
-        return _buildRecipeWidget(recipe, date);
-      },
     );
   }
 
   Widget _buildRecipeWidget(SingleRecipe recipe, String date) {
-    return Column(
-      //crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          alignment: Alignment.topRight,
-          child: RemoveButton(
-            recipe: recipe,
-            date: date,
+    return Padding(
+      padding: const EdgeInsets.only(top: 10, bottom: 10),
+      child: Column(
+        //crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            alignment: Alignment.topRight,
+            child: RemoveButton(
+              recipe: recipe,
+              date: date,
+            ),
           ),
-        ),
-        ExtendedRecipe(
-            HeaderRecipeInfos(
-                recipe.title, recipe.totalTime.toStringAsFixed(0), ''),
-            recipe.imageUrls.first,
-            recipe.title,
-            recipe.source,
-            ''),
-      ],
+          ExtendedRecipe(
+              HeaderRecipeInfos(
+                  recipe.title, recipe.totalTime.toStringAsFixed(0), ''),
+              recipe.imageUrls.first,
+              recipe.title,
+              recipe.source,
+              ''),
+        ],
+      ),
     );
   }
 }
