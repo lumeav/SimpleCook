@@ -18,7 +18,7 @@ class FavoritesView extends ConsumerWidget {
       appBar: SimpleCookAppBar('SimpleCook'),
       backgroundColor: Colors.grey[200],
       body: favoriteRecipes.isEmpty
-          ? const Center(child: Text('No favorite recipes'))
+          ? const Center(child: Text('Keine Favoriten hinzugefügt'))
           : Column(
             children: [
               Container(
