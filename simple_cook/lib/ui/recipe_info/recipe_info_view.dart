@@ -139,7 +139,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
           )
         ]),
         HeaderRecipeInfos(singleRecipe.title,
-            singleRecipe.totalTime.toStringAsFixed(0), difficulty),
+            singleRecipe.totalTime.toStringAsFixed(0)),
         const Padding(
             padding: EdgeInsets.only(left: 15, right: 15), child: Divider()),
         Ingredients([

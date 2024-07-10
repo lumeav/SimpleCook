@@ -131,7 +131,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
         Column(
           children: [
             HeaderRecipeInfos(recipe.title,
-                recipe.totalTime.toStringAsFixed(0), ''),
+                recipe.totalTime.toStringAsFixed(0)),
             const Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 child: Divider()),

@@ -6,9 +6,8 @@ import 'package:simple_cook/widgets/recipe_infos.dart';
 class HeaderRecipeInfos extends StatelessWidget {
   final String title;
   final String duration;
-  final String difficulty;
 
-  const HeaderRecipeInfos(this.title, this.duration, this.difficulty, {super.key});
+  const HeaderRecipeInfos(this.title, this.duration, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +28,7 @@ class HeaderRecipeInfos extends StatelessWidget {
           padding: const EdgeInsets.only(left: 15.0),
           child: Align(
             alignment: Alignment.centerLeft,
-            child: RecipeInfos(duration, difficulty)),
+            child: RecipeInfos(duration)),
         )
       ]),
     );
