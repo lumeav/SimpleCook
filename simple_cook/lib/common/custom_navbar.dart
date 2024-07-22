@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class CustomNavBar extends StatelessWidget {
-  final int selectedIndex;
-  final Function(int) onItemTapped;
+  final StatefulNavigationShell child;
 
-  CustomNavBar({required this.selectedIndex, required this.onItemTapped});
+  const CustomNavBar({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       backgroundColor: Color.fromARGB(255, 255, 255, 255), // Set background color
-      selectedItemColor: Colors.blue, // Set selected item color
+      selectedItemColor: Colors.orange, // Set selected item color
       unselectedItemColor: Colors.grey, // Set unselected item color
-      currentIndex: selectedIndex,
-      onTap: onItemTapped,
+      currentIndex: child.currentIndex,
+      onTap: _onItemTapped,
       type: BottomNavigationBarType.fixed, // Disable shifting effect
-      items: <BottomNavigationBarItem>[
+      items:const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.explore),
           label: 'Explore',
@@ -34,5 +34,9 @@ class CustomNavBar extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  void _onItemTapped(int index) {
+    child.goBranch(index);
   }
 }

@@ -63,3 +63,14 @@ These are the widgets that we need based on our Wireframes:
     - A stateful Date-Picker-widget to pick a date for the planner
 - A stateless widget that displays the ingredients for the recipe
 - A stateless widget that displays the preparation of the recipe
+
+
+# Architecture
+
+Exploreview\Widgets\
+*Exploreview\Services\
+Exploreview\ExploreController -> Implements MvcController
+Exploreview\ExploreControllerImplementation
+Exploreview\ExploreModel
+Exploreview\ExploreView -> accesses the ExploreController
+

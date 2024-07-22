@@ -1,128 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/widgets/buttonFilter.dart';
-import 'package:simple_cook/widgets/sliderFilter.dart';
-import 'widgets/appBar.dart';
+import 'package:flutter/services.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/service/persistence_service/persistence_service.dart';
+import 'package:simple_cook/service/persistence_service/persistence_service_model.dart';
+import 'go_router.dart';
 
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,   // Set the orientation of our App to portrait mode
+  ]);
+  await initializeDateFormatting('de_DE', null);
 
-//This is main_dummy.dart to test widgets using dummy data. It is currently named "main.dart" to ensure starting this after starting the application
+  //Dont run this code at the moment, it is very buggy and may mess up your emulator
 
-void main() {
-  runApp(MyApp());
+  //Initialize Hive
+  await Hive.initFlutter();
+  // Register Hive adapters
+  Hive.registerAdapter(SingleRecipeAdapter());
+  Hive.registerAdapter(IngredientAdapter());
+  Hive.registerAdapter(RecipeAdapter());
+
+  // Initialize PersistenceService
+  //await PersistenceService().clearFavorites();
+  final PersistenceService persistenceService = PersistenceService();
+  await persistenceService.init();
+
+  //await persistenceService.clearFavorites();
+
+  runApp(ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Cooking App',
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-      ),
-      home: MainPage(),
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      routerConfig: router,
     );
   }
 }
 
-class MainPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Main Page'),
-      ),
-      body: ListView(
-        children: [
-          ListTile(
-            title: Text('CustomAppBar'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CustomAppBarDemo()),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('ButtonFilter'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CustomButtonFilter()),
-              );
-            },
-          ),
-          ListTile(
-            title: Text('SliderFilter'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => CustomSliderFilter()),
-              );
-            },
-          ),
-        ],
-      ),
-    );
-  }
-}
+  // This widget is the root of your application.
 
-
-class CustomSliderFilter extends StatefulWidget {
-  @override
-  _CustomSliderState createState() => _CustomSliderState();
-}
-
-class _CustomSliderState extends State<CustomSliderFilter> {
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Custom Slider Demo')),
-      body: Center(
-        child: CustomSlider(),
-      ),
-
-    );
-  }
-}
-
-class CustomAppBarDemo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(title: 'SimpleCook'),
-      body: Center(
-        child: Text('This is a custom AppBar'),
-      ),
-    );
-  }
-}
-
-class CustomButtonFilter extends StatefulWidget {
-  @override
-  _CustomButtonFilterState createState() => _CustomButtonFilterState();
-}
-
-class _CustomButtonFilterState extends State<CustomButtonFilter> {
-  bool _pressed = false;
-
-  void _onPressed() {
-    setState(() {
-      _pressed = !_pressed;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Button Filter Demo')),
-      body: Center(
-        child: ButtonFilter(
-          text: 'Vorspeise',
-          width: 150,
-          height: 50,
-        ),
-      ),
-    );
-  }
-}
