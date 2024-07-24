@@ -1,31 +1,33 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/service/persistence_service/persistence_service.dart';
+import 'package:simple_cook/ui/favorites/persistence_service/persistence_service_interface.dart';
 
 class FavoritesNotifier extends StateNotifier<List<SingleRecipe>> {
-  FavoritesNotifier() : super([]) {
+  
+  final IFavoritesService _favoritesService;
+
+  FavoritesNotifier(this._favoritesService) : super([]) {
     loadFavorites();
   }
 
-  final PersistenceService _persistenceService = PersistenceService();
-
   Future<void> loadFavorites() async {
-    final favorites = _persistenceService.getFavoriteRecipes();
+    final favorites = _favoritesService.getFavoriteRecipes();
     state = favorites;
   }
 
   Future<void> addFavorite(SingleRecipe recipe) async {
-    await _persistenceService.addFavorite(recipe);
-    state = await _persistenceService.getFavoriteRecipes();
+    await _favoritesService.addFavorite(recipe);
+    state = await _favoritesService.getFavoriteRecipes();
   }
 
   Future<void> removeFavorite(SingleRecipe recipe) async {
-    await _persistenceService.removeFavorite(recipe);
-    state = await _persistenceService.getFavoriteRecipes();
+    await _favoritesService.removeFavorite(recipe);
+    state = await _favoritesService.getFavoriteRecipes();
   }
 
   bool isFavorite(SingleRecipe recipe) {
-    return _persistenceService.isFavorite(recipe);
+    return _favoritesService.isFavorite(recipe);
   }
 
   Future<void> toggleFavorite(SingleRecipe recipe) async {
@@ -34,10 +36,11 @@ class FavoritesNotifier extends StateNotifier<List<SingleRecipe>> {
     } else {
       await addFavorite(recipe);
     }
-    state = await _persistenceService.getFavoriteRecipes(); // Update state after toggling
+    state = await _favoritesService.getFavoriteRecipes(); // Update state after toggling
   }
 }
 
 final favoritesProvider = StateNotifierProvider<FavoritesNotifier, List<SingleRecipe>>((ref) {
-  return FavoritesNotifier();
+  final IFavoritesService favoritesService = PersistenceService();
+  return FavoritesNotifier(favoritesService);
 });
