@@ -2,13 +2,16 @@ import 'package:simple_cook/service/persistence_service/persistence_service.dart
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/ui/explore/persistence_service/persistence_service_interface.dart';
 
 class RecipeOfTheDayNotifier extends StateNotifier<Recipe?> {
-  RecipeOfTheDayNotifier() : super(null) {
+
+  final IRecipeOfTheDayService _recipeOfTheDayService;
+
+  RecipeOfTheDayNotifier(this._recipeOfTheDayService) : super(null) {
     _checkAndLoadRecipeOfTheDay();
   }
 
-  final PersistenceService _persistenceService = PersistenceService();
   final RecipeService _recipeService = RecipeService();
 
   Future<void> _checkAndLoadRecipeOfTheDay() async {
@@ -18,23 +21,24 @@ class RecipeOfTheDayNotifier extends StateNotifier<Recipe?> {
   }
 
   Future<void> _loadRecipeOfTheDay() async {
-    final recipe = await _persistenceService.getRecipeOfTheDay(_recipeService);
+    final recipe = await _recipeOfTheDayService.getRecipeOfTheDay(_recipeService);
     state = recipe;
   }
   bool isRecipeOfTheDayBoxEmpty() {
-    return _persistenceService.isRecipeOfTheDayBoxEmpty();
+    return _recipeOfTheDayService.isRecipeOfTheDayBoxEmpty();
   }
   Future<void> putRecipeOfTheDay(Recipe newRecipeOfTheDay) async {
-    await _persistenceService.putRecipeOfTheDay(newRecipeOfTheDay);
+    await _recipeOfTheDayService.putRecipeOfTheDay(newRecipeOfTheDay);
     state = newRecipeOfTheDay;
   }
 
   Future<void> putRecipeOfTheDayDate(DateTime today) async {
-    await _persistenceService.putRecipeOfTheDayDate(today);
+    await _recipeOfTheDayService.putRecipeOfTheDayDate(today);
     // Optionally update state or handle as needed
   }
 }
 
 final recipeOfTheDayProvider = StateNotifierProvider<RecipeOfTheDayNotifier, Recipe?>((ref) {
-  return RecipeOfTheDayNotifier();
+  final IRecipeOfTheDayService recipeOfTheDayService = PersistenceService();
+  return RecipeOfTheDayNotifier(recipeOfTheDayService);
 });
