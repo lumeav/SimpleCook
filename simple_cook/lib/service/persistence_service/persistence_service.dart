@@ -7,6 +7,7 @@ import 'dart:math';
 import 'package:simple_cook/ui/favorites/persistence_service/persistence_service_interface.dart';
 import 'package:simple_cook/ui/planner/persistence_service/persistence_service_interface.dart';
 import 'package:simple_cook/ui/explore/persistence_service/persistence_service_interface.dart';
+import 'package:simple_cook/ui/recipe_finder/persistence_service/persistence_service_interface.dart';
 
 class PersistenceService implements IFavoritesService, IPlannerService, IRecipeOfTheDayService, ISearchService  {
   static final PersistenceService _instance = PersistenceService._internal();
@@ -176,10 +177,4 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
     final lowerCaseQuery = query.toLowerCase();
     return ingredients.where((String option) => option.toLowerCase().contains(lowerCaseQuery));
   }
-}
-
-abstract class ISearchService {
-  Future<void> addToSearchBox(String searchTerm);
-  List<String> getSearchBox();
-  Future<Iterable<String>> search(String query);
 }
