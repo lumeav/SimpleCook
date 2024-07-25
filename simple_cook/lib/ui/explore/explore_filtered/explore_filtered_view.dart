@@ -59,12 +59,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
                               recipe.imageUrls.first,
                               recipe.title,
                               recipe.source,
-                              ref
-                                  .read(
-                                      exploreFilteredControllerImplementationProvider
-                                          .notifier)
-                                  .checkDiff(recipe.difficulty)),
-                      ],
+                    ),],
                     ),
                   )
                 ],
@@ -122,6 +117,5 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
 abstract class ExploreFilteredController {
   Future<void> buildRecipes(String search);
   Future<void> rebuildRecipes(String search);
-  String checkDiff(String? diff);
   //void goToFilteredRecipesView({required final String query}); // Todo: reimplement with NavigationService
 }

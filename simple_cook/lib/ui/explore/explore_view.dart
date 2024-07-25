@@ -68,10 +68,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                         SimpleRecipe(
                             recipe.imageUrls.first,
                             recipe.title,
-                            recipe.source,
-                            ref
-                                .read(exploreControllerImplementationProvider.notifier)
-                                .checkDiff(recipe.difficulty)),
+                            recipe.source,),
                     ],
                   ),
                 )
@@ -138,10 +135,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
           HeaderRezeptDesTages(recipe.title),
           recipe.imageUrls.first,
           recipe.title,
-          recipe.source,
-          ref
-              .read(exploreControllerImplementationProvider.notifier)
-              .checkDiff(recipe.difficulty)),
+          recipe.source),
     );
   }
 }
@@ -149,6 +143,5 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
 abstract class ExploreController {
   Future<void> buildRecipes();
   Future<void> rebuildRecipes();
-  String checkDiff(String? diff);
     //void goToFilteredRecipesView({required final String query}); // Todo: reimplement with NavigationService
 }

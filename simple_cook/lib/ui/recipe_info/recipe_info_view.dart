@@ -14,12 +14,10 @@ import 'package:simple_cook/common/theme.dart';
 
 class RecipeView extends ConsumerStatefulWidget {
   final String? recipeUrl;
-  final String? difficulty;
 
   const RecipeView({
     super.key,
     this.recipeUrl,
-    this.difficulty,
   });
 
   @override
@@ -68,8 +66,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.white),
-                            child: buildSingleRecipe(recipeInfoState.recipe!, widget.recipeUrl!,
-                                widget.difficulty!)),
+                            child: buildSingleRecipe(recipeInfoState.recipe!, widget.recipeUrl!)),
                       ),
                     ],
                   ),
@@ -124,7 +121,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
   }
 
   Widget buildSingleRecipe(
-      SingleRecipe singleRecipe, String recipeUrl, String difficulty) {
+      SingleRecipe singleRecipe, String recipeUrl) {
     return Column(
       children: [
         Stack(children: [

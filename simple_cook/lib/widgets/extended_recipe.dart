@@ -6,10 +6,9 @@ class ExtendedRecipe extends StatefulWidget {
   final String imgPath;
   final String rezeptName;
   final String source;
-  final String difficulty;
 
 
-  const ExtendedRecipe(this.header, this.imgPath, this.rezeptName, this.source, this.difficulty,{super.key});
+  const ExtendedRecipe(this.header, this.imgPath, this.rezeptName, this.source,{super.key});
 
   @override
   State<ExtendedRecipe> createState() => _ExtendedRecipeState();
@@ -21,7 +20,7 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
     return InkWell(
       onTap: () {
         // Placeholder for future logic
-        context.pushNamed('singleRecipeView', queryParameters: {'recipeUrl': widget.source, 'difficulty': widget.difficulty});
+        context.pushNamed('singleRecipeView', queryParameters: {'recipeUrl': widget.source});
       },
       child: Padding(
         padding: const EdgeInsets.only(top: 10),

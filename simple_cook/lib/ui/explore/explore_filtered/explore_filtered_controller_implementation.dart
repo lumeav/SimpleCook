@@ -39,16 +39,4 @@ class ExploreFilteredControllerImplementation extends _$ExploreFilteredControlle
     }
   }
 
-  @override
-  String checkDiff(String? diff) {
-    if (diff == 'easy') {
-      return 'einfach';
-    } else if (diff == 'medium') {
-      return 'mittel';
-    } else if (diff == 'hard') {
-      return 'schwer';
-    } else {
-      return '';
-    }
-  }
 }
