@@ -15,7 +15,7 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
     int dayOffset = data.weekday - DateTime.monday;
     DateTime firstDateOfWeek = data.subtract(Duration(days: dayOffset));
 
-    DateTime lastDateofWeek = firstDateOfWeek.add(Duration(days: 6));
+    DateTime lastDateofWeek = firstDateOfWeek.add(const Duration(days: 6));
 
     List<DateTime> dates = setDatesWeek(firstDateOfWeek, data);
     return PlannerModel(
@@ -34,8 +34,6 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
       end: state.end.add(const Duration(days: 7)),
       dates: setDatesWeek(data, state.actual),
     );
-    print('next week');
-    print(state.dates);
   }
   @override
   void previousWeek() {
@@ -47,8 +45,6 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
         dates: setDatesWeek(data, state.actual),
       );
     }
-    print('previous week');
-    print(state.dates);
   }
 
   DateTime getFirstDateOfWeek() {

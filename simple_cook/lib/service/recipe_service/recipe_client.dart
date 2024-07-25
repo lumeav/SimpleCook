@@ -19,10 +19,9 @@ class RecipeClient {
   };
 
   Future<ApiResponse<List<Recipe>?>> getRecipes(String parameter) async {
-    final String url = baseUrl + 'search_api?text=' + parameter;
-    print(url);
+    final String url = '${baseUrl}search_api?text=$parameter';
     return await _handleRequest(() async {
-      var response = await client
+      http.Response response = await client
           .get(Uri.parse(url), headers: headers)
           .timeout(const Duration(seconds: 10));
       if (response.statusCode == 200) {

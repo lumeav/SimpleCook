@@ -5,7 +5,7 @@ import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 
 class RecipeService {
-  final api = RecipeClient();
+  final RecipeClient api = RecipeClient();
 
   Future<ApiResponse<List<Recipe>?>> getAllRecipes(String text) async {
     return api.getRecipes(text);
