@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/widgets/recipe_infos.dart';
+import 'package:simple_cook/common/widgets/recipe_infos.dart';
 
 class HeaderRecipeInfos extends StatelessWidget {
   final String title;

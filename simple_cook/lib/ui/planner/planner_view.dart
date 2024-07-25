@@ -11,7 +11,7 @@ import 'package:intl/intl.dart';
 import 'package:simple_cook/ui/planner/widgets/remove_button.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/common/widgets/extended_recipe.dart';
-import 'package:simple_cook/widgets/header_recipe_infos.dart';
+import 'package:simple_cook/common/widgets/header_recipe_infos.dart';
 import 'package:simple_cook/ui/planner/planner_controller_implementation.dart';
 
 class PlannerView extends ConsumerStatefulWidget {
