@@ -17,7 +17,7 @@ class HeartButton extends ConsumerWidget {
     ref.watch(favoritesProvider);
 
     void onPressed() {
-      favoritesNotifier.toggleFavorite(recipe); // Toggle favorite on press
+      favoritesNotifier.toggleFavorite(recipe);
     }
 
     var size = MediaQuery.of(context).size.width * 0.07;

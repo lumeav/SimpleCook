@@ -39,7 +39,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
     final RecipeInfoModel recipeInfoState = ref.watch(recipeInfoControllerImplementationProvider);
 
     return Scaffold(
-        appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+        appBar: const SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
         body: recipeInfoState.fetchFinished
             ? Column(children: [
@@ -51,10 +51,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                       children: [
                           AddPlaner(recipe: recipeInfoState.recipe),
                           const SizedBox(width: 10),
-                          //error:_Map<dynamic, dynamic>' is not a subtype of type 'Map<String, dynamic>
-                          //so we copy with empty ingredients for now. Doesnt matter because we build it again in buildSingleRecipe
-                          //only works with internet connection
-                          HeartButton(false, recipe: copyWithEmptyIngredients(recipeInfoState.recipe!)),
+                          HeartButton(false, recipe: recipeInfoState.recipe!),
                       ],
                     )),
                 Expanded(
@@ -161,19 +158,6 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
               [for (var preparation in singleRecipe.steps) preparation]),
         )
       ],
-    );
-  }
-
-  SingleRecipe copyWithEmptyIngredients(SingleRecipe recipe) {
-    return SingleRecipe(
-      diet: recipe.diet,
-      imageUrls: recipe.imageUrls,
-      ingredients: [], // Empty ingredients list
-      portions: recipe.portions,
-      source: recipe.source,
-      steps: recipe.steps,
-      title: recipe.title,
-      totalTime: recipe.totalTime,
     );
   }
 }

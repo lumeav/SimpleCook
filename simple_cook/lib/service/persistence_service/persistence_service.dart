@@ -26,8 +26,6 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
 
   Future<void> init() async {
     try {
-      // Open the box for 'favoritesBox'
-      //print("Looks like it worked");
       _favoritesBox = await Hive.openBox<SingleRecipe>('favoritesBox');
       _plannerBox = await Hive.openBox<List>('plannerBox');
       _recipeOfTheDayBox = await Hive.openBox<Recipe>('recipeOfTheDayBox');
@@ -43,8 +41,7 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
       }
     } catch (e) {
       print('Error initializing Hive box: $e');
-      // Handle initialization error gracefully
-      rethrow; // Re-throw the exception to propagate it further
+      rethrow;
     }
   }
 
@@ -92,11 +89,10 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
     await _plannerBox.put(date, recipes);
   }
 
-  // Method to get recipes for a specific date from planner
   @override
   List<SingleRecipe> getRecipesForDate(String date) {
     return _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ??
-        []; // Handle potential null by providing default empty list
+        [];
   }
 
   @override
@@ -104,7 +100,7 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
     List<SingleRecipe> recipes =
         _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? [];
     recipes.removeWhere(
-        (SingleRecipe r) => r.title == recipe.title); // Remove based on title
+        (SingleRecipe r) => r.title == recipe.title);
     await _plannerBox.put(date, recipes);
   }
 
@@ -128,7 +124,6 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
     DateTime today = DateTime.now();
     DateTime? lastRecipeDate = _recipeOfTheDayDateBox.get(0);
 
-    // Check if today's recipe is already set
     if (lastRecipeDate != null &&
         lastRecipeDate.year == today.year &&
         lastRecipeDate.month == today.month &&
@@ -145,7 +140,6 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
       } while (_recipeOfTheDayBox.isNotEmpty &&
           newRecipeOfTheDay == _recipeOfTheDayBox.get(0));
 
-      // Update the recipe of the day and date
       _recipeOfTheDayBox.put(0, newRecipeOfTheDay);
       _recipeOfTheDayDateBox.put(0, today);
 
@@ -165,7 +159,7 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
   List<String> getSearchBox() {
     final List<String>? history =
         _searchBarIngredientBox.get(0, defaultValue: []);
-    return history ?? []; // Return an empty list if history is null
+    return history ?? [];
   }
 
   @override
