@@ -9,12 +9,12 @@ class CustomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255), // Set background color
-      selectedItemColor: Colors.orange, // Set selected item color
-      unselectedItemColor: Colors.grey, // Set unselected item color
+      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      selectedItemColor: Colors.orange,
+      unselectedItemColor: Colors.grey,
       currentIndex: child.currentIndex,
       onTap: _onItemTapped,
-      type: BottomNavigationBarType.fixed, // Disable shifting effect
+      type: BottomNavigationBarType.fixed,
       items:const <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(Icons.explore),

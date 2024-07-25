@@ -24,7 +24,7 @@ class FavoritesView extends ConsumerWidget {
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 color: Colors.grey[200],
-                child: HeaderGreyBackground('Favoriten', FontWeight.bold)), // HeaderGreyBackground("Favoriten"
+                child: HeaderGreyBackground('Favoriten', FontWeight.bold)),
               Expanded(
                 child: GridView.builder(
                     padding: const EdgeInsets.all(15),
@@ -41,7 +41,7 @@ class FavoritesView extends ConsumerWidget {
                         recipe.imageUrls.isNotEmpty ? recipe.imageUrls.first : '',
                         recipe.title,
                         recipe.source,
-                        '', // Add actual difficulty if available or leave it as an empty string
+                        '',
                       );
                     },
                   ),

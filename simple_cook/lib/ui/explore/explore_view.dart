@@ -7,7 +7,6 @@ import 'package:simple_cook/common/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
-//import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'explore_controller_implementation.dart';
 
@@ -33,7 +32,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
     final exploreState = ref.watch(exploreControllerImplementationProvider);
 
     return Scaffold(
-        appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+        appBar: const SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
         body: exploreState.fetchFinished
             ? CustomScrollView(slivers: [
@@ -150,5 +149,4 @@ abstract class ExploreController {
   Future<void> buildRecipes();
   Future<void> rebuildRecipes();
   String checkDiff(String? diff);
-    //void goToFilteredRecipesView({required final String query}); // Todo: reimplement with NavigationService
 }

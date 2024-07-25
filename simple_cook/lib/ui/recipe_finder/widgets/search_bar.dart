@@ -12,14 +12,11 @@ class SearchBarFilter extends ConsumerStatefulWidget {
   ConsumerState<SearchBarFilter> createState() => _SearchBarState();
 }
 
-//TODO buttons are not deleted right
-
 class _SearchBarState extends ConsumerState<SearchBarFilter> {
   String? searchQuery;
   String selectedTile = '';
 
   List<String> buttons = [];
-  //last vegetables from db
   late Iterable<Widget> lastVegetables = <Widget>[];
   @override
   Widget build(BuildContext context) {
@@ -73,8 +70,8 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
         child: Wrap(
           alignment: WrapAlignment.start,
           runAlignment: WrapAlignment.start,
-          spacing: 10.0, // gap between adjacent chips
-          runSpacing: 5.0, // gap between lines
+          spacing: 10.0,
+          runSpacing: 5.0,
           children: List<Widget>.generate(buttons.length, (int index) {
             return Directionality(
                 textDirection: TextDirection.rtl,

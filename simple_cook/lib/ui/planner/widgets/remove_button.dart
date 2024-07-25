@@ -6,7 +6,7 @@ import 'package:simple_cook/ui/planner/planner_provider.dart';
 
 class RemoveButton extends ConsumerWidget {
   final SingleRecipe recipe;
-  final String date; // Adjusted to accept SingleRecipe
+  final String date;
   const RemoveButton({
     required this.recipe,
     required this.date,
@@ -29,7 +29,7 @@ class RemoveButton extends ConsumerWidget {
       child: Center(
         child: IconButton(
           padding: EdgeInsets.zero,
-          onPressed: () => plannP.removePlanner(date, recipe), // Pass recipe to onPressed callback
+          onPressed: () => plannP.removePlanner(date, recipe),
           icon: const FaIcon(
             FontAwesomeIcons.minus,
             color: Colors.grey,

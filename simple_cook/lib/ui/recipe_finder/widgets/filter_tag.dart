@@ -27,7 +27,6 @@ class _FilterTagState extends ConsumerState<FilterTag> {
       recipeFinderProvider.setFilterActive(widget.text);
     } else {
       recipeFinderProvider.setFilterInactive(widget.text);
-      // Placeholder for future logic
     }
   }
 

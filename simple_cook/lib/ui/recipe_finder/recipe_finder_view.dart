@@ -25,7 +25,7 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
   Widget build(BuildContext context) {
     final recipeFinderState = ref.watch(recipeFinderControllerImplementationProvider);
     return Scaffold(
-        appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+        appBar: const SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
         body: Container(
           child: Scrollbar(
@@ -38,7 +38,7 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
                   const SearchBarFilter(),
                   const HeaderGreyBackground("Kategorie", FontWeight.bold),
                   _buildFilterTags(recipeFinderState.categories),
-                  const HeaderGreyBackground("Ernährungsart", FontWeight.bold), // HeaderGreyBackground("Ernährungsart"
+                  const HeaderGreyBackground("Ernährungsart", FontWeight.bold),
                   _buildFilterTags(recipeFinderState.diets),
                   Container(
                     margin: const EdgeInsets.only(top: 50, bottom: 30),
@@ -61,11 +61,10 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
           margin: const EdgeInsets.symmetric(vertical: 10),
           child: Wrap(
             alignment: WrapAlignment.start,
-            //crossAxisAlignment: WrapCrossAlignment.end,
             runAlignment: WrapAlignment.start,
             direction: Axis.horizontal,
-            spacing: 10.0, // Space between tags
-            runSpacing: 5.0, // Space between lines
+            spacing: 10.0,
+            runSpacing: 5.0,
             children: [
               for (var filter in filterList) FilterTag(filter),
             ],

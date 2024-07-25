@@ -87,7 +87,6 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
   }
 
   Widget _buildDatePicker() {
-    //final plannerNotifier = ref.watch(plannerProvider.notifier);
     final plannerController = ref.watch(plannerProvider.notifier);
     var size = MediaQuery.of(context).size.width * 0.40;
     final List<String> dates = _generateNext14Days();
@@ -110,7 +109,6 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
                 );
                 }
                 setState(() {
-                // Update UI if needed
               });
               });
             },

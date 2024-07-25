@@ -4,8 +4,6 @@ import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/ui/recipe_finder/recipe_finder_controller_implementation.dart';
 
-//This is the "Rezepte Suchen" button that is orange with white letters
-
 class SearchRecipesButton extends ConsumerWidget {
   final String buttontext;
   final String viewName;

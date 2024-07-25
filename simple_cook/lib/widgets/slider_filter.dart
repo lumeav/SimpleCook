@@ -22,7 +22,6 @@ class _SliderFilterState extends State<SliderFilter> {
         Icon(Icons.access_time_outlined, size: 34.0, color: Colors.grey[600]),
  Expanded (child:SfSliderTheme(
             data: SfSliderThemeData(
-                //labelOffset: Offset(10.0, 0.0),
                 activeTrackHeight: 7,
                 inactiveTrackHeight: 7,
                 activeTrackColor: SimpleCookColors.primary,

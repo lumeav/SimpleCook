@@ -10,25 +10,18 @@ import 'go_router.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,   // Set the orientation of our App to portrait mode
+    DeviceOrientation.portraitUp,
   ]);
   await initializeDateFormatting('de_DE', null);
 
-  //Dont run this code at the moment, it is very buggy and may mess up your emulator
-
-  //Initialize Hive
   await Hive.initFlutter();
-  // Register Hive adapters
   Hive.registerAdapter(SingleRecipeAdapter());
   Hive.registerAdapter(IngredientAdapter());
   Hive.registerAdapter(RecipeAdapter());
 
-  // Initialize PersistenceService
-  //await PersistenceService().clearFavorites();
   final PersistenceService persistenceService = PersistenceService();
   await persistenceService.init();
 
-  //await persistenceService.clearFavorites();
 
   runApp(ProviderScope(child: MyApp()));
 }
@@ -44,6 +37,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-  // This widget is the root of your application.
-

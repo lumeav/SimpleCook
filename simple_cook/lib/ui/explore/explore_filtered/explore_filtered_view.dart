@@ -36,7 +36,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
         ref.watch(exploreFilteredControllerImplementationProvider);
 
     return Scaffold(
-        appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+        appBar: SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
         body: exploreFilteredState.fetchFinished
             ? CustomScrollView(
@@ -123,5 +123,4 @@ abstract class ExploreFilteredController {
   Future<void> buildRecipes(String search);
   Future<void> rebuildRecipes(String search);
   String checkDiff(String? diff);
-  //void goToFilteredRecipesView({required final String query}); // Todo: reimplement with NavigationService
 }

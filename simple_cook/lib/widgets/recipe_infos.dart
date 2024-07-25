@@ -16,8 +16,8 @@ class RecipeInfos extends StatelessWidget {
       alignment: WrapAlignment.start,
       runAlignment: WrapAlignment.start,
       direction: Axis.horizontal,
-      spacing: 10.0, // Space between tags
-      runSpacing: 5.0, // Space between lines
+      spacing: 10.0,
+      runSpacing: 5.0,
       children: [
         FittedBox(
           fit: BoxFit.scaleDown,

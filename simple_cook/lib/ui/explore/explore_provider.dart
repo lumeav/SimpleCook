@@ -34,7 +34,6 @@ class RecipeOfTheDayNotifier extends StateNotifier<Recipe?> {
 
   Future<void> putRecipeOfTheDayDate(DateTime today) async {
     await _recipeOfTheDayService.putRecipeOfTheDayDate(today);
-    // Optionally update state or handle as needed
   }
 }
 

@@ -36,7 +36,7 @@ class FavoritesNotifier extends StateNotifier<List<SingleRecipe>> {
     } else {
       await addFavorite(recipe);
     }
-    state = await _favoritesService.getFavoriteRecipes(); // Update state after toggling
+    state = await _favoritesService.getFavoriteRecipes();
   }
 }
 

@@ -20,7 +20,6 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Placeholder for future logic
         context.pushNamed('singleRecipeView', queryParameters: {'recipeUrl': widget.source, 'difficulty': widget.difficulty});
       },
       child: Padding(
@@ -35,7 +34,7 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
                     ClipRRect(
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(12),
-                          topRight: Radius.circular(12) // Set the desired border radius for the top left corner
+                          topRight: Radius.circular(12)
                           ),
                         child: AspectRatio(
                           aspectRatio: 1.9,

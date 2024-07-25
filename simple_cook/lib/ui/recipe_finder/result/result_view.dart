@@ -44,9 +44,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        //AddPlaner(),
                         SizedBox(width: 10),
-                        //HeartButton(false)
                       ],
                     )),
                 Expanded(

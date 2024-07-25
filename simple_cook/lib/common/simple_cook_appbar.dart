@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:simple_cook/common/theme.dart';
 
-// This is the AppBar that is on every Screen saying "SimpleCook" in orange letters
-
 class SimpleCookAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
 
@@ -22,7 +20,7 @@ class SimpleCookAppBar extends StatelessWidget implements PreferredSizeWidget {
             size: 45,
           ),
           const SizedBox(
-              width: 8.0), // Add some spacing between the icon and the text
+              width: 8.0),
           Text(
             title,
             style: const TextStyle(
@@ -35,7 +33,7 @@ class SimpleCookAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
-      elevation: 0, // Remove shadow
+      elevation: 0,
     );
   }
 

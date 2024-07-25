@@ -9,7 +9,6 @@ import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
 import 'package:simple_cook/ui/planner/widgets/date.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_cook/ui/planner/widgets/remove_button.dart';
-//import 'package:simple_cook/service/persistence_service/persistence_service.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/widgets/extended_recipe.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
@@ -25,33 +24,23 @@ class PlannerView extends ConsumerStatefulWidget {
 }
 
 class _PlannerViewState extends ConsumerState<PlannerView> {
-  //late PersistenceService _persistenceService;
 
   @override
   void initState() {
     super.initState();
-    //_persistenceService = PersistenceService();
     ref.read(plannerControllerImplementationProvider.notifier).build();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+      appBar: SimpleCookAppBar('SimpleCook'),
       backgroundColor: Colors.grey[200],
       body: Column(children: [
         Container(
             padding: EdgeInsets.symmetric(vertical: 5),
             color: Colors.grey[200],
             child: TimeViewSpan()),
-        /*
-        ElevatedButton(
-          onPressed: () {
-            _persistenceService.clearPlanner();
-          },
-          child: Text('Delete all Plannerrecipe'),
-        ),
-        */
         Expanded(
             child: SingleChildScrollView(
           child: Column(
@@ -129,7 +118,6 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: Column(
-        //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             alignment: Alignment.topRight,

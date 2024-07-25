@@ -22,16 +22,15 @@ class SimpleRecipe extends StatefulWidget {
 class _SimpleRecipeState extends State<SimpleRecipe> {
   @override
   Widget build(BuildContext context) {
-    //print('Image URL: ${widget.imgPath}');
     final SingleRecipe recipe = SingleRecipe(
-      diet: [], // Provide actual values as needed
+      diet: [],
       imageUrls: [widget.imgPath],
-      ingredients: [], // Provide actual values as needed
-      portions: 1, // Provide actual values as needed
+      ingredients: [],
+      portions: 1,
       source: widget.source,
-      steps: [], // Provide actual values as needed
+      steps: [],
       title: widget.rezeptName,
-      totalTime: 0.0, // Provide actual values as needed
+      totalTime: 0.0,
     );
     return Container(
       child: InkWell(
@@ -51,7 +50,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(12),
                           topRight: Radius.circular(
-                              12) // Set the desired border radius for the top left corner
+                              12)
                           ),
                       child: AspectRatio(
                         aspectRatio: 1.1,
