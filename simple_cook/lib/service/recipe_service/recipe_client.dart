@@ -15,7 +15,7 @@ class RecipeClient {
 
   Map<String, String> headers = {
     'x-rapidapi-host': 'gustar-io-deutsche-rezepte.p.rapidapi.com',
-    'x-rapidapi-key': 'ee0ed29094msh0d64ef67cc2c659p1e4fc3jsnc07fe7ac6391',
+    'x-rapidapi-key': '8928e92f7cmshfbf7223c61d4514p1ecbc8jsn8f686d24c959',
   };
 
   Future<ApiResponse<List<Recipe>?>> getRecipes(String parameter) async {

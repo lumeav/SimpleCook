@@ -4,11 +4,9 @@ import 'package:simple_cook/common/theme.dart';
 
 class RecipeInfos extends StatelessWidget {
   final String text_time;
-  final String text_dif;
 
   const RecipeInfos(
-    this.text_time,
-    this.text_dif, {
+    this.text_time, {
     super.key,
   });
 
@@ -48,33 +46,6 @@ class RecipeInfos extends StatelessWidget {
                 ],
               )),
         ),
-        FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Container(
-              padding: const EdgeInsets.symmetric(
-              horizontal: 16.0, vertical: 4.0),
-              decoration: BoxDecoration(
-                  color: SimpleCookColors.primary.withOpacity(0.4),
-                  borderRadius: BorderRadius.circular(50),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.2),
-                      spreadRadius: 2,
-                      offset: Offset(0, 2),
-                    ),
-                  ]),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Icon(Icons.bar_chart_rounded, color: Colors.grey),
-                  SizedBox(width: 5),
-                  Text(
-                    text_dif,
-                    style: SimpleCookTextstyles.recInfos,
-                  ),
-                ],
-              )),
-        )
       ],
     );
   }

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -30,11 +28,9 @@ class _TimeViewSpanState extends ConsumerState<TimeViewSpan> {
   void _onPressed(PlannerControllerImplementation planner, String buttonType) {
     setState(() {
       if (buttonType == 'prev') {
-        //print('prev ${planner.state.start} ${planner.state.end} ${planner.state.actual}');
         planner.previousWeek();
       } else if (buttonType == 'next') {
         planner.nextWeek();
-        //print('prev ${planner.state.start} ${planner.state.end} ${planner.state.actual}');
       }
     });
   }

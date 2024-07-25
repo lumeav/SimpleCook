@@ -40,11 +40,6 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
                   _buildFilterTags(recipeFinderState.categories),
                   const HeaderGreyBackground("Ernährungsart", FontWeight.bold), // HeaderGreyBackground("Ernährungsart"
                   _buildFilterTags(recipeFinderState.diets),
-                  const HeaderGreyBackground("Zubereitungszeit", FontWeight.bold),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 15, right: 15),
-                    child: SliderFilter(),
-                  ),
                   Container(
                     margin: const EdgeInsets.only(top: 50, bottom: 30),
                     alignment: Alignment.center,

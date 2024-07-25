@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/service/recipe_service/recipe_gen_model.dart';
-import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:simple_cook/widgets/loading_indicator.dart';
 import 'package:simple_cook/common/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/add_planer.dart';
-import 'package:simple_cook/widgets/heart_button.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/widgets/preparation.dart';
@@ -46,7 +44,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        AddPlaner(),
+                        //AddPlaner(),
                         SizedBox(width: 10),
                         //HeartButton(false)
                       ],
@@ -76,8 +74,11 @@ class _ResultViewState extends ConsumerState<ResultView> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(resultState.errorMessage!,
-                            style: const TextStyle(color: Colors.grey)),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 5),
+                          child: Text(resultState.errorMessage!,
+                              style: const TextStyle(color: Colors.grey)),
+                        ),
                         const SizedBox(height: 8),
                         SizedBox(
                             height: 50,
@@ -133,7 +134,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
         Column(
           children: [
             HeaderRecipeInfos(recipe.title,
-                recipe.totalTime.toStringAsFixed(0), ''),
+                recipe.totalTime.toStringAsFixed(0)),
             const Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 child: Divider()),

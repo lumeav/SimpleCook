@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/widgets/recipe_portion.dart';
 
 class Ingredients extends StatefulWidget {
   final List<String> ingredientList;

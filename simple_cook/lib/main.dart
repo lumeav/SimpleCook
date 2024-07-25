@@ -21,6 +21,7 @@ void main() async {
   // Register Hive adapters
   Hive.registerAdapter(SingleRecipeAdapter());
   Hive.registerAdapter(IngredientAdapter());
+  Hive.registerAdapter(RecipeAdapter());
 
   // Initialize PersistenceService
   //await PersistenceService().clearFavorites();
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       routerConfig: router,
     );
   }
