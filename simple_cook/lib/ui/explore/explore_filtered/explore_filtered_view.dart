@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/loading_indicator.dart';
-import 'package:simple_cook/widgets/simple_recipe.dart';
+import 'package:simple_cook/common/widgets/simple_recipe.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/widgets/header_grey_background.dart';
+import 'package:simple_cook/common/widgets/header_grey_background.dart';
 import 'explore_filtered_controller_implementation.dart';
 
 class ExploreFilteredView extends ConsumerStatefulWidget {

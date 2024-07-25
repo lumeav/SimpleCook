@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/widgets/heart_button.dart';
+import 'package:simple_cook/common/widgets/heart_button.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 
