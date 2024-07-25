@@ -13,7 +13,7 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
     int dayOffset = data.weekday - DateTime.monday;
     DateTime firstDateOfWeek = data.subtract(Duration(days: dayOffset));
 
-    DateTime lastDateofWeek = firstDateOfWeek.add(Duration(days: 6));
+    DateTime lastDateofWeek = firstDateOfWeek.add(const Duration(days: 6));
 
     List<DateTime> dates = setDatesWeek(firstDateOfWeek, data);
     return PlannerModel(
