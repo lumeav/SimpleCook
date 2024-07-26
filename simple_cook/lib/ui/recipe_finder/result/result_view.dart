@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/service/recipe_service/recipe_gen_model.dart';
 import 'package:simple_cook/common/widgets/loading_indicator.dart';
-import 'package:simple_cook/common/simple_cook_appbar.dart';
+import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/common/widgets/add_planer.dart';
 import 'package:simple_cook/common/widgets/header_recipe_infos.dart';
 import 'package:simple_cook/common/widgets/ingredients.dart';
@@ -112,7 +112,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
                       ],
                     ),
                   ))
-                : const LoadingIndicator());
+                : const LoadingIndicator(showTips: true));
   }
 
   Widget buildRecipe(GenRecipeModel recipe, String url) {

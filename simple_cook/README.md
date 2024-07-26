@@ -2,39 +2,30 @@
 
 Simple Cook is a versatile mobile application designed to alleviate the cooking experience and to bring some creativity to the kitchen. It offers a wide range of recipes, a personalized recipe finder powered by AI, and organizational tools to help users plan and favorite their culinary endeavors. With an intuitive interface, Simple Cook makes cooking accessible and enjoyable for everyone. "Cooking with Simple Cook does not have to be imaginitive."
 
-
-
-
 ## Screens and Main Functionalities
 
-- Explore View
-        Main Functionality: Displays the "Recipe of the Day" along with a selection of additional main course recipes. Users can browse and discover new recipes
-        easily.
+- Explore View: Displays the "Recipe of the Day" along with a selection of additional main course recipes. Users can browse and discover new recipes easily.
     - Key Features:
         - Recipe of the Day highlight
         - Browsing through various recipes
         - Searching for a specific recipe
 
-- Recipe Finder View
-        Main Functionality: Allows users to generate AI-powered recipes based on selected tags and search criteria. Users can also add specific ingredients to the AI-generated recipes.
+- Recipe Finder View: Allows users to generate AI-powered recipes based on selected tags and search criteria. Users can also add specific ingredients to the AI-generated recipes.
     - Key Features:
         - Tag-based recipe generation
         - Search bar for ingredient-specific additions
         - AI-generated recipe
 
-- Favorites View
-        Main Functionality: Displays all recipes that users have marked as favorites, providing quick access to preferred dishes.
+- Favorites View: Displays all recipes that users have marked as favorites, providing quick access to preferred dishes.
     - Key Features:
         - List of favorited recipes
         - Easy access to users' most liked recipes
 
-- Planner View
-        Main Functionality: Shows recipes that users have added to their meal planner, allowing them to plan meals for specific dates.
+- Planner View: Shows recipes that users have added to their meal planner, allowing them to plan meals for specific dates.
     - Key Features:
         - Calendar view of planned recipes
         - Ability to add recipes to specific dates for future use
-- Recipe View
-    Main Functionality: Provides detailed information about a selected recipe, including ingredients, preparation time, cooking steps, and the number of servings.
+- Recipe View: Provides detailed information about a selected recipe, including ingredients, preparation time, cooking steps, and the number of servings.
     - Key Features:
         - List of ingredients
         - Preparation time
@@ -91,7 +82,7 @@ These are the widgets that we need based on our Wireframes:
 - A stateless widget that displays the preparation of the recipe
 
 
-# Architecture
+## Architecture
 
 Exploreview\Widgets\
 *Exploreview\Services\
@@ -100,3 +91,15 @@ Exploreview\ExploreControllerImplementation
 Exploreview\ExploreModel
 Exploreview\ExploreView -> accesses the ExploreController
 
+## Useful commands
+
+This is the command for creating APK files:
+
+    flutter build apk --split-per-abi 
+    (The flutter build command defaults to --release.)
+
+This command results in three APK files:
+
+    [project]/build/app/outputs/apk/release/app-armeabi-v7a-release.apk
+    [project]/build/app/outputs/apk/release/app-arm64-v8a-release.apk
+    [project]/build/app/outputs/apk/release/app-x86_64-release.apk

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/common/simple_cook_appbar.dart';
+import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/common/widgets/loading_indicator.dart';
 import 'package:simple_cook/common/widgets/simple_recipe.dart';
 import 'package:simple_cook/common/theme.dart';

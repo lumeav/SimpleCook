@@ -4,7 +4,7 @@ import 'package:simple_cook/ui/recipe_info/recipe_info_controller_implementation
 import 'package:simple_cook/ui/recipe_info/recipe_info_model.dart';
 import 'package:simple_cook/common/widgets/loading_indicator.dart';
 import 'package:simple_cook/common/widgets/preparation.dart';
-import 'package:simple_cook/common/simple_cook_appbar.dart';
+import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/common/widgets/heart_button.dart';
 import 'package:simple_cook/common/widgets/add_planer.dart';
 import 'package:simple_cook/common/widgets/ingredients.dart';

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/ui/recipe_finder/recipe_finder_controller_implementation.dart';
-import 'package:simple_cook/common/simple_cook_appbar.dart';
+import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/ui/recipe_finder/widgets/filter_tag.dart';
-import 'package:simple_cook/widgets/slider_filter.dart';
 import 'package:simple_cook/ui/recipe_finder/widgets/search_bar.dart';
 import 'package:simple_cook/ui/recipe_finder/widgets/search_recipe_button.dart';
 import 'package:simple_cook/common/widgets/header_grey_background.dart';
 
 class RecipefinderView extends ConsumerStatefulWidget {
-
 
   RecipefinderView({
     Key? key,

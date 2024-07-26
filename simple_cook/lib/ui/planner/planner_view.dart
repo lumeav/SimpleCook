@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/common/simple_cook_appbar.dart';
+import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_model.dart';
 import 'package:simple_cook/ui/planner/planner_provider.dart';
 import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
