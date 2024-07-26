@@ -4,7 +4,7 @@ import 'package:simple_cook/ui/recipe_finder/persistence_service/persistence_ser
 
 class SearchBarNotifier extends StateNotifier<List<String>> {
 
-  final ISearchService _searchService;
+  final SearchPersistenceService _searchService;
 
   SearchBarNotifier(this._searchService) : super([]) {
     loadSearchBox();
@@ -27,6 +27,6 @@ class SearchBarNotifier extends StateNotifier<List<String>> {
 }
 
 final searchBarProvider = StateNotifierProvider<SearchBarNotifier, List<String>>((ref) {
-  final ISearchService searchService = PersistenceService();
+  final SearchPersistenceService searchService = PersistenceService();
   return SearchBarNotifier(searchService);
 });

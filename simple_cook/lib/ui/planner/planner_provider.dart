@@ -5,7 +5,7 @@ import 'package:simple_cook/ui/planner/persistence_service/persistence_service_i
 
 class PlannerNotifier extends StateNotifier<Map<String, List<SingleRecipe>>> {
 
-  final IPlannerService _plannerService;
+  final PlannerPersistenceService _plannerService;
 
   PlannerNotifier(this._plannerService) : super({}) {
     loadPlanner();
@@ -34,6 +34,6 @@ class PlannerNotifier extends StateNotifier<Map<String, List<SingleRecipe>>> {
 
 final plannerProvider =
     StateNotifierProvider<PlannerNotifier, Map<String, List<SingleRecipe>>>((ref) {
-  final IPlannerService plannerService = PersistenceService();
+  final PlannerPersistenceService plannerService = PersistenceService();
   return PlannerNotifier(plannerService);
 });
