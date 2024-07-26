@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
-import 'package:simple_cook/ui/planner/planner_provider.dart';
+
+import 'package:simple_cook/ui/planner/planner_providers.dart';
 
 class RemoveButton extends ConsumerWidget {
   final SingleRecipe recipe;
@@ -15,7 +16,7 @@ class RemoveButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final plannP = ref.watch(plannerProvider.notifier);
+    final controller = ref.watch(plannerControllerProvider);
     return Container(
       width: 30,
       height: 30,
@@ -29,7 +30,7 @@ class RemoveButton extends ConsumerWidget {
       child: Center(
         child: IconButton(
           padding: EdgeInsets.zero,
-          onPressed: () => plannP.removePlanner(date, recipe), // Pass recipe to onPressed callback
+          onPressed: () => controller.removePlanner(date, recipe), // Pass recipe to onPressed callback
           icon: const FaIcon(
             FontAwesomeIcons.minus,
             color: Colors.grey,

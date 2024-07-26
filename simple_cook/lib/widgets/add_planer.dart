@@ -4,7 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
-import 'package:simple_cook/ui/planner/planner_provider.dart';
+import 'package:simple_cook/ui/planner/planner_providers.dart';
 
 
 class AddPlaner extends ConsumerStatefulWidget {
@@ -88,7 +88,7 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
 
   Widget _buildDatePicker() {
     //final plannerNotifier = ref.watch(plannerProvider.notifier);
-    final plannerController = ref.watch(plannerProvider.notifier);
+    final plannerController = ref.watch(plannerControllerProvider);
     var size = MediaQuery.of(context).size.width * 0.40;
     final List<String> dates = _generateNext14Days();
     return SizedBox(

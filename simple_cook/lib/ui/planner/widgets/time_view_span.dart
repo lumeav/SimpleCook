@@ -4,6 +4,8 @@ import 'package:intl/intl.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/ui/planner/planner_controller_implementation.dart';
 import 'package:simple_cook/ui/planner/planner_model.dart';
+import 'package:simple_cook/ui/planner/planner_providers.dart';
+import 'package:simple_cook/ui/planner/planner_view.dart';
 
 class TimeViewSpan extends ConsumerStatefulWidget {
 
@@ -21,11 +23,11 @@ class _TimeViewSpanState extends ConsumerState<TimeViewSpan> {
   @override
   void initState() {
     super.initState();
-    ref.read(plannerControllerImplementationProvider.notifier).build();
+    ref.read(plannerControllerProvider);
   }
 
 
-  void _onPressed(PlannerControllerImplementation planner, String buttonType) {
+  void _onPressed(PlannerController planner, String buttonType) {
     setState(() {
       if (buttonType == 'prev') {
         planner.previousWeek();
@@ -37,32 +39,27 @@ class _TimeViewSpanState extends ConsumerState<TimeViewSpan> {
 
   @override
   Widget build(BuildContext context) {
-    final plannerNotifier = ref.watch(plannerControllerImplementationProvider.notifier);
+    final plannerController = ref.watch(plannerControllerProvider);
+    final plannerModel = ref.watch(plannerModelProvider);
     return Center(
         child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           IconButton(
-              onPressed: () => _onPressed(plannerNotifier, 'prev'),
+              onPressed: () => _onPressed(plannerController, 'prev'),
               icon:
                   const Icon(Icons.chevron_left, color: Colors.grey, size: 32)),
           Flexible(
             child: Text(
-                "Wochenplan ${DateFormat('dd.MM', 'de_DE').format(plannerNotifier.state.start!)} - ${DateFormat('dd.MM', 'de_DE').format(plannerNotifier.state.end!)}",
+                "Wochenplan ${DateFormat('dd.MM', 'de_DE').format(plannerModel.start)} - ${DateFormat('dd.MM', 'de_DE').format(plannerModel.end)}",
                 style: SimpleCookTextstyles.header),
           ),
           IconButton(
-              onPressed: () => _onPressed(plannerNotifier, 'next'),
+              onPressed: () => _onPressed(plannerController, 'next'),
               icon:
                   const Icon(Icons.chevron_right, color: Colors.grey, size: 32))
         ],
       ),
     );
   }
-}
-
-abstract class PlannerController {
-  PlannerModel build();
-  void nextWeek();
-  void previousWeek();
 }

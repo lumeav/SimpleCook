@@ -85,11 +85,6 @@ class PersistenceService extends PersistenceServiceAggregator {
   }
 
   @override
-  Future<void> clearPlanner() async {
-    await _plannerBox.clear();
-  }
-
-  @override
   Future<void> addRecipeToPlanner(String date, SingleRecipe recipe) async {
     List<SingleRecipe> recipes =
         _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? [];

@@ -28,13 +28,11 @@ class ExploreControllerImplementation extends _$ExploreControllerImplementation
   @override
   Future<void> buildRecipes() async {
     try {
-      final bool isBoxEmpty =
-          persistenceService.isRecipeOfTheDayBoxEmpty();
       ApiResponse<List<Recipe>?> response =
           await recipeService.getAllRecipes('Hauptspeise');
       if (response.data != null && response.errorMessage == null) {
         List<Recipe> recipes = response.data!;
-        if (isBoxEmpty) {
+        if (persistenceService.isRecipeOfTheDayBoxEmpty()) {
           final Random random = Random();
           Recipe recipeOfTheDay = recipes[random.nextInt(recipes.length)];
           persistenceService.putRecipeOfTheDay(recipeOfTheDay);

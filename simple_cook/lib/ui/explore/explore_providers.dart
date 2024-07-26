@@ -1,4 +1,3 @@
-import 'package:riverpod/src/framework.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:simple_cook/ui/explore/explore_controller_implementation.dart';
