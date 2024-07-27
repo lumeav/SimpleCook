@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_controller_implementation.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_model.dart';
+import 'package:simple_cook/ui/recipe_info/recipe_info_providers.dart';
 import 'package:simple_cook/widgets/loading_indicator.dart';
 import 'package:simple_cook/widgets/preparation.dart';
 import 'package:simple_cook/common/simple_cook_appbar.dart';
@@ -29,12 +30,12 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
   @override
   void initState() {
     super.initState();
-    ref.read(recipeInfoControllerImplementationProvider.notifier).fetchRecipe(widget.recipeUrl);
+    ref.read(recipeInfoControllerProvider).fetchRecipe(widget.recipeUrl);
   }
 
   @override
   Widget build(BuildContext context) {
-    final RecipeInfoModel recipeInfoState = ref.watch(recipeInfoControllerImplementationProvider);
+    final RecipeInfoModel recipeInfoState = ref.watch(recipeInfoModelProvider);
 
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
@@ -89,8 +90,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                                 onPressed: () {
                                   ref
                                       .read(
-                                          recipeInfoControllerImplementationProvider
-                                              .notifier)
+                                          recipeInfoControllerProvider)
                                       .refetchRecipe(widget.recipeUrl);
                                 },
                                 style: ButtonStyle(

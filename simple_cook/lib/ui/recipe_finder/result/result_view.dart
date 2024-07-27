@@ -7,7 +7,6 @@ import 'package:simple_cook/common/simple_cook_appbar.dart';
 import 'package:simple_cook/widgets/header_recipe_infos.dart';
 import 'package:simple_cook/widgets/ingredients.dart';
 import 'package:simple_cook/widgets/preparation.dart';
-import 'package:simple_cook/ui/recipe_finder/result/result_controller_implementation.dart';
 import 'package:simple_cook/common/theme.dart';
 
 class ResultView extends ConsumerStatefulWidget {
