@@ -1,6 +1,7 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:simple_cook/ui/recipe_finder/recipe_finder_model.dart';
 import 'package:simple_cook/ui/recipe_finder/recipe_finder_view.dart';
+import 'package:simple_cook/ui/recipe_finder/services/recipe_finder_persistence_service.dart';
 
 part 'recipe_finder_controller_implementation.g.dart';
 
@@ -9,7 +10,9 @@ class RecipeFinderControllerImplementation extends _$RecipeFinderControllerImple
   implements RecipeFinderController {
 
   @override
-  RecipeFinderModel build() => const RecipeFinderModel(activeFilters: []);
+  RecipeFinderModel build({
+    required final RecipeFinderPersistenceService persistenceService,
+  }) => const RecipeFinderModel(activeFilters: <String>[]);
 
   @override
   void setFilterActive(String name) {
@@ -28,5 +31,21 @@ class RecipeFinderControllerImplementation extends _$RecipeFinderControllerImple
   @override
   String getFilter() {
     return state.activeFilters.join(' ');
+  }
+
+  @override
+  Future<List<String>> loadSearchBox() async {
+    final searchHistory = await persistenceService.getSearchBox();
+    return searchHistory;
+  }
+
+  @override
+  Future<void> addSearchQuery(String query) async {
+    await persistenceService.addToSearchBox(query);
+  }
+
+  @override
+  Future<Iterable<String>> search(String query) async {
+    return await persistenceService.search(query);
   }
 }
