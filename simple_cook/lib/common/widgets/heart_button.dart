@@ -6,18 +6,18 @@ import 'package:simple_cook/ui/favorites/favorites_providers.dart';
 
 class HeartButton extends ConsumerWidget {
   final bool border;
-  final SingleRecipe recipe;
+  final SingleRecipe? recipe;
 
   const HeartButton(this.border, {required this.recipe, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final favoritesController = ref.watch(favoritesControllerProvider);
-    final bool isFavorite = favoritesController.isFavorite(recipe);
+    final bool isFavorite = favoritesController.isFavorite(recipe!);
     ref.watch(favoritesModelProvider);
 
     void onPressed() {
-      favoritesController.toggleFavorite(recipe);
+      favoritesController.toggleFavorite(recipe!);
     }
 
     var size = MediaQuery.of(context).size.width * 0.07;

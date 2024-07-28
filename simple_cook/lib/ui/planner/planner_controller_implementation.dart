@@ -16,7 +16,6 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
     DateTime data = DateTime.now();
     int dayOffset = data.weekday - DateTime.monday;
     DateTime firstDateOfWeek = data.subtract(Duration(days: dayOffset));
-
     DateTime lastDateofWeek = firstDateOfWeek.add(const Duration(days: 6));
 
     List<DateTime> dates = setDatesWeek(firstDateOfWeek, data);
@@ -25,6 +24,7 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
       start: firstDateOfWeek,
       end: lastDateofWeek,
       dates: dates,
+      recipes: persistenceService.loadPlanner(),
     );
   }
 
@@ -85,18 +85,25 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
   }
 
   @override
-  Map<String, List<SingleRecipe>> loadPlanner() {
-    return persistenceService.loadPlanner();
+  Future<void> loadPlanner() async  {
+    final plannerRecipes = persistenceService.loadPlanner();
+    state = state.copyWith(
+      recipes: plannerRecipes,
+    );
   }
 
   @override
   Future<void> addPlanner(String date, SingleRecipe recipe) async {
     await persistenceService.addRecipeToPlanner(date, recipe);
+    loadPlanner();
+    print(state.recipes);
   }
 
   @override
   Future<void> removePlanner(String date, SingleRecipe recipe) async {
     await persistenceService.removeRecipeFromPlanner(date, recipe);
+    loadPlanner();
+    print(state.recipes);
   }
 
   @override

@@ -42,4 +42,19 @@ class RecipeInfoControllerImplementation
       );
     }
   }
+
+  @override
+  void setGenRecipe(SingleRecipe? genRecipe) {
+    try {
+      state = state.copyWith(
+        recipe: genRecipe,
+        fetchFinished: true
+      );
+    } catch (e) {
+      state = state.copyWith(
+        error: true,
+        errorMessage: "An unexpected error occured!",
+      );
+    }
+  }
 }

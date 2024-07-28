@@ -4,6 +4,7 @@ import 'package:simple_cook/ui/recipe_finder/result/result_model.dart';
 import 'package:simple_cook/ui/recipe_finder/result/result_view.dart';
 import 'package:simple_cook/service/recipe_service/recipe_gen_model.dart';
 import 'package:simple_cook/ui/recipe_finder/services/result_recipe_service.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 
 part 'result_controller_implementation.g.dart';
 

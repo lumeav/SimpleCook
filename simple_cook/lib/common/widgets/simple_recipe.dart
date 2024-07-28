@@ -9,9 +9,11 @@ class SimpleRecipe extends StatefulWidget {
   final String imgPath;
   final String rezeptName;
   final String source;
+  final SingleRecipe? genRecipe;
+
 
   const SimpleRecipe(
-      this.imgPath, this.rezeptName, this.source,
+      this.imgPath, this.rezeptName, this.source, this.genRecipe,
       {super.key});
 
   @override
@@ -31,10 +33,11 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
       title: widget.rezeptName,
       totalTime: 0.0,
     );
+
     return Container(
       child: InkWell(
         onTap: () {
-          context.pushNamed('singleRecipeView', queryParameters: {'recipeUrl': widget.source});
+          context.pushNamed('singleRecipeView', queryParameters: {'recipeUrl': widget.source}, extra: widget.genRecipe);
         },
         child: Ink(
             decoration: BoxDecoration(
@@ -62,7 +65,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                       right: 10,
                       child: HeartButton(
                         true,
-                        recipe: recipe,
+                        recipe: (widget.source == '') ? widget.genRecipe! : recipe,
                       ),
                     )
                   ],

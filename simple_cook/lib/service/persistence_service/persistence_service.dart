@@ -91,8 +91,7 @@ class PersistenceService extends PersistenceServiceAggregator {
 
   @override
   List<SingleRecipe> getRecipesForDate(String date) {
-    return _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ??
-        [];
+    return _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? [];
   }
 
   @override

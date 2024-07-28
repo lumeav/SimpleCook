@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/ui/explore/explore_view.dart';
 import 'package:simple_cook/ui/favorites/favorites_view.dart';
 import 'package:simple_cook/ui/planner/planner_view.dart';
@@ -87,11 +88,13 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
     path: '/singleRecipeView',
     name: 'singleRecipeView',
     pageBuilder: (context, state) {
+      SingleRecipe? genRecipe = state.extra as SingleRecipe?;
       return NoTransitionPage(
         key: state.pageKey,
         child: RecipeView(
           key: state.pageKey,
           recipeUrl: state.uri.queryParameters['recipeUrl'],
+          genRecipe: genRecipe,
         ),
       );
     },

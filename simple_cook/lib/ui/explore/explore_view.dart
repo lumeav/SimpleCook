@@ -68,7 +68,8 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                         SimpleRecipe(
                             recipe.imageUrls.first,
                             recipe.title,
-                            recipe.source,),
+                            recipe.source,
+                            null),
                     ],
                   ),
                 )
