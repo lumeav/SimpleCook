@@ -67,7 +67,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.white),
-                            child: buildSingleRecipe(recipeInfoState.recipe!, widget.recipeUrl!,
+                            child: buildSingleRecipe(recipeInfoState.recipe!, recipeInfoState.recipe!.imageUrls.first,
                                 widget.difficulty!)),
                       ),
                     ],

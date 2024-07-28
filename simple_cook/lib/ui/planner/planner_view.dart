@@ -143,7 +143,7 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
                   recipe.title, recipe.totalTime.toStringAsFixed(0)),
               recipe.imageUrls.first,
               recipe.title,
-              recipe.source,
+              recipe.source!,
               ''),
         ],
       ),

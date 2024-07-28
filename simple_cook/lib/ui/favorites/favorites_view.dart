@@ -40,7 +40,7 @@ class FavoritesView extends ConsumerWidget {
                       return SimpleRecipe(
                         recipe.imageUrls.isNotEmpty ? recipe.imageUrls.first : '',
                         recipe.title,
-                        recipe.source,
+                        recipe.source!,
                         '', // Add actual difficulty if available or leave it as an empty string
                       );
                     },
