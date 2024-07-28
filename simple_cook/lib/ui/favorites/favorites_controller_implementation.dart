@@ -16,7 +16,7 @@ class FavoritesControllerImplementation extends _$FavoritesControllerImplementat
 
   @override
   Future<void> loadFavorites() async {
-    final favorites = persistenceService.getFavoriteRecipes();
+    final List<SingleRecipe> favorites = persistenceService.getFavoriteRecipes();
     state = state.copyWith(
       favoriteRecipes: favorites
     );

@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 
 import 'package:simple_cook/ui/planner/planner_providers.dart';
+import 'package:simple_cook/ui/planner/planner_view.dart';
 
 class RemoveButton extends ConsumerWidget {
   final SingleRecipe recipe;
@@ -11,12 +12,12 @@ class RemoveButton extends ConsumerWidget {
   const RemoveButton({
     required this.recipe,
     required this.date,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(plannerControllerProvider);
+    final PlannerController controller = ref.watch(plannerControllerProvider);
     return Container(
       width: 30,
       height: 30,

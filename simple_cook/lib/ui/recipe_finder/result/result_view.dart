@@ -6,13 +6,14 @@ import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/common/widgets/header_recipe_infos.dart';
 import 'package:simple_cook/common/widgets/ingredients.dart';
 import 'package:simple_cook/common/widgets/preparation.dart';
+import 'package:simple_cook/ui/recipe_finder/result/result_model.dart';
 import 'package:simple_cook/ui/recipe_finder/result/result_providers.dart';
 import 'package:simple_cook/common/theme.dart';
 
 class ResultView extends ConsumerStatefulWidget {
   final String? text;
 
-  const ResultView({Key? key, this.text}) : super(key: key);
+  const ResultView({super.key, this.text});
 
   @override
   ConsumerState<ResultView> createState() => _ResultViewState();
@@ -30,26 +31,26 @@ class _ResultViewState extends ConsumerState<ResultView> {
 
   @override
   Widget build(BuildContext context) {
-    final resultState = ref.watch(resultModelProvider);
+    final ResultModel resultState = ref.watch(resultModelProvider);
 
     return Scaffold(
-        appBar: SimpleCookAppBar('SimpleCook'),
+        appBar: const SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
         body: resultState.fetchFinished
-            ? Column(children: [
+            ? Column(children: <Widget>[
                 Container(
-                    padding: EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
                     color: Colors.white,
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+                      children: <Widget>[
                         SizedBox(width: 10),
                       ],
                     )),
                 Expanded(
                     child: SingleChildScrollView(
                   child: Column(
-                    children: [
+                    children: <Widget>[
                       Padding(
                         padding:
                             const EdgeInsets.only(left: 15, right: 15, top: 10),
@@ -70,7 +71,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 5),
                           child: Text(resultState.errorMessage!,
@@ -104,7 +105,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
                                   ),
                                 ),
                                 child: const Text(
-                                  "Try again",
+                                  "Erneut versuchen",
                                   style: SimpleCookTextstyles.filterTagTapped,
                                 )))
                       ],
@@ -115,8 +116,8 @@ class _ResultViewState extends ConsumerState<ResultView> {
 
   Widget buildRecipe(GenRecipeModel recipe, String url) {
     return Column(
-      children: [
-        Stack(children: [
+      children: <Widget>[
+        Stack(children: <Widget>[
           ClipRRect(
               borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(12), topRight: Radius.circular(12)),
@@ -128,14 +129,14 @@ class _ResultViewState extends ConsumerState<ResultView> {
                   )))
         ]),
         Column(
-          children: [
+          children: <Widget>[
             HeaderRecipeInfos(recipe.title,
                 recipe.totalTime.toStringAsFixed(0)),
             const Padding(
                 padding: EdgeInsets.only(left: 15, right: 15),
                 child: Divider()),
-            Ingredients([
-              for (var ingredient in recipe.ingredients)
+            Ingredients(<String>[
+              for (Ingredient ingredient in recipe.ingredients)
                 if (ingredient.amount == null && ingredient.unit == "")
                   ingredient.name
                 else if (ingredient.amount != null && ingredient.unit == "")
@@ -151,8 +152,8 @@ class _ResultViewState extends ConsumerState<ResultView> {
             ], recipe.portions),
             Padding(
               padding: const EdgeInsets.only(top: 10.0),
-              child: Preparation([
-                for (var preparation in recipe.instructions)
+              child: Preparation(<String>[
+                for (String preparation in recipe.instructions)
                   preparation.substring(preparation.indexOf(' ') + 1).trim()
               ]),
             )

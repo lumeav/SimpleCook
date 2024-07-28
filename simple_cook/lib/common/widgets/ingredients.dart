@@ -14,7 +14,7 @@ class _IngredientsState extends State<Ingredients> {
   Widget _buildBulletItem(String text, int index) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         const Text('•', style: TextStyle(fontSize: 20)),
         const SizedBox(width: 16.0),
         Expanded(child: Text(text, style: SimpleCookTextstyles.rawText)),
@@ -27,16 +27,16 @@ class _IngredientsState extends State<Ingredients> {
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15),
       child: Column(
-        children: [
+        children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
+            children: <Widget>[
+              const Text(
                 "Zutaten",
                 style: SimpleCookTextstyles.subheader
               ),
               Text(
-                widget.portion.toString() + " Port.",
+                "${widget.portion} Port.",
                 style: SimpleCookTextstyles.portions
               ),
             ]
@@ -45,7 +45,7 @@ class _IngredientsState extends State<Ingredients> {
             padding: const EdgeInsets.only(top: 10.0),
             child: Column(
               children:
-              List.generate(widget.ingredientList.length, (index) {
+              List<Widget>.generate(widget.ingredientList.length, (int index) {
                 return _buildBulletItem(widget.ingredientList[index], index);
               }),
             ),

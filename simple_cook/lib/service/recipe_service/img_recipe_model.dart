@@ -54,6 +54,6 @@ class Ingredient {
     Map<String, dynamic> toJson() => {
         "amount": amount == null ? "" : amount.toString(),
         "name": name,
-        "unit": unit == null ? "" : unit,
+        "unit": unit ?? "",
     };
 }

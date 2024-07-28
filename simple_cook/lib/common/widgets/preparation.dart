@@ -10,7 +10,7 @@ class Preparation extends StatelessWidget {
     index++;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         Container(
             width: 30.0,
             height: 30.0,
@@ -31,12 +31,12 @@ class Preparation extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
           const Text("Zubereitung", style: SimpleCookTextstyles.subheader),
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
             child: Column(
-              children: List.generate(steps.length * 2 - 1, (index) {
+              children: List<Widget>.generate(steps.length * 2 - 1, (int index) {
                 if (index.isEven) {
                   int stepIndex = index ~/ 2;
                   return _buildStep(steps[stepIndex], stepIndex);

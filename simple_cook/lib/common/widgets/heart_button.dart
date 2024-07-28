@@ -3,16 +3,17 @@ import 'package:simple_cook/common/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/ui/favorites/favorites_providers.dart';
+import 'package:simple_cook/ui/favorites/favorites_view.dart';
 
 class HeartButton extends ConsumerWidget {
   final bool border;
   final SingleRecipe recipe;
 
-  const HeartButton(this.border, {required this.recipe, Key? key}) : super(key: key);
+  const HeartButton(this.border, {required this.recipe, super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favoritesController = ref.watch(favoritesControllerProvider);
+    final FavoritesController favoritesController = ref.watch(favoritesControllerProvider);
     final bool isFavorite = favoritesController.isFavorite(recipe);
     ref.watch(favoritesModelProvider);
 
@@ -20,7 +21,7 @@ class HeartButton extends ConsumerWidget {
       favoritesController.toggleFavorite(recipe);
     }
 
-    var size = MediaQuery.of(context).size.width * 0.07;
+    double size = MediaQuery.of(context).size.width * 0.07;
     if (!border) {
       size = size + 12;
     }

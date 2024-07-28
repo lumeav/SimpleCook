@@ -13,7 +13,7 @@ class HeaderRecipeInfos extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 5, bottom: 15),
-      child: Column(children: [
+      child: Column(children: <Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 5),
           child: Align(

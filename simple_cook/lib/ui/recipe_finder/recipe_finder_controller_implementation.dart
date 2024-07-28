@@ -35,7 +35,7 @@ class RecipeFinderControllerImplementation extends _$RecipeFinderControllerImple
 
   @override
   Future<List<String>> loadSearchBox() async {
-    final searchHistory = await persistenceService.getSearchBox();
+    final List<String> searchHistory = persistenceService.getSearchBox();
     return searchHistory;
   }
 

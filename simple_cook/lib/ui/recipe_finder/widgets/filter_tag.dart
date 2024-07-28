@@ -33,7 +33,7 @@ class _FilterTagState extends ConsumerState<FilterTag> {
 
   @override
   Widget build(BuildContext context) {
-    final recipeFinderController = ref.watch(recipeFinderControllerProvider);
+    final RecipeFinderController recipeFinderController = ref.watch(recipeFinderControllerProvider);
     return Container(
       padding: EdgeInsets.zero,
       margin: EdgeInsets.zero,

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:simple_cook/common/theme.dart';
 
 class RecipeInfos extends StatelessWidget {
-  final String text_time;
+  final String textTime;
 
   const RecipeInfos(
-    this.text_time, {
+    this.textTime, {
     super.key,
   });
 
@@ -17,7 +17,7 @@ class RecipeInfos extends StatelessWidget {
       direction: Axis.horizontal,
       spacing: 10.0,
       runSpacing: 5.0,
-      children: [
+      children: <Widget>[
         FittedBox(
           fit: BoxFit.scaleDown,
           child: Container(
@@ -26,7 +26,7 @@ class RecipeInfos extends StatelessWidget {
               decoration: BoxDecoration(
                   color: SimpleCookColors.primary.withOpacity(0.4),
                   borderRadius: BorderRadius.circular(50),
-                  boxShadow: [
+                  boxShadow: <BoxShadow>[
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.2),
                       spreadRadius: 2,
@@ -35,11 +35,11 @@ class RecipeInfos extends StatelessWidget {
                   ]),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: <Widget>[
                   const Icon(Icons.access_time, color: Colors.grey),
-                  SizedBox(width: 5),
+                  const SizedBox(width: 5),
                   Text(
-                    text_time + ' min',
+                    '$textTime min',
                     style: SimpleCookTextstyles.recInfos,
                   ),
                 ],

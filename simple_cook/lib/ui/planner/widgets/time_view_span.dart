@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:simple_cook/ui/planner/planner_model.dart';
 import 'package:simple_cook/ui/planner/planner_providers.dart';
 import 'package:simple_cook/ui/planner/planner_view.dart';
 
@@ -37,12 +38,12 @@ class _TimeViewSpanState extends ConsumerState<TimeViewSpan> {
 
   @override
   Widget build(BuildContext context) {
-    final plannerController = ref.watch(plannerControllerProvider);
-    final plannerModel = ref.watch(plannerModelProvider);
+    final PlannerController plannerController = ref.watch(plannerControllerProvider);
+    final PlannerModel plannerModel = ref.watch(plannerModelProvider);
     return Center(
         child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
+        children: <Widget>[
           IconButton(
               onPressed: () => _onPressed(plannerController, 'prev'),
               icon:

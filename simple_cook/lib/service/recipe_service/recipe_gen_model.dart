@@ -33,8 +33,8 @@ class GenRecipeModel {
     );
 
     Map<String, dynamic> toJson() => {
-        "ingredients": List<dynamic>.from(ingredients.map((x) => x.toJson())),
-        "instructions": List<dynamic>.from(instructions.map((x) => x)),
+        "ingredients": List<dynamic>.from(ingredients.map((Ingredient x) => x.toJson())),
+        "instructions": List<dynamic>.from(instructions.map((String x) => x)),
         "portions": portions,
         "title": title,
         "totalTime": totalTime,
@@ -62,6 +62,6 @@ class Ingredient {
     Map<String, dynamic> toJson() => {
         "name": name,
         "amount": amount,
-        "unit": unit == null ? "" : unit,
+        "unit": unit ?? "",
     };
 }

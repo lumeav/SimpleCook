@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/ui/planner/planner_model.dart';
 import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
 import 'package:simple_cook/ui/planner/widgets/date.dart';
 import 'package:intl/intl.dart';
@@ -12,14 +13,14 @@ import 'planner_providers.dart';
 
 class PlannerView extends ConsumerStatefulWidget {
   const PlannerView({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
-  _PlannerViewState createState() => _PlannerViewState();
+  PlannerViewState createState() => PlannerViewState();
 }
 
-class _PlannerViewState extends ConsumerState<PlannerView> {
+class PlannerViewState extends ConsumerState<PlannerView> {
 
   @override
   void initState() {
@@ -30,13 +31,13 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SimpleCookAppBar('SimpleCook'),
+      appBar: const SimpleCookAppBar('SimpleCook'),
       backgroundColor: Colors.grey[200],
-      body: Column(children: [
+      body: Column(children: <Widget>[
         Container(
-            padding: EdgeInsets.symmetric(vertical: 5),
+            padding: const EdgeInsets.symmetric(vertical: 5),
             color: Colors.grey[200],
-            child: TimeViewSpan()),
+            child: const TimeViewSpan()),
         Expanded(
             child: SingleChildScrollView(
           child: Column(
@@ -48,10 +49,10 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
   }
 
   List<Widget> _buildPlannerRows() {
-    final plannerModel =
+    final PlannerModel plannerModel =
         ref.watch(plannerModelProvider);
-    final planner = ref.watch(plannerControllerProvider);
-    List<Widget> plannerRows = [];
+    final PlannerController planner = ref.watch(plannerControllerProvider);
+    List<Widget> plannerRows = <Widget>[];
 
     bool hasRecipesForWeek = false;
 
@@ -67,9 +68,9 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: <Widget>[
                 Date(date),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 _buildRecipeWidgets(
                     planner.loadPlanner()[formattedDate]!, formattedDate),
               ],
@@ -82,7 +83,7 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
         plannerRows.add(
           const Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
               child: Text(
                 'Keine Rezepte für diese Woche hinzugefügt',
                 style: TextStyle(fontSize: 17, color: Colors.grey),
@@ -99,11 +100,11 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
       padding: const EdgeInsets.only(bottom: 10),
       child: ListView.builder(
         shrinkWrap: true,
-        physics: NeverScrollableScrollPhysics(),
+        physics: const NeverScrollableScrollPhysics(),
 
         itemCount: recipes.length,
-        itemBuilder: (context, index) {
-          final recipe = recipes[index];
+        itemBuilder: (BuildContext context, int index) {
+          final SingleRecipe recipe = recipes[index];
           return _buildRecipeWidget(recipe, date);
         },
       ),
@@ -114,7 +115,7 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: Column(
-        children: [
+        children: <Widget>[
           Container(
             alignment: Alignment.topRight,
             child: RemoveButton(

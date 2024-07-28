@@ -41,12 +41,12 @@ class Recipe {
       );
 
   Map<String, dynamic> toJson() => {
-        "image_urls": List<dynamic>.from(imageUrls.map((x) => x)),
-        "ingredients": List<dynamic>.from(ingredients.map((x) => x.toJson())),
+        "image_urls": List<dynamic>.from(imageUrls.map((String x) => x)),
+        "ingredients": List<dynamic>.from(ingredients.map((Ingredient x) => x.toJson())),
         "source": source,
         "title": title,
         "totalTime": totalTime,
-        "diet": diet == null ? [] : List<dynamic>.from(diet!.map((x) => x)),
+        "diet": diet == null ? [] : List<dynamic>.from(diet!.map((String x) => x)),
       };
 }
 

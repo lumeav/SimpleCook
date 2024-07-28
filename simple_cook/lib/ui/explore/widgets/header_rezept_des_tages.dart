@@ -10,7 +10,7 @@ class HeaderRezeptDesTages extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.only(top: 5, bottom: 15, left:10),
-      child: Column(children: [
+      child: Column(children: <Widget>[
         const Text('Rezept des Tages',
             style: SimpleCookTextstyles.rezeptDesTages),
         Text(title,
