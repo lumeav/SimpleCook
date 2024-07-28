@@ -86,7 +86,7 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
 
   @override
   Future<void> loadPlanner() async  {
-    final plannerRecipes = persistenceService.loadPlanner();
+    final plannerRecipes = await persistenceService.loadPlanner();
     state = state.copyWith(
       recipes: plannerRecipes,
     );
@@ -95,14 +95,18 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
   @override
   Future<void> addPlanner(String date, SingleRecipe recipe) async {
     await persistenceService.addRecipeToPlanner(date, recipe);
-    loadPlanner();
+    state = state.copyWith(
+      recipes: await persistenceService.loadPlanner(),
+    );
     print(state.recipes);
   }
 
   @override
   Future<void> removePlanner(String date, SingleRecipe recipe) async {
     await persistenceService.removeRecipeFromPlanner(date, recipe);
-    loadPlanner();
+    state = state.copyWith(
+      recipes: await persistenceService.loadPlanner(),
+    );
     print(state.recipes);
   }
 
