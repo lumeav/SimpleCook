@@ -6,6 +6,7 @@ import 'package:simple_cook/widgets/simple_recipe.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/widgets/header_grey_background.dart';
 import 'explore_filtered_controller_implementation.dart';
+import 'explore_filtered_providers.dart';
 
 class ExploreFilteredView extends ConsumerStatefulWidget {
   final String? search;
@@ -26,14 +27,14 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
     super.initState();
     print('search: ${widget.search}');
     ref
-        .read(exploreFilteredControllerImplementationProvider.notifier)
+        .read(exploreFilteredControllerProvider)
         .buildRecipes(widget.search!);
   }
 
   @override
   Widget build(BuildContext context) {
     final exploreFilteredState =
-        ref.watch(exploreFilteredControllerImplementationProvider);
+        ref.watch(exploreFilteredModelProvider);
 
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
@@ -83,8 +84,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
                                 onPressed: () {
                                   ref
                                       .read(
-                                          exploreFilteredControllerImplementationProvider
-                                              .notifier)
+                                          exploreFilteredControllerProvider)
                                       .rebuildRecipes(widget.search!);
                                 },
                                 style: ButtonStyle(
@@ -117,5 +117,4 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
 abstract class ExploreFilteredController {
   Future<void> buildRecipes(String search);
   Future<void> rebuildRecipes(String search);
-  //void goToFilteredRecipesView({required final String query}); // Todo: reimplement with NavigationService
 }
