@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/ui/recipe_info/recipe_info_controller_implementation.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_model.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_providers.dart';
 import 'package:simple_cook/widgets/loading_indicator.dart';

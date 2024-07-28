@@ -18,7 +18,7 @@ class ExploreView extends ConsumerStatefulWidget {
   }) : super(key: key);
 
   @override
-  _ExploreViewState createState() => _ExploreViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _ExploreViewState();
 }
 
 class _ExploreViewState extends ConsumerState<ExploreView> {

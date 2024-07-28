@@ -20,12 +20,10 @@ class PlannerView extends ConsumerStatefulWidget {
 }
 
 class _PlannerViewState extends ConsumerState<PlannerView> {
-  //late PersistenceService _persistenceService;
 
   @override
   void initState() {
     super.initState();
-    //_persistenceService = PersistenceService();
     ref.read(plannerControllerProvider);
   }
 
