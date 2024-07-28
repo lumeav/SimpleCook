@@ -1,30 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:simple_cook/common/simple_cook_appbar.dart';
-import 'package:simple_cook/widgets/header_grey_background.dart';
-import 'package:simple_cook/widgets/simple_recipe.dart';
+import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
+import 'package:simple_cook/common/widgets/header_grey_background.dart';
+import 'package:simple_cook/common/widgets/simple_recipe.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/ui/favorites/favorites_provider.dart';
+import 'package:simple_cook/ui/favorites/favorites_providers.dart';
 
-class FavoritesView extends ConsumerWidget {
+class FavoritesView extends ConsumerStatefulWidget {
   const FavoritesView({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final favoriteRecipes = ref.watch(favoritesProvider);
+  ConsumerState<ConsumerStatefulWidget> createState() => _FavoritesViewState();
+}
+
+class _FavoritesViewState extends ConsumerState<FavoritesView> {
+
+  @override
+  void initState() {
+    super.initState();
+    Future<void>.microtask(() => ref.read(favoritesControllerProvider).loadFavorites());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final favoriteModel = ref.watch(favoritesModelProvider);
 
     return Scaffold(
-      appBar: SimpleCookAppBar('SimpleCook'),
+      appBar: const SimpleCookAppBar('SimpleCook'),
       backgroundColor: Colors.grey[200],
-      body: favoriteRecipes.isEmpty
+      body: favoriteModel.favoriteRecipes.isEmpty
           ? const Center(child: Text('Keine Favoriten hinzugefügt'))
           : Column(
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 color: Colors.grey[200],
-                child: HeaderGreyBackground('Favoriten', FontWeight.bold)), // HeaderGreyBackground("Favoriten"
+                child: const HeaderGreyBackground('Favoriten', FontWeight.bold)),
               Expanded(
                 child: GridView.builder(
                     padding: const EdgeInsets.all(15),
@@ -34,9 +47,9 @@ class FavoritesView extends ConsumerWidget {
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
                     ),
-                    itemCount: favoriteRecipes.length,
+                    itemCount: favoriteModel.favoriteRecipes.length,
                     itemBuilder: (context, index) {
-                      final recipe = favoriteRecipes[index];
+                      final recipe = favoriteModel.favoriteRecipes[index];
                       return SimpleRecipe(
                         recipe.imageUrls.isNotEmpty ? recipe.imageUrls.first : '',
                         recipe.title,
@@ -50,4 +63,10 @@ class FavoritesView extends ConsumerWidget {
           ),
     );
   }
+}
+
+abstract class FavoritesController {
+  Future<void> loadFavorites();
+  bool isFavorite(SingleRecipe recipe);
+  Future<void> toggleFavorite(SingleRecipe recipe);
 }

@@ -10,15 +10,9 @@ class SearchBarExplore extends ConsumerStatefulWidget {
   ConsumerState<SearchBarExplore> createState() => _SearchBarState();
 }
 
-//TODO buttons are not deleted right
-
 class _SearchBarState extends ConsumerState<SearchBarExplore> {
   String? searchQuery;
   String selectedTile = '';
-
-
-  //last vegetables from db
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +29,6 @@ class _SearchBarState extends ConsumerState<SearchBarExplore> {
               if (lastInput.contains(value) == false) {
                 lastInput.add(value);
               }
-              //ref.read(exploreControllerImplementationProvider.notifier).goToFilteredRecipesView(query: value);
               context.goNamed('subRecipesFiltered', queryParameters: {'search': value});
             }
             ,

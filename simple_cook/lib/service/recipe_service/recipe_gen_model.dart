@@ -28,7 +28,7 @@ class GenRecipeModel {
         instructions: List<String>.from(json["instructions"].map((x) => x)),
         portions: json["portions"],
         title: json["title"],
-        totalTime: json["totalTime"] > 200 ? json["totalTime"] / 60 : json["totalTime"],  //divide trough 60 and cast to int,
+        totalTime: json["totalTime"] > 200 ? json["totalTime"] / 60 : json["totalTime"],
         imgUrl: json["imgUrl"],
     );
 
@@ -61,7 +61,7 @@ class Ingredient {
 
     Map<String, dynamic> toJson() => {
         "name": name,
-        "amount": name == null ? "" : amount,
+        "amount": amount,
         "unit": unit == null ? "" : unit,
     };
 }

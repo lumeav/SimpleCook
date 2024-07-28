@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/ui/recipe_info/recipe_info_controller_implementation.dart';
-import 'package:simple_cook/widgets/loading_indicator.dart';
-import 'package:simple_cook/widgets/preparation.dart';
-import 'package:simple_cook/common/simple_cook_appbar.dart';
-import 'package:simple_cook/widgets/heart_button.dart';
-import 'package:simple_cook/widgets/add_planer.dart';
-import 'package:simple_cook/widgets/ingredients.dart';
+import 'package:simple_cook/ui/recipe_info/recipe_info_model.dart';
+import 'package:simple_cook/ui/recipe_info/recipe_info_providers.dart';
+import 'package:simple_cook/common/widgets/loading_indicator.dart';
+import 'package:simple_cook/common/widgets/preparation.dart';
+import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/common/widgets/heart_button.dart';
+import 'package:simple_cook/common/widgets/add_planer.dart';
+import 'package:simple_cook/common/widgets/ingredients.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
-import 'package:simple_cook/widgets/header_recipe_infos.dart';
+import 'package:simple_cook/common/widgets/header_recipe_infos.dart';
 import 'package:simple_cook/common/theme.dart';
 
 class RecipeView extends ConsumerStatefulWidget {
   final String? recipeUrl;
-  final String? difficulty;
 
   const RecipeView({
     super.key,
     this.recipeUrl,
-    this.difficulty,
   });
 
   @override
@@ -30,15 +29,15 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
   @override
   void initState() {
     super.initState();
-    ref.read(recipeInfoControllerImplementationProvider.notifier).fetchRecipe(widget.recipeUrl);
+    ref.read(recipeInfoControllerProvider).fetchRecipe(widget.recipeUrl);
   }
 
   @override
   Widget build(BuildContext context) {
-    final recipeInfoState = ref.watch(recipeInfoControllerImplementationProvider);
+    final RecipeInfoModel recipeInfoState = ref.watch(recipeInfoModelProvider);
 
     return Scaffold(
-        appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+        appBar: const SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
         body: recipeInfoState.fetchFinished
             ? Column(children: [
@@ -50,10 +49,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                       children: [
                           AddPlaner(recipe: recipeInfoState.recipe),
                           const SizedBox(width: 10),
-                          //error:_Map<dynamic, dynamic>' is not a subtype of type 'Map<String, dynamic>
-                          //so we copy with empty ingredients for now. Doesnt matter because we build it again in buildSingleRecipe
-                          //only works with internet connection
-                          HeartButton(false, recipe: copyWithEmptyIngredients(recipeInfoState.recipe!)),
+                          HeartButton(false, recipe: recipeInfoState.recipe!),
                       ],
                     )),
                 Expanded(
@@ -91,8 +87,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                                 onPressed: () {
                                   ref
                                       .read(
-                                          recipeInfoControllerImplementationProvider
-                                              .notifier)
+                                          recipeInfoControllerProvider)
                                       .refetchRecipe(widget.recipeUrl);
                                 },
                                 style: ButtonStyle(
@@ -123,7 +118,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
   }
 
   Widget buildSingleRecipe(
-      SingleRecipe singleRecipe, String recipeUrl, String difficulty) {
+      SingleRecipe singleRecipe, String recipeUrl) {
     return Column(
       children: [
         Stack(children: [
@@ -160,19 +155,6 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
               [for (var preparation in singleRecipe.steps) preparation]),
         )
       ],
-    );
-  }
-
-  SingleRecipe copyWithEmptyIngredients(SingleRecipe recipe) {
-    return SingleRecipe(
-      diet: recipe.diet,
-      imageUrls: recipe.imageUrls,
-      ingredients: [], // Empty ingredients list
-      portions: recipe.portions,
-      source: recipe.source,
-      steps: recipe.steps,
-      title: recipe.title,
-      totalTime: recipe.totalTime,
     );
   }
 }

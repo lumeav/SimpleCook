@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/service/recipe_service/recipe_gen_model.dart';
-import 'package:simple_cook/widgets/loading_indicator.dart';
-import 'package:simple_cook/common/simple_cook_appbar.dart';
-import 'package:simple_cook/widgets/add_planer.dart';
-import 'package:simple_cook/widgets/header_recipe_infos.dart';
-import 'package:simple_cook/widgets/ingredients.dart';
-import 'package:simple_cook/widgets/preparation.dart';
-import 'package:simple_cook/ui/recipe_finder/result/result_controller_implementation.dart';
+import 'package:simple_cook/common/widgets/loading_indicator.dart';
+import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/common/widgets/header_recipe_infos.dart';
+import 'package:simple_cook/common/widgets/ingredients.dart';
+import 'package:simple_cook/common/widgets/preparation.dart';
+import 'package:simple_cook/ui/recipe_finder/result/result_providers.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/widgets/heart_button.dart';
 
@@ -26,13 +25,13 @@ class _ResultViewState extends ConsumerState<ResultView> {
     super.initState();
     print('text: ${widget.text}');
     ref
-        .read(resultControllerImplementationProvider.notifier)
+        .read(resultControllerProvider)
         .fetchRecipe(widget.text!);
   }
 
   @override
   Widget build(BuildContext context) {
-    final resultState = ref.watch(resultControllerImplementationProvider);
+    final resultState = ref.watch(resultModelProvider);
 
     return Scaffold(
         appBar: SimpleCookAppBar('SimpleCook'),
@@ -87,8 +86,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
                                 onPressed: () {
                                   ref
                                       .read(
-                                          resultControllerImplementationProvider
-                                              .notifier)
+                                          resultControllerProvider)
                                       .refetchRecipe(widget.text!);
                                 },
                                 style: ButtonStyle(
@@ -115,7 +113,7 @@ class _ResultViewState extends ConsumerState<ResultView> {
                       ],
                     ),
                   ))
-                : const LoadingIndicator());
+                : const LoadingIndicator(showTips: true));
   }
 
   Widget buildRecipe(GenRecipeModel recipe, String url) {

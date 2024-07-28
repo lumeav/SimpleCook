@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/ui/recipe_finder/recipe_finder_controller_implementation.dart';
+import 'package:simple_cook/ui/recipe_finder/recipe_finder_providers.dart';
+import 'package:simple_cook/ui/recipe_finder/recipe_finder_view.dart';
 
 
 class FilterTag extends ConsumerStatefulWidget {
@@ -19,7 +20,7 @@ class FilterTag extends ConsumerStatefulWidget {
 class _FilterTagState extends ConsumerState<FilterTag> {
   bool _pressed = false;
 
-  void _onPressed(RecipeFinderControllerImplementation recipeFinderProvider) {
+  void _onPressed(RecipeFinderController recipeFinderProvider) {
     setState(() {
       _pressed = !_pressed;
     });
@@ -27,19 +28,18 @@ class _FilterTagState extends ConsumerState<FilterTag> {
       recipeFinderProvider.setFilterActive(widget.text);
     } else {
       recipeFinderProvider.setFilterInactive(widget.text);
-      // Placeholder for future logic
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final recipeFinderNotifier = ref.watch(recipeFinderControllerImplementationProvider.notifier);
+    final recipeFinderController = ref.watch(recipeFinderControllerProvider);
     return Container(
       padding: EdgeInsets.zero,
       margin: EdgeInsets.zero,
       child: _pressed
           ? ElevatedButton.icon(
-              onPressed: () => _onPressed(recipeFinderNotifier),
+              onPressed: () => _onPressed(recipeFinderController),
               style: ElevatedButton.styleFrom(
                 shadowColor: Colors.transparent,
                 foregroundColor: Colors.transparent,
@@ -63,7 +63,7 @@ class _FilterTagState extends ConsumerState<FilterTag> {
               ),
             )
           : ElevatedButton(
-              onPressed: () => _onPressed(recipeFinderNotifier),
+              onPressed: () => _onPressed(recipeFinderController),
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.transparent,
                 surfaceTintColor: Colors.transparent,

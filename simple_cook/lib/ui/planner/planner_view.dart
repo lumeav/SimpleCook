@@ -1,19 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/common/simple_cook_appbar.dart';
-import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_model.dart';
-import 'package:simple_cook/ui/planner/planner_provider.dart';
+import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
 import 'package:simple_cook/ui/planner/widgets/date.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_cook/ui/planner/widgets/remove_button.dart';
-//import 'package:simple_cook/service/persistence_service/persistence_service.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
-import 'package:simple_cook/widgets/extended_recipe.dart';
-import 'package:simple_cook/widgets/header_recipe_infos.dart';
-import 'package:simple_cook/ui/planner/planner_controller_implementation.dart';
+import 'package:simple_cook/common/widgets/extended_recipe.dart';
+import 'package:simple_cook/common/widgets/header_recipe_infos.dart';
+import 'planner_providers.dart';
 
 class PlannerView extends ConsumerStatefulWidget {
   const PlannerView({
@@ -25,33 +20,23 @@ class PlannerView extends ConsumerStatefulWidget {
 }
 
 class _PlannerViewState extends ConsumerState<PlannerView> {
-  //late PersistenceService _persistenceService;
 
   @override
   void initState() {
     super.initState();
-    //_persistenceService = PersistenceService();
-    ref.read(plannerControllerImplementationProvider.notifier).build();
+    ref.read(plannerControllerProvider);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+      appBar: SimpleCookAppBar('SimpleCook'),
       backgroundColor: Colors.grey[200],
       body: Column(children: [
         Container(
             padding: EdgeInsets.symmetric(vertical: 5),
             color: Colors.grey[200],
             child: TimeViewSpan()),
-        /*
-        ElevatedButton(
-          onPressed: () {
-            _persistenceService.clearPlanner();
-          },
-          child: Text('Delete all Plannerrecipe'),
-        ),
-        */
         Expanded(
             child: SingleChildScrollView(
           child: Column(
@@ -63,20 +48,20 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
   }
 
   List<Widget> _buildPlannerRows() {
-    final plannerController =
-        ref.watch(plannerControllerImplementationProvider);
-    final planner = ref.watch(plannerProvider.notifier);
-    final plannerState = ref.watch(plannerProvider);
+    final plannerModel =
+        ref.watch(plannerModelProvider);
+    final planner = ref.watch(plannerControllerProvider);
     List<Widget> plannerRows = [];
 
     bool hasRecipesForWeek = false;
 
-    for (DateTime date in plannerController.dates) {
+    for (DateTime date in plannerModel.dates) {
 
       String formattedDate = DateFormat('dd.MM.yyyy').format(date);
       List<SingleRecipe> recipes = planner.getRecipesForDate(formattedDate);
       if (recipes.isNotEmpty) {
         hasRecipesForWeek = true;
+
         plannerRows.add(
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -86,7 +71,7 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
                 Date(date),
                 SizedBox(height: 5),
                 _buildRecipeWidgets(
-                    plannerState[formattedDate]!, formattedDate),
+                    planner.loadPlanner()[formattedDate]!, formattedDate),
               ],
             ),
           ),
@@ -129,7 +114,6 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
       child: Column(
-        //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             alignment: Alignment.topRight,
@@ -149,4 +133,13 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
       ),
     );
   }
+}
+
+abstract class PlannerController {
+  void nextWeek();
+  void previousWeek();
+  Map<String, List<SingleRecipe>> loadPlanner();
+  Future<void> addPlanner(String date, SingleRecipe recipe);
+  Future<void> removePlanner(String date, SingleRecipe recipe);
+  List<SingleRecipe> getRecipesForDate(String date);
 }

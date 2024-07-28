@@ -8,21 +8,19 @@ import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/service/recipe_service/recipe_gen_model.dart';
 import 'package:simple_cook/service/recipe_service/img_recipe_model.dart';
 import 'package:simple_cook/service/recipe_service/img_url.dart';
+import 'package:simple_cook/common/config.dart';
 
 class RecipeClient {
   final http.Client client = http.Client();
-  final String baseUrl = 'https://gustar-io-deutsche-rezepte.p.rapidapi.com/';
 
-  Map<String, String> headers = {
-    'x-rapidapi-host': 'gustar-io-deutsche-rezepte.p.rapidapi.com',
-    'x-rapidapi-key': 'ef7514451cmsh370313fb35a05f4p1496c9jsn41a71594229c',
-  };
+  final String baseUrl = Config.baseUrl;
+
+  final Map<String, String> headers = Config.headers;
 
   Future<ApiResponse<List<Recipe>?>> getRecipes(String parameter) async {
-    final String url = baseUrl + 'search_api?text=' + parameter;
-    print(url);
+    final String url = '${baseUrl}search_api?text=$parameter';
     return await _handleRequest(() async {
-      var response = await client
+      http.Response response = await client
           .get(Uri.parse(url), headers: headers)
           .timeout(const Duration(seconds: 10));
       if (response.statusCode == 200) {

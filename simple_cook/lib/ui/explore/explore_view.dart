@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/widgets/header_rezept_des_tages.dart';
-import 'package:simple_cook/widgets/extended_recipe.dart';
+import 'package:simple_cook/ui/explore/widgets/header_rezept_des_tages.dart';
+import 'package:simple_cook/common/widgets/extended_recipe.dart';
 import 'package:simple_cook/ui/explore/widgets/search_bar_explore.dart';
-import 'package:simple_cook/common/simple_cook_appbar.dart';
-import 'package:simple_cook/widgets/simple_recipe.dart';
-import 'package:simple_cook/widgets/header_grey_background.dart';
+import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/common/widgets/simple_recipe.dart';
+import 'package:simple_cook/common/widgets/header_grey_background.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
-//import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'explore_controller_implementation.dart';
+//import 'explore_controller_implementation.dart';
+import 'explore_providers.dart';
 
 class ExploreView extends ConsumerStatefulWidget {
   const ExploreView({
@@ -17,7 +17,7 @@ class ExploreView extends ConsumerStatefulWidget {
   }) : super(key: key);
 
   @override
-  _ExploreViewState createState() => _ExploreViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _ExploreViewState();
 }
 
 class _ExploreViewState extends ConsumerState<ExploreView> {
@@ -25,15 +25,15 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
   @override
   void initState() {
     super.initState();
-    ref.read(exploreControllerImplementationProvider.notifier).buildRecipes();
+    ref.read(exploreControllerProvider).buildRecipes();
   }
 
   @override
   Widget build(BuildContext context) {
-    final exploreState = ref.watch(exploreControllerImplementationProvider);
+    final exploreState = ref.watch(exploreModelProvider);
 
     return Scaffold(
-        appBar: const SimpleCookAppBar('SimpleCook'), // Use CustomAppBar here
+        appBar: const SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
         body: exploreState.fetchFinished
             ? CustomScrollView(slivers: [
@@ -68,10 +68,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                         SimpleRecipe(
                             recipe.imageUrls.first,
                             recipe.title,
-                            recipe.source,
-                            ref
-                                .read(exploreControllerImplementationProvider.notifier)
-                                .checkDiff(recipe.difficulty)),
+                            recipe.source,),
                     ],
                   ),
                 )
@@ -101,8 +98,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                                 onPressed: () {
                                   ref
                                       .read(
-                                          exploreControllerImplementationProvider
-                                              .notifier)
+                                          exploreControllerProvider)
                                       .rebuildRecipes();
                                 },
                                 style: ButtonStyle(
@@ -138,10 +134,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
           HeaderRezeptDesTages(recipe.title),
           recipe.imageUrls.first,
           recipe.title,
-          recipe.source,
-          ref
-              .read(exploreControllerImplementationProvider.notifier)
-              .checkDiff(recipe.difficulty)),
+          recipe.source),
     );
   }
 }
@@ -149,6 +142,4 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
 abstract class ExploreController {
   Future<void> buildRecipes();
   Future<void> rebuildRecipes();
-  String checkDiff(String? diff);
-    //void goToFilteredRecipesView({required final String query}); // Todo: reimplement with NavigationService
 }

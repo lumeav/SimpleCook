@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/ui/recipe_finder/recipe_finder_controller_implementation.dart';
-import 'package:simple_cook/ui/recipe_finder/widgets/search_bar_provider.dart';
+import 'package:simple_cook/ui/recipe_finder/recipe_finder_providers.dart';
 
 
 class SearchBarFilter extends ConsumerStatefulWidget {
@@ -12,19 +11,15 @@ class SearchBarFilter extends ConsumerStatefulWidget {
   ConsumerState<SearchBarFilter> createState() => _SearchBarState();
 }
 
-//TODO buttons are not deleted right
-
 class _SearchBarState extends ConsumerState<SearchBarFilter> {
   String? searchQuery;
   String selectedTile = '';
 
   List<String> buttons = [];
-  //last vegetables from db
   late Iterable<Widget> lastVegetables = <Widget>[];
   @override
   Widget build(BuildContext context) {
-    final searchBarNotifier = ref.watch(searchBarProvider.notifier);
-    final recipeFinderNotifier = ref.watch(recipeFinderControllerImplementationProvider.notifier);
+    final recipeFinderController = ref.watch(recipeFinderControllerProvider);
     return Column(children: [
       Container(
         width: MediaQuery.of(context).size.width,
@@ -40,7 +35,7 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
                 (BuildContext context, SearchController controller) async {
               searchQuery = controller.text;
               final List<String> vegetables =
-                  (await searchBarNotifier.search(searchQuery!)).toList();
+                  (await recipeFinderController.search(searchQuery!)).toList();
               return List<ListTile>.generate(vegetables.length, (int index) {
                 final String item = vegetables[index];
                 return ListTile(
@@ -51,7 +46,7 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
                       controller.closeView("");
                       selectedTile = item;
                       buttons.add(selectedTile);
-                      recipeFinderNotifier.setFilterActive(item);
+                      recipeFinderController.setFilterActive(item);
                     });
                   },
                 );
@@ -73,8 +68,8 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
         child: Wrap(
           alignment: WrapAlignment.start,
           runAlignment: WrapAlignment.start,
-          spacing: 10.0, // gap between adjacent chips
-          runSpacing: 5.0, // gap between lines
+          spacing: 10.0,
+          runSpacing: 5.0,
           children: List<Widget>.generate(buttons.length, (int index) {
             return Directionality(
                 textDirection: TextDirection.rtl,
@@ -89,7 +84,7 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
                     borderRadius: BorderRadius.circular(50),
                   ),
                   onDeleted: () => setState(() {
-                    recipeFinderNotifier.setFilterInactive(buttons[index]);
+                    recipeFinderController.setFilterInactive(buttons[index]);
                     buttons.removeAt(index);
                   }),
                 ));

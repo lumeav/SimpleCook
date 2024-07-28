@@ -1,15 +1,20 @@
 import 'package:hive/hive.dart';
+import 'package:simple_cook/service/persistence_service/persistence_service_aggregator.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
-import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'dart:math';
-import 'package:simple_cook/ui/favorites/persistence_service/persistence_service_interface.dart';
-import 'package:simple_cook/ui/planner/persistence_service/persistence_service_interface.dart';
-import 'package:simple_cook/ui/explore/persistence_service/persistence_service_interface.dart';
-import 'package:simple_cook/ui/recipe_finder/persistence_service/persistence_service_interface.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:simple_cook/ui/explore/services/explore_recipe_service.dart';
 
-class PersistenceService implements IFavoritesService, IPlannerService, IRecipeOfTheDayService, ISearchService  {
+part 'persistence_service.g.dart';
+
+@Riverpod(keepAlive: true)
+PersistenceServiceAggregator persistenceService(
+  final PersistenceServiceRef ref,
+) => PersistenceService();
+
+class PersistenceService extends PersistenceServiceAggregator {
   static final PersistenceService _instance = PersistenceService._internal();
 
   factory PersistenceService() {
@@ -26,16 +31,14 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
 
   Future<void> init() async {
     try {
-      // Open the box for 'favoritesBox'
-      //print("Looks like it worked");
       _favoritesBox = await Hive.openBox<SingleRecipe>('favoritesBox');
-      _plannerBox = await Hive.openBox<List>('plannerBox');
+      _plannerBox = await Hive.openBox<List<dynamic>>('plannerBox');
       _recipeOfTheDayBox = await Hive.openBox<Recipe>('recipeOfTheDayBox');
       _recipeOfTheDayDateBox =
           await Hive.openBox<DateTime>('recipeOfTheDayDateBox');
       _searchBarIngredientBox =
           await Hive.openBox<List<String>>('searchBarIngredientBox');
-      final List<String>? storedIngredients = _searchBarIngredientBox.get(0);
+      final storedIngredients = _searchBarIngredientBox.get(0);
       if (storedIngredients == null ||
           storedIngredients.length !=
               SimpleCookIngredientList.kOptions.length) {
@@ -43,8 +46,7 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
       }
     } catch (e) {
       print('Error initializing Hive box: $e');
-      // Handle initialization error gracefully
-      rethrow; // Re-throw the exception to propagate it further
+      rethrow;
     }
   }
 
@@ -80,11 +82,6 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
   }
 
   @override
-  Future<void> clearPlanner() async {
-    await _plannerBox.clear();
-  }
-
-  @override
   Future<void> addRecipeToPlanner(String date, SingleRecipe recipe) async {
     List<SingleRecipe> recipes =
         _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? [];
@@ -92,11 +89,10 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
     await _plannerBox.put(date, recipes);
   }
 
-  // Method to get recipes for a specific date from planner
   @override
   List<SingleRecipe> getRecipesForDate(String date) {
     return _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ??
-        []; // Handle potential null by providing default empty list
+        [];
   }
 
   @override
@@ -104,7 +100,7 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
     List<SingleRecipe> recipes =
         _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? [];
     recipes.removeWhere(
-        (SingleRecipe r) => r.title == recipe.title); // Remove based on title
+        (SingleRecipe r) => r.title == recipe.title);
     await _plannerBox.put(date, recipes);
   }
 
@@ -124,11 +120,10 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
   }
 
   @override
-  Future<Recipe> getRecipeOfTheDay(RecipeService recipeService) async {
+  Future<Recipe> getRecipeOfTheDay(ExploreRecipeService recipeService) async {
     DateTime today = DateTime.now();
     DateTime? lastRecipeDate = _recipeOfTheDayDateBox.get(0);
 
-    // Check if today's recipe is already set
     if (lastRecipeDate != null &&
         lastRecipeDate.year == today.year &&
         lastRecipeDate.month == today.month &&
@@ -145,7 +140,6 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
       } while (_recipeOfTheDayBox.isNotEmpty &&
           newRecipeOfTheDay == _recipeOfTheDayBox.get(0));
 
-      // Update the recipe of the day and date
       _recipeOfTheDayBox.put(0, newRecipeOfTheDay);
       _recipeOfTheDayDateBox.put(0, today);
 
@@ -165,7 +159,7 @@ class PersistenceService implements IFavoritesService, IPlannerService, IRecipeO
   List<String> getSearchBox() {
     final List<String>? history =
         _searchBarIngredientBox.get(0, defaultValue: []);
-    return history ?? []; // Return an empty list if history is null
+    return history ?? [];
   }
 
   @override
