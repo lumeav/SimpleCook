@@ -40,11 +40,16 @@ class LoadingIndicator extends StatelessWidget {
           if (showTips)
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
-              child: Text(
-                randomTip,
-                style: TextStyle(
-                  color: SimpleCookColors.primary,
-                  fontSize: 16,
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 20.0), // Adjust padding as needed
+                child: Text(
+                  randomTip,
+                  style: TextStyle(
+                    color: SimpleCookColors.primary,
+                    fontSize: 16,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
               ),
             ),
