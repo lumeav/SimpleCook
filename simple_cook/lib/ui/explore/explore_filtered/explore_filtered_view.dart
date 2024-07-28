@@ -5,7 +5,6 @@ import 'package:simple_cook/common/widgets/loading_indicator.dart';
 import 'package:simple_cook/common/widgets/simple_recipe.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/common/widgets/header_grey_background.dart';
-import 'explore_filtered_controller_implementation.dart';
 import 'explore_filtered_providers.dart';
 
 class ExploreFilteredView extends ConsumerStatefulWidget {

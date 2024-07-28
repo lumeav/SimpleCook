@@ -32,7 +32,7 @@ class PersistenceService extends PersistenceServiceAggregator {
   Future<void> init() async {
     try {
       _favoritesBox = await Hive.openBox<SingleRecipe>('favoritesBox');
-      _plannerBox = await Hive.openBox<List>('plannerBox');
+      _plannerBox = await Hive.openBox<List<dynamic>>('plannerBox');
       _recipeOfTheDayBox = await Hive.openBox<Recipe>('recipeOfTheDayBox');
       _recipeOfTheDayDateBox =
           await Hive.openBox<DateTime>('recipeOfTheDayDateBox');

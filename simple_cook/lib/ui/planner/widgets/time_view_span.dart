@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_cook/common/theme.dart';
-import 'package:simple_cook/ui/planner/planner_controller_implementation.dart';
-import 'package:simple_cook/ui/planner/planner_model.dart';
 import 'package:simple_cook/ui/planner/planner_providers.dart';
 import 'package:simple_cook/ui/planner/planner_view.dart';
 

@@ -54,7 +54,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                       child: AspectRatio(
                         aspectRatio: 1.1,
                         child:
-                            Image.network(widget.imgPath!, fit: BoxFit.cover),
+                            Image.network(widget.imgPath, fit: BoxFit.cover),
                       ),
                     ),
                     Positioned(
@@ -71,7 +71,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                   padding: const EdgeInsets.all(5),
                   alignment: Alignment.centerLeft,
                   child: AutoSizeText(
-                    widget.rezeptName!,
+                    widget.rezeptName,
                     style: SimpleCookTextstyles.recheader,
                     maxLines: 2,
                   ),

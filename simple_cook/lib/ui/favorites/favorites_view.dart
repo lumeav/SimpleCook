@@ -28,16 +28,16 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
     final favoriteModel = ref.watch(favoritesModelProvider);
 
     return Scaffold(
-      appBar: SimpleCookAppBar('SimpleCook'),
+      appBar: const SimpleCookAppBar('SimpleCook'),
       backgroundColor: Colors.grey[200],
-      body: favoriteModel.favoriteRecipes!.isEmpty
+      body: favoriteModel.favoriteRecipes.isEmpty
           ? const Center(child: Text('Keine Favoriten hinzugefügt'))
           : Column(
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 color: Colors.grey[200],
-                child: HeaderGreyBackground('Favoriten', FontWeight.bold)),
+                child: const HeaderGreyBackground('Favoriten', FontWeight.bold)),
               Expanded(
                 child: GridView.builder(
                     padding: const EdgeInsets.all(15),
@@ -47,9 +47,9 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
                     ),
-                    itemCount: favoriteModel.favoriteRecipes!.length,
+                    itemCount: favoriteModel.favoriteRecipes.length,
                     itemBuilder: (context, index) {
-                      final recipe = favoriteModel.favoriteRecipes![index];
+                      final recipe = favoriteModel.favoriteRecipes[index];
                       return SimpleRecipe(
                         recipe.imageUrls.isNotEmpty ? recipe.imageUrls.first : '',
                         recipe.title,

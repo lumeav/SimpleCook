@@ -16,6 +16,10 @@ analyzer:
     implicit-dynamic: false
   errors:
     invalid_annotation_target: ignore
+  language:
+    strict-casts: false
+    strict-raw-types: true
+    strict-inference: true
 
 
 linter:
