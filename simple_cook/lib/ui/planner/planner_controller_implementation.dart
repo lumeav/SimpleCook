@@ -1,6 +1,8 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
+import 'package:simple_cook/ui/planner/services/planner_persistence_service.dart';
 import 'package:simple_cook/ui/planner/planner_model.dart';
-import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
+import 'package:simple_cook/ui/planner/planner_view.dart';
 
 part 'planner_controller_implementation.g.dart';
 
@@ -8,7 +10,9 @@ part 'planner_controller_implementation.g.dart';
 class PlannerControllerImplementation extends _$PlannerControllerImplementation
     implements PlannerController {
   @override
-  PlannerModel build() {
+  PlannerModel build({
+    required final PlannerPersistenceService persistenceService,
+  }) {
     DateTime data = DateTime.now();
     int dayOffset = data.weekday - DateTime.monday;
     DateTime firstDateOfWeek = data.subtract(Duration(days: dayOffset));
@@ -78,5 +82,25 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
       }
       return dates;
     }
+  }
+
+  @override
+  Map<String, List<SingleRecipe>> loadPlanner() {
+    return persistenceService.loadPlanner();
+  }
+
+  @override
+  Future<void> addPlanner(String date, SingleRecipe recipe) async {
+    await persistenceService.addRecipeToPlanner(date, recipe);
+  }
+
+  @override
+  Future<void> removePlanner(String date, SingleRecipe recipe) async {
+    await persistenceService.removeRecipeFromPlanner(date, recipe);
+  }
+
+  @override
+  List<SingleRecipe> getRecipesForDate(String date) {
+    return persistenceService.getRecipesForDate(date);
   }
 }

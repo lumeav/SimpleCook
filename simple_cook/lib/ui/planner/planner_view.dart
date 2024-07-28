@@ -1,10 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
-import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_model.dart';
-import 'package:simple_cook/ui/planner/planner_provider.dart';
 import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
 import 'package:simple_cook/ui/planner/widgets/date.dart';
 import 'package:intl/intl.dart';
@@ -12,7 +8,7 @@ import 'package:simple_cook/ui/planner/widgets/remove_button.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/common/widgets/extended_recipe.dart';
 import 'package:simple_cook/common/widgets/header_recipe_infos.dart';
-import 'package:simple_cook/ui/planner/planner_controller_implementation.dart';
+import 'planner_providers.dart';
 
 class PlannerView extends ConsumerStatefulWidget {
   const PlannerView({
@@ -28,7 +24,7 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
   @override
   void initState() {
     super.initState();
-    ref.read(plannerControllerImplementationProvider.notifier).build();
+    ref.read(plannerControllerProvider);
   }
 
   @override
@@ -52,20 +48,20 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
   }
 
   List<Widget> _buildPlannerRows() {
-    final plannerController =
-        ref.watch(plannerControllerImplementationProvider);
-    final planner = ref.watch(plannerProvider.notifier);
-    final plannerState = ref.watch(plannerProvider);
+    final plannerModel =
+        ref.watch(plannerModelProvider);
+    final planner = ref.watch(plannerControllerProvider);
     List<Widget> plannerRows = [];
 
     bool hasRecipesForWeek = false;
 
-    for (DateTime date in plannerController.dates) {
+    for (DateTime date in plannerModel.dates) {
 
       String formattedDate = DateFormat('dd.MM.yyyy').format(date);
       List<SingleRecipe> recipes = planner.getRecipesForDate(formattedDate);
       if (recipes.isNotEmpty) {
         hasRecipesForWeek = true;
+
         plannerRows.add(
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
@@ -75,7 +71,7 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
                 Date(date),
                 SizedBox(height: 5),
                 _buildRecipeWidgets(
-                    plannerState[formattedDate]!, formattedDate),
+                    planner.loadPlanner()[formattedDate]!, formattedDate),
               ],
             ),
           ),
@@ -131,10 +127,18 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
                   recipe.title, recipe.totalTime.toStringAsFixed(0)),
               recipe.imageUrls.first,
               recipe.title,
-              recipe.source,
-              ''),
+              recipe.source),
         ],
       ),
     );
   }
+}
+
+abstract class PlannerController {
+  void nextWeek();
+  void previousWeek();
+  Map<String, List<SingleRecipe>> loadPlanner();
+  Future<void> addPlanner(String date, SingleRecipe recipe);
+  Future<void> removePlanner(String date, SingleRecipe recipe);
+  List<SingleRecipe> getRecipesForDate(String date);
 }

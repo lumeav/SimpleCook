@@ -92,7 +92,6 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
         child: RecipeView(
           key: state.pageKey,
           recipeUrl: state.uri.queryParameters['recipeUrl'],
-          difficulty: state.uri.queryParameters['difficulty'],
         ),
       );
     },

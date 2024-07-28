@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/ui/recipe_finder/recipe_finder_controller_implementation.dart';
 import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/ui/recipe_finder/widgets/filter_tag.dart';
 import 'package:simple_cook/ui/recipe_finder/widgets/search_bar.dart';
 import 'package:simple_cook/ui/recipe_finder/widgets/search_recipe_button.dart';
 import 'package:simple_cook/common/widgets/header_grey_background.dart';
+import 'package:simple_cook/ui/recipe_finder/recipe_finder_providers.dart';
 
 class RecipefinderView extends ConsumerStatefulWidget {
 
@@ -21,7 +21,7 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
 
   @override
   Widget build(BuildContext context) {
-    final recipeFinderState = ref.watch(recipeFinderControllerImplementationProvider);
+    final recipeFinderState = ref.watch(recipeFinderModelProvider);
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
@@ -75,6 +75,9 @@ abstract class RecipeFinderController {
   void setFilterActive(String filter);
   void setFilterInactive(String filter);
   String getFilter();
+  Future<List<String>> loadSearchBox();
+  Future<void> addSearchQuery(String query);
+  Future<Iterable<String>> search(String query);
 }
 
 

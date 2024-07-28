@@ -3,7 +3,7 @@ import 'package:simple_cook/service/recipe_service/api_response.dart';
 import 'package:simple_cook/ui/recipe_finder/result/result_model.dart';
 import 'package:simple_cook/ui/recipe_finder/result/result_view.dart';
 import 'package:simple_cook/service/recipe_service/recipe_gen_model.dart';
-import 'package:simple_cook/service/recipe_service/recipe_service.dart';
+import 'package:simple_cook/ui/recipe_finder/services/result_recipe_service.dart';
 
 part 'result_controller_implementation.g.dart';
 
@@ -12,7 +12,9 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
     implements ResultController {
 
   @override
-  ResultModel build() => const ResultModel();
+  ResultModel build({
+    required final ResultRecipeService recipeService,
+  }) => const ResultModel();
 
   @override
   Future<void> refetchRecipe(String query) async {
@@ -23,9 +25,8 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
   @override
   Future<void> fetchRecipe(String query) async {
     try {
-      final RecipeService service = RecipeService();
       final ApiResponse<GenRecipeModel> response =
-          await service.postGenRecipeModel(query);
+          await recipeService.postGenRecipeModel(query);
       if (response.data == null && response.errorMessage != null) {
         state = state.copyWith(
           error: true,
@@ -46,9 +47,8 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
 
   Future<void> _fetchRecipeImg(GenRecipeModel genRecipe) async {
     try {
-      final RecipeService service = RecipeService();
       ApiResponse<String> response =
-          await service.postGenRecipeModelImg(genRecipe);
+          await recipeService.postGenRecipeModelImg(genRecipe);
       if (response.data != null) {
         state = state.copyWith(
             url: response.data, error: false, fetchFinished: true);

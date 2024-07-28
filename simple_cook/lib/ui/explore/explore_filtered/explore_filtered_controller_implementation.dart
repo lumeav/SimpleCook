@@ -1,9 +1,9 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:simple_cook/service/recipe_service/api_response.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
-import 'package:simple_cook/service/recipe_service/recipe_service.dart';
 import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_model.dart';
 import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_view.dart';
+import 'package:simple_cook/ui/explore/services/explore_recipe_service.dart';
 
 part 'explore_filtered_controller_implementation.g.dart';
 
@@ -12,7 +12,9 @@ class ExploreFilteredControllerImplementation extends _$ExploreFilteredControlle
     implements ExploreFilteredController {
 
   @override
-  ExploreFilteredModel build() => const ExploreFilteredModel();
+  ExploreFilteredModel build({
+    required final ExploreRecipeService recipeService,
+  }) => const ExploreFilteredModel();
 
   @override
   Future<void> rebuildRecipes(String search) async {
@@ -23,7 +25,6 @@ class ExploreFilteredControllerImplementation extends _$ExploreFilteredControlle
   @override
   Future<void> buildRecipes(String search) async {
     try {
-      final RecipeService recipeService = RecipeService();
       ApiResponse<List<Recipe>?> response =
           await recipeService.getAllRecipes(search);
       if (response.data != null && response.errorMessage == null) {
@@ -39,16 +40,4 @@ class ExploreFilteredControllerImplementation extends _$ExploreFilteredControlle
     }
   }
 
-  @override
-  String checkDiff(String? diff) {
-    if (diff == 'easy') {
-      return 'einfach';
-    } else if (diff == 'medium') {
-      return 'mittel';
-    } else if (diff == 'hard') {
-      return 'schwer';
-    } else {
-      return '';
-    }
-  }
 }

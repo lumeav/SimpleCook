@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:simple_cook/ui/recipe_info/recipe_info_controller_implementation.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_model.dart';
+import 'package:simple_cook/ui/recipe_info/recipe_info_providers.dart';
 import 'package:simple_cook/common/widgets/loading_indicator.dart';
 import 'package:simple_cook/common/widgets/preparation.dart';
 import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
@@ -14,12 +14,10 @@ import 'package:simple_cook/common/theme.dart';
 
 class RecipeView extends ConsumerStatefulWidget {
   final String? recipeUrl;
-  final String? difficulty;
 
   const RecipeView({
     super.key,
     this.recipeUrl,
-    this.difficulty,
   });
 
   @override
@@ -31,12 +29,12 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
   @override
   void initState() {
     super.initState();
-    ref.read(recipeInfoControllerImplementationProvider.notifier).fetchRecipe(widget.recipeUrl);
+    ref.read(recipeInfoControllerProvider).fetchRecipe(widget.recipeUrl);
   }
 
   @override
   Widget build(BuildContext context) {
-    final RecipeInfoModel recipeInfoState = ref.watch(recipeInfoControllerImplementationProvider);
+    final RecipeInfoModel recipeInfoState = ref.watch(recipeInfoModelProvider);
 
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'),
@@ -65,8 +63,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.white),
-                            child: buildSingleRecipe(recipeInfoState.recipe!, widget.recipeUrl!,
-                                widget.difficulty!)),
+                            child: buildSingleRecipe(recipeInfoState.recipe!, widget.recipeUrl!)),
                       ),
                     ],
                   ),
@@ -89,8 +86,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                                 onPressed: () {
                                   ref
                                       .read(
-                                          recipeInfoControllerImplementationProvider
-                                              .notifier)
+                                          recipeInfoControllerProvider)
                                       .refetchRecipe(widget.recipeUrl);
                                 },
                                 style: ButtonStyle(
@@ -121,7 +117,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
   }
 
   Widget buildSingleRecipe(
-      SingleRecipe singleRecipe, String recipeUrl, String difficulty) {
+      SingleRecipe singleRecipe, String recipeUrl) {
     return Column(
       children: [
         Stack(children: [

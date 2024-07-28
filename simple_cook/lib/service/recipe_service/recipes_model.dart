@@ -7,7 +7,6 @@ String recipeToJson(List<Recipe> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Recipe {
-  String? difficulty;
   List<String> imageUrls;
   List<Ingredient> ingredients;
   int? portions;
@@ -17,7 +16,6 @@ class Recipe {
   List<String>? diet;
 
   Recipe({
-    this.difficulty,
     required this.imageUrls,
     required this.ingredients,
     required this.portions,
@@ -28,7 +26,6 @@ class Recipe {
   });
 
   factory Recipe.fromJson(Map<String, dynamic> json) => Recipe(
-        difficulty: json["difficulty"],
         imageUrls: List<String>.from(json["image_urls"].map((x) => x)),
         ingredients: (json['ingredients'] as List)
             .map(
@@ -44,7 +41,6 @@ class Recipe {
       );
 
   Map<String, dynamic> toJson() => {
-        "difficulty": difficulty,
         "image_urls": List<dynamic>.from(imageUrls.map((x) => x)),
         "ingredients": List<dynamic>.from(ingredients.map((x) => x.toJson())),
         "source": source,

@@ -3,7 +3,7 @@ import 'package:simple_cook/service/recipe_service/api_response.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_model.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_view.dart';
-import 'package:simple_cook/service/recipe_service/recipe_service.dart';
+import 'package:simple_cook/ui/recipe_info/services/recipe_info_recipe_service.dart';
 
 part 'recipe_info_controller_implementation.g.dart';
 
@@ -13,7 +13,7 @@ class RecipeInfoControllerImplementation
     implements RecipeInfoController {
 
   @override
-  RecipeInfoModel build() => const RecipeInfoModel();
+  RecipeInfoModel build({required final RecipeInfoRecipeService recipeService}) => const RecipeInfoModel();
 
   @override
   Future<void> refetchRecipe(String? recipeUrl) async {
@@ -24,9 +24,8 @@ class RecipeInfoControllerImplementation
   @override
   Future<void> fetchRecipe(String? recipeUrl) async {
     try {
-      final RecipeService service = RecipeService();
       ApiResponse<SingleRecipe> response =
-          await service.getSingleRecipe(recipeUrl!);
+          await recipeService.getSingleRecipe(recipeUrl!);
       if (response.data == null && response.errorMessage != null) {
         state =
             state.copyWith(error: true, errorMessage: response.errorMessage);
