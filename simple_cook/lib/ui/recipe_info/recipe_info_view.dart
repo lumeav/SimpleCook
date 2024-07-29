@@ -48,13 +48,13 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
         appBar: const SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
         body: recipeInfoState.fetchFinished
-            ? Column(children: [
+            ? Column(children: <Widget>[
                 Container(
-                    padding: EdgeInsets.symmetric(vertical: 2),
+                    padding: const EdgeInsets.symmetric(vertical: 2),
                     color: Colors.white,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
+                      children: <Widget>[
                           AddPlaner(recipe: recipeInfoState.recipe),
                           const SizedBox(width: 10),
                           HeartButton(false, recipe: recipeInfoState.recipe!),
@@ -63,7 +63,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                 Expanded(
                     child: SingleChildScrollView(
                   child: Column(
-                    children: [
+                    children: <Widget>[
                       Padding(
                         padding:
                             const EdgeInsets.only(left: 15, right: 15, top: 10),
@@ -85,7 +85,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Text(recipeInfoState.errorMessage!,
                             style: const TextStyle(color: Colors.grey)),
                         const SizedBox(height: 8),
@@ -122,14 +122,14 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                       ],
                     ),
                   ))
-                : LoadingIndicator());
+                : const LoadingIndicator());
   }
 
   Widget buildSingleRecipe(
       SingleRecipe singleRecipe, String recipeUrl) {
     return Column(
-      children: [
-        Stack(children: [
+      children: <Widget>[
+        Stack(children: <Widget>[
           ClipRRect(
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(12), topRight: Radius.circular(12)),
@@ -145,8 +145,8 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
             singleRecipe.totalTime.toStringAsFixed(0)),
         const Padding(
             padding: EdgeInsets.only(left: 15, right: 15), child: Divider()),
-        Ingredients([
-          for (var ingredient in singleRecipe.ingredients)
+        Ingredients(<String>[
+          for (Ingredient ingredient in singleRecipe.ingredients)
             if (ingredient.amount == "" && ingredient.unit == "")
               ingredient.name
             else if (ingredient.amount != "" && ingredient.unit == "")
@@ -160,7 +160,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
         Padding(
           padding: const EdgeInsets.only(top: 10.0),
           child: Preparation(
-              [for (var preparation in singleRecipe.steps) preparation]),
+              <String>[for (String preparation in singleRecipe.steps) preparation]),
         )
       ],
     );

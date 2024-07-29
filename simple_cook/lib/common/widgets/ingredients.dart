@@ -9,7 +9,7 @@ class Ingredients extends StatelessWidget {
   Widget _buildBulletItem(String text, int index) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+      children: <Widget>[
         const Text('•', style: TextStyle(fontSize: 20)),
         const SizedBox(width: 16.0),
         Expanded(child: Text(text, style: SimpleCookTextstyles.rawText)),
@@ -22,7 +22,7 @@ class Ingredients extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 15, right: 15),
       child: Column(
-        children: [
+        children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

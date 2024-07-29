@@ -5,6 +5,8 @@ import 'package:simple_cook/common/widgets/loading_indicator.dart';
 import 'package:simple_cook/common/widgets/simple_recipe.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/common/widgets/header_grey_background.dart';
+import 'package:simple_cook/service/recipe_service/recipes_model.dart';
+import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_model.dart';
 import 'explore_filtered_providers.dart';
 
 class ExploreFilteredView extends ConsumerStatefulWidget {
@@ -32,15 +34,15 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
 
   @override
   Widget build(BuildContext context) {
-    final exploreFilteredState =
+    final ExploreFilteredModel exploreFilteredState =
         ref.watch(exploreFilteredModelProvider);
 
     return Scaffold(
-        appBar: SimpleCookAppBar('SimpleCook'),
+        appBar: const SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
         body: exploreFilteredState.fetchFinished
             ? CustomScrollView(
-                slivers: [
+                slivers: <Widget>[
                   SliverToBoxAdapter(
                       child: HeaderGreyBackground(
                           'Suchergebnisse für ${widget.search}',
@@ -53,8 +55,8 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
                       crossAxisCount: 2,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
-                      children: [
-                        for (var recipe in exploreFilteredState.filteredRecipes!)
+                      children: <Widget>[
+                        for (Recipe recipe in exploreFilteredState.filteredRecipes!)
                           SimpleRecipe(
                               recipe.imageUrls.first,
                               recipe.title,
@@ -74,7 +76,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Text(exploreFilteredState.errorMessage!,
                             style: const TextStyle(color: Colors.grey)),
                         const SizedBox(height: 8),
@@ -105,7 +107,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
                                   ),
                                 ),
                                 child: const Text(
-                                  "Try again",
+                                  "Erneut versuchen",
                                   style: SimpleCookTextstyles.filterTagTapped,
                                 )))
                       ],

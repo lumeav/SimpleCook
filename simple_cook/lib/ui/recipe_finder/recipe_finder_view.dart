@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
+import 'package:simple_cook/ui/recipe_finder/recipe_finder_model.dart';
 import 'package:simple_cook/ui/recipe_finder/widgets/filter_tag.dart';
 import 'package:simple_cook/ui/recipe_finder/widgets/search_bar.dart';
 import 'package:simple_cook/ui/recipe_finder/widgets/search_recipe_button.dart';
@@ -9,9 +10,9 @@ import 'package:simple_cook/ui/recipe_finder/recipe_finder_providers.dart';
 
 class RecipefinderView extends ConsumerStatefulWidget {
 
-  RecipefinderView({
-    Key? key,
-  }) : super(key: key);
+  const RecipefinderView({
+    super.key,
+  });
 
   @override
   ConsumerState<RecipefinderView> createState() => _RecipefinderViewState();
@@ -21,31 +22,29 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
 
   @override
   Widget build(BuildContext context) {
-    final recipeFinderState = ref.watch(recipeFinderModelProvider);
+    final RecipeFinderModel recipeFinderState = ref.watch(recipeFinderModelProvider);
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
-        body: Container(
-          child: Scrollbar(
-            radius: const Radius.circular(50),
-            thickness: 5,
-            child: SingleChildScrollView(
-              physics:  ClampingScrollPhysics(),
-              child: Column(
-                children: [
-                  const SearchBarFilter(),
-                  const HeaderGreyBackground("Kategorie", FontWeight.bold),
-                  _buildFilterTags(recipeFinderState.categories),
-                  const HeaderGreyBackground("Ernährungsart", FontWeight.bold),
-                  _buildFilterTags(recipeFinderState.diets),
-                  Container(
-                    margin: const EdgeInsets.only(top: 50, bottom: 30),
-                    alignment: Alignment.center,
-                    child: const SearchRecipesButton("Rezept generieren", "subRecipesFiltered")
-
-                  )
-                ],
-              ),
+        body: Scrollbar(
+          radius: const Radius.circular(50),
+          thickness: 5,
+          child: SingleChildScrollView(
+            physics:  const ClampingScrollPhysics(),
+            child: Column(
+              children: <Widget>[
+                const SearchBarFilter(),
+                const HeaderGreyBackground("Kategorie", FontWeight.bold),
+                _buildFilterTags(recipeFinderState.categories),
+                const HeaderGreyBackground("Ernährungsart", FontWeight.bold),
+                _buildFilterTags(recipeFinderState.diets),
+                Container(
+                  margin: const EdgeInsets.only(top: 50, bottom: 30),
+                  alignment: Alignment.center,
+                  child: const SearchRecipesButton("Rezept generieren", "subRecipesFiltered")
+        
+                )
+              ],
             ),
           ),
         ));
@@ -63,8 +62,8 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
             direction: Axis.horizontal,
             spacing: 10.0,
             runSpacing: 5.0,
-            children: [
-              for (var filter in filterList) FilterTag(filter),
+            children: <Widget>[
+              for (String filter in filterList) FilterTag(filter),
             ],
           )),
     );

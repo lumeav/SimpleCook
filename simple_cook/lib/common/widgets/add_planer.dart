@@ -5,15 +5,16 @@ import 'package:intl/intl.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/ui/planner/planner_providers.dart';
+import 'package:simple_cook/ui/planner/planner_view.dart';
 
 
 class AddPlaner extends ConsumerStatefulWidget {
   final SingleRecipe? recipe;
 
   const AddPlaner({
-    Key? key,
+    super.key,
     this.recipe,
-  }) : super(key: key);
+  });
 
   @override
   ConsumerState<AddPlaner> createState() => _AddPlanerState();
@@ -24,7 +25,7 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size.width * 0.062;
+    double size = MediaQuery.of(context).size.width * 0.062;
     return Container(
       width: size + 8,
       height: size + 8,
@@ -49,8 +50,8 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
   }
 
   void _showDatePickerDialog(BuildContext context) {
-    var size = MediaQuery.of(context).size.width * 0.75;
-    showDialog(
+    double size = MediaQuery.of(context).size.width * 0.75;
+    showDialog<void>(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
@@ -62,7 +63,7 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
               children: <Widget>[
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: <Widget> [
                     IconButton(
                       icon: const Icon(Icons.close),
                       onPressed: () {
@@ -87,9 +88,8 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
   }
 
   Widget _buildDatePicker() {
-    //final plannerNotifier = ref.watch(plannerProvider.notifier);
-    final plannerController = ref.watch(plannerControllerProvider);
-    var size = MediaQuery.of(context).size.width * 0.40;
+    final PlannerController plannerController = ref.watch(plannerControllerProvider);
+    double size = MediaQuery.of(context).size.width * 0.40;
     final List<String> dates = _generateNext14Days();
     return SizedBox(
       height: size,
@@ -120,7 +120,7 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
   }
 
   List<String> _generateNext14Days() {
-    final List<String> dates = [];
+    final List<String> dates = <String>[];
     final DateFormat dateFormat = DateFormat('EE dd.MM.yyyy', 'de_DE');
 
     for (int i = 0; i < 14; i++) {
@@ -128,7 +128,6 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
       final String formattedDate = dateFormat.format(date);
       dates.add(formattedDate);
     }
-
     return dates;
   }
 }

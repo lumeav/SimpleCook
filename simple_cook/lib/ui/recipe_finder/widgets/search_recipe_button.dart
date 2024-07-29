@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/ui/recipe_finder/recipe_finder_providers.dart';
+import 'package:simple_cook/ui/recipe_finder/recipe_finder_view.dart';
 
 class SearchRecipesButton extends ConsumerWidget {
   final String buttontext;
@@ -12,12 +13,12 @@ class SearchRecipesButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final recipeFinderController = ref.watch(recipeFinderControllerProvider);
+    final RecipeFinderController recipeFinderController = ref.watch(recipeFinderControllerProvider);
     return SizedBox(
       height: 50,
       child: ElevatedButton(
             onPressed: () {
-              context.pushNamed('singleResultView', queryParameters: {'text': recipeFinderController.getFilter()});
+              context.pushNamed('singleResultView', queryParameters: <String, dynamic>{'text': recipeFinderController.getFilter()});
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(SimpleCookColors.primary),

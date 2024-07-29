@@ -1,3 +1,4 @@
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/ui/explore/explore_view.dart';
@@ -9,20 +10,20 @@ import 'package:simple_cook/ui/explore/explore_filtered/explore_filtered_view.da
 import 'package:simple_cook/ui/recipe_info/recipe_info_view.dart';
 import 'package:simple_cook/wrapper/main_wrapper.dart';
 
-final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
+final GoRouter router = GoRouter(initialLocation: '/explore', routes: <RouteBase>[
   StatefulShellRoute.indexedStack(
-      builder: (context, state, navigationShell) {
+      builder: (BuildContext context, GoRouterState state, StatefulNavigationShell navigationShell) {
         return MainWrapper(
           key: state.pageKey,
           child: navigationShell,
         );
       },
-      branches: [
-        StatefulShellBranch(routes: [
+      branches: <StatefulShellBranch>[
+        StatefulShellBranch(routes: <RouteBase>[
           GoRoute(
               path: '/explore',
               name: 'explore',
-              pageBuilder: (context, state) {
+              pageBuilder: (BuildContext context, GoRouterState state) {
                 return NoTransitionPage(
                   key: state.pageKey,
                   child: ExploreView(
@@ -30,11 +31,11 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                   ),
                 );
               },
-              routes: [
+              routes: <RouteBase>[
                 GoRoute(
                     path: 'subRecipesFiltered',
                     name: 'subRecipesFiltered',
-                    pageBuilder: (context, state) {
+                    pageBuilder: (BuildContext context, GoRouterState state) {
                       return NoTransitionPage(
                           key: state.pageKey,
                           child: ExploreFilteredView(
@@ -44,11 +45,11 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                     })
               ]),
         ]),
-        StatefulShellBranch(routes: [
+        StatefulShellBranch(routes: <RouteBase>[
           GoRoute(
               path: '/recipeFinder',
               name: 'recipeFinder',
-              pageBuilder: (context, state) {
+              pageBuilder: (BuildContext context, GoRouterState state) {
                 return NoTransitionPage(
                   key: state.pageKey,
                   child: RecipefinderView(
@@ -57,11 +58,11 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                 );
               })
         ]),
-        StatefulShellBranch(routes: [
+        StatefulShellBranch(routes: <RouteBase>[
           GoRoute(
               path: '/favorites',
               name: 'favorites',
-              pageBuilder: (context, state) {
+              pageBuilder: (BuildContext context, GoRouterState state) {
                 return NoTransitionPage(
                   key: state.pageKey,
                   child: FavoritesView(
@@ -70,11 +71,11 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
                 );
               })
         ]),
-        StatefulShellBranch(routes: [
+        StatefulShellBranch(routes: <RouteBase>[
           GoRoute(
               path: '/planner',
               name: 'planner',
-              pageBuilder: (context, state) {
+              pageBuilder: (BuildContext context, GoRouterState state) {
                 return NoTransitionPage(
                   key: state.pageKey,
                   child: PlannerView(
@@ -102,7 +103,7 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: [
   GoRoute(
     path: '/singleResultView',
     name: 'singleResultView',
-    pageBuilder: (context, state) {
+    pageBuilder: (BuildContext context, GoRouterState state) {
       return NoTransitionPage(
         key: state.pageKey,
         child: ResultView(

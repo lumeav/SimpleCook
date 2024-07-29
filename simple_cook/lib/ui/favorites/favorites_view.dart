@@ -4,12 +4,13 @@ import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/common/widgets/header_grey_background.dart';
 import 'package:simple_cook/common/widgets/simple_recipe.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/ui/favorites/favorites_model.dart';
 import 'package:simple_cook/ui/favorites/favorites_providers.dart';
 
 class FavoritesView extends ConsumerStatefulWidget {
   const FavoritesView({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _FavoritesViewState();
@@ -25,7 +26,7 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
 
   @override
   Widget build(BuildContext context) {
-    final favoriteModel = ref.watch(favoritesModelProvider);
+    final FavoritesModel favoriteModel = ref.watch(favoritesModelProvider);
 
     return Scaffold(
       appBar: const SimpleCookAppBar('SimpleCook'),
@@ -33,7 +34,7 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
       body: favoriteModel.favoriteRecipes.isEmpty
           ? const Center(child: Text('Keine Favoriten hinzugefügt'))
           : Column(
-            children: [
+            children: <Widget>[
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 color: Colors.grey[200],
@@ -48,8 +49,8 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
                       crossAxisSpacing: 10,
                     ),
                     itemCount: favoriteModel.favoriteRecipes.length,
-                    itemBuilder: (context, index) {
-                      final recipe = favoriteModel.favoriteRecipes[index];
+                    itemBuilder: (BuildContext context, int index) {
+                      final SingleRecipe recipe = favoriteModel.favoriteRecipes[index];
                       return SimpleRecipe(
                         recipe.imageUrls.isNotEmpty ? recipe.imageUrls.first : '',
                         recipe.title,

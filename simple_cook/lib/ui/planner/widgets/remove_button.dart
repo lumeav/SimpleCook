@@ -6,14 +6,15 @@ import 'package:simple_cook/ui/planner/planner_view.dart';
 import 'package:simple_cook/ui/planner/planner_providers.dart';
 import 'package:simple_cook/ui/planner/widgets/date.dart';
 
+
 class RemoveButton extends ConsumerWidget {
   final SingleRecipe recipe;
   final String date;
   const RemoveButton({
     required this.recipe,
     required this.date,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
 
   @override

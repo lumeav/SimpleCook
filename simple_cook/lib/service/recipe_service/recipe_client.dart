@@ -39,10 +39,10 @@ class RecipeClient {
   }
 
   Future<ApiResponse<SingleRecipe>> getSingleRecipe(String recipeUrl) async {
-    final String url = baseUrl + 'crawl?target_url=' + recipeUrl;
+    final String url = '${baseUrl}crawl?target_url=$recipeUrl';
 
     return await _handleRequest(() async {
-      var response = await client
+      http.Response response = await client
           .get(Uri.parse(url), headers: headers)
           .timeout(const Duration(seconds: 10));
       if (response.statusCode == 200) {
@@ -62,15 +62,15 @@ class RecipeClient {
 
   Future<ApiResponse<GenRecipeModel>> postGenRecipeModel(String request) async {
     return await _handleRequest(() async {
-      var response = await client
+      http.Response response = await client
           .post(
-            Uri.parse(baseUrl + 'generateRecipe'),
+            Uri.parse('${baseUrl}generateRecipe'),
             headers: headers,
-            body: jsonEncode({'text': request}),
+            body: jsonEncode(<String, String>{'text': request}),
           )
           .timeout(const Duration(seconds: 30));
       if (response.statusCode == 200) {
-        var genRecipe =
+        GenRecipeModel genRecipe =
             genRecipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
         return ApiResponse<GenRecipeModel>(data: genRecipe);
       } else if (response.statusCode == 429 || response.statusCode == 403) {
@@ -87,18 +87,18 @@ class RecipeClient {
   Future<ApiResponse<String>> postGenRecipeModelImg(
       GenRecipeModel recipe) async {
     return await _handleRequest(() async {
-      var genRecipeJson = genRecipeToJson(recipe);
-      var imgRecipe = imgRecipeFromJson(genRecipeJson);
-      var imgRecipeJson = imgRecipeToJson(imgRecipe);
-      var response = await client
+      String genRecipeJson = genRecipeToJson(recipe);
+      ImgRecipeModel imgRecipe = imgRecipeFromJson(genRecipeJson);
+      String imgRecipeJson = imgRecipeToJson(imgRecipe);
+      http.Response response = await client
           .post(
-            Uri.parse(baseUrl + 'generateRecipeImage'),
+            Uri.parse('${baseUrl}generateRecipeImage'),
             headers: headers,
             body: imgRecipeJson,
           )
           .timeout(const Duration(seconds: 30));
       if (response.statusCode == 200) {
-        var imgUrl =
+        Url imgUrl =
             urlFromJson(const Utf8Decoder().convert(response.bodyBytes));
         return ApiResponse<String>(data: imgUrl.url);
       } else if (response.statusCode == 429 || response.statusCode == 403) {

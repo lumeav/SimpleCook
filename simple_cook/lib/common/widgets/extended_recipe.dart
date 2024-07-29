@@ -34,7 +34,7 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
                 Stack(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(12),
                           topRight: Radius.circular(12)
                           ),

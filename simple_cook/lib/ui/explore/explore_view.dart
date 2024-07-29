@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/ui/explore/explore_model.dart';
 import 'package:simple_cook/ui/explore/widgets/header_rezept_des_tages.dart';
 import 'package:simple_cook/common/widgets/extended_recipe.dart';
 import 'package:simple_cook/ui/explore/widgets/search_bar_explore.dart';
@@ -13,8 +14,8 @@ import 'explore_providers.dart';
 
 class ExploreView extends ConsumerStatefulWidget {
   const ExploreView({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ExploreViewState();
@@ -30,27 +31,27 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
 
   @override
   Widget build(BuildContext context) {
-    final exploreState = ref.watch(exploreModelProvider);
+    final ExploreModel exploreState = ref.watch(exploreModelProvider);
 
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'),
         backgroundColor: Colors.grey[200],
         body: exploreState.fetchFinished
-            ? CustomScrollView(slivers: [
+            ? CustomScrollView(slivers: <Widget>[
                 const SliverAppBar(
                   pinned: true,
                   backgroundColor: Colors.white,
                   surfaceTintColor: Colors.white,
                   toolbarHeight: 80,
-                  title: Row(children: [
+                  title: Row(children: <Widget>[
                     Expanded(child: SearchBarExplore()),
                   ]),
                 ),
                 SliverList(
                   delegate: SliverChildListDelegate(
-                    [
+                    <Widget>[
                       buildHeaderRecipeOfTheDay(exploreState.recipeOfTheDay!),
-                      HeaderGreyBackground(
+                      const HeaderGreyBackground(
                           'Entdecke neue Rezepte', FontWeight.w300),
                     ],
                   ),
@@ -63,8 +64,8 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                     crossAxisCount: 2,
                     mainAxisSpacing: 10,
                     crossAxisSpacing: 10,
-                    children: [
-                      for (var recipe in exploreState.recipes!)
+                    children: <Widget>[
+                      for (Recipe recipe in exploreState.recipes!)
                         SimpleRecipe(
                             recipe.imageUrls.first,
                             recipe.title,
@@ -86,7 +87,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
+                      children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 5),
                           child: Text(exploreState.errorMessage!,
@@ -120,7 +121,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                                   ),
                                 ),
                                 child: const Text(
-                                  "Try again",
+                                  "Erneut versuchen",
                                   style: SimpleCookTextstyles.filterTagTapped,
                                 )))
                       ],

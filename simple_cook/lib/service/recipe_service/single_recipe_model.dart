@@ -28,7 +28,7 @@ class SingleRecipe {
 
   factory SingleRecipe.fromJson(Map<String, dynamic> json) => SingleRecipe(
         diet: json["diet"] == null
-            ? []
+            ? <String>[]
             : List<String>.from(json["diet"].map((x) => x)),
         imageUrls: List<String>.from(json["image_urls"].map((x) => x)),
         ingredients: (json['ingredients'] as List)
@@ -42,12 +42,12 @@ class SingleRecipe {
       );
 
   Map<String, dynamic> toJson() => {
-        "diet": diet == null ? [] : List<dynamic>.from(diet!.map((x) => x)),
-        "image_urls": List<dynamic>.from(imageUrls!.map((x) => x)),
-        "ingredients": List<dynamic>.from(ingredients.map((x) => x.toJson())),
+        "diet": diet == null ? [] : List<dynamic>.from(diet!.map((String x) => x)),
+        "image_urls": List<dynamic>.from(imageUrls.map((String x) => x)),
+        "ingredients": List<dynamic>.from(ingredients.map((Ingredient x) => x.toJson())),
         "portions": portions,
         "source": source,
-        "steps": List<dynamic>.from(steps.map((x) => x)),
+        "steps": List<dynamic>.from(steps.map((String x) => x)),
         "title": title,
         "totalTime": totalTime,
       };

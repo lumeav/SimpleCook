@@ -11,13 +11,8 @@ include: package:flutter_lints/flutter.yaml
 
 
 analyzer:
-  strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
-  errors:
-    invalid_annotation_target: ignore
   language:
-    strict-casts: false
+    strict-casts: true
     strict-raw-types: true
     strict-inference: true
 

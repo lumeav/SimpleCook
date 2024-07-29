@@ -6,14 +6,14 @@ part 'recipe_finder_model.freezed.dart';
 class RecipeFinderModel with _$RecipeFinderModel {
   const factory RecipeFinderModel({
     required List<String> activeFilters,
-    @Default([
+    @Default(<String>[
       'Alle',
       'Vorspeise',
       'Hauptspeise',
       'Dessert',
       'Snacks',
     ]) List<String> categories,
-    @Default([
+    @Default(<String>[
       'Alle',
       'Vegetarisch',
       'Vegan',

@@ -38,7 +38,7 @@ class PersistenceService extends PersistenceServiceAggregator {
           await Hive.openBox<DateTime>('recipeOfTheDayDateBox');
       _searchBarIngredientBox =
           await Hive.openBox<List<String>>('searchBarIngredientBox');
-      final storedIngredients = _searchBarIngredientBox.get(0);
+      final List<String>? storedIngredients = _searchBarIngredientBox.get(0);
       if (storedIngredients == null ||
           storedIngredients.length !=
               SimpleCookIngredientList.kOptions.length) {
@@ -84,20 +84,21 @@ class PersistenceService extends PersistenceServiceAggregator {
   @override
   Future<void> addRecipeToPlanner(String date, SingleRecipe recipe) async {
     List<SingleRecipe> recipes =
-        _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? [];
+        _plannerBox.get(date, defaultValue: <dynamic>[])?.cast<SingleRecipe>() ?? [];
     recipes.add(recipe);
     await _plannerBox.put(date, recipes);
   }
 
   @override
   List<SingleRecipe> getRecipesForDate(String date) {
-    return _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? [];
+    return _plannerBox.get(date, defaultValue: <dynamic>[])?.cast<SingleRecipe>() ??
+        <SingleRecipe>[];
   }
 
   @override
   Future<void> removeRecipeFromPlanner(String date, SingleRecipe recipe) async {
     List<SingleRecipe> recipes =
-        _plannerBox.get(date, defaultValue: [])?.cast<SingleRecipe>() ?? [];
+        _plannerBox.get(date, defaultValue: <dynamic>[])?.cast<SingleRecipe>() ?? <SingleRecipe>[];
     recipes.removeWhere(
         (SingleRecipe r) => r.title == recipe.title);
     await _plannerBox.put(date, recipes);
@@ -149,25 +150,25 @@ class PersistenceService extends PersistenceServiceAggregator {
   @override
   Future<void> addToSearchBox(String searchTerm) async {
     final List<String>? currentHistory =
-        _searchBarIngredientBox.get(0, defaultValue: []);
-    final updatedHistory = [...?currentHistory, searchTerm];
+        _searchBarIngredientBox.get(0, defaultValue: <String>[]);
+    final List<String> updatedHistory = <String>[...?currentHistory, searchTerm];
     await _searchBarIngredientBox.put(0, updatedHistory);
   }
 
   @override
   List<String> getSearchBox() {
     final List<String>? history =
-        _searchBarIngredientBox.get(0, defaultValue: []);
-    return history ?? [];
+        _searchBarIngredientBox.get(0, defaultValue: <String>[]);
+    return history ?? <String>[];
   }
 
   @override
   Future<Iterable<String>> search(String query) async {
     if (query.isEmpty) {
-      return Iterable<String>.empty();
+      return const Iterable<String>.empty();
     }
     final List<String> ingredients = _searchBarIngredientBox.get(0) ?? [];
-    final lowerCaseQuery = query.toLowerCase();
+    final String lowerCaseQuery = query.toLowerCase();
     return ingredients.where((String option) => option.toLowerCase().contains(lowerCaseQuery));
   }
 }
