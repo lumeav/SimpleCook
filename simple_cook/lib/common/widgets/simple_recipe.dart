@@ -24,15 +24,15 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
   @override
   Widget build(BuildContext context) {
     final SingleRecipe recipe = SingleRecipe(
-      diet: <String>[],
-      imageUrls: <String>[widget.imgPath],
-      ingredients: <Ingredient>[],
+      imageUrls: [widget.imgPath],
+      ingredients: [],
       portions: 1,
       source: widget.source,
-      steps: <String>[],
+      steps: [],
       title: widget.rezeptName,
       totalTime: 0.0,
     );
+
     return Container(
       child: InkWell(
         onTap: () {
@@ -77,27 +77,10 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                     style: SimpleCookTextstyles.recheader,
                     maxLines: 2,
                   ),
-                  Positioned(
-                    bottom: 10,
-                    right: 10,
-                    child: HeartButton(
-                      true,
-                      recipe: recipe,
-                    ),
-                  )
-                ],
-              ),
-              Container(
-                padding: const EdgeInsets.all(5),
-                alignment: Alignment.centerLeft,
-                child: AutoSizeText(
-                  widget.rezeptName,
-                  style: SimpleCookTextstyles.recheader,
-                  maxLines: 2,
                 ),
-              ),
-            ],
-          )),
+              ],
+            )),
+      ),
     );
   }
 }

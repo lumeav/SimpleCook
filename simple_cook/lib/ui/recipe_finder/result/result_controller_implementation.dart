@@ -29,6 +29,8 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
       final ApiResponse<GenRecipeModel> response =
           await recipeService.postGenRecipeModel(query);
       if (response.data == null && response.errorMessage != null) {
+        print("Fehler!!!187");
+        print(response.errorMessage);
         state = state.copyWith(
           error: true,
           errorMessage: response.errorMessage,
@@ -38,7 +40,9 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
         state = state.copyWith(recipe: response.data, error: false);
         await _fetchRecipeImg(response.data!);
       }
-    } catch (e) {
+    } catch (e, s) {
+      print(e);
+      print(s);
       state = state.copyWith(
         error: true,
         errorMessage: "An unexpected error occured!",
@@ -55,7 +59,7 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
         state = state.copyWith(
             url: response.data, error: false, fetchFinished: true);
       } else {
-        print("Fehler!!!");
+        print("Fehler!!!420");
         state = state.copyWith(
           error: true,
           errorMessage: response.errorMessage,
