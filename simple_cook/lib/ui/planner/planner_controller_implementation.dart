@@ -1,3 +1,5 @@
+// ignore_for_file: always_specify_types
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/ui/planner/services/planner_persistence_service.dart';
@@ -16,7 +18,6 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
     DateTime data = DateTime.now();
     int dayOffset = data.weekday - DateTime.monday;
     DateTime firstDateOfWeek = data.subtract(Duration(days: dayOffset));
-
     DateTime lastDateofWeek = firstDateOfWeek.add(const Duration(days: 6));
 
     List<DateTime> dates = setDatesWeek(firstDateOfWeek, data);
@@ -25,6 +26,7 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
       start: firstDateOfWeek,
       end: lastDateofWeek,
       dates: dates,
+      recipes: persistenceService.loadPlanner(),
     );
   }
 
@@ -85,18 +87,29 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
   }
 
   @override
-  Map<String, List<SingleRecipe>> loadPlanner() {
-    return persistenceService.loadPlanner();
+  Future<void> loadPlanner() async  {
+    final plannerRecipes = Map<String, List<SingleRecipe>>.from(persistenceService.loadPlanner());
+    state = state.copyWith(
+      actual: DateTime.now(),
+      recipes: plannerRecipes,
+    );
   }
 
   @override
-  Future<void> addPlanner(String date, SingleRecipe recipe) async {
-    await persistenceService.addRecipeToPlanner(date, recipe);
+  Future<bool> addPlanner(String date, SingleRecipe recipe) async {
+    List<SingleRecipe> recipes = persistenceService.getRecipesForDate(date);
+    if(!recipes.any((r) => r.title == recipe.title)){
+      await persistenceService.addRecipeToPlanner(date, recipe);
+      loadPlanner();
+      return true;
+    }
+    return false;
   }
 
   @override
   Future<void> removePlanner(String date, SingleRecipe recipe) async {
     await persistenceService.removeRecipeFromPlanner(date, recipe);
+    loadPlanner();
   }
 
   @override

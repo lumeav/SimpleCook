@@ -9,6 +9,8 @@ import 'package:simple_cook/common/widgets/preparation.dart';
 import 'package:simple_cook/ui/recipe_finder/result/result_model.dart';
 import 'package:simple_cook/ui/recipe_finder/result/result_providers.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:simple_cook/common/widgets/heart_button.dart';
+import 'package:simple_cook/common/widgets/add_planer.dart';
 
 class ResultView extends ConsumerStatefulWidget {
   final String? text;
@@ -41,10 +43,13 @@ class _ResultViewState extends ConsumerState<ResultView> {
                 Container(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     color: Colors.white,
-                    child: const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
+                      children: [
+                        AddPlaner(recipe: resultState.singleRecipe),
+
                         SizedBox(width: 10),
+                        HeartButton(false, recipe: resultState.singleRecipe),
                       ],
                     )),
                 Expanded(

@@ -10,7 +10,7 @@ class SingleRecipe {
   List<String> imageUrls;
   List<Ingredient> ingredients;
   int portions;
-  String source;
+  String? source;
   List<String> steps;
   String title;
   double totalTime;
@@ -51,7 +51,21 @@ class SingleRecipe {
         "title": title,
         "totalTime": totalTime,
       };
+
+  factory SingleRecipe.genRecipeFromJson(Map<String, dynamic> json) => SingleRecipe(
+        diet: [],
+        imageUrls: [],
+        ingredients: (json['ingredients'] as List)
+          .map((e) => Ingredient.fromJson(Map<String, dynamic>.from(e as Map)))
+          .toList(),
+        portions: json["portions"],
+        source: "",
+        steps: List<String>.from(json["instructions"].map((x) => x)),
+        title: json["title"],
+        totalTime: json["totalTime"] > 200 ? json["totalTime"] / 60 : json["totalTime"],
+      );
 }
+
 
 class Ingredient {
   String amount;
@@ -65,7 +79,7 @@ class Ingredient {
   });
 
   factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
-        amount: json["amount"],
+        amount: json["amount"].toString(),
         name: json["name"],
         unit: json["unit"],
       );

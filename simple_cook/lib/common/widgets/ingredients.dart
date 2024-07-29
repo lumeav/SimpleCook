@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:simple_cook/common/theme.dart';
 
-class Ingredients extends StatefulWidget {
+class Ingredients extends StatelessWidget {
   final List<String> ingredientList;
   final int portion;
   const Ingredients(this.ingredientList, this.portion, {super.key});
 
-  @override
-  State<Ingredients> createState() => _IngredientsState();
-}
-
-class _IngredientsState extends State<Ingredients> {
   Widget _buildBulletItem(String text, int index) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,13 +25,13 @@ class _IngredientsState extends State<Ingredients> {
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
+            children: [
               const Text(
                 "Zutaten",
                 style: SimpleCookTextstyles.subheader
               ),
               Text(
-                "${widget.portion} Port.",
+                "$portion Port.",
                 style: SimpleCookTextstyles.portions
               ),
             ]
@@ -45,8 +40,8 @@ class _IngredientsState extends State<Ingredients> {
             padding: const EdgeInsets.only(top: 10.0),
             child: Column(
               children:
-              List<Widget>.generate(widget.ingredientList.length, (int index) {
-                return _buildBulletItem(widget.ingredientList[index], index);
+              List<Widget>.generate(ingredientList.length, (int index) {
+                return _buildBulletItem(ingredientList[index], index);
               }),
             ),
           ),

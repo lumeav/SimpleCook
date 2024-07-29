@@ -14,10 +14,12 @@ import 'package:simple_cook/common/theme.dart';
 
 class RecipeView extends ConsumerStatefulWidget {
   final String? recipeUrl;
+  final SingleRecipe? genRecipe;
 
   const RecipeView({
     super.key,
     this.recipeUrl,
+    this.genRecipe,
   });
 
   @override
@@ -28,9 +30,15 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
 
   @override
   void initState() {
-    super.initState();
-    ref.read(recipeInfoControllerProvider).fetchRecipe(widget.recipeUrl);
-  }
+  super.initState();
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    if (widget.recipeUrl == '') {
+      ref.read(recipeInfoControllerProvider).setGenRecipe(widget.genRecipe);
+    } else {
+      ref.read(recipeInfoControllerProvider).fetchRecipe(widget.recipeUrl);
+    }
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +71,8 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 color: Colors.white),
-                            child: buildSingleRecipe(recipeInfoState.recipe!, widget.recipeUrl!)),
+                            child: buildSingleRecipe(recipeInfoState.recipe!, recipeInfoState.recipe!.imageUrls.first,
+                                )),
                       ),
                     ],
                   ),
@@ -161,4 +170,5 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
 abstract class RecipeInfoController {
   Future<void> fetchRecipe(String? recipeUrl);
   Future<void> refetchRecipe(String? recipeUrl);
+  void setGenRecipe(SingleRecipe? genRecipe);
 }

@@ -20,6 +20,8 @@ mixin _$PlannerModel {
   DateTime get actual => throw _privateConstructorUsedError;
   DateTime get end => throw _privateConstructorUsedError;
   List<DateTime> get dates => throw _privateConstructorUsedError;
+  Map<String, List<SingleRecipe>> get recipes =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $PlannerModelCopyWith<PlannerModel> get copyWith =>
@@ -33,7 +35,11 @@ abstract class $PlannerModelCopyWith<$Res> {
       _$PlannerModelCopyWithImpl<$Res, PlannerModel>;
   @useResult
   $Res call(
-      {DateTime start, DateTime actual, DateTime end, List<DateTime> dates});
+      {DateTime start,
+      DateTime actual,
+      DateTime end,
+      List<DateTime> dates,
+      Map<String, List<SingleRecipe>> recipes});
 }
 
 /// @nodoc
@@ -53,6 +59,7 @@ class _$PlannerModelCopyWithImpl<$Res, $Val extends PlannerModel>
     Object? actual = null,
     Object? end = null,
     Object? dates = null,
+    Object? recipes = null,
   }) {
     return _then(_value.copyWith(
       start: null == start
@@ -71,6 +78,10 @@ class _$PlannerModelCopyWithImpl<$Res, $Val extends PlannerModel>
           ? _value.dates
           : dates // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
+      recipes: null == recipes
+          ? _value.recipes
+          : recipes // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<SingleRecipe>>,
     ) as $Val);
   }
 }
@@ -84,7 +95,11 @@ abstract class _$$PlannerModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {DateTime start, DateTime actual, DateTime end, List<DateTime> dates});
+      {DateTime start,
+      DateTime actual,
+      DateTime end,
+      List<DateTime> dates,
+      Map<String, List<SingleRecipe>> recipes});
 }
 
 /// @nodoc
@@ -102,6 +117,7 @@ class __$$PlannerModelImplCopyWithImpl<$Res>
     Object? actual = null,
     Object? end = null,
     Object? dates = null,
+    Object? recipes = null,
   }) {
     return _then(_$PlannerModelImpl(
       start: null == start
@@ -120,6 +136,10 @@ class __$$PlannerModelImplCopyWithImpl<$Res>
           ? _value._dates
           : dates // ignore: cast_nullable_to_non_nullable
               as List<DateTime>,
+      recipes: null == recipes
+          ? _value._recipes
+          : recipes // ignore: cast_nullable_to_non_nullable
+              as Map<String, List<SingleRecipe>>,
     ));
   }
 }
@@ -131,8 +151,10 @@ class _$PlannerModelImpl implements _PlannerModel {
       {required this.start,
       required this.actual,
       required this.end,
-      required final List<DateTime> dates})
-      : _dates = dates;
+      required final List<DateTime> dates,
+      required final Map<String, List<SingleRecipe>> recipes})
+      : _dates = dates,
+        _recipes = recipes;
 
   @override
   final DateTime start;
@@ -148,9 +170,17 @@ class _$PlannerModelImpl implements _PlannerModel {
     return EqualUnmodifiableListView(_dates);
   }
 
+  final Map<String, List<SingleRecipe>> _recipes;
+  @override
+  Map<String, List<SingleRecipe>> get recipes {
+    if (_recipes is EqualUnmodifiableMapView) return _recipes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_recipes);
+  }
+
   @override
   String toString() {
-    return 'PlannerModel(start: $start, actual: $actual, end: $end, dates: $dates)';
+    return 'PlannerModel(start: $start, actual: $actual, end: $end, dates: $dates, recipes: $recipes)';
   }
 
   @override
@@ -161,12 +191,18 @@ class _$PlannerModelImpl implements _PlannerModel {
             (identical(other.start, start) || other.start == start) &&
             (identical(other.actual, actual) || other.actual == actual) &&
             (identical(other.end, end) || other.end == end) &&
-            const DeepCollectionEquality().equals(other._dates, _dates));
+            const DeepCollectionEquality().equals(other._dates, _dates) &&
+            const DeepCollectionEquality().equals(other._recipes, _recipes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, start, actual, end,
-      const DeepCollectionEquality().hash(_dates));
+  int get hashCode => Object.hash(
+      runtimeType,
+      start,
+      actual,
+      end,
+      const DeepCollectionEquality().hash(_dates),
+      const DeepCollectionEquality().hash(_recipes));
 
   @JsonKey(ignore: true)
   @override
@@ -177,10 +213,12 @@ class _$PlannerModelImpl implements _PlannerModel {
 
 abstract class _PlannerModel implements PlannerModel {
   const factory _PlannerModel(
-      {required final DateTime start,
-      required final DateTime actual,
-      required final DateTime end,
-      required final List<DateTime> dates}) = _$PlannerModelImpl;
+          {required final DateTime start,
+          required final DateTime actual,
+          required final DateTime end,
+          required final List<DateTime> dates,
+          required final Map<String, List<SingleRecipe>> recipes}) =
+      _$PlannerModelImpl;
 
   @override
   DateTime get start;
@@ -190,6 +228,8 @@ abstract class _PlannerModel implements PlannerModel {
   DateTime get end;
   @override
   List<DateTime> get dates;
+  @override
+  Map<String, List<SingleRecipe>> get recipes;
   @override
   @JsonKey(ignore: true)
   _$$PlannerModelImplCopyWith<_$PlannerModelImpl> get copyWith =>

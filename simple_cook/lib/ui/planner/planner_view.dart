@@ -17,11 +17,11 @@ class PlannerView extends ConsumerStatefulWidget {
   });
 
   @override
+
   PlannerViewState createState() => PlannerViewState();
 }
 
 class PlannerViewState extends ConsumerState<PlannerView> {
-
   @override
   void initState() {
     super.initState();
@@ -49,15 +49,13 @@ class PlannerViewState extends ConsumerState<PlannerView> {
   }
 
   List<Widget> _buildPlannerRows() {
-    final PlannerModel plannerModel =
-        ref.watch(plannerModelProvider);
-    final PlannerController planner = ref.watch(plannerControllerProvider);
-    List<Widget> plannerRows = <Widget>[];
+    final planner = ref.watch(plannerControllerProvider);
+    final plannerModel = ref.watch(plannerModelProvider);
+    List<Widget> plannerRows = [];
 
     bool hasRecipesForWeek = false;
 
     for (DateTime date in plannerModel.dates) {
-
       String formattedDate = DateFormat('dd.MM.yyyy').format(date);
       List<SingleRecipe> recipes = planner.getRecipesForDate(formattedDate);
       if (recipes.isNotEmpty) {
@@ -72,7 +70,7 @@ class PlannerViewState extends ConsumerState<PlannerView> {
                 Date(date),
                 const SizedBox(height: 5),
                 _buildRecipeWidgets(
-                    planner.loadPlanner()[formattedDate]!, formattedDate),
+                    plannerModel.recipes[formattedDate]!, formattedDate),
               ],
             ),
           ),
@@ -80,18 +78,18 @@ class PlannerViewState extends ConsumerState<PlannerView> {
       }
     }
     if (!hasRecipesForWeek) {
-        plannerRows.add(
-          const Center(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-              child: Text(
-                'Keine Rezepte für diese Woche hinzugefügt',
-                style: TextStyle(fontSize: 17, color: Colors.grey),
-              ),
+      plannerRows.add(
+        const Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+            child: Text(
+              'Keine Rezepte für diese Woche hinzugefügt',
+              style: TextStyle(fontSize: 17, color: Colors.grey),
             ),
           ),
-        );
-      }
+        ),
+      );
+    }
     return plannerRows;
   }
 
@@ -100,8 +98,8 @@ class PlannerViewState extends ConsumerState<PlannerView> {
       padding: const EdgeInsets.only(bottom: 10),
       child: ListView.builder(
         shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
 
+        physics: const NeverScrollableScrollPhysics(),
         itemCount: recipes.length,
         itemBuilder: (BuildContext context, int index) {
           final SingleRecipe recipe = recipes[index];
@@ -128,7 +126,8 @@ class PlannerViewState extends ConsumerState<PlannerView> {
                   recipe.title, recipe.totalTime.toStringAsFixed(0)),
               recipe.imageUrls.first,
               recipe.title,
-              recipe.source),
+              recipe.source ?? '',
+              recipe),
         ],
       ),
     );
@@ -138,8 +137,8 @@ class PlannerViewState extends ConsumerState<PlannerView> {
 abstract class PlannerController {
   void nextWeek();
   void previousWeek();
-  Map<String, List<SingleRecipe>> loadPlanner();
-  Future<void> addPlanner(String date, SingleRecipe recipe);
+  Future<void> loadPlanner();
+  Future<bool> addPlanner(String date, SingleRecipe recipe);
   Future<void> removePlanner(String date, SingleRecipe recipe);
   List<SingleRecipe> getRecipesForDate(String date);
 }

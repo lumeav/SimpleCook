@@ -97,21 +97,21 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
         children: dates.map((String date) {
           return ListTile(
             title: Text(date),
-            onTap: () {
-              setState(() {
+            onTap: () async {
                 selectedDate = date;
                 if (widget.recipe != null && selectedDate != null) {
-                  plannerController.addPlanner(selectedDate!.substring(4), widget.recipe!);
+                  bool added = await plannerController.addPlanner(selectedDate!.substring(4), widget.recipe!);
                   ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
-                    content: Text('Rezept für den $selectedDate hinzugefügt'),
-                    duration: const Duration(seconds: 2),
+                    content: added ? Text('Rezept wurde für den $selectedDate hinzugefügt') :
+                    Text('Rezept existiert schon für den $selectedDate'),
+                    duration: Duration(seconds: 2),
                   ),
                 );
                 }
                 setState(() {
-              });
-              });
+              })
+              ;
             },
           );
         }).toList(),

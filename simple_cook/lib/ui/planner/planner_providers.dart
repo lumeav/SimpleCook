@@ -8,12 +8,12 @@ part 'planner_providers.g.dart';
 
 @riverpod
 PlannerController plannerController(final PlannerControllerRef ref) => ref.watch(
-  plannerControllerImplementationProvider(
+  PlannerControllerImplementationProvider(
     persistenceService: ref.watch(persistenceServiceProvider),
 ).notifier);
 
 @riverpod
 PlannerModel plannerModel(final PlannerModelRef ref) => ref.watch(
-  plannerControllerImplementationProvider(
+  PlannerControllerImplementationProvider(
     persistenceService: ref.watch(persistenceServiceProvider),
 ));
