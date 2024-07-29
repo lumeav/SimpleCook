@@ -135,7 +135,8 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
           HeaderRezeptDesTages(recipe.title),
           recipe.imageUrls.first,
           recipe.title,
-          recipe.source),
+          recipe.source,
+          null),
     );
   }
 }
