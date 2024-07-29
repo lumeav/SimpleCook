@@ -96,12 +96,14 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
   }
 
   @override
-  Future<void> addPlanner(String date, SingleRecipe recipe) async {
-    List<SingleRecipe> recipes = await persistenceService.getRecipesForDate(date);
+  Future<bool> addPlanner(String date, SingleRecipe recipe) async {
+    List<SingleRecipe> recipes = persistenceService.getRecipesForDate(date);
     if(!recipes.any((r) => r.title == recipe.title)){
       await persistenceService.addRecipeToPlanner(date, recipe);
       loadPlanner();
+      return true;
     }
+    return false;
   }
 
   @override

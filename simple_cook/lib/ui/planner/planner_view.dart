@@ -135,7 +135,7 @@ abstract class PlannerController {
   void nextWeek();
   void previousWeek();
   Future<void> loadPlanner();
-  Future<void> addPlanner(String date, SingleRecipe recipe);
+  Future<bool> addPlanner(String date, SingleRecipe recipe);
   Future<void> removePlanner(String date, SingleRecipe recipe);
   List<SingleRecipe> getRecipesForDate(String date);
 }
