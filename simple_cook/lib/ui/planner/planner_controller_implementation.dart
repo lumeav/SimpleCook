@@ -1,3 +1,5 @@
+// ignore_for_file: always_specify_types
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/ui/planner/services/planner_persistence_service.dart';
@@ -94,9 +96,14 @@ class PlannerControllerImplementation extends _$PlannerControllerImplementation
   }
 
   @override
-  Future<void> addPlanner(String date, SingleRecipe recipe) async {
-    await persistenceService.addRecipeToPlanner(date, recipe);
-    loadPlanner();
+  Future<bool> addPlanner(String date, SingleRecipe recipe) async {
+    List<SingleRecipe> recipes = persistenceService.getRecipesForDate(date);
+    if(!recipes.any((r) => r.title == recipe.title)){
+      await persistenceService.addRecipeToPlanner(date, recipe);
+      loadPlanner();
+      return true;
+    }
+    return false;
   }
 
   @override
