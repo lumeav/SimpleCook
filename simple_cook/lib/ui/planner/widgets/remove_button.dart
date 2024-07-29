@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
-
+import 'package:simple_cook/ui/planner/planner_view.dart';
 import 'package:simple_cook/ui/planner/planner_providers.dart';
 
 class RemoveButton extends ConsumerWidget {
@@ -16,7 +16,7 @@ class RemoveButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(plannerControllerProvider);
+    final PlannerController controller = ref.watch(plannerControllerProvider);
     return Container(
       width: 30,
       height: 30,

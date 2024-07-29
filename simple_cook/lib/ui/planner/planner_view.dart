@@ -16,7 +16,7 @@ class PlannerView extends ConsumerStatefulWidget {
   }) : super(key: key);
 
   @override
-  _PlannerViewState createState() => _PlannerViewState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _PlannerViewState();
 }
 
 class _PlannerViewState extends ConsumerState<PlannerView> {
@@ -92,7 +92,6 @@ class _PlannerViewState extends ConsumerState<PlannerView> {
   }
 
   Widget _buildRecipeWidgets(List<SingleRecipe> recipes, String date) {
-    print("helloa1234");
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: ListView.builder(
