@@ -206,7 +206,7 @@ SimpleCook is built using a layered architecture, ensuring a clear separation of
 
 ### Explore View
 
-![](/simple_cook/assets/architecure/explore_view.png)
+![](/simple_cook/assets/architecture/explore_view.png)
 
 **Components and functionality**
 
@@ -221,7 +221,7 @@ SimpleCook is built using a layered architecture, ensuring a clear separation of
 
 ### Recipe Finder View
 
-![](/simple_cook/assets/architecure/recipe_finder_view.png)
+![](/simple_cook/assets/architecture/recipe_finder_view.png)
 
 **Components and functionality**
 
@@ -237,7 +237,7 @@ recipe_finder_recipe_service
 
 ### Favorites View
 
-![](/simple_cook/assets/architecure/favorites_view.png)
+![](/simple_cook/assets/architecture/favorites_view.png)
 
 **Components and functionality**
 
@@ -250,7 +250,7 @@ recipe_finder_recipe_service
 
 ### Planner View
 
-![](/simple_cook/assets/architecure/planner_view.png)
+![](/simple_cook/assets/architecture/planner_view.png)
 
 **Components and functionality**
 
@@ -263,7 +263,7 @@ recipe_finder_recipe_service
 
 ### Planner View
 
-![](/simple_cook/assets/architecure/recipe_info_view.png)
+![](/simple_cook/assets/architecture/recipe_info_view.png)
 
 **Components and functionality**
 
@@ -276,7 +276,7 @@ recipe_finder_recipe_service
 
 ### Recipe Client
 
-![](/simple_cook/assets/architecure/recipe_client.png)
+![](/simple_cook/assets/architecture/recipe_client.png)
 
 **Components and functionality**
 
