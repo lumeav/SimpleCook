@@ -30,14 +30,14 @@ class RecipeView extends ConsumerStatefulWidget {
 }
 
 class _RecipeViewState extends ConsumerState<RecipeView> {
-
   @override
   void initState() {
-  super.initState();
-  WidgetsBinding.instance.addPostFrameCallback((_) {
-    ref.read(recipeInfoControllerProvider).handleIncomingRequest(widget.recipeUrl, widget.genRecipeQuery, widget.genRecipe);
-  });
-}
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.read(recipeInfoControllerProvider).handleIncomingRequest(
+          widget.recipeUrl, widget.genRecipeQuery, widget.genRecipe);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +54,9 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
-                          AddPlaner(recipe: recipeInfoState.recipe),
-                          const SizedBox(width: 10),
-                          HeartButton(false, recipe: recipeInfoState.recipe!),
+                        AddPlaner(recipe: recipeInfoState.recipe),
+                        const SizedBox(width: 10),
+                        HeartButton(false, recipe: recipeInfoState.recipe!),
                       ],
                     )),
                 Expanded(
@@ -70,8 +70,10 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
                                 color: SimpleCookColors.secondary),
-                            child: buildSingleRecipe(recipeInfoState.recipe!, recipeInfoState.recipe!.imageUrls.first,
-                                )),
+                            child: buildSingleRecipe(
+                              recipeInfoState.recipe!,
+                              recipeInfoState.recipe!.imageUrls.first,
+                            )),
                       ),
                     ],
                   ),
@@ -93,9 +95,9 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                             child: ElevatedButton(
                                 onPressed: () {
                                   ref
-                                      .read(
-                                          recipeInfoControllerProvider)
-                                      .refetchRecipe(widget.recipeUrl, widget.genRecipeQuery);
+                                      .read(recipeInfoControllerProvider)
+                                      .refetchRecipe(widget.recipeUrl,
+                                          widget.genRecipeQuery);
                                 },
                                 style: ButtonStyle(
                                   backgroundColor:
@@ -121,12 +123,12 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                       ],
                     ),
                   ))
-                : (widget.genRecipeQuery == null) ? const LoadingIndicator()
-                : const LoadingIndicator(showTips: true));
+                : (widget.genRecipeQuery == null)
+                    ? const LoadingIndicator()
+                    : const LoadingIndicator(showTips: true));
   }
 
-  Widget buildSingleRecipe(
-      SingleRecipe singleRecipe, String recipeUrl) {
+  Widget buildSingleRecipe(SingleRecipe singleRecipe, String recipeUrl) {
     return Column(
       children: <Widget>[
         Stack(children: <Widget>[
@@ -141,26 +143,20 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                 )),
           )
         ]),
-        HeaderRecipeInfos(singleRecipe.title,
-            singleRecipe.totalTime.toStringAsFixed(0)),
+        HeaderRecipeInfos(
+            singleRecipe.title, singleRecipe.totalTime.toStringAsFixed(0)),
         const Padding(
             padding: EdgeInsets.only(left: 15, right: 15), child: Divider()),
-        Ingredients(<String>[
-          for (Ingredient ingredient in singleRecipe.ingredients)
-            if (ingredient.amount == "" && ingredient.unit == "")
-              ingredient.name
-            else if (ingredient.amount != "" && ingredient.unit == "")
-              '${ingredient.amount} ${ingredient.name}'
-            else if (ingredient.amount == "" && ingredient.unit != "")
-              '${ingredient.unit} ${ingredient.name}'
-            else if (ingredient.amount != "" && ingredient.unit != "")
-              '${ingredient.amount} ${ingredient.unit} ${ingredient.name}'
-        ],
-        singleRecipe.portions),
+        Ingredients(
+            ref
+                .read(recipeInfoControllerProvider)
+                .retrieveIngredients(singleRecipe),
+            singleRecipe.portions),
         Padding(
           padding: const EdgeInsets.only(top: 10.0),
-          child: Preparation(
-              <String>[for (String preparation in singleRecipe.steps) preparation]),
+          child: Preparation(<String>[
+            for (String preparation in singleRecipe.steps) preparation
+          ]),
         )
       ],
     );
@@ -170,4 +166,5 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
 abstract class RecipeInfoController {
   Future<void> refetchRecipe(String? recipeUrl, String? genRecipeQuery);
   void handleIncomingRequest(String? recipeUrl, String? genRecipeQuery, SingleRecipe? genRecipe);
+  List<String> retrieveIngredients(SingleRecipe recipe);
 }
