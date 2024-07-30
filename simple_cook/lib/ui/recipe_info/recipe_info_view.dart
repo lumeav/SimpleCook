@@ -15,11 +15,13 @@ import 'package:simple_cook/common/theme.dart';
 
 class RecipeView extends ConsumerStatefulWidget {
   final String? recipeUrl;
+  final String? genRecipeQuery;
   final SingleRecipe? genRecipe;
 
   const RecipeView({
     super.key,
     this.recipeUrl,
+    this.genRecipeQuery,
     this.genRecipe,
   });
 
@@ -33,11 +35,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
   void initState() {
   super.initState();
   WidgetsBinding.instance.addPostFrameCallback((_) {
-    if (widget.recipeUrl == '') {
-      ref.read(recipeInfoControllerProvider).setGenRecipe(widget.genRecipe);
-    } else {
-      ref.read(recipeInfoControllerProvider).fetchRecipe(widget.recipeUrl);
-    }
+    ref.read(recipeInfoControllerProvider).handleIncomingRequest(widget.recipeUrl, widget.genRecipeQuery, widget.genRecipe);
   });
 }
 
@@ -97,7 +95,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                                   ref
                                       .read(
                                           recipeInfoControllerProvider)
-                                      .refetchRecipe(widget.recipeUrl);
+                                      .refetchRecipe(widget.recipeUrl, widget.genRecipeQuery);
                                 },
                                 style: ButtonStyle(
                                   backgroundColor:
@@ -123,7 +121,8 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                       ],
                     ),
                   ))
-                : const LoadingIndicator());
+                : (widget.genRecipeQuery == null) ? const LoadingIndicator()
+                : const LoadingIndicator(showTips: true));
   }
 
   Widget buildSingleRecipe(
@@ -169,7 +168,6 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
 }
 
 abstract class RecipeInfoController {
-  Future<void> fetchRecipe(String? recipeUrl);
-  Future<void> refetchRecipe(String? recipeUrl);
-  void setGenRecipe(SingleRecipe? genRecipe);
+  Future<void> refetchRecipe(String? recipeUrl, String? genRecipeQuery);
+  void handleIncomingRequest(String? recipeUrl, String? genRecipeQuery, SingleRecipe? genRecipe);
 }
