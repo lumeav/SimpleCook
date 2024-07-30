@@ -12,9 +12,10 @@ part 'recipe_info_controller_implementation.g.dart';
 class RecipeInfoControllerImplementation
     extends _$RecipeInfoControllerImplementation
     implements RecipeInfoController {
-
   @override
-  RecipeInfoModel build({required final RecipeInfoRecipeService recipeService}) => const RecipeInfoModel();
+  RecipeInfoModel build(
+          {required final RecipeInfoRecipeService recipeService}) =>
+      const RecipeInfoModel();
 
   @override
   Future<void> refetchRecipe(String? recipeUrl, String? genRecipeQuery) async {
@@ -24,7 +25,6 @@ class RecipeInfoControllerImplementation
     } else {
       await fetchRecipe(recipeUrl);
     }
-
   }
 
   Future<void> fetchRecipe(String? recipeUrl) async {
@@ -35,10 +35,7 @@ class RecipeInfoControllerImplementation
         state =
             state.copyWith(error: true, errorMessage: response.errorMessage);
       } else if (response.data != null && response.errorMessage == null) {
-        state = state.copyWith(
-          recipe: response.data,
-          fetchFinished: true
-        );
+        state = state.copyWith(recipe: response.data, fetchFinished: true);
       }
     } catch (e) {
       state = state.copyWith(
@@ -72,14 +69,31 @@ class RecipeInfoControllerImplementation
     }
   }
 
+  @override
+  List<String> retrieveIngredients(SingleRecipe recipe) {
+    List<String> ingredients = <String>[];
+    for (Ingredient ingredient in recipe.ingredients) {
+      if (ingredient.amount == "" && ingredient.unit == "") {
+        ingredients.add(ingredient.name);
+      } else if (ingredient.amount != "" && ingredient.unit == "") {
+        ingredients.add('${ingredient.amount} ${ingredient.name}');
+      } else if (ingredient.amount == "" && ingredient.unit != "") {
+        ingredients.add('${ingredient.unit} ${ingredient.name}');
+      } else if (ingredient.amount != "" && ingredient.unit != "") {
+        ingredients
+            .add('${ingredient.amount} ${ingredient.unit} ${ingredient.name}');
+      }
+    }
+    return ingredients;
+  }
+
   Future<void> _fetchGenRecipeImg(GenRecipeModel genRecipe) async {
     try {
       ApiResponse<String> response =
           await recipeService.postGenRecipeModelImg(genRecipe);
       if (response.data != null) {
         SingleRecipe rec = mapSingleRecipe(genRecipe, response.data!);
-        state = state.copyWith(
-            recipe: rec, error: false, fetchFinished: true);
+        state = state.copyWith(recipe: rec, error: false, fetchFinished: true);
       } else {
         state = state.copyWith(
           error: true,
@@ -95,18 +109,15 @@ class RecipeInfoControllerImplementation
   }
 
   SingleRecipe mapSingleRecipe(GenRecipeModel recipe, String url) {
-      var genRecipeJson = recipe.toJson();
-      var singleRecipe = SingleRecipe.genRecipeFromJson(genRecipeJson);
-      singleRecipe.imageUrls = [url]; // Change the assignment to a list containing the url
+      Map<String, dynamic> genRecipeJson = recipe.toJson();
+      SingleRecipe singleRecipe = SingleRecipe.genRecipeFromJson(genRecipeJson);
+      singleRecipe.imageUrls = <String>[url]; // Change the assignment to a list containing the url
       return singleRecipe;
   }
 
   void setGenRecipe(SingleRecipe? genRecipe) {
     try {
-      state = state.copyWith(
-        recipe: genRecipe,
-        fetchFinished: true
-      );
+      state = state.copyWith(recipe: genRecipe, fetchFinished: true);
     } catch (e) {
       state = state.copyWith(
         error: true,
@@ -116,14 +127,16 @@ class RecipeInfoControllerImplementation
   }
 
   @override
-  void handleIncomingRequest(String? recipeUrl, String? genRecipeQuery, SingleRecipe? genRecipe) {
+  void handleIncomingRequest(
+      String? recipeUrl, String? genRecipeQuery, SingleRecipe? genRecipe) {
     if (recipeUrl == '' && genRecipeQuery == null && genRecipe != null) {
       setGenRecipe(genRecipe);
-    } else if (recipeUrl == null && genRecipeQuery != null && genRecipe == null) {
+    } else if (recipeUrl == null &&
+        genRecipeQuery != null &&
+        genRecipe == null) {
       fetchGenRecipe(genRecipeQuery);
     } else {
       fetchRecipe(recipeUrl);
     }
   }
 }
-

@@ -5,7 +5,7 @@ GenRecipeModel genRecipeFromJson(String str) => GenRecipeModel.fromJson(json.dec
 String genRecipeToJson(GenRecipeModel data) => json.encode(data.toJson());
 
 class GenRecipeModel {
-    List<Ingredient> ingredients;
+    List<GenIngredient> ingredients;
     List<String> instructions;
     int portions;
     String title;
@@ -23,7 +23,7 @@ class GenRecipeModel {
 
     factory GenRecipeModel.fromJson(Map<String, dynamic> json) => GenRecipeModel(
         ingredients:(json['ingredients'] as List)
-          .map((e) => Ingredient.fromJson(Map<String, dynamic>.from(e as Map)))
+          .map((e) => GenIngredient.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
         instructions: List<String>.from((json["instructions"] as List<dynamic>).map((x) => x)),
         portions: json["portions"] as int,
@@ -33,7 +33,7 @@ class GenRecipeModel {
     );
 
     Map<String, dynamic> toJson() => {
-        "ingredients": List<dynamic>.from(ingredients.map((Ingredient x) => x.toJson())),
+        "ingredients": List<dynamic>.from(ingredients.map((GenIngredient x) => x.toJson())),
         "instructions": List<dynamic>.from(instructions.map((String x) => x)),
         "portions": portions,
         "title": title,
@@ -50,18 +50,18 @@ class GenRecipeModel {
     }
 }
 
-class Ingredient {
+class GenIngredient {
     String name;
     double? amount;
     String? unit;
 
-    Ingredient({
+    GenIngredient({
         required this.name,
         this.amount,
         this.unit,
     });
 
-    factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
+    factory GenIngredient.fromJson(Map<String, dynamic> json) => GenIngredient(
         name: json["name"] as String,
         amount: (json["amount"] is int) ? (json["amount"] as int).toDouble() : json["amount"] as double,
         unit: json["unit"] as String?  ?? "",
