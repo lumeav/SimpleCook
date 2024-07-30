@@ -41,20 +41,35 @@ Provides detailed information about a selected recipe, including ingredients, pr
 
 When opening the application you are greeted by the explore view, in which you can see the recipe of the day as well as other recipes that you can scroll through:
 
-![Explore1](/assets/readme/Explore_1.png)
-![](/assets/readme/Explore_2.png)
+![](/simple_cook/assets/readme/Explore_1.png)
+![](/simple_cook/assets/readme/Explore_2.png)
 <br>
 If you are not finding anything that you like in the explore view, you can simply search for a specific recipe that you would like to eat, in this example we look for a curry recipe like this:
 
-![](/assets/readme/Explore_3.png)
+![](/simple_cook/assets/readme/Explore_3.png)
 
 After you continue, you are shown all recipes that fit the recipe which you have searched for:
 
-![](/assets/readme/Explore_4.png)
+![](/simple_cook/assets/readme/Explore_4.png)
 
 If you have finally found what you were looking for you can simply tap on the recipe that you would like to cook:
 
-![](/assets/readme/Recipe_1.png)
+![](/simple_cook/assets/readme/Recipe_1.png)
+
+Here you can find the preparation time, portion size and the specific ingredients that you need for the recipe.
+Tapping on the heart button on the top right will add it to our favorites view, which we are going to take a look at later:
+
+![](/simple_cook/assets/readme/Recipe_2.png)
+
+You can also tap the plus button left of the heart button in order to add a recipe to the planner view for later use:
+
+![](/simple_cook/assets/readme/Recipe_3.png)
+
+Scrolling down you can take a look at the stepwise preparation of this recipe. This recipe only takes 10 minutes to prepare so you only need two preparation steps for this recipe:
+
+![](/simple_cook/assets/readme/Recipe_4.png)
+
+
 
 ## Personas and their benefits
 
