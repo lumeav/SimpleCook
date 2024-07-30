@@ -261,7 +261,7 @@ recipe_finder_recipe_service
 - planner_provider
     - manages the state of the Favorite View and serves as an intermediary between the view and the controller
 
-### Planner View
+### Recipe Info View
 
 ![](/simple_cook/assets/architecture/recipe_info_view.png)
 
@@ -301,7 +301,7 @@ recipe_finder_recipe_service
 
 This is the command for creating APK files:
 
-    flutter build apk --split-per-abi 
+    flutter build apk --split-per-abi
     (The flutter build command defaults to --release.)
 
 This command results in three APK files:
