@@ -31,10 +31,10 @@ class RecipeClient {
       } else if (response.statusCode == 429 || response.statusCode == 403) {
         return ApiResponse<List<Recipe>?>(
             errorMessage:
-                'The API key has expired! Please upgrade on $baseUrl');
+                'Der API-key ist abgelaufen! Bitte erwerbe einen neuen key auf $baseUrl.');
       } else {
         return ApiResponse<List<Recipe>?>(
-            errorMessage: 'Failed to load recipes. Check for connection!');
+            errorMessage: 'Rezepte konnten nicht geladen werden. Bitte überprüfe die Verbidung!');
       }
     });
   }
@@ -54,10 +54,10 @@ class RecipeClient {
       } else if (response.statusCode == 429 || response.statusCode == 403) {
         return ApiResponse<SingleRecipe>(
             errorMessage:
-                'The API key has expired! Please upgrade on $baseUrl');
+                'Der API-key ist abgelaufen! Bitte erwerbe einen neuen key auf $baseUrl.');
       } else {
         return ApiResponse<SingleRecipe>(
-            errorMessage: 'Failed to load recipe. Check for connection!');
+            errorMessage: 'Rezepte konnten nicht geladen werden. Bitte überprüfe die Verbidung!');
       }
     });
   }
@@ -78,10 +78,10 @@ class RecipeClient {
       } else if (response.statusCode == 429 || response.statusCode == 403) {
         return ApiResponse<GenRecipeModel>(
             errorMessage:
-                'The API key has expired! Please upgrade on $baseUrl');
+                'Der API-key ist abgelaufen! Bitte erwerbe einen neuen key auf $baseUrl.');
       } else {
         return ApiResponse<GenRecipeModel>(
-            errorMessage: 'Failed to load recipe. Check for connection!');
+            errorMessage: 'Rezepte konnten nicht geladen werden. Bitte überprüfe die Verbidung!');
       }
     });
   }
@@ -108,10 +108,10 @@ class RecipeClient {
       } else if (response.statusCode == 429 || response.statusCode == 403) {
         return ApiResponse<String>(
             errorMessage:
-                'The API key has expired! Please upgrade on $baseUrl');
+                'Der API-key ist abgelaufen! Bitte erwerbe einen neuen key auf $baseUrl.');
       } else {
         return ApiResponse<String>(
-            errorMessage: 'Failed to load recipe image. Check for connection!');
+            errorMessage: 'Rezepte konnten nicht geladen werden. Bitte überprüfe die Verbidung!');
       }
 
     });
@@ -124,14 +124,14 @@ class RecipeClient {
     } on TimeoutException {
       return ApiResponse<T>(
           errorMessage:
-              'The connection has timed out. Please try again later.');
+              'Die Verbindung wurde getrennt. Bitte versuche es erneut.');
     } on SocketException {
-      return ApiResponse<T>(errorMessage: 'No Internet connection.');
+      return ApiResponse<T>(errorMessage: 'Keine Internetverbindung.');
     } on http.ClientException {
       return ApiResponse<T>(
-          errorMessage: 'Network error. Check for connection!');
+          errorMessage: 'Netzwerkfehler! Bitte überprüfe die Verbindung.');
     } catch (e) {
-      return ApiResponse<T>(errorMessage: 'Unexpected error.');
+      return ApiResponse<T>(errorMessage: 'Ein unerwarteter Fehler ist aufgetreten.');
     }
   }
 }

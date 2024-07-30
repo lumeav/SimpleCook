@@ -36,7 +36,7 @@ class ExploreFilteredControllerImplementation extends _$ExploreFilteredControlle
         state = state.copyWith(error: true, errorMessage: response.errorMessage);
       }
     } catch (e) {
-      state = state.copyWith(error: true, errorMessage: "An unexpected error occured!",);
+      state = state.copyWith(error: true, errorMessage: "Ein unerwarteter Fehler ist aufgetreten!",);
     }
   }
 }

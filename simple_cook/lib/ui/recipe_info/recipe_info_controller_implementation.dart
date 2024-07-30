@@ -40,7 +40,7 @@ class RecipeInfoControllerImplementation
     } catch (e) {
       state = state.copyWith(
         error: true,
-        errorMessage: "An unexpected error occured!",
+        errorMessage: "Ein unerwarteter Fehler ist aufgetreten!",
       );
     }
   }
@@ -64,7 +64,7 @@ class RecipeInfoControllerImplementation
     } catch (e) {
       state = state.copyWith(
         error: true,
-        errorMessage: "An unexpected error occured!",
+        errorMessage: "Ein unerwarteter Fehler ist aufgetreten!",
       );
     }
   }
@@ -103,7 +103,7 @@ class RecipeInfoControllerImplementation
     } catch (e) {
       state = state.copyWith(
         error: true,
-        errorMessage: "An unexpected error occured!",
+        errorMessage: "Ein unerwarteter Fehler ist aufgetreten!",
       );
     }
   }
@@ -121,7 +121,7 @@ class RecipeInfoControllerImplementation
     } catch (e) {
       state = state.copyWith(
         error: true,
-        errorMessage: "An unexpected error occured!",
+        errorMessage: "Ein unerwarteter Fehler ist aufgetreten!",
       );
     }
   }
