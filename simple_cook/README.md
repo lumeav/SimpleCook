@@ -41,7 +41,7 @@ Provides detailed information about a selected recipe, including ingredients, pr
 
 When opening the application you are greeted by the explore view, in which you can see the recipe of the day as well as other recipes that you can scroll through:
 
-![](/assets/readme/Explore_1.png)
+![Explore1](/assets/readme/Explore_1.png)
 ![](/assets/readme/Explore_2.png)
 <br>
 If you are not finding anything that you like in the explore view, you can simply search for a specific recipe that you would like to eat, in this example we look for a curry recipe like this:
