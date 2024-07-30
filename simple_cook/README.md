@@ -57,19 +57,64 @@ If you have finally found what you were looking for you can simply tap on the re
 ![](/simple_cook/assets/readme/Recipe_1.png)
 
 Here you can find the preparation time, portion size and the specific ingredients that you need for the recipe.
-Tapping on the heart button on the top right will add it to our favorites view, which we are going to take a look at later:
+Tapping on the heart button on the top right will add it to our favorites view, which we are going to take a look at later. The heart fills with orange color, which means the recipe is favorited:
 
 ![](/simple_cook/assets/readme/Recipe_2.png)
 
-You can also tap the plus button left of the heart button in order to add a recipe to the planner view for later use:
+You can also tap the plus button to the left of the heart button in order to add a recipe to the planner view for later use:
 
 ![](/simple_cook/assets/readme/Recipe_3.png)
 
-Scrolling down you can take a look at the stepwise preparation of this recipe. This recipe only takes 10 minutes to prepare so you only need two preparation steps for this recipe:
+Scrolling down the recipe you can take a look at the stepwise preparation of this recipe. This recipe only takes 10 minutes to prepare so you only need two preparation steps for this recipe:
 
 ![](/simple_cook/assets/readme/Recipe_4.png)
 
+When tapping the return arrow in the top left you will be brought back to the explore view. You can see that the heart for the recipe that we just favorited also turned orange, which makes keeping track of your favorite recipes easier:
 
+![](/simple_cook/assets/readme/Explore_5.png)
+
+By tapping on the "Search" magnifying glass in the bottom navigation bar you are navigated to the next view, the recipe finder view:
+
+![](/simple_cook/assets/readme/RecipeFinder_1.png)
+
+This view lets you generate an AI-recipe based on the tags and the ingredients that you add to it. You can add a specific ingredient by typing it into the search bar:
+
+![](/simple_cook/assets/readme/RecipeFinder_2.png)
+![](/simple_cook/assets/readme/RecipeFinder_3.png)
+
+The specific ingredient will be added to the recipe that we are going to generate later. A basic configuration would look like this:
+
+![](/simple_cook/assets/readme/RecipeFinder_4.png)
+
+You can then tap on the "Rezept generieren" button to generate the recipe with the current configuration:
+
+![](/simple_cook/assets/readme/RecipeFinder_5.png)
+
+After it is done loading you can see the generated recipe, it has the same information and layout as all other recipes:
+
+![](/simple_cook/assets/readme/GenRecipe_1.png)
+![](/simple_cook/assets/readme/GenRecipe_2.png)
+
+You can then head back again by tapping the return arrow in the top left, after that you can navigate to the favorites view in the navigation bar. Tap on the "Favorites" heart in the bottom navigation bar to see the favorites view:
+
+![](/simple_cook/assets/readme/Favorites_1.png)
+
+Here you can see all the recipes that you favorited in the past. If you want you can simply tap on the recipes here to show you the recipe again, or remove recipes that you do not like anymore. In this example we remove the "Dattel-Curry-Dip":
+
+![](/simple_cook/assets/readme/Favorites_1.png)
+![](/simple_cook/assets/readme/Favorites_2.png)
+
+If you are unsure of what you had planned for the coming week, you can simply navigate to the Planner view by tapping the "Planner" calender in the bottom navigation bar. This will lead you to the planner view:
+
+![](/simple_cook/assets/readme/Planner_1.png)
+
+Here you can see the recipes added for each day. You can switch between two weeks by tapping the arrow button next to the week span. Here we press on the top right arrow in order to navigate to the next week:
+
+![](/simple_cook/assets/readme/Planner_2.png)
+
+Here you can see the recipes for the following week. If you plan not to cook a specific recipe you can also just remove it by tapping the minus button on the top right of the recipe like this:
+
+![](/simple_cook/assets/readme/Planner_3.png)
 
 ## Personas and their benefits
 
