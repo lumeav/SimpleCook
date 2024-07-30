@@ -111,7 +111,7 @@ class RecipeInfoControllerImplementation
   SingleRecipe mapSingleRecipe(GenRecipeModel recipe, String url) {
       Map<String, dynamic> genRecipeJson = recipe.toJson();
       SingleRecipe singleRecipe = SingleRecipe.genRecipeFromJson(genRecipeJson);
-      singleRecipe.imageUrls = <String>[url]; // Change the assignment to a list containing the url
+      singleRecipe.imageUrls = <String>[url];
       return singleRecipe;
   }
 
