@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/ui/recipe_finder/recipe_finder_model.dart';
 import 'package:simple_cook/ui/recipe_finder/widgets/filter_tag.dart';
@@ -25,7 +26,7 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
     final RecipeFinderModel recipeFinderState = ref.watch(recipeFinderModelProvider);
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'),
-        backgroundColor: Colors.grey[200],
+        backgroundColor: SimpleCookColors.backgroundColor,
         body: Scrollbar(
           radius: const Radius.circular(50),
           thickness: 5,
@@ -42,7 +43,7 @@ class _RecipefinderViewState extends ConsumerState<RecipefinderView> {
                   margin: const EdgeInsets.only(top: 50, bottom: 30),
                   alignment: Alignment.center,
                   child: const SearchRecipesButton("Rezept generieren", "subRecipesFiltered")
-        
+
                 )
               ],
             ),

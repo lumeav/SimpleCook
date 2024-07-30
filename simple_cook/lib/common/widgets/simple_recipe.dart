@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:simple_cook/common/constants.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/common/widgets/heart_button.dart';
 import 'package:auto_size_text/auto_size_text.dart';
@@ -38,7 +39,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
       child: Ink(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: Colors.white,
+            color: SimpleCookColors.secondary,
           ),
           child: Column(
             children: <Widget>[
@@ -51,7 +52,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                             12)
                         ),
                     child: AspectRatio(
-                      aspectRatio: 1.1,
+                      aspectRatio: SimpleCookRatios.simpleRecipeRatio,
                       child:
                           Image.network(widget.imgPath, fit: BoxFit.cover),
                     ),
@@ -71,7 +72,7 @@ class _SimpleRecipeState extends State<SimpleRecipe> {
                 alignment: Alignment.centerLeft,
                 child: AutoSizeText(
                   widget.rezeptName,
-                  style: SimpleCookTextstyles.recheader,
+                  style: SimpleCookTextstyles.recHeader,
                   maxLines: 2,
                 ),
               ),

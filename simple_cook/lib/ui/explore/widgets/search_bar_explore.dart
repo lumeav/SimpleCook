@@ -20,7 +20,7 @@ class _SearchBarState extends ConsumerState<SearchBarExplore> {
 
     return Column(children: <Widget>[
       SearchAnchor.bar(
-          barBackgroundColor: MaterialStateProperty.all(Colors.white),
+          barBackgroundColor: MaterialStateProperty.all(SimpleCookColors.secondary),
           dividerColor: Colors.black,
           barHintText: "Suchen...",
           isFullScreen: false,
@@ -46,7 +46,7 @@ class _SearchBarState extends ConsumerState<SearchBarExplore> {
                   });
                 },
               );
-      
+
             });
           }),
     ]);

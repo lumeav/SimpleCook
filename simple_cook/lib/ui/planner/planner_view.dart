@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/ui/planner/planner_model.dart';
 import 'package:simple_cook/ui/planner/widgets/time_view_span.dart';
@@ -32,11 +33,11 @@ class PlannerViewState extends ConsumerState<PlannerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const SimpleCookAppBar('SimpleCook'),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: SimpleCookColors.backgroundColor,
       body: Column(children: <Widget>[
         Container(
             padding: const EdgeInsets.symmetric(vertical: 5),
-            color: Colors.grey[200],
+            color: SimpleCookColors.backgroundColor,
             child: const TimeViewSpan()),
         Expanded(
             child: SingleChildScrollView(
@@ -86,7 +87,7 @@ class PlannerViewState extends ConsumerState<PlannerView> {
               padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
               child: Text(
                 'Keine Rezepte für diese Woche hinzugefügt',
-                style: TextStyle(fontSize: 17, color: Colors.grey),
+                style: SimpleCookTextstyles.emptyView,
               ),
             ),
           ),

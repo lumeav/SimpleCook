@@ -25,9 +25,9 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
       Container(
         width: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.only(top: 10, bottom: 12, left : 15, right: 15),
-        color: Colors.white,
+        color: SimpleCookColors.secondary,
         child: SearchAnchor.bar(
-            barBackgroundColor: MaterialStateProperty.all(Colors.white),
+            barBackgroundColor: MaterialStateProperty.all(SimpleCookColors.secondary),
             dividerColor: Colors.black,
             barHintText: "Lebensmittel...",
             isFullScreen: false,
@@ -79,7 +79,7 @@ class _SearchBarState extends ConsumerState<SearchBarFilter> {
                     buttons[index],
                     style: SimpleCookTextstyles.filterTagTapped,
                   ),
-                  deleteIconColor: Colors.white,
+                  deleteIconColor: SimpleCookColors.secondary,
                   backgroundColor: SimpleCookColors.primary.withOpacity(0.75),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50),

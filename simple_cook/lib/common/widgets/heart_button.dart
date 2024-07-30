@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/common/constants.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
@@ -21,7 +22,7 @@ class HeartButton extends ConsumerWidget {
       favoritesController.toggleFavorite(recipe);
     }
 
-    double size = MediaQuery.of(context).size.width * 0.07;
+    double size = MediaQuery.of(context).size.width * SimpleCookRatios.heartButtonRatio;
     if (!border) {
       size = size + 12;
     }
@@ -29,7 +30,7 @@ class HeartButton extends ConsumerWidget {
       width: size + 8,
       height: size + 8,
       decoration: border
-          ? const BoxDecoration(shape: BoxShape.circle, color: Colors.white)
+          ? const BoxDecoration(shape: BoxShape.circle, color: SimpleCookColors.secondary)
           : null,
       child: IconButton(
         onPressed: onPressed,

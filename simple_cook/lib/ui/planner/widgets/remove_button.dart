@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 
 import 'package:simple_cook/ui/planner/planner_providers.dart';
@@ -24,7 +25,7 @@ class RemoveButton extends ConsumerWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         border: Border.all(
-          color: Colors.grey,
+          color: SimpleCookColors.border,
           width: 3,
         ),
       ),
@@ -34,7 +35,7 @@ class RemoveButton extends ConsumerWidget {
           onPressed: () => controller.removePlanner(date, recipe),
           icon: const FaIcon(
             FontAwesomeIcons.minus,
-            color: Colors.grey,
+            color: SimpleCookColors.border,
             size: 20,
           ),
         ),

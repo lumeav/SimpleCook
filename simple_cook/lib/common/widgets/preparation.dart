@@ -32,7 +32,7 @@ class Preparation extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
-          const Text("Zubereitung", style: SimpleCookTextstyles.subheader),
+          const Text("Zubereitung", style: SimpleCookTextstyles.subHeader),
           Padding(
             padding: const EdgeInsets.only(top: 15.0),
             child: Column(

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
 import 'package:http/http.dart' as http;
+import 'package:simple_cook/common/constants.dart';
 import 'package:simple_cook/service/recipe_service/api_response.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
@@ -22,7 +23,7 @@ class RecipeClient {
     return await _handleRequest(() async {
       http.Response response = await client
           .get(Uri.parse(url), headers: headers)
-          .timeout(const Duration(seconds: 10));
+          .timeout(SimpleCookDurations.timeOutDuration);
       if (response.statusCode == 200) {
         return ApiResponse<List<Recipe>?>(
             data: recipeFromJson(
@@ -44,7 +45,7 @@ class RecipeClient {
     return await _handleRequest(() async {
       http.Response response = await client
           .get(Uri.parse(url), headers: headers)
-          .timeout(const Duration(seconds: 10));
+          .timeout(SimpleCookDurations.timeOutDuration);
       if (response.statusCode == 200) {
         return ApiResponse<SingleRecipe>(
             data: SingleRecipe.fromJson(
@@ -68,7 +69,7 @@ class RecipeClient {
             headers: headers,
             body: jsonEncode(<String, String>{'text': request}),
           )
-          .timeout(const Duration(seconds: 30));
+          .timeout(SimpleCookDurations.genTimeOutDuration);
       if (response.statusCode == 200) {
         GenRecipeModel genRecipe =
             genRecipeFromJson(const Utf8Decoder().convert(response.bodyBytes));
@@ -96,7 +97,7 @@ class RecipeClient {
             headers: headers,
             body: imgRecipeJson,
           )
-          .timeout(const Duration(seconds: 30));
+          .timeout(SimpleCookDurations.genTimeOutDuration);
       if (response.statusCode == 200) {
         Url imgUrl =
             urlFromJson(const Utf8Decoder().convert(response.bodyBytes));

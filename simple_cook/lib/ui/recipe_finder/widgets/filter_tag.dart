@@ -55,7 +55,7 @@ class _FilterTagState extends ConsumerState<FilterTag> {
               ),
               icon: const Icon(
                 Icons.close,
-                color: Colors.white,
+                color: SimpleCookColors.secondary,
               ),
               label: Text(
                 widget.text,
@@ -67,7 +67,7 @@ class _FilterTagState extends ConsumerState<FilterTag> {
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.transparent,
                 surfaceTintColor: Colors.transparent,
-                backgroundColor: Colors.white,
+                backgroundColor: SimpleCookColors.secondary,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50),
                   side: const BorderSide(

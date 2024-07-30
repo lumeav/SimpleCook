@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
+import 'package:simple_cook/common/constants.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/common/config.dart';
 
@@ -11,7 +12,7 @@ class LoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size.width * 0.3;
+    var size = MediaQuery.of(context).size.width * SimpleCookRatios.loadingIndicatorRatio;
     String randomTip = Config.tips[Random().nextInt(Config.tips.length)];
 
     return Center(
@@ -45,10 +46,7 @@ class LoadingIndicator extends StatelessWidget {
                     horizontal: 20.0),
                 child: Text(
                   randomTip,
-                  style: const TextStyle(
-                    color: SimpleCookColors.primary,
-                    fontSize: 24,
-                  ),
+                  style: SimpleCookTextstyles.easterEgg,
                   textAlign: TextAlign.center,
                 ),
               ),

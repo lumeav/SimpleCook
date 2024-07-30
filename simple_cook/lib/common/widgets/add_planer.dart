@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:simple_cook/common/theme.dart';
+import 'package:simple_cook/common/constants.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/ui/planner/planner_providers.dart';
 import 'package:simple_cook/ui/planner/planner_view.dart';
@@ -25,7 +26,7 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
 
   @override
   Widget build(BuildContext context) {
-    double size = MediaQuery.of(context).size.width * 0.062;
+    double size = MediaQuery.of(context).size.width * SimpleCookRatios.addPlannerRatio;
     return Container(
       width: size + 8,
       height: size + 8,
@@ -50,7 +51,7 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
   }
 
   void _showDatePickerDialog(BuildContext context) {
-    double size = MediaQuery.of(context).size.width * 0.75;
+    double size = MediaQuery.of(context).size.width * SimpleCookRatios.datePickerDialogRatio;
     showDialog<void>(
       context: context,
       builder: (BuildContext context) {
@@ -72,7 +73,7 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
                     ),
                     const Text(
                       'Wochenplaner',
-                      style: SimpleCookTextstyles.subheader,
+                      style: SimpleCookTextstyles.subHeader,
                     ),
                     const SizedBox(width: 48),
                   ],
@@ -89,7 +90,7 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
 
   Widget _buildDatePicker() {
     final PlannerController plannerController = ref.watch(plannerControllerProvider);
-    double size = MediaQuery.of(context).size.width * 0.40;
+    double size = MediaQuery.of(context).size.width * SimpleCookRatios.datePickerRatio;
     final List<String> dates = _generateNext14Days();
     return SizedBox(
       height: size,
@@ -105,7 +106,7 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
                   ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: Text('Rezept für den $selectedDate hinzugefügt'),
-                    duration: const Duration(seconds: 2),
+                    duration: SimpleCookDurations.datePickerDuration,
                   ),
                 );
                 }

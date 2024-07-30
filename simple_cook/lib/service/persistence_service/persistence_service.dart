@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:simple_cook/service/persistence_service/persistence_service_aggregator.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
-import 'package:simple_cook/common/theme.dart';
+import 'package:simple_cook/common/constants.dart';
 import 'dart:math';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:simple_cook/ui/explore/services/explore_recipe_service.dart';

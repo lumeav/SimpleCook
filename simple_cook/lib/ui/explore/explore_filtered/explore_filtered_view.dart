@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/common/constants.dart';
 import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/common/widgets/loading_indicator.dart';
 import 'package:simple_cook/common/widgets/simple_recipe.dart';
@@ -39,7 +40,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
 
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'),
-        backgroundColor: Colors.grey[200],
+        backgroundColor: SimpleCookColors.backgroundColor,
         body: exploreFilteredState.fetchFinished
             ? CustomScrollView(
                 slivers: <Widget>[
@@ -51,10 +52,10 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
                     padding: const EdgeInsets.only(
                         left: 15, right: 15, top: 10.0, bottom: 10.0),
                     sliver: SliverGrid.count(
-                      childAspectRatio: 0.78,
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
+                      childAspectRatio: SimpleCookRatios.recipeGridRatio,
+                      crossAxisCount: SimpleCookConstants.recipeGridCount,
+                      mainAxisSpacing: SimpleCookConstants.recipeGridMainSpacing,
+                      crossAxisSpacing: SimpleCookConstants.recipeGridCrossSpacing,
                       children: <Widget>[
                         for (Recipe recipe in exploreFilteredState.filteredRecipes!)
                           SimpleRecipe(
@@ -77,7 +78,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(exploreFilteredState.errorMessage!,
-                            style: const TextStyle(color: Colors.grey)),
+                            style: SimpleCookTextstyles.error),
                         const SizedBox(height: 8),
                         SizedBox(
                             height: 50,
@@ -94,7 +95,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
                                           SimpleCookColors.primary),
                                   foregroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          Colors.white),
+                                          SimpleCookColors.secondary),
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                     RoundedRectangleBorder(

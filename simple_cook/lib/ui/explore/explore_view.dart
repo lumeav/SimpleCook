@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/common/constants.dart';
 import 'package:simple_cook/ui/explore/explore_model.dart';
 import 'package:simple_cook/ui/explore/widgets/header_rezept_des_tages.dart';
 import 'package:simple_cook/common/widgets/extended_recipe.dart';
@@ -9,7 +10,6 @@ import 'package:simple_cook/common/widgets/simple_recipe.dart';
 import 'package:simple_cook/common/widgets/header_grey_background.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/common/theme.dart';
-//import 'explore_controller_implementation.dart';
 import 'explore_providers.dart';
 
 class ExploreView extends ConsumerStatefulWidget {
@@ -35,13 +35,13 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
 
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'),
-        backgroundColor: Colors.grey[200],
+        backgroundColor: SimpleCookColors.backgroundColor,
         body: exploreState.fetchFinished
             ? CustomScrollView(slivers: <Widget>[
                 const SliverAppBar(
                   pinned: true,
-                  backgroundColor: Colors.white,
-                  surfaceTintColor: Colors.white,
+                  backgroundColor: SimpleCookColors.secondary,
+                  surfaceTintColor: SimpleCookColors.secondary,
                   toolbarHeight: 80,
                   title: Row(children: <Widget>[
                     Expanded(child: SearchBarExplore()),
@@ -60,10 +60,10 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                   padding: const EdgeInsets.only(
                       left: 15, right: 15, top: 10.0, bottom: 10.0),
                   sliver: SliverGrid.count(
-                    childAspectRatio: 0.78,
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
+                    childAspectRatio: SimpleCookRatios.recipeGridRatio,
+                    crossAxisCount: SimpleCookConstants.recipeGridCount,
+                    mainAxisSpacing: SimpleCookConstants.recipeGridMainSpacing,
+                    crossAxisSpacing: SimpleCookConstants.recipeGridCrossSpacing,
                     children: <Widget>[
                       for (Recipe recipe in exploreState.recipes!)
                         SimpleRecipe(
@@ -90,7 +90,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                         Padding(
                           padding: const EdgeInsets.only(left: 15.0, right: 15.0, bottom: 5),
                           child: Text(exploreState.errorMessage!,
-                              style: const TextStyle(color: Colors.grey)),
+                              style: SimpleCookTextstyles.error),
                         ),
                         const SizedBox(height: 8),
                         SizedBox(
@@ -108,7 +108,7 @@ class _ExploreViewState extends ConsumerState<ExploreView> {
                                           SimpleCookColors.primary),
                                   foregroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          Colors.white),
+                                          SimpleCookColors.secondary),
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                     RoundedRectangleBorder(

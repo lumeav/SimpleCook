@@ -23,16 +23,13 @@ class SimpleCookAppBar extends StatelessWidget implements PreferredSizeWidget {
               width: 8.0),
           Text(
             title,
-            style: const TextStyle(
-                color: SimpleCookColors.primary,
-                fontSize: 40,
-                fontFamily: 'BigShouldersText'),
+            style: SimpleCookTextstyles.appBar,
           ),
         ],
       ),
       centerTitle: true,
-      backgroundColor: Colors.white,
-      surfaceTintColor: Colors.white,
+      backgroundColor: SimpleCookColors.secondary,
+      surfaceTintColor: SimpleCookColors.secondary,
       elevation: 0,
     );
   }

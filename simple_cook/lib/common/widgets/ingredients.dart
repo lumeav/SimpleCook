@@ -15,7 +15,7 @@ class _IngredientsState extends State<Ingredients> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        const Text('•', style: TextStyle(fontSize: 20)),
+        const Text('•', style: SimpleCookTextstyles.ingedients),
         const SizedBox(width: 16.0),
         Expanded(child: Text(text, style: SimpleCookTextstyles.rawText)),
       ],
@@ -33,7 +33,7 @@ class _IngredientsState extends State<Ingredients> {
             children: <Widget>[
               const Text(
                 "Zutaten",
-                style: SimpleCookTextstyles.subheader
+                style: SimpleCookTextstyles.subHeader
               ),
               Text(
                 "${widget.portion} Port.",

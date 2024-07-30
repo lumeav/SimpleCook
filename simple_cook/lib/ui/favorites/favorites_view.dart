@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:simple_cook/common/constants.dart';
+import 'package:simple_cook/common/theme.dart';
 import 'package:simple_cook/common/widgets/simple_cook_appbar.dart';
 import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/common/widgets/header_grey_background.dart';
@@ -30,23 +32,23 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
 
     return Scaffold(
       appBar: const SimpleCookAppBar('SimpleCook'),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: SimpleCookColors.backgroundColor,
       body: favoriteModel.favoriteRecipes.isEmpty
-          ? const Center(child: Text('Keine Favoriten hinzugefügt'))
+          ? const Center(child: Text('Keine Favoriten hinzugefügt', style: SimpleCookTextstyles.emptyView))
           : Column(
             children: <Widget>[
               Container(
                 padding: const EdgeInsets.symmetric(vertical: 5),
-                color: Colors.grey[200],
+                color: SimpleCookColors.backgroundColor,
                 child: const HeaderGreyBackground('Favoriten', FontWeight.bold)),
               Expanded(
                 child: GridView.builder(
                     padding: const EdgeInsets.all(15),
                     gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 0.78,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10,
+                      childAspectRatio: SimpleCookRatios.recipeGridRatio,
+                      crossAxisCount: SimpleCookConstants.recipeGridCount,
+                      mainAxisSpacing: SimpleCookConstants.recipeGridMainSpacing,
+                      crossAxisSpacing: SimpleCookConstants.recipeGridCrossSpacing,
                     ),
                     itemCount: favoriteModel.favoriteRecipes.length,
                     itemBuilder: (BuildContext context, int index) {

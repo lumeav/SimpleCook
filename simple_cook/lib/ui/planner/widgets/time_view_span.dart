@@ -47,7 +47,7 @@ class _TimeViewSpanState extends ConsumerState<TimeViewSpan> {
           IconButton(
               onPressed: () => _onPressed(plannerController, 'prev'),
               icon:
-                  const Icon(Icons.chevron_left, color: Colors.grey, size: 32)),
+                  const Icon(Icons.chevron_left, color: SimpleCookColors.border, size: 32)),
           Flexible(
             child: Text(
                 "Wochenplan ${DateFormat('dd.MM', 'de_DE').format(plannerModel.start)} - ${DateFormat('dd.MM', 'de_DE').format(plannerModel.end)}",
@@ -56,7 +56,7 @@ class _TimeViewSpanState extends ConsumerState<TimeViewSpan> {
           IconButton(
               onPressed: () => _onPressed(plannerController, 'next'),
               icon:
-                  const Icon(Icons.chevron_right, color: Colors.grey, size: 32))
+                  const Icon(Icons.chevron_right, color: SimpleCookColors.border, size: 32))
         ],
       ),
     );

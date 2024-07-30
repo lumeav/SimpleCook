@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_cook/common/constants.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_model.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_providers.dart';
 import 'package:simple_cook/common/widgets/loading_indicator.dart';
@@ -38,12 +39,12 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
 
     return Scaffold(
         appBar: const SimpleCookAppBar('SimpleCook'),
-        backgroundColor: Colors.grey[200],
+        backgroundColor: SimpleCookColors.backgroundColor,
         body: recipeInfoState.fetchFinished
             ? Column(children: <Widget>[
                 Container(
                     padding: const EdgeInsets.symmetric(vertical: 2),
-                    color: Colors.white,
+                    color: SimpleCookColors.secondary,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
@@ -62,7 +63,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                         child: Ink(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(12),
-                                color: Colors.white),
+                                color: SimpleCookColors.secondary),
                             child: buildSingleRecipe(recipeInfoState.recipe!, widget.recipeUrl!)),
                       ),
                     ],
@@ -78,7 +79,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(recipeInfoState.errorMessage!,
-                            style: const TextStyle(color: Colors.grey)),
+                            style: SimpleCookTextstyles.error),
                         const SizedBox(height: 8),
                         SizedBox(
                             height: 50,
@@ -95,7 +96,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                                           SimpleCookColors.primary),
                                   foregroundColor:
                                       MaterialStateProperty.all<Color>(
-                                          Colors.white),
+                                          SimpleCookColors.secondary),
                                   shape: MaterialStateProperty.all<
                                       RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
@@ -125,7 +126,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(12), topRight: Radius.circular(12)),
             child: AspectRatio(
-                aspectRatio: 1.8,
+                aspectRatio: SimpleCookRatios.imageRatio,
                 child: Image.network(
                   singleRecipe.imageUrls.first,
                   fit: BoxFit.cover,
