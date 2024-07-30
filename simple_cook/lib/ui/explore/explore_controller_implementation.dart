@@ -4,7 +4,6 @@ import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/ui/explore/explore_model.dart';
 import 'package:simple_cook/ui/explore/explore_view.dart';
 import 'dart:math';
-
 import 'package:simple_cook/ui/explore/services/explore_persistence_service.dart';
 import 'package:simple_cook/ui/explore/services/explore_recipe_service.dart';
 

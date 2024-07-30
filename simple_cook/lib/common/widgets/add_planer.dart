@@ -105,7 +105,7 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
                   SnackBar(
                     content: added ? Text('Rezept wurde für den $selectedDate hinzugefügt') :
                     Text('Rezept existiert schon für den $selectedDate'),
-                    duration: Duration(seconds: 2),
+                    duration: const Duration(seconds: 2),
                   ),
                 );
                 }

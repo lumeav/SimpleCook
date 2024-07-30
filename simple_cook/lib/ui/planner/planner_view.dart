@@ -49,9 +49,9 @@ class PlannerViewState extends ConsumerState<PlannerView> {
   }
 
   List<Widget> _buildPlannerRows() {
-    final planner = ref.watch(plannerControllerProvider);
-    final plannerModel = ref.watch(plannerModelProvider);
-    List<Widget> plannerRows = [];
+    final PlannerController planner = ref.watch(plannerControllerProvider);
+    final PlannerModel plannerModel = ref.watch(plannerModelProvider);
+    List<Widget> plannerRows = <Widget>[];
 
     bool hasRecipesForWeek = false;
 
@@ -81,7 +81,7 @@ class PlannerViewState extends ConsumerState<PlannerView> {
       plannerRows.add(
         const Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
             child: Text(
               'Keine Rezepte für diese Woche hinzugefügt',
               style: TextStyle(fontSize: 17, color: Colors.grey),

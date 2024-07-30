@@ -9,7 +9,6 @@ import 'package:simple_cook/common/widgets/simple_recipe.dart';
 import 'package:simple_cook/common/widgets/header_grey_background.dart';
 import 'package:simple_cook/service/recipe_service/recipes_model.dart';
 import 'package:simple_cook/common/theme.dart';
-//import 'explore_controller_implementation.dart';
 import 'explore_providers.dart';
 
 class ExploreView extends ConsumerStatefulWidget {

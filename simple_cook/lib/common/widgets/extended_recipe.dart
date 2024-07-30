@@ -21,7 +21,6 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Placeholder for future logic
         context.pushNamed('singleRecipeView', queryParameters: {'recipeUrl': widget.source}, extra: widget.genRecipe);
       },
       child: Padding(
@@ -30,9 +29,9 @@ class _ExtendedRecipeState extends State<ExtendedRecipe> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12), color: Colors.white),
             child: Column(
-              children: [
+              children: <Widget>[
                 Stack(
-                  children: [
+                  children: <Widget>[
                     ClipRRect(
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(12),
