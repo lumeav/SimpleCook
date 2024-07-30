@@ -56,7 +56,8 @@ class _FavoritesViewState extends ConsumerState<FavoritesView> {
                       return SimpleRecipe(
                         recipe.imageUrls.isNotEmpty ? recipe.imageUrls.first : '',
                         recipe.title,
-                        recipe.source,
+                        recipe.source ?? '',
+                        recipe,
                       );
                     },
                   ),

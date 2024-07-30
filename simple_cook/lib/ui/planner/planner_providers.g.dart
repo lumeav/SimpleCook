@@ -6,7 +6,7 @@ part of 'planner_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$plannerControllerHash() => r'0263c5301a02f7a4ef2d091cb65422def3eca112';
+String _$plannerControllerHash() => r'9baf0b57bc988edac848547ce13d7f94c8c69de8';
 
 /// See also [plannerController].
 @ProviderFor(plannerController)
@@ -22,7 +22,7 @@ final plannerControllerProvider =
 );
 
 typedef PlannerControllerRef = AutoDisposeProviderRef<PlannerController>;
-String _$plannerModelHash() => r'80c129d1165470a63546f37b0df9eea3ff00f5b9';
+String _$plannerModelHash() => r'f44fe44f6abafd5075ec541e4c97c7b1c5fcf5e7';
 
 /// See also [plannerModel].
 @ProviderFor(plannerModel)

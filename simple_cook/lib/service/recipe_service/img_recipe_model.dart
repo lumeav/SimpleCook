@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-ImgRecipeModel imgRecipeFromJson(String str) => ImgRecipeModel.fromJson(json.decode(str));
+ImgRecipeModel imgRecipeFromJson(String str) => ImgRecipeModel.fromJson(json.decode(str) as Map<String, dynamic>);
 
 String imgRecipeToJson(ImgRecipeModel data) => json.encode(data.toJson());
 
@@ -21,9 +21,9 @@ class ImgRecipeModel {
         ingredients: (json['ingredients'] as List)
           .map((e) => Ingredient.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
-        steps: List<String>.from(json["instructions"].map((x) => x)),
-        title: json["title"],
-        imageSize: json["image_size"] ?? '256x256',
+        steps: List<String>.from((json["instructions"] as List<dynamic>).map((x) => x)),
+        title: json["title"] as String,
+        imageSize: json["image_size"]?.toString() ?? '256x256',
     );
 
     Map<String, dynamic> toJson() => {
@@ -47,8 +47,8 @@ class Ingredient {
 
     factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
         amount: json["amount"] == null ? "" : json["amount"].toString(),
-        name: json["name"],
-        unit: json["unit"] ?? "",
+        name: json["name"] as String,
+        unit: json["unit"]?.toString() ?? "",
     );
 
     Map<String, dynamic> toJson() => {

@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$ResultModel {
   GenRecipeModel? get recipe => throw _privateConstructorUsedError;
+  SingleRecipe? get singleRecipe => throw _privateConstructorUsedError;
   String? get url => throw _privateConstructorUsedError;
   bool get fetchFinished => throw _privateConstructorUsedError;
   bool get error => throw _privateConstructorUsedError;
@@ -35,6 +36,7 @@ abstract class $ResultModelCopyWith<$Res> {
   @useResult
   $Res call(
       {GenRecipeModel? recipe,
+      SingleRecipe? singleRecipe,
       String? url,
       bool fetchFinished,
       bool error,
@@ -55,6 +57,7 @@ class _$ResultModelCopyWithImpl<$Res, $Val extends ResultModel>
   @override
   $Res call({
     Object? recipe = freezed,
+    Object? singleRecipe = freezed,
     Object? url = freezed,
     Object? fetchFinished = null,
     Object? error = null,
@@ -65,6 +68,10 @@ class _$ResultModelCopyWithImpl<$Res, $Val extends ResultModel>
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
               as GenRecipeModel?,
+      singleRecipe: freezed == singleRecipe
+          ? _value.singleRecipe
+          : singleRecipe // ignore: cast_nullable_to_non_nullable
+              as SingleRecipe?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -95,6 +102,7 @@ abstract class _$$ResultModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {GenRecipeModel? recipe,
+      SingleRecipe? singleRecipe,
       String? url,
       bool fetchFinished,
       bool error,
@@ -113,6 +121,7 @@ class __$$ResultModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? recipe = freezed,
+    Object? singleRecipe = freezed,
     Object? url = freezed,
     Object? fetchFinished = null,
     Object? error = null,
@@ -123,6 +132,10 @@ class __$$ResultModelImplCopyWithImpl<$Res>
           ? _value.recipe
           : recipe // ignore: cast_nullable_to_non_nullable
               as GenRecipeModel?,
+      singleRecipe: freezed == singleRecipe
+          ? _value.singleRecipe
+          : singleRecipe // ignore: cast_nullable_to_non_nullable
+              as SingleRecipe?,
       url: freezed == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -148,6 +161,7 @@ class __$$ResultModelImplCopyWithImpl<$Res>
 class _$ResultModelImpl implements _ResultModel {
   const _$ResultModelImpl(
       {this.recipe,
+      this.singleRecipe,
       this.url,
       this.fetchFinished = false,
       this.error = false,
@@ -155,6 +169,8 @@ class _$ResultModelImpl implements _ResultModel {
 
   @override
   final GenRecipeModel? recipe;
+  @override
+  final SingleRecipe? singleRecipe;
   @override
   final String? url;
   @override
@@ -168,7 +184,7 @@ class _$ResultModelImpl implements _ResultModel {
 
   @override
   String toString() {
-    return 'ResultModel(recipe: $recipe, url: $url, fetchFinished: $fetchFinished, error: $error, errorMessage: $errorMessage)';
+    return 'ResultModel(recipe: $recipe, singleRecipe: $singleRecipe, url: $url, fetchFinished: $fetchFinished, error: $error, errorMessage: $errorMessage)';
   }
 
   @override
@@ -177,6 +193,8 @@ class _$ResultModelImpl implements _ResultModel {
         (other.runtimeType == runtimeType &&
             other is _$ResultModelImpl &&
             (identical(other.recipe, recipe) || other.recipe == recipe) &&
+            (identical(other.singleRecipe, singleRecipe) ||
+                other.singleRecipe == singleRecipe) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.fetchFinished, fetchFinished) ||
                 other.fetchFinished == fetchFinished) &&
@@ -186,8 +204,8 @@ class _$ResultModelImpl implements _ResultModel {
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, recipe, url, fetchFinished, error, errorMessage);
+  int get hashCode => Object.hash(runtimeType, recipe, singleRecipe, url,
+      fetchFinished, error, errorMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -199,6 +217,7 @@ class _$ResultModelImpl implements _ResultModel {
 abstract class _ResultModel implements ResultModel {
   const factory _ResultModel(
       {final GenRecipeModel? recipe,
+      final SingleRecipe? singleRecipe,
       final String? url,
       final bool fetchFinished,
       final bool error,
@@ -206,6 +225,8 @@ abstract class _ResultModel implements ResultModel {
 
   @override
   GenRecipeModel? get recipe;
+  @override
+  SingleRecipe? get singleRecipe;
   @override
   String? get url;
   @override

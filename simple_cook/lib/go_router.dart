@@ -1,5 +1,6 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:go_router/go_router.dart';
+import 'package:simple_cook/service/recipe_service/single_recipe_model.dart';
 import 'package:simple_cook/ui/explore/explore_view.dart';
 import 'package:simple_cook/ui/favorites/favorites_view.dart';
 import 'package:simple_cook/ui/planner/planner_view.dart';
@@ -87,12 +88,14 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: <RouteBase
   GoRoute(
     path: '/singleRecipeView',
     name: 'singleRecipeView',
-    pageBuilder: (BuildContext context, GoRouterState state) {
+    pageBuilder: (context, state) {
+      SingleRecipe? genRecipe = state.extra as SingleRecipe?;
       return NoTransitionPage(
         key: state.pageKey,
         child: RecipeView(
           key: state.pageKey,
           recipeUrl: state.uri.queryParameters['recipeUrl'],
+          genRecipe: genRecipe,
         ),
       );
     },

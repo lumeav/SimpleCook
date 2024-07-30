@@ -122,14 +122,14 @@ class __$$RecipeFinderModelImplCopyWithImpl<$Res>
 class _$RecipeFinderModelImpl implements _RecipeFinderModel {
   const _$RecipeFinderModelImpl(
       {required final List<String> activeFilters,
-      final List<String> categories = const [
+      final List<String> categories = const <String>[
         'Alle',
         'Vorspeise',
         'Hauptspeise',
         'Dessert',
         'Snacks'
       ],
-      final List<String> diets = const [
+      final List<String> diets = const <String>[
         'Alle',
         'Vegetarisch',
         'Vegan',

@@ -7,7 +7,7 @@ part of 'favorites_controller_implementation.dart';
 // **************************************************************************
 
 String _$favoritesControllerImplementationHash() =>
-    r'fecd1bc186a91e98bf0bd9029a3805d7fb1470d2';
+    r'51018aca96cef1b372b2bde43199a0689f02126d';
 
 /// Copied from Dart SDK
 class _SystemHash {

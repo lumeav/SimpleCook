@@ -12,7 +12,7 @@ class LoadingIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size.width * SimpleCookRatios.loadingIndicatorRatio;
+    double size = MediaQuery.of(context).size.width * SimpleCookRatios.loadingIndicatorRatio;
     String randomTip = Config.tips[Random().nextInt(Config.tips.length)];
 
     return Center(
@@ -25,7 +25,7 @@ class LoadingIndicator extends StatelessWidget {
               Container(
                 height: size,
                 width: size,
-                child: CircularProgressIndicator(
+                child: const CircularProgressIndicator(
                   valueColor:
                       AlwaysStoppedAnimation<Color>(SimpleCookColors.primary),
                   strokeWidth: 4,

@@ -49,7 +49,8 @@ class RecipeClient {
       if (response.statusCode == 200) {
         return ApiResponse<SingleRecipe>(
             data: SingleRecipe.fromJson(
-                jsonDecode(const Utf8Decoder().convert(response.bodyBytes))));
+                jsonDecode(const Utf8Decoder().convert(response.bodyBytes))
+                    as Map<String, dynamic>));
       } else if (response.statusCode == 429 || response.statusCode == 403) {
         return ApiResponse<SingleRecipe>(
             errorMessage:
@@ -88,9 +89,11 @@ class RecipeClient {
   Future<ApiResponse<String>> postGenRecipeModelImg(
       GenRecipeModel recipe) async {
     return await _handleRequest(() async {
+
       String genRecipeJson = genRecipeToJson(recipe);
       ImgRecipeModel imgRecipe = imgRecipeFromJson(genRecipeJson);
       String imgRecipeJson = imgRecipeToJson(imgRecipe);
+
       http.Response response = await client
           .post(
             Uri.parse('${baseUrl}generateRecipeImage'),
@@ -110,6 +113,7 @@ class RecipeClient {
         return ApiResponse<String>(
             errorMessage: 'Failed to load recipe image. Check for connection!');
       }
+
     });
   }
 

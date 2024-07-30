@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 List<Recipe> recipeFromJson(String str) =>
-    List<Recipe>.from(json.decode(str).map((x) => Recipe.fromJson(x)));
+    List<Recipe>.from((json.decode(str) as List<dynamic>).map((x) => Recipe.fromJson(x as Map<String, dynamic>)));
 
 String recipeToJson(List<Recipe> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
@@ -26,18 +26,18 @@ class Recipe {
   });
 
   factory Recipe.fromJson(Map<String, dynamic> json) => Recipe(
-        imageUrls: List<String>.from(json["image_urls"].map((x) => x)),
+        imageUrls: List<String>.from((json["image_urls"] as List<dynamic>).map((x) => x as String)),
         ingredients: (json['ingredients'] as List)
             .map(
                 (e) => Ingredient.fromJson(Map<String, dynamic>.from(e as Map)))
             .toList(),
-        portions: json["portions"],
-        source: json["source"],
-        title: json["title"],
-        totalTime: json["totalTime"],
+        portions: json["portions"] as int?,
+        source: json["source"] as String,
+        title: json["title"] as String,
+        totalTime: json["totalTime"] as double,
         diet: json["diet"] == null
             ? []
-            : List<String>.from(json["diet"]!.map((x) => x)),
+            : List<String>.from((json["diet"] as List<dynamic>).map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
@@ -62,9 +62,9 @@ class Ingredient {
   });
 
   factory Ingredient.fromJson(Map<String, dynamic> json) => Ingredient(
-        amount: json["amount"],
-        name: json["name"],
-        unit: json["unit"],
+        amount: json["amount"] as String,
+        name: json["name"] as String,
+        unit: json["unit"] as String,
       );
 
   Map<String, dynamic> toJson() => {
@@ -84,8 +84,8 @@ class Rating {
   });
 
   factory Rating.fromJson(Map<String, dynamic> json) => Rating(
-        ratingCount: json["ratingCount"],
-        ratingValue: json["ratingValue"]?.toDouble(),
+        ratingCount: json["ratingCount"] as int,
+        ratingValue: json["ratingValue"] as double,
       );
 
   Map<String, dynamic> toJson() => {

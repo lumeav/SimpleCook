@@ -62,6 +62,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
                               recipe.imageUrls.first,
                               recipe.title,
                               recipe.source,
+                              null
                     ),],
                     ),
                   )
