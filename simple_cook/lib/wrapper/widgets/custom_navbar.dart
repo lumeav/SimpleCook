@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:simple_cook/common/theme.dart';
 
 class CustomNavBar extends StatelessWidget {
   final StatefulNavigationShell child;
@@ -9,8 +10,8 @@ class CustomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      selectedItemColor: Colors.orange,
+      backgroundColor: SimpleCookColors.secondary,
+      selectedItemColor: SimpleCookColors.primary,
       unselectedItemColor: Colors.grey,
       currentIndex: child.currentIndex,
       onTap: _onItemTapped,

@@ -117,7 +117,7 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                                   ),
                                 ),
                                 child: const Text(
-                                  "Try again",
+                                  "Erneut versuchen",
                                   style: SimpleCookTextstyles.filterTagTapped,
                                 )))
                       ],

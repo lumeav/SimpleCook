@@ -51,6 +51,6 @@ class SimpleCookTextstyles {
   static const TextStyle ingedients = TextStyle(fontSize: 20);
   static const TextStyle easterEgg =
       TextStyle(color: SimpleCookColors.primary, fontSize: 24);
-  static const TextStyle error = TextStyle(color: Colors.grey);
+  static const TextStyle error = TextStyle(fontSize:14, color: Colors.grey);
   static const TextStyle emptyView = TextStyle(fontSize: 17, color: Colors.grey);
 }

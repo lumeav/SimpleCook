@@ -58,7 +58,7 @@ class ExploreControllerImplementation extends _$ExploreControllerImplementation
     } catch (e) {
       state = state.copyWith(
         error: true,
-        errorMessage: "An unexpected error occured!",
+        errorMessage: "Ein unerwarteter Fehler ist aufgetreten!",
       );
     }
   }
