@@ -53,8 +53,6 @@ class RecipeInfoControllerImplementation
       final ApiResponse<GenRecipeModel> response =
           await recipeService.postGenRecipeModel(query!);
       if (response.data == null && response.errorMessage != null) {
-        print("Fehler!!!187");
-        print(response.errorMessage);
         state = state.copyWith(
           error: true,
           errorMessage: response.errorMessage,
@@ -66,9 +64,7 @@ class RecipeInfoControllerImplementation
         );
         await _fetchGenRecipeImg(response.data!);
       }
-    } catch (e, s) {
-      print(e);
-      print(s);
+    } catch (e) {
       state = state.copyWith(
         error: true,
         errorMessage: "An unexpected error occured!",
@@ -90,9 +86,7 @@ class RecipeInfoControllerImplementation
           errorMessage: response.errorMessage,
         );
       }
-    } catch (e, s) {
-      print(e);
-      print(s);
+    } catch (e) {
       state = state.copyWith(
         error: true,
         errorMessage: "An unexpected error occured!",
