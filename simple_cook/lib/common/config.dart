@@ -10,6 +10,7 @@ class Config {
     'Kochwein ist zum Kochen da. Trinkwein ist für den Koch da.',
     'Das Geheimnis eines guten Essens? Butter. Viel Butter.',
     'Schmeckt das Essen nicht? Einfach mehr Käse drauf!',
-    'Halten, Tasten, Würzen: Genießen mit der richtigen Methode Achtsam! nur die großen buchstaben!'
+    'Halten, Tasten, Würzen: Genießen mit der richtigen Methode Achtsam!',
+    'Je länger man wartet, desto besser das Rezept!',
   ];
 }

@@ -27,7 +27,6 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
   @override
   void initState() {
     super.initState();
-    print('search: ${widget.search}');
     ref
         .read(exploreFilteredControllerProvider)
         .buildRecipes(widget.search!);

@@ -39,5 +39,4 @@ class ExploreFilteredControllerImplementation extends _$ExploreFilteredControlle
       state = state.copyWith(error: true, errorMessage: "An unexpected error occured!",);
     }
   }
-
 }

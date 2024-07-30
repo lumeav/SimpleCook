@@ -8,7 +8,7 @@ class SingleRecipeAdapter extends TypeAdapter<SingleRecipe> {
 
   @override
   SingleRecipe read(BinaryReader reader) {
-    var map = reader.readMap();
+    Map<dynamic, dynamic> map = reader.readMap();
     Map<String, dynamic> json =
         map.cast<String, dynamic>();
     return SingleRecipe.fromJson(json);
@@ -26,7 +26,7 @@ class IngredientAdapter extends TypeAdapter<Ingredient> {
 
   @override
   Ingredient read(BinaryReader reader) {
-    var map = reader.readMap();
+    Map<dynamic, dynamic> map = reader.readMap();
     Map<String, dynamic> json = map.cast<String, dynamic>();
     return Ingredient.fromJson(json);
   }
@@ -43,7 +43,7 @@ class RecipeAdapter extends TypeAdapter<recipe.Recipe> {
 
   @override
   recipe.Recipe read(BinaryReader reader) {
-    var map = reader.readMap();
+    Map<dynamic, dynamic> map = reader.readMap();
     Map<String, dynamic> json =
         map.cast<String, dynamic>();
     return recipe.Recipe.fromJson(json);

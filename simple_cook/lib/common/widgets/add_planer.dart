@@ -102,6 +102,7 @@ class _AddPlanerState extends ConsumerState<AddPlaner> {
                 selectedDate = date;
                 if (widget.recipe != null && selectedDate != null) {
                   bool added = await plannerController.addPlanner(selectedDate!.substring(4), widget.recipe!);
+                  if (!mounted) return;
                   ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
                     content: added ? Text('Rezept wurde für den $selectedDate hinzugefügt') :

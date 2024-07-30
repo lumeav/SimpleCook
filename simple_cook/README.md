@@ -32,64 +32,65 @@ Simple Cook is a versatile mobile application designed to alleviate the cooking 
         - Step-by-step cooking instructions
         - Number of servings
 
-## Widgets
+## Personas and their benefits
 
-These are the widgets that we need based on our Wireframes: 
+SimpleCook is designed to make cooking easier, more accessible, and more creative for a wide range of users. The app is built to provide quick and simple cooking ideas based on available ingredients, helping users turn whatever they have on hand into delicious meals. Additionally the explore function allows you to scroll through a variety of different recipes, if you cannot decide on what you want. Here’s how SimpleCook addresses specific problems and benefits different personas.
 
-### Widgets for Multiple Features
+### Parents
 
-- A stateless widget with the SimpleCook-Logo on every Feature-Screen
-- A stateful widget for the navigation bar
-- A stateful widget for liking certain recipes (the heart feature)
-    - Once in the explore page
-    - Once in the recipe page itself
-- A stateless widget that shows the recipe itself
-    - Shown in favorites-, recipefinder-, and in explore-screen
-- A stateless widget-button that leads to the filter
-    - Shwon in recipefinder-, and in explore-screen
-- A stateful widget for the search text field
-    - Shown in explore-, and in recipefinder-screen    
-- A stateless widget for the grey backscreen on every screen
-- A stateless widget that shows you how many recipes were found
-    - Shown in Filter-, and in recipefinder-Filter-screen
-- A stateless widget-button to search for recipes
-    - Shown in Filter-, and in recipefinder-Filter-screen
-- A stateless widget that displays the difficulty and the preparation time of the recipe
-    - Shown in explore-, and in recipefinder-screen
+#### Challenge
 
-### Widgets for the filter feature
+Balancing a hectic schedule while ensuring that their families eat healthy, home-cooked meals.
 
-- A stateful widget-button to enable/disable certain categories/diet types in the filter
-- A stateful widget for the slider on the filter screen
+#### Benefit from SimpleCook
 
-    #### Widgets for the recipefinder-filter feature
-    - A stateful widget for the search text field for ingredients
-        - Shown in recipefinder-screen
+SimpleCook helps parents manage their busy lives by providing quick and easy recipe ideas and allowing them to plan meals ahead of time. Parents can enter the ingredients they have, and the app will suggest recipes that match, making meal preparation more efficient and less stressful.
 
-### Widgets for the planning feature
+##### Feature highlight
 
-- A stateless widget to change between weeks (an arrow)
-- A stateless widget to display the current week on the page
-- A stateless widget to remove a recipe from the planner
-- A stateless widget to display the day the recipe is planned for
+The Planner View allows parents to plan meals in advance, ensuring that they have everything ready for busy weekdays.
 
-### Widgets for the recipe itself
+### Students
 
-- A stateful widget for the configuration of portion sizes
-- A stateless widget-button for adding recipes to the planner
-    - A stateful Date-Picker-widget to pick a date for the planner
-- A stateless widget that displays the ingredients for the recipe
-- A stateless widget that displays the preparation of the recipe
+#### Challenge
 
+Budget constraints and limited ingredients.
 
-## Architecture
+#### Benefit from SimpleCook
 
-Exploreview\Widgets\
-*Exploreview\Services\
-Exploreview\ExploreController -> Implements MvcController
-Exploreview\ExploreControllerImplementation
-Exploreview\ExploreModel
-Exploreview\ExploreView -> accesses the ExploreController
+SimpleCook allows students to save money by suggesting recipes based on what they already have in their kitchens, reducing food waste and avoiding unnecessary trips to the grocery store.
+
+###### Feature Highlight
+
+The Recipe Finder View helps students maximize their limited pantry items by generating recipes from available ingredients.
+
+### Hobby Chefs
+
+##### Challenge
+
+Finding new and exciting recipes to try out.
+
+##### Benefit from SimpleCook
+
+SimpleCook broadens the culinary horizons of hobby chefs by presenting new and varied recipes. This allows them to explore new cuisines and cooking techniques, enhancing their skills and creativity in the kitchen.
+
+###### Feature Highlight
+
+The Explore View offers a 'Recipe of the Day' along with other curated recipes, providing a continuous stream of new cooking ideas.
+
+### Vegetarians/Vegans
+
+##### Challenge
+
+Finding suitable and varied vegetarian or vegan recipes.
+
+##### Benefit from SimpleCook
+
+SimpleCook provides vegetarians and vegans with tailored recipes that meet their dietary preferences, ensuring that they have access to a wide variety of meals that suit their lifestyle.
+
+###### Feature Highlight
+
+The app includes filtering options for dietary preferences in the Recipe Finder View, allowing users to easily find vegetarian or vegan recipes.
 
 ## Useful commands
 
