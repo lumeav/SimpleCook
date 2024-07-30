@@ -108,7 +108,7 @@ If you are unsure of what you had planned for the coming week, you can simply na
 
 ![](/simple_cook/assets/readme/Planner_1.png)
 
-Here you can see the recipes added for each day. You can switch between two weeks by tapping the arrow button next to the week span. Here we press on the top right arrow in order to navigate to the next week:
+Here you can see the recipes added for each day. You can also just simply tap on a recipe here to show you the recipe. You can also switch between two weeks by tapping the arrow button next to the week span. Here we press on the top right arrow in order to navigate to the next week:
 
 ![](/simple_cook/assets/readme/Planner_2.png)
 
@@ -120,84 +120,85 @@ Here you can see the recipes for the following week. If you plan not to cook a s
 
 SimpleCook is designed to make cooking easier, more accessible, and more creative for a wide range of users. The app is built to provide quick and simple cooking ideas based on available ingredients, helping users turn whatever they have on hand into delicious meals. Additionally, the explore function allows you to scroll through a variety of different recipes, if you cannot decide on what you want. Here’s how SimpleCook addresses specific problems and benefits different personas.
 
-- **Parents**
+### Parents
 
-    - **Characteristics**
-        - Typically have busy schedules with work and family responsibilities.
-        - Often need to prepare meals for multiple people, including children.
-        - Value efficiency and convenience in meal preparation.
-        - Aim to provide healthy, home-cooked meals for their families.
-    - **Challenge**
+**Characteristics**
+- Typically have busy schedules with work and family responsibilities.
+- Often need to prepare meals for multiple people, including children.
+- Value efficiency and convenience in meal preparation.
+- Aim to provide healthy, home-cooked meals for their families.
 
-    Balancing a hectic schedule while ensuring that their families eat healthy, home-cooked meals.
+**Challenge**
 
-    - **Benefit from SimpleCook**
+Balancing a hectic schedule while ensuring that their families eat healthy, home-cooked meals.
 
-    SimpleCook helps parents manage their busy lives by providing quick and easy recipe ideas and allowing them to plan meals ahead of time. Parents can enter the ingredients they have, and the app will suggest recipes that match, making meal preparation more efficient and less stressful.
+**Benefit from SimpleCook**
 
-    - **Feature highlight**
+SimpleCook helps parents manage their busy lives by providing quick and easy recipe ideas and allowing them to plan meals ahead of time. Parents can enter the ingredients they have, and the app will suggest recipes that match, making meal preparation more efficient and less stressful.
 
-    The Planner View allows parents to plan meals in advance, ensuring that they have everything ready for busy weekdays.
-<br>
-- **Students**
+**Feature highlight**
 
-    - **Characteristics**
-        - Often have limited budgets and minimal cooking experience.
-        - Frequently rely on inexpensive, easy-to-find ingredients.
-        - Need to balance cooking with studying and social activities.
-        - Value simplicity and cost-effectiveness in meal preparation.
+The Planner View allows parents to plan meals in advance, ensuring that they have everything ready for busy weekdays.
 
-    - **Challenge**
+### Students
 
-    Budget constraints and limited ingredients.
+**Characteristics**
+- Often have limited budgets and minimal cooking experience.
+- Frequently rely on inexpensive, easy-to-find ingredients.
+- Need to balance cooking with studying and social activities.
+- Value simplicity and cost-effectiveness in meal preparation.
 
-    - **Benefit from SimpleCook**
+**Challenge**
 
-    SimpleCook allows students to save money by suggesting recipes based on what they already have in their kitchens, reducing food waste and avoiding unnecessary trips to the grocery store.
+Budget constraints and limited ingredients.
 
-    - **Feature Highlight**
+**Benefit from SimpleCook**
 
-    The Recipe Finder View helps students maximize their limited pantry items by generating recipes from available ingredients.
-<br>
-- **Hobby Chefs**
+SimpleCook allows students to save money by suggesting recipes based on what they already have in their kitchens, reducing food waste and avoiding unnecessary trips to the grocery store.
 
-    - **Characteristics**
-        - Enjoy experimenting with new recipes and cooking techniques.
-        - Seek to expand their culinary skills and knowledge.
-        - Have a passion for trying out diverse cuisines and unique dishes.
-        - Value creativity and innovation in the kitchen.
+**Feature Highlight**
 
-    - **Challenge**
+The Recipe Finder View helps students maximize their limited pantry items by generating recipes from available ingredients.
 
-    Finding new and exciting recipes to try out.
+### Hobby Chefs
 
-    - **Benefit from SimpleCook**
+**Characteristics**
+- Enjoy experimenting with new recipes and cooking techniques.
+- Seek to expand their culinary skills and knowledge.
+- Have a passion for trying out diverse cuisines and unique dishes.
+- Value creativity and innovation in the kitchen.
 
-    SimpleCook broadens the culinary horizons of hobby chefs by presenting new and varied recipes. This allows them to explore new cuisines and cooking techniques, enhancing their skills and creativity in the kitchen.
+**Challenge**
 
-    - **Feature Highlight**
+Finding new and exciting recipes to try out.
 
-    The Explore View offers a 'Recipe of the Day' along with other curated recipes, providing a continuous stream of new cooking ideas.
-<br>
-- **Vegetarians/Vegans**
+**Benefit from SimpleCook**
 
-    - **Characteristics**
-        - Follow a vegetarian or vegan diet for health, ethical, or environmental reasons.
-        - Seek a variety of plant-based recipes to diversify their meals.
-        - Often require recipes that exclude certain animal products and by-products.
-        - Value dietary preference filtering to easily find suitable recipes.
+SimpleCook broadens the culinary horizons of hobby chefs by presenting new and varied recipes. This allows them to explore new cuisines and cooking techniques, enhancing their skills and creativity in the kitchen.
 
-    - **Challenge**
+**Feature Highlight**
 
-    Finding suitable and varied vegetarian or vegan recipes.
+The Explore View offers a 'Recipe of the Day' along with other curated recipes, providing a continuous stream of new cooking ideas.
 
-    - **Benefit from SimpleCook**
+### Vegetarians/Vegans
 
-    SimpleCook provides vegetarians and vegans with tailored recipes that meet their dietary preferences, ensuring that they have access to a wide variety of meals that suit their lifestyle.
+**Characteristics**
+- Follow a vegetarian or vegan diet for health, ethical, or environmental reasons.
+- Seek a variety of plant-based recipes to diversify their meals.
+- Often require recipes that exclude certain animal products and by-products.
+- Value dietary preference filtering to easily find suitable recipes.
 
-    - **Feature Highlight**
+**Challenge**
 
-    The app includes filtering options for dietary preferences in the Recipe Finder View, allowing users to easily find vegetarian or vegan recipes.
+Finding suitable and varied vegetarian or vegan recipes.
+
+**Benefit from SimpleCook**
+
+SimpleCook provides vegetarians and vegans with tailored recipes that meet their dietary preferences, ensuring that they have access to a wide variety of meals that suit their lifestyle.
+
+**Feature Highlight**
+
+The app includes filtering options for dietary preferences in the Recipe Finder View, allowing users to easily find vegetarian or vegan recipes.
 
 ## Useful commands
 
