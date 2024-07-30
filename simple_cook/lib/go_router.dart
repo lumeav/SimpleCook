@@ -23,7 +23,7 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: <RouteBase
               path: '/explore',
               name: 'explore',
               pageBuilder: (BuildContext context, GoRouterState state) {
-                return NoTransitionPage(
+                return NoTransitionPage<dynamic>(
                   key: state.pageKey,
                   child: ExploreView(
                     key: state.pageKey,
@@ -35,7 +35,7 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: <RouteBase
                     path: 'subRecipesFiltered',
                     name: 'subRecipesFiltered',
                     pageBuilder: (BuildContext context, GoRouterState state) {
-                      return NoTransitionPage(
+                      return NoTransitionPage<dynamic>(
                           key: state.pageKey,
                           child: ExploreFilteredView(
                             key: state.pageKey,
@@ -49,7 +49,7 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: <RouteBase
               path: '/recipeFinder',
               name: 'recipeFinder',
               pageBuilder: (BuildContext context, GoRouterState state) {
-                return NoTransitionPage(
+                return NoTransitionPage<dynamic>(
                   key: state.pageKey,
                   child: RecipefinderView(
                     key: state.pageKey,
@@ -62,7 +62,7 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: <RouteBase
               path: '/favorites',
               name: 'favorites',
               pageBuilder: (BuildContext context, GoRouterState state) {
-                return NoTransitionPage(
+                return NoTransitionPage<dynamic>(
                   key: state.pageKey,
                   child: FavoritesView(
                     key: state.pageKey,
@@ -75,7 +75,7 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: <RouteBase
               path: '/planner',
               name: 'planner',
               pageBuilder: (BuildContext context, GoRouterState state) {
-                return NoTransitionPage(
+                return NoTransitionPage<dynamic>(
                   key: state.pageKey,
                   child: PlannerView(
                     key: state.pageKey,
@@ -87,9 +87,9 @@ final GoRouter router = GoRouter(initialLocation: '/explore', routes: <RouteBase
   GoRoute(
     path: '/singleRecipeView',
     name: 'singleRecipeView',
-    pageBuilder: (context, state) {
+    pageBuilder: (BuildContext context, GoRouterState state) {
       SingleRecipe? genRecipe = state.extra as SingleRecipe?;
-      return NoTransitionPage(
+      return NoTransitionPage<dynamic>(
         key: state.pageKey,
         child: RecipeView(
           key: state.pageKey,

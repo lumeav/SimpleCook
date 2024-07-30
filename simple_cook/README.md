@@ -200,6 +200,10 @@ SimpleCook provides vegetarians and vegans with tailored recipes that meet their
 
 The app includes filtering options for dietary preferences in the Recipe Finder View, allowing users to easily find vegetarian or vegan recipes.
 
+## Architecture
+
+
+
 ## Useful commands
 
 This is the command for creating APK files:
