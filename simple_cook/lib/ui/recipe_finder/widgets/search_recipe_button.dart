@@ -18,7 +18,7 @@ class SearchRecipesButton extends ConsumerWidget {
       height: 50,
       child: ElevatedButton(
             onPressed: () {
-              context.pushNamed('singleResultView', queryParameters: <String, dynamic>{'text': recipeFinderController.getFilter()});
+              context.pushNamed('singleRecipeView', queryParameters: <String, dynamic>{'genRecipeQuery': recipeFinderController.getFilter()});
           },
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all<Color>(SimpleCookColors.primary),
