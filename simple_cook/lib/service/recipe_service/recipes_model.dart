@@ -46,7 +46,7 @@ class Recipe {
         "source": source,
         "title": title,
         "totalTime": totalTime,
-        "diet": diet == null ? [] : List<dynamic>.from(diet!.map((String x) => x)),
+        "diet": diet == null ? <dynamic>[] : List<dynamic>.from(diet!.map((String x) => x)),
       };
 }
 

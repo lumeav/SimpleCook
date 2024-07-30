@@ -45,7 +45,6 @@ class PersistenceService extends PersistenceServiceAggregator {
         await _searchBarIngredientBox.put(0, SimpleCookIngredientList.kOptions);
       }
     } catch (e) {
-      print('Error initializing Hive box: $e');
       rethrow;
     }
   }
@@ -78,7 +77,7 @@ class PersistenceService extends PersistenceServiceAggregator {
   @override
   Map<String, List<SingleRecipe>> loadPlanner() {
     return _plannerBox.toMap().map(
-        (key, value) => MapEntry(key as String, value.cast<SingleRecipe>()));
+        (key, List<dynamic> value) => MapEntry<String, List<SingleRecipe>>(key as String, value.cast<SingleRecipe>()));
   }
 
   @override

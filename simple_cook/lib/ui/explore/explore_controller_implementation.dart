@@ -62,5 +62,4 @@ class ExploreControllerImplementation extends _$ExploreControllerImplementation
       );
     }
   }
-
 }

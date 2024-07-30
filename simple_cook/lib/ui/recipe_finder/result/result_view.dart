@@ -26,7 +26,6 @@ class _ResultViewState extends ConsumerState<ResultView> {
   @override
   void initState() {
     super.initState();
-    print('text: ${widget.text}');
     ref
         .read(resultControllerProvider)
         .fetchRecipe(widget.text!);

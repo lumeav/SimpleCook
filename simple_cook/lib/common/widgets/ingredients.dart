@@ -25,7 +25,7 @@ class Ingredients extends StatelessWidget {
         children: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: <Widget>[
               const Text(
                 "Zutaten",
                 style: SimpleCookTextstyles.subHeader

@@ -28,9 +28,7 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
     try {
       final ApiResponse<GenRecipeModel> response =
           await recipeService.postGenRecipeModel(query);
-      if (response.data == null && response.errorMessage != null) {
-        print("Fehler!!!187");
-        print(response.errorMessage);
+      if (response.data == null && response.errorMessage != null) {;
         state = state.copyWith(
           error: true,
           errorMessage: response.errorMessage,
@@ -40,9 +38,7 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
         state = state.copyWith(recipe: response.data, error: false);
         await _fetchRecipeImg(response.data!);
       }
-    } catch (e, s) {
-      print(e);
-      print(s);
+    } catch (e) {
       state = state.copyWith(
         error: true,
         errorMessage: "An unexpected error occured!",
@@ -59,16 +55,12 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
         state = state.copyWith(
             url: response.data, error: false, fetchFinished: true);
       } else {
-        print("Fehler!!!420");
         state = state.copyWith(
           error: true,
           errorMessage: response.errorMessage,
         );
       }
-    } catch (e, s) {
-      print("Fehler!!!123");
-      print(e);
-      print(s);
+    } catch (e) {
       state = state.copyWith(
         error: true,
         errorMessage: "An unexpected error occured!",
@@ -77,10 +69,9 @@ class ResultControllerImplementation extends _$ResultControllerImplementation
   }
 
   void mapSingleRecipe(GenRecipeModel recipe, String url) {
-      var genRecipeJson = recipe.toJson();
-      var singleRecipe = SingleRecipe.genRecipeFromJson(genRecipeJson);
-      singleRecipe.imageUrls = [url]; // Change the assignment to a list containing the url
-      print(singleRecipe.toString());
+      Map<String, dynamic> genRecipeJson = recipe.toJson();
+      SingleRecipe singleRecipe = SingleRecipe.genRecipeFromJson(genRecipeJson);
+      singleRecipe.imageUrls = <String>[url];
       state = state.copyWith(singleRecipe: singleRecipe);
   }
 }
