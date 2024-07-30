@@ -202,6 +202,99 @@ The app includes filtering options for dietary preferences in the Recipe Finder 
 
 ## Architecture
 
+SimpleCook is built using a layered architecture, ensuring a clear separation of concerns and facilitating maintainability and scalability. The primary layers include the View, Model, Controller and Services. The folder structure is based on the feature-first principle. This approach ensures that each feature of the app is modular and self-contained, making the codebase more organized and easier to maintain.
+
+### Explore View
+
+![](/simple_cook/assets/architecure/explore_view.png)
+
+**Components and functionality**
+
+- explore_persistence_service
+    - handles generation and storing of recipe of the day
+- explore_recipe_serivce
+    - returns a list of recipes from the API
+- explore_model
+    - the data structure representing the state of the Explore View. It communicates with the controller and the provider
+- explore_provider
+    - manages the state of the Explore View and serves as an intermediary between the view and the controller
+
+### Recipe Finder View
+
+![](/simple_cook/assets/architecure/recipe_finder_view.png)
+
+**Components and functionality**
+
+- recipe_finder_persistence_service
+    - handles storing, searching and adding of search bar ingredients in the search bar
+recipe_finder_recipe_service
+- recipe_finder_model
+    - the data structure representing the state of the Recipe Finder View. It communicates with the controller and the provider
+- recipe_finder_provider
+    - manages the state of the Favorite View and serves as an intermediary between the view and the controller
+- search_recipe_button
+    - navigates to recipe_info_view with the AI generated recipe
+
+### Favorites View
+
+![](/simple_cook/assets/architecure/favorites_view.png)
+
+**Components and functionality**
+
+- favorites_persistence_service
+    - handles storing, adding, removing and favorite checking to make sure a recipe is favorited or not
+- favorites_model
+    - the data structure representing the state of the Favorites View. It communicates with the controller and the provider
+- favorites_provider
+    - manages the state of the Favorite View and serves as an intermediary between the view and the controller
+
+### Planner View
+
+![](/simple_cook/assets/architecure/planner_view.png)
+
+**Components and functionality**
+
+- planner_persistence_service
+    - handles storing, adding, removing and fetches all recipes for a specific date
+- planner_model
+    - the data structure representing the state of the Planner View. It communicates with the controller and the provider
+- planner_provider
+    - manages the state of the Favorite View and serves as an intermediary between the view and the controller
+
+### Planner View
+
+![](/simple_cook/assets/architecure/recipe_info_view.png)
+
+**Components and functionality**
+
+- recipe_info_recipe_service
+    - returns a SingleRecipe for a normal recipe or a string URL and a genRecipeModel
+- recipe_info_model
+    - the data structure representing the state of the Recipe Info View. It communicates with the controller and the provider
+- recipe_info_provider
+    - manages the state of the Favorite View and serves as an intermediary between the view and the controller
+
+### Recipe Client
+
+![](/simple_cook/assets/architecure/recipe_client.png)
+
+**Components and functionality**
+
+- recipe_client
+    - handles HTTP requests to the external API. It includes methods for fetching multiple recipes, a single recipe, generating a recipe based on a prompt, and generating an image for a recipe. Error handling is also managed within this client
+- recipe_service
+    - acts as a mediator between the RecipeClient and the rest of the application. It implements the RecipeServiceAggregator interface and ensures that requests are properly routed and handled
+- recipe_service_aggregator
+    - abstract class that integrates the ExploreRecipeService and RecipeInfoRecipeService interfaces, ensuring that the RecipeService can cater to both explore and recipe info functionalities
+- Models
+    - recipes_model
+        - represents the structure of a recipe list fetched from the API
+    - single_recipe_model
+        - represents the structure of a single recipe with detailed steps and ingredients
+    - img_recipe_model
+        - represents the structure needed to generate a recipe image
+    - gen_recipe_model
+        - represents the structure of a generated recipe based on AI input
 
 
 ## Useful commands
