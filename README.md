@@ -297,6 +297,19 @@ recipe_finder_recipe_service
         - represents the structure of a generated recipe based on AI input
 
 
+## What to do when API key has expired
+
+If you get an error saying that the API-Key has expired make sure to obtain a new key from gustar.io in rapidapi (https://rapidapi.com/gustario-gustario-default/api/gustar-io-deutsche-rezepte).
+After you have received the X-RapidAPI-Key for gustar.io requests you can put your API-Key in the config file for easy access again.
+
+1. Register for RapidAPI
+![](/simple_cook/assets/API_key/Setup1.png)
+2. Copy your X-RapidAPI-Key
+![](/simple_cook/assets/API_key/Setup2.png)
+3. Navigate to "simple_cook\lib\common\config.dart"
+4. Replace the key inside the config with your own X-RapidAPI-Key
+![](/simple_cook/assets/API_key/Setup3.png)
+
 ## Useful commands
 
 This is the command for creating APK files:
