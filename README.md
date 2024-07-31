@@ -41,80 +41,80 @@ Provides detailed information about a selected recipe, including ingredients, pr
 
 When opening the application you are greeted by the explore view, in which you can see the recipe of the day as well as other recipes that you can scroll through:
 
-![](/simple_cook/assets/user_guide/Explore_1.png)
-![](/simple_cook/assets/user_guide/Explore_2.png)
+![](/assets/user_guide/Explore_1.png)
+![](/assets/user_guide/Explore_2.png)
 <br>
 If you are not finding anything that you like in the explore view, you can simply search for a specific recipe that you would like to eat, in this example we look for a curry recipe like this:
 
-![](/simple_cook/assets/user_guide/Explore_3.png)
+![](/assets/user_guide/Explore_3.png)
 
 After you continue, you are shown all recipes that fit the recipe which you have searched for:
 
-![](/simple_cook/assets/user_guide/Explore_4.png)
+![](/assets/user_guide/Explore_4.png)
 
 If you have finally found what you were looking for you can simply tap on the recipe that you would like to cook:
 
-![](/simple_cook/assets/user_guide/Recipe_1.png)
+![](/assets/user_guide/Recipe_1.png)
 
 Here you can find the preparation time, portion size and the specific ingredients that you need for the recipe.
 Tapping on the heart button on the top right will add it to our favorites view, which we are going to take a look at later. The heart fills with orange color, which means the recipe is favorited:
 
-![](/simple_cook/assets/user_guide/Recipe_2.png)
+![](/assets/user_guide/Recipe_2.png)
 
 You can also tap the plus button to the left of the heart button in order to add a recipe to the planner view for later use:
 
-![](/simple_cook/assets/user_guide/Recipe_3.png)
+![](/assets/user_guide/Recipe_3.png)
 
 Scrolling down the recipe you can take a look at the stepwise preparation of this recipe. This recipe only takes 10 minutes to prepare so you only need two preparation steps for this recipe:
 
-![](/simple_cook/assets/user_guide/Recipe_4.png)
+![](/assets/user_guide/Recipe_4.png)
 
 When tapping the return arrow in the top left you will be brought back to the explore view. You can see that the heart for the recipe that we just favorited also turned orange, which makes keeping track of your favorite recipes easier:
 
-![](/simple_cook/assets/user_guide/Explore_5.png)
+![](/assets/user_guide/Explore_5.png)
 
 By tapping on the "Search" magnifying glass in the bottom navigation bar you are navigated to the next view, the recipe finder view:
 
-![](/simple_cook/assets/user_guide/RecipeFinder_1.png)
+![](/assets/user_guide/RecipeFinder_1.png)
 
 This view lets you generate an AI-recipe based on the tags and the ingredients that you add to it. You can add a specific ingredient by typing it into the search bar:
 
-![](/simple_cook/assets/user_guide/RecipeFinder_2.png)
-![](/simple_cook/assets/user_guide/RecipeFinder_3.png)
+![](/assets/user_guide/RecipeFinder_2.png)
+![](/assets/user_guide/RecipeFinder_3.png)
 
 The specific ingredient will be added to the recipe that we are going to generate later. A basic configuration would look like this:
 
-![](/simple_cook/assets/user_guide/RecipeFinder_4.png)
+![](/assets/user_guide/RecipeFinder_4.png)
 
 You can then tap on the "Rezept generieren" button to generate the recipe with the current configuration:
 
-![](/simple_cook/assets/user_guide/RecipeFinder_5.png)
+![](/assets/user_guide/RecipeFinder_5.png)
 
 After it is done loading you can see the generated recipe, it has the same information and layout as all other recipes:
 
-![](/simple_cook/assets/user_guide/GenRecipe_1.png)
-![](/simple_cook/assets/user_guide/GenRecipe_2.png)
+![](/assets/user_guide/GenRecipe_1.png)
+![](/assets/user_guide/GenRecipe_2.png)
 
 You can then head back again by tapping the return arrow in the top left, after that you can navigate to the favorites view in the navigation bar. Tap on the "Favorites" heart in the bottom navigation bar to see the favorites view:
 
-![](/simple_cook/assets/user_guide/Favorites_1.png)
+![](/assets/user_guide/Favorites_1.png)
 
 Here you can see all the recipes that you favorited in the past. If you want you can simply tap on the recipes here to show you the recipe again, or remove recipes that you do not like anymore. In this example we remove the "Dattel-Curry-Dip":
 
-![](/simple_cook/assets/user_guide/Favorites_1.png)
-![](/simple_cook/assets/user_guide/Favorites_2.png)
+![](/assets/user_guide/Favorites_1.png)
+![](/assets/user_guide/Favorites_2.png)
 
 If you are unsure of what you had planned for the coming week, you can simply navigate to the Planner view by tapping the "Planner" calender in the bottom navigation bar. This will lead you to the planner view:
 
-![](/simple_cook/assets/user_guide/Planner_1.png)
+![](/assets/user_guide/Planner_1.png)
 
 Here you can see the recipes added for each day. You can also just simply tap on a recipe here to show you the recipe. You can also switch between two weeks by tapping the arrow button next to the week span. Here we press on the top right arrow in order to navigate to the next week:
 
-![](/simple_cook/assets/user_guide/Planner_2.png)
+![](/assets/user_guide/Planner_2.png)
 
 Here you can see the recipes for the following week. If you plan not to cook a specific recipe you can also just remove it by tapping the minus button on the top right of the recipe like this:
 
-![](/simple_cook/assets/user_guide/Planner_3.png)
+![](/assets/user_guide/Planner_3.png)
 
 ## Personas and their benefits
 
@@ -206,7 +206,7 @@ SimpleCook is built using a layered architecture, ensuring a clear separation of
 
 ### Explore View
 
-![](/simple_cook/assets/architecture/explore_view.png)
+![](/assets/architecture/explore_view.png)
 
 **Components and functionality**
 
@@ -221,7 +221,7 @@ SimpleCook is built using a layered architecture, ensuring a clear separation of
 
 ### Recipe Finder View
 
-![](/simple_cook/assets/architecture/recipe_finder_view.png)
+![](/assets/architecture/recipe_finder_view.png)
 
 **Components and functionality**
 
@@ -237,7 +237,7 @@ recipe_finder_recipe_service
 
 ### Favorites View
 
-![](/simple_cook/assets/architecture/favorites_view.png)
+![](/assets/architecture/favorites_view.png)
 
 **Components and functionality**
 
@@ -250,7 +250,7 @@ recipe_finder_recipe_service
 
 ### Planner View
 
-![](/simple_cook/assets/architecture/planner_view.png)
+![](/assets/architecture/planner_view.png)
 
 **Components and functionality**
 
@@ -263,7 +263,7 @@ recipe_finder_recipe_service
 
 ### Recipe Info View
 
-![](/simple_cook/assets/architecture/recipe_info_view.png)
+![](/assets/architecture/recipe_info_view.png)
 
 **Components and functionality**
 
@@ -276,7 +276,7 @@ recipe_finder_recipe_service
 
 ### Recipe Client
 
-![](/simple_cook/assets/architecture/recipe_client.png)
+![](/assets/architecture/recipe_client.png)
 
 **Components and functionality**
 
