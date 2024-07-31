@@ -1,0 +1,1 @@
+ C:\\SimpleCook\\SimpleCook\\simple_cook\\.dart_tool\\flutter_build\\42277ff43e260bc7bdc039f1fbd83735\\native_assets.yaml: 
