@@ -3,7 +3,7 @@ class Config {
 
   static const Map<String, String> headers = <String, String>{
     'x-rapidapi-host': 'gustar-io-deutsche-rezepte.p.rapidapi.com',
-    'x-rapidapi-key': 'c8b7b6419bmshc6806e6941f2ff2p19aa9fjsn6b22a136729f',
+    'x-rapidapi-key': '2fce9c4473msha3d7292aba174e9p1b63a2jsnd4f04af7d3e9',
   };
 
   static const List<String> tips = <String>[
