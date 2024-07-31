@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_cook/common/constants.dart';
+import 'package:simple_cook/ui/explore/explore_providers.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_model.dart';
 import 'package:simple_cook/ui/recipe_info/recipe_info_providers.dart';
 import 'package:simple_cook/common/widgets/loading_indicator.dart';
@@ -98,6 +99,9 @@ class _RecipeViewState extends ConsumerState<RecipeView> {
                                       .read(recipeInfoControllerProvider)
                                       .refetchRecipe(widget.recipeUrl,
                                           widget.genRecipeQuery);
+                                  ref
+                                      .read(exploreControllerProvider)
+                                      .rebuildRecipes();
                                 },
                                 style: ButtonStyle(
                                   backgroundColor:
