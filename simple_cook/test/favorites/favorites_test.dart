@@ -9,7 +9,7 @@ import 'package:riverpod/riverpod.dart';
 import 'package:mockito/annotations.dart';
 
 @GenerateMocks([FavoritesPersistenceService])
-class RecipeFinderControllerTestMocks {}
+class FavoritesControllerTestMocks {}
 
 void main() {
   late MockFavoritesPersistenceService mockPersistenceService;
