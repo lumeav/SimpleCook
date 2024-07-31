@@ -3,14 +3,14 @@ import 'package:go_router/go_router.dart';
 import 'package:simple_cook/common/theme.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SearchBarExplore extends ConsumerStatefulWidget {
+class SearchBarExplore extends StatefulWidget {
   const SearchBarExplore({super.key});
 
   @override
-  ConsumerState<SearchBarExplore> createState() => _SearchBarState();
+  State<SearchBarExplore> createState() => _SearchBarState();
 }
 
-class _SearchBarState extends ConsumerState<SearchBarExplore> {
+class _SearchBarState extends State<SearchBarExplore> {
   String? searchQuery;
   String selectedTile = '';
 
@@ -46,7 +46,6 @@ class _SearchBarState extends ConsumerState<SearchBarExplore> {
                   });
                 },
               );
-
             });
           }),
     ]);
