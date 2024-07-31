@@ -27,9 +27,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
   @override
   void initState() {
     super.initState();
-    ref
-        .read(exploreFilteredControllerProvider)
-        .buildRecipes(widget.search!);
+    ref.read(exploreFilteredControllerProvider).buildRecipes(widget.search!);
   }
 
   @override
@@ -53,23 +51,22 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
                     sliver: SliverGrid.count(
                       childAspectRatio: SimpleCookRatios.recipeGridRatio,
                       crossAxisCount: SimpleCookConstants.recipeGridCount,
-                      mainAxisSpacing: SimpleCookConstants.recipeGridMainSpacing,
-                      crossAxisSpacing: SimpleCookConstants.recipeGridCrossSpacing,
+                      mainAxisSpacing:
+                          SimpleCookConstants.recipeGridMainSpacing,
+                      crossAxisSpacing:
+                          SimpleCookConstants.recipeGridCrossSpacing,
                       children: <Widget>[
-                        for (Recipe recipe in exploreFilteredState.filteredRecipes!)
-                          SimpleRecipe(
-                              recipe.imageUrls.first,
-                              recipe.title,
-                              recipe.source,
-                              null
-                    ),],
+                        for (Recipe recipe
+                            in exploreFilteredState.filteredRecipes!)
+                          SimpleRecipe(recipe.imageUrls.first, recipe.title,
+                              recipe.source, null),
+                      ],
                     ),
                   )
                 ],
               )
             : !exploreFilteredState.error
-                ? const Center(
-                    child: LoadingIndicator())
+                ? const Center(child: LoadingIndicator())
                 : Center(
                     child: Padding(
                     padding: const EdgeInsets.only(left: 15.0, right: 15.0),
@@ -85,8 +82,7 @@ class _ExploreFilteredViewState extends ConsumerState<ExploreFilteredView> {
                             child: ElevatedButton(
                                 onPressed: () {
                                   ref
-                                      .read(
-                                          exploreFilteredControllerProvider)
+                                      .read(exploreFilteredControllerProvider)
                                       .rebuildRecipes(widget.search!);
                                 },
                                 style: ButtonStyle(
